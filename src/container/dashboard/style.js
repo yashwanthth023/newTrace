@@ -1779,6 +1779,400 @@ const TopSellerWrap = Styled.div`
     }
 `;
 
+const ProjectHeader = Styled.div`
+    .ant-page-header-heading-sub-title{
+        ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 0;
+        position: relative;
+        ${({ theme }) => (!theme.rtl ? 'padding-left' : 'padding-right')}: 15px;
+        font-weight: 500;
+        &:before{
+            position: absolute;
+            content: '';
+            width: 1px;
+            height: 24px;
+            background: ${({ theme }) => theme['dash-color']};
+            ${({ theme }) => (!theme.rtl ? 'left' : 'right')}: 0;
+            top:0;
+        }
+    }
+`;
+
+const ProjectSorting = Styled.div`
+    margin-bottom: 25px;
+    .project-sort-bar{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 0 -10px;
+        .project-sort-nav,
+        .project-sort-search,
+        .project-sort-group{
+            padding: 0 10px;
+        }
+
+        .project-sort-group{
+            ${({ theme }) => (theme.rtl ? 'margin-right' : 'margin-left')}: auto;
+        }
+        .project-sort-search{
+            .ant-select-selection-search{
+                width: 100% !important;
+            }
+        }
+    }
+    @media (max-width: 1500px){
+        .project-sort-search{
+            .ant-select{
+                width: 237px !important;
+            }
+        }
+        .project-sort-group .sort-group{
+            .ant-select{
+                min-width: 180px;
+            }
+        }
+    }
+    @media (min-width: 1201px) and (max-width: 1300px) {
+        .project-sort-search{
+            .ant-select{
+                width: 170px !important;
+            }
+        }
+        .project-sort-group{
+            padding: 0 5px;
+            
+        }
+        .project-sort-group .sort-group .layout-style a{
+            width: 35px;
+            height: 35px;
+        }
+        .project-sort-group .sort-group .ant-select {
+            min-width: 170px;
+            ${({ theme }) => (!theme.rtl ? 'padding-left' : 'padding-right')}: 5px;
+            ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 5px;
+        }
+    }
+    @media (max-width: 1199px){
+        .project-sort-search{
+            flex: 0 0 100%;
+            order: 0;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+            .ant-select{
+                width: 350px !important;
+            }
+        }
+        .project-sort-nav{
+            order: 1;
+            margin: 0 auto;
+        }
+        .project-sort-group{
+            order: 2;
+        }
+    }
+    @media (max-width: 991px){
+        .project-sort-group{
+            ${({ theme }) => (theme.rtl ? 'margin-right' : 'margin-left')}: unset;
+            flex: 0 0 100%;
+            margin-top: 15px;
+            .sort-group{
+                justify-content: flex-start;
+                .layout-style{
+                    ${({ theme }) => (theme.rtl ? 'margin-right' : 'margin-left')}: auto;
+                }
+            }
+        }
+    }
+    @media (max-width: 575px){
+        .project-sort-group{
+            .sort-group{
+                > span{
+                    display: none;
+                }
+                .ant-select{
+                    ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 0;
+                }
+            }
+        }
+    }
+
+    nav{
+        background: #fff;
+        border-radius: 5px;
+        padding: 9px 20px;
+        ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            li{
+                ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 12px;
+                ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 11px;
+                ${({ theme }) => (theme.rtl ? 'border-left' : 'border-right')}: 1px solid ${({ theme }) =>
+  theme['border-color-light']};
+                &:last-child{
+                    ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 0;
+                    ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 0;
+                    ${({ theme }) => (theme.rtl ? 'border-left' : 'border-right')}: 0 none;
+                }
+                a{
+                    color: ${({ theme }) => theme['gray-solid']};
+                    font-weight: 400;
+                }
+                &.active{
+                    a{
+                        color: ${({ theme }) => theme['primary-color']};
+                    }
+                }
+            }
+        }
+    }
+    .ant-select-selection-search-input{
+        border: 0 none;
+        border-radius: 23px;
+        input{
+            height: 40px !important;
+            border-radius: 23px;
+        }
+    }
+    .ant-select-arrow{
+        right: auto;
+        ${({ theme }) => (theme.rtl ? 'left' : 'right')}: 11px !important;
+    }
+    
+    .sort-group{
+        color: ${({ theme }) => theme['gray-solid']};
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+               
+        .ant-select{
+            ${({ theme }) => (!theme.rtl ? 'padding-left' : 'padding-right')}: 10px;
+            ${({ theme }) => (!theme.rtl ? 'margin-left' : 'margin-right')}: 15px;
+            min-width: 260px;
+            .ant-select-selector{
+                border: 0 none;
+                .ant-select-selection-item{                    
+                    color: ${({ theme }) => theme['gray-solid']};
+                }
+                
+            }
+        }
+        .layout-style{
+            display: flex;
+            align-items: center;
+            ${({ theme }) => (theme.rtl ? 'margin-right' : 'margin-left')}: 20px;
+            a{
+                display: flex;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                align-items: center;
+                justify-content: center;
+                color: ${({ theme }) => theme['gray-solid']};
+                &:hover,
+                &.active{
+                    color: ${({ theme }) => theme['primary-color']};
+                    background: #fff;
+                }
+            }
+        }
+    }
+    @media (max-width: 400px){
+        .sort-group .ant-select{
+            min-width: 200px;
+        }
+        .project-sort-search{
+            .ant-select-auto-complete{
+                width: 100% !important;
+            }
+        }
+        .project-sort-nav{
+            nav{
+                padding: 10px;
+            }
+            nav ul{
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-bottom: -5px;
+                li{
+                    ${({ theme }) => (theme.rtl ? 'border-left' : 'border-right')}: 0 none;
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    }
+`;
+const ProjectPagination = Styled.div`
+    .ant-pagination{
+        display: flex;
+        justify-content: flex-end;
+        @media only screen and (max-width: 767px) {
+            justify-content: center;
+        }
+    }
+`;
+
+const ProjectCard = Styled.div`
+    .ant-card-body{
+        padding: 0px !important;
+    }
+    .project-top{
+        padding:30px 30px 0px;
+    }
+    .project-bottom{
+        border-top: 1px solid ${({ theme }) => theme['border-color-light']};
+        .project-assignees{
+            padding: 0px 30px 25px;
+        }
+    }
+    .project-title{ 
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        h1{
+            font-size: 20px;
+            color :'#3333ff'
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin: -2px;
+            a{
+                color :'#5f63f2'
+                ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 11px !important;
+            }
+            a,
+            .ant-tag{
+                margin: 2px;
+            }
+            .ant-tag{
+                text-transform: uppercase;
+                font-size: 10px;
+                ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 0;
+                line-height: 18px;
+                background: red;
+                color: #fff;
+                border: 0 none;
+                &.early{
+                    background: ${({ theme }) => theme['primary-color']};
+                }
+                &.progress{
+                    background: ${({ theme }) => theme['danger-color']};
+                }
+                &.late{
+                    background: ${({ theme }) => theme['warning-color']};
+                }
+                &.complete{
+                    background: ${({ theme }) => theme['success-color']};
+                }
+            }
+        }
+        .ant-dropdown-trigger{
+            color: ${({ theme }) => theme['extra-light-color']};
+        }
+    }
+    .project-desc{
+        margin: 7px 0 25px 0;
+        color: ${({ theme }) => theme['gray-color']};
+    }
+    .project-timing{
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        div{
+            ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 30px;
+            &:last-child{
+                ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 0;
+            }
+            span, strong{
+                display: block;
+            }
+            span{
+                font-size: 12px;
+                margin-bottom: 2px;
+                color: ${({ theme }) => theme['gray-solid']};
+            }
+            strong{
+                font-weight: 500;
+            }
+        }
+    }
+    .project-progress{
+        p{
+            margin: 2px 0 0 0;
+            color: ${({ theme }) => theme['gray-solid']};
+            font-size: 12px;
+        }
+        .ant-progress-text{
+            font-size: 12px;
+            font-weight: 500;
+        }
+    }
+    .project-assignees{
+     
+        margin-top: 17px;
+        padding-top: 16px;
+        p{
+            font-size: 13px;
+            color: ${({ theme }) => theme['gray-solid']}
+        }
+        ul{
+            margin: -3px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            li{
+                list-style: none;
+                padding: 3px;
+                display: flex;
+                  width : 80%;
+                  gap :70px; 
+               
+                @media only screen and (max-width: 1399px){
+                    width: 100%;
+                    gap : 35px
+                }
+                @media only screen and (max-width: 991px){
+                    width: 80%;
+                    gap : 60px;
+                }
+                img{
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+            }
+
+            .ant-tag{
+                text-transform: uppercase;
+                font-size: 10px;
+                ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 0;
+                line-height: 18px;
+                background: red;
+                color: #fff;
+                border: 0 none;
+                &.early{
+                    background: ${({ theme }) => theme['primary-color']};
+                }
+                &.progress{
+                    background: ${({ theme }) => theme['danger-color']};
+                }
+                &.late{
+                    background: ${({ theme }) => theme['warning-color']};
+                }
+                &.complete{
+                    background: ${({ theme }) => theme['success-color']};
+                }
+            }
+        }
+    }
+`;
+
 export {
   ChartContainer,
   DashboardBaseStyleWrap,
@@ -1812,4 +2206,8 @@ export {
   SalesTargetWrap,
   SalesGrowthWrap,
   TopSellerWrap,
+  ProjectHeader,
+  ProjectSorting,
+  ProjectPagination,
+  ProjectCard
 };
