@@ -262,10 +262,10 @@ function Design() {
                         <br />
                         <Row align="middle">
                             <Col md={24} align='right'>
-                                <Button size='small' type='primary' style={{ marginRight: 5 }}>
+                                <Button size='default' type='primary' style={{ marginRight: 5 }}>
                                     save
                                 </Button>
-                                <Button size='small' type='light'>
+                                <Button size='default' type='light'>
                                     cancel
                                 </Button>
                             </Col>
