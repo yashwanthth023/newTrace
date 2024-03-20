@@ -4,7 +4,11 @@
     "es6": true,
     "jest": true
   },
-  "extends": ["airbnb", "plugin:prettier/recommended", "prettier"],
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -19,15 +23,34 @@
     "allowImportExportEverywhere": true,
     "requireConfigFile": false
   },
-  "plugins": ["react", "import", "react-hooks"],
+  "plugins": [
+    "react",
+    "import",
+    "react-hooks"
+  ],
   "rules": {
     "prettier/prettier": 0,
     "import/no-named-as-default-member": 0,
-    "import/order": [2, { "groups": ["external", "index", "sibling", "parent", "internal", "builtin"] }],
+    "import/order": [
+      2,
+      {
+        "groups": [
+          "external",
+          "index",
+          "sibling",
+          "parent",
+          "internal",
+          "builtin"
+        ]
+      }
+    ],
     "react/jsx-filename-extension": [
       0,
       {
-        "extensions": [".js", ".jsx"]
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
       }
     ],
     "no-shadow": "off",
