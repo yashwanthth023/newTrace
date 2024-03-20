@@ -1,15 +1,40 @@
-import React from 'react';
+import React , { useState } from 'react';
 import { Progress, Tag } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { Link } from 'react-router-dom';
+import { Link ,NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { ProjectCard } from './style';
 import { Cards } from '../../components/cards/frame/cards-frame';
 import { Dropdown } from '../../components/dropdown/dropdown';
 import { textRefactor } from '../../components/utilities/utilities';
+import { Button } from '../../components/buttons/buttons';
+import CreateVersion from '../ProjectModal/CreateVersion';
+import useSelection from 'antd/lib/table/hooks/useSelection';
 
 function GridCard({ value }) {
   const { id, title, status, content, percentage } = value;
+
+  const onCancel =()=>
+  {
+     setOpen(false);
+  }
+   const onSubmit =()=>
+   {
+    onCancel();
+  }
+
+  const VersionData = [{"id" : "NTP01-V_09" , className : "early" , status : 'Design'},
+  {"id" : "NTP01-V_08" , className : "late" , status : 'Manufacturing'},
+  {"id" : "NTP01-V_07" , className : "progress" , status : 'Testing'},
+  {"id" : "NTP01-V_06" , className : "complete" , status : 'ARCHEIVED'},
+  {"id" : "NTP01-V_05" , className : "complete" , status : 'ARCHEIVED'},
+  {"id" : "NTP01-V_04" , className : "complete" , status : 'ARCHEIVED'},
+  {"id" : "NTP01-V_03" , className : "complete" , status : 'ARCHEIVED'},
+  {"id" : "NTP01-V_02" , className : "complete" , status : 'ARCHEIVED'},
+  {"id" : "NTP01-V_01" , className : "complete" , status : 'ARCHEIVED'},
+]
+
+  const [open , setOpen] = useState(false);
   return (
     <ProjectCard>
       <Cards headless>
@@ -53,74 +78,32 @@ function GridCard({ value }) {
               className="progress-primary"
             /> */}
             <h3>Versions :</h3>
+            <Button size="small2" key="2" type="primary" onClick ={()=> setOpen(true)}>
+              <FeatherIcon icon="plus" size={3} />
+              Add New
+            </Button>
+            
           </div>
         </div>
         <div className="project-bottom" style={{overflowY :'auto', maxHeight :'150px'}}>
           <div className="project-assignees">
             {/* <p>Assigned To</p> */}
             <ul style={{flexDirection :'column'}}>
-              <li>
-                <span>NTP01-V_09</span>
-                <Tag className= "early">Design</Tag>
-              </li>
-              <li>
-              NTP01-V_08
-                <Tag className="late">Manufacturing</Tag>
-              </li>
-              <li>
-                NTP01-V_07
-                <Tag className= "progress">Testing</Tag>
-              </li>
-              <li>
-                NTP01-V_06
-                <Tag className= "complete">ARCHEIVED</Tag>
-              </li>
-              <li>
-                NTP01-V_05
-                <Tag className= "complete">ARCHEIVED</Tag>
-              </li>
-              <li>
-                NTP01-V_04
-                <Tag className= "complete">ARCHEIVED</Tag>
-              </li> <li>
-                NTP01-V_03
-                <Tag className= "complete">ARCHEIVED</Tag>
-              </li>
-              <li>
-                NTP01-V_02
-                <Tag className= "complete">ARCHEIVED</Tag>
-              </li>
-              <li>
-                NTP01-V_01
-                <Tag className= "complete">ARCHEIVED</Tag>
-              </li>
-              {/* <li>
-                hello
-              </li>
-              <li>
-              hello
-                <img src={require(`../../../static/img/users/2.png`)} alt="" />
-              </li>
-              <li>
-              hello
-                <img src={require(`../../../static/img/users/3.png`)} alt="" />
-              </li>
-              <li>
-                <img src={require(`../../../static/img/users/4.png`)} alt="" />
-              </li>
-              <li>
-                <img src={require(`../../../static/img/users/5.png`)} alt="" />
-              </li>
-              <li>
-                <img src={require(`../../../static/img/users/6.png`)} alt="" />
-              </li>
-              <li>
-                <img src={require(`../../../static/img/users/7.png`)} alt="" />
-              </li> */}
+              {
+                VersionData.map((ele)=>
+                <NavLink style={{ display: 'block' }} to="/versionDetails?">
+                  <li>
+                  <span>{ele.id}</span>
+                  <Tag className= {ele.className}>{ele.status}</Tag>
+                </li>
+                </NavLink>
+                )
+              }
             </ul>
           </div>
         </div>
       </Cards>
+      <CreateVersion onCancel={onCancel} onSubmit ={onSubmit} visible={open} />
     </ProjectCard>
   );
 }

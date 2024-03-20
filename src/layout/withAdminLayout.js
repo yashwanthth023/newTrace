@@ -2,20 +2,23 @@
 import React, { Component } from 'react';
 import { Layout, Button, Row, Col } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { NavLink, Link } from 'react-router-dom';
-import { Scrollbars } from 'react-custom-scrollbars';
-import { ThemeProvider } from 'styled-components';
+// import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+// import { Scrollbars } from 'react-custom-scrollbars';
+// import { ThemeProvider } from 'styled-components';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
-import MenueItems from './MenueItems';
+// import MenueItems from './MenueItems';
 import TopMenu from './TopMenu';
 import { Div, SmallScreenAuthInfo, SmallScreenSearch, TopMenuSearch } from './style';
 import HeaderSearch from '../components/header-search/header-search';
 import AuthInfo from '../components/utilities/auth-info/info';
+import logo from '../static/img/auth/logo.svg';
 
-const { darkTheme } = require('../config/theme/themeVariables');
+// const { darkTheme } = require('../config/theme/themeVariables');
 
-const { Header, Footer, Sider, Content } = Layout;
+// const { Header, Footer, Sider, Content } = Layout;
+const { Header, Content } = Layout;
 // const { darkMode } = config;
 
 const ThemeLayout = (WrappedComponent) => {
@@ -50,7 +53,7 @@ const ThemeLayout = (WrappedComponent) => {
       const { collapsed, hide, searchHide, activeSearch } = this.state;
       const { ChangeLayoutMode, rtl, topMenu } = this.props;
 
-      const left = !rtl ? 'left' : 'right';
+      // const left = !rtl ? 'left' : 'right';
       const darkMode = ChangeLayoutMode;
       const toggleCollapsed = () => {
         this.setState({
@@ -58,13 +61,13 @@ const ThemeLayout = (WrappedComponent) => {
         });
       };
 
-      const toggleCollapsedMobile = () => {
-        if (window.innerWidth <= 990) {
-          this.setState({
-            collapsed: !collapsed,
-          });
-        }
-      };
+      // const toggleCollapsedMobile = () => {
+      //   if (window.innerWidth <= 990) {
+      //     this.setState({
+      //       collapsed: !collapsed,
+      //     });
+      //   }
+      // };
 
       const onShowHide = () => {
         this.setState({
@@ -87,65 +90,65 @@ const ThemeLayout = (WrappedComponent) => {
         });
       };
 
-      const footerStyle = {
-        padding: '20px 30px 18px',
-        color: 'rgba(0, 0, 0, 0.65)',
-        fontSize: '14px',
-        background: 'rgba(255, 255, 255, .90)',
-        width: '100%',
-        boxShadow: '0 -5px 10px rgba(146,153,184, 0.05)',
-      };
+      // const footerStyle = {
+      //   padding: '20px 30px 18px',
+      //   color: 'rgba(0, 0, 0, 0.65)',
+      //   fontSize: '14px',
+      //   background: 'rgba(255, 255, 255, .90)',
+      //   width: '100%',
+      //   boxShadow: '0 -5px 10px rgba(146,153,184, 0.05)',
+      // };
 
-      const SideBarStyle = {
-        margin: '63px 0 0 0',
-        padding: '15px 15px 55px 15px',
-        overflowY: 'auto',
-        height: '100vh',
-        position: 'fixed',
-        [left]: 0,
-        zIndex: 998,
-      };
+      // const SideBarStyle = {
+      //   margin: '63px 0 0 0',
+      //   padding: '15px 15px 55px 15px',
+      //   overflowY: 'auto',
+      //   height: '100vh',
+      //   position: 'fixed',
+      //   [left]: 0,
+      //   zIndex: 998,
+      // };
 
-      const renderView = ({ style, ...props }) => {
-        const customStyle = {
-          marginRight: 'auto',
-          [rtl ? 'marginLeft' : 'marginRight']: '-17px',
-        };
-        return <div {...props} style={{ ...style, ...customStyle }} />;
-      };
+      // const renderView = ({ style, ...props }) => {
+      //   const customStyle = {
+      //     marginRight: 'auto',
+      //     [rtl ? 'marginLeft' : 'marginRight']: '-17px',
+      //   };
+      //   return <div {...props} style={{ ...style, ...customStyle }} />;
+      // };
 
-      const renderThumbVertical = ({ style, ...props }) => {
-        const { ChangeLayoutMode } = this.props;
-        const thumbStyle = {
-          borderRadius: 6,
-          backgroundColor: ChangeLayoutMode ? '#ffffff16' : '#F1F2F6',
-          [left]: '2px',
-        };
-        return <div style={{ ...style, ...thumbStyle }} {...props} />;
-      };
+      // const renderThumbVertical = ({ style, ...props }) => {
+      //   const { ChangeLayoutMode } = this.props;
+      //   const thumbStyle = {
+      //     borderRadius: 6,
+      //     backgroundColor: ChangeLayoutMode ? '#ffffff16' : '#F1F2F6',
+      //     [left]: '2px',
+      //   };
+      //   return <div style={{ ...style, ...thumbStyle }} {...props} />;
+      // };
 
-      const renderTrackVertical = () => {
-        const thumbStyle = {
-          position: 'absolute',
-          width: '6px',
-          transition: 'opacity 200ms ease 0s',
-          opacity: 0,
-          [rtl ? 'left' : 'right']: '2px',
-          bottom: '2px',
-          top: '2px',
-          borderRadius: '3px',
-        };
-        return <div style={thumbStyle} />;
-      };
+      // const renderTrackVertical = () => {
+      //   const thumbStyle = {
+      //     position: 'absolute',
+      //     width: '6px',
+      //     transition: 'opacity 200ms ease 0s',
+      //     opacity: 0,
+      //     [rtl ? 'left' : 'right']: '2px',
+      //     bottom: '2px',
+      //     top: '2px',
+      //     borderRadius: '3px',
+      //   };
+      //   return <div style={thumbStyle} />;
+      // };
 
-      const renderThumbHorizontal = ({ style, ...props }) => {
-        const { ChangeLayoutMode } = this.props;
-        const thumbStyle = {
-          borderRadius: 6,
-          backgroundColor: ChangeLayoutMode ? '#ffffff16' : '#F1F2F6',
-        };
-        return <div style={{ ...style, ...thumbStyle }} {...props} />;
-      };
+      // const renderThumbHorizontal = ({ style, ...props }) => {
+      //   const { ChangeLayoutMode } = this.props;
+      //   const thumbStyle = {
+      //     borderRadius: 6,
+      //     backgroundColor: ChangeLayoutMode ? '#ffffff16' : '#F1F2F6',
+      //   };
+      //   return <div style={{ ...style, ...thumbStyle }} {...props} />;
+      // };
 
       return (
         <Div darkMode={darkMode}>
@@ -162,21 +165,21 @@ const ThemeLayout = (WrappedComponent) => {
                 <Col lg={!topMenu ? 4 : 3} sm={6} xs={12} className="align-center-v navbar-brand">
                   {!topMenu || window.innerWidth <= 991 ? (
                     <Button type="link" onClick={toggleCollapsed}>
-                      <img src={require(`../static/img/icon/${collapsed ? 'right.svg' : 'left.svg'}`)} alt="menu" />
+                      <img width={120} src={logo} alt="menu" />
                     </Button>
                   ) : null}
                   <Link
                     className={topMenu && window.innerWidth > 991 ? 'striking-logo top-menu' : 'striking-logo'}
                     to="/admin"
                   >
-                    <img
+                    {/* <img
                       src={
                         !darkMode
                           ? require(`../static/img/Logo_Dark.svg`).default
                           : require(`../static/img/Logo_white.png`).default
                       }
                       alt=""
-                    />
+                    /> */}
                   </Link>
                 </Col>
 
@@ -241,7 +244,7 @@ const ThemeLayout = (WrappedComponent) => {
               </Row>
             </div>
             <Layout>
-              {!topMenu || window.innerWidth <= 991 ? (
+              {/* {!topMenu || window.innerWidth <= 991 ? (
                 <ThemeProvider theme={darkTheme}>
                   <Sider width={280} style={SideBarStyle} collapsed={collapsed} theme={!darkMode ? 'light' : 'dark'}>
                     <Scrollbars
@@ -264,11 +267,11 @@ const ThemeLayout = (WrappedComponent) => {
                     </Scrollbars>
                   </Sider>
                 </ThemeProvider>
-              ) : null}
+              ) : null} */}
               <Layout className="atbd-main-layout">
                 <Content>
                   <WrappedComponent {...this.props} />
-                  <Footer className="admin-footer" style={footerStyle}>
+                  {/* <Footer className="admin-footer" style={footerStyle}>
                     <Row>
                       <Col md={12} xs={24}>
                         <span className="admin-footer__copyright">2023 © SovWare</span>
@@ -281,7 +284,7 @@ const ThemeLayout = (WrappedComponent) => {
                         </div>
                       </Col>
                     </Row>
-                  </Footer>
+                  </Footer> */}
                 </Content>
               </Layout>
             </Layout>

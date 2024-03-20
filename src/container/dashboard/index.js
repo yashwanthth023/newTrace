@@ -1,17 +1,26 @@
 import React ,{useState} from 'react';
-// import { Row, Col } from 'antd';
+import { Row, Col } from 'antd';
 import FeatherIcon from 'feather-icons-react';
 import Grid from './Grid';
+import CreateProject from '../ProjectModal/CreateProject';
+
 import { PageHeader } from '../../components/page-headers/page-headers';
 // import { Cards } from '../../components/cards/frame/cards-frame';
 import { Button } from '../../components/buttons/buttons';
 import { Main } from '../styled';
 import { AutoComplete } from '../../components/autoComplete/autoComplete';
+import CreateVersion from '../ProjectModal/CreateVersion';
 // import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
 // import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
 // import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
 
 const Dashboard = () => {
+
+  const [ProtoTypeName , setProtoTypeName] = useState('');
+  const [ProtoTypeDesc , setProtoTypeDesc] = useState('');
+  const [ProtoTypeRemarks , setProtoTypeRemarks] = useState('');
+  const [visible , setVisible] = useState(false);
+  
   const projects  = [
     {
       "id": 1,
@@ -135,11 +144,39 @@ const Dashboard = () => {
     }
   ];
 
+  const onCancel =()=>
+  {
+    setVisible(false);
+    console.log("cancelled");
+  }
   const [state, setState] = useState({
     notData: projects,
   });
 
   const { notData } = state;
+  const onSubmit =()=>
+  {
+    notData.push({"id" : "13",
+    "title": ProtoTypeName,
+    "status": "early",
+    "content": ProtoTypeDesc,
+      "category": "Web Design",
+      "rate": 5,
+      "popular": 12,
+      "percentage": 3
+  });
+    // setState({
+      // notData: [...state.notData,{"id" : "13",
+      // "title": ProtoTypeName,
+      // "status": "early",
+      // "title": ProtoTypeDesc}],
+    // });
+    setVisible(false);
+  };
+  // }
+
+  console.log("ProtoTypeName  -" , ProtoTypeName);
+
   const handleSearch = (searchText) => {
     const data = projects.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
     setState({
@@ -150,7 +187,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <PageHeader
+       <PageHeader
         ghost
         title="Prototypes"
         buttons={[
@@ -165,15 +202,16 @@ const Dashboard = () => {
                 placeholder="Search by Name"
                 patterns
               />
-            <Button size="small" key="4" type="primary">
+            <Button size="small" key="4" type="primary" onClick ={()=> setVisible(true)}>
               <FeatherIcon icon="plus" size={14} />
               Add New
             </Button>
-          </div>,
+          </div>
         ]}
-      />
+      /> 
       <Main>
       <Grid projects={notData}/>
+      <CreateProject onCancel={onCancel} onSubmit ={onSubmit} visible={visible}setProtoTypeRemarks={setProtoTypeRemarks} setProtoTypeDesc={setProtoTypeDesc} setProtoTypeName={setProtoTypeName}/>
         {/* <Row gutter={25}>
           <Col lg={24} xs={24}>
             <Cards headless>

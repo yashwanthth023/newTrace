@@ -2024,6 +2024,7 @@ const ProjectCard = Styled.div`
         padding:30px 30px 0px;
     }
     .project-bottom{
+        margin-bottom :20px;
         border-top: 1px solid ${({ theme }) => theme['border-color-light']};
         .project-assignees{
             padding: 0px 30px 25px;
@@ -2101,6 +2102,9 @@ const ProjectCard = Styled.div`
         }
     }
     .project-progress{
+        display : flex ;
+        flex-direction :'row';
+        justify-content: space-between;
         p{
             margin: 2px 0 0 0;
             color: ${({ theme }) => theme['gray-solid']};
