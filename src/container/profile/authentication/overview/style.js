@@ -15,15 +15,17 @@ const Aside = Styled.aside`
     position: absolute;
     top: 0;
     right: 0;
-    width: 400px;
+    // width: 400px;
   }
   .bottomShape {
     position: absolute;
     bottom: 0;
     left: 0;
-    //width: 400px;
+    // width: 400px;
   }
   .auth-side-content{
+    width: 100%;
+    height: 100%;
     @media only screen and (max-width: 991px){
       h1{
         font-size: 20px;
@@ -40,14 +42,28 @@ const Aside = Styled.aside`
 
 const Content = Styled.div`
     padding: 100px;
+    width: 100%;
+    height: 100%;
+    display : flex;
+    justify-content: center;
+    align-items: center;
     @media only screen and (max-width: 1599px){
       padding: 50px;
+      img{
+        padding-right: 18vh;
+      }
     }
     @media only screen and (max-width: 991px){
       padding: 20px;
+      img{
+        padding-right: 12px;
+      }
     }
     @media only screen and (max-width: 767px){
       text-align: center;
+      img{
+        padding-right: 8vh;
+      }
     }
     .auth-content-figure{
       @media only screen and (max-width: 1199px){
@@ -100,6 +116,7 @@ const AuthWrapper = Styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 90vh;
     form{
       width: 420px;
       h1{

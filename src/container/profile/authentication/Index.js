@@ -1,7 +1,9 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 import { Aside, Content } from './overview/style';
-import Heading from '../../../components/heading/heading';
+// import Heading from '../../../components/heading/heading';
+
+import logo from '../../../static/img/auth/logo.svg';
 
 const AuthLayout = (WraperContent) => {
   return function () {
@@ -16,13 +18,13 @@ const AuthLayout = (WraperContent) => {
                 <img style={{ width: '150px' }} src={require('../../../static/img/Logo_Dark.svg')} alt="" />
                 <br />
                 <br />
-                <Heading as="h1">
+                {/* <Heading as="h1">
                   StrikingDash React <br />
                   Web Application
-                </Heading>
+                </Heading> */}
                 <img
                   className="auth-content-figure"
-                  src={require('../../../static/img/auth/Illustration.png')}
+                  src={logo}
                   alt=""
                 />
               </Content>

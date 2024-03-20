@@ -18,7 +18,7 @@ const Div = Styled.div`
 
         .ant-btn-link{
             ${({ darkMode }) =>
-              darkMode ? `background: #272B41;border-color: #272B41;color: #7D808D !important` : ''};
+        darkMode ? `background: #272B41;border-color: #272B41;color: #7D808D !important` : ''};
         }
 
         .head-example{
@@ -228,7 +228,7 @@ const Div = Styled.div`
     }
     .certain-category-search-wrapper{
         ${({ darkMode, theme }) =>
-          darkMode ? `${!theme.rtl ? 'border-right' : 'border-left'}: 1px solid #272B41;` : ''};
+        darkMode ? `${!theme.rtl ? 'border-right' : 'border-left'}: 1px solid #272B41;` : ''};
          @media only screen and (max-width: 767px){
             padding: 0 15px;
         }
@@ -395,11 +395,11 @@ const Div = Styled.div`
                             }
                             &:before{
                                 transform: rotate(45deg) ${({ theme }) =>
-                                  !theme.rtl ? 'translateY(-3.3px)' : 'translateY(3.3px)'};
+        !theme.rtl ? 'translateY(-3.3px)' : 'translateY(3.3px)'};
                             }
                             &:after{
                                 transform: rotate(-45deg) ${({ theme }) =>
-                                  theme.rtl ? 'translateY(-3.3px)' : 'translateY(3.3px)'};
+        theme.rtl ? 'translateY(-3.3px)' : 'translateY(3.3px)'};
                             }
                         }
                     }
@@ -525,12 +525,11 @@ const Div = Styled.div`
     }
 
     .atbd-main-layout{
-        ${({ theme }) => (!theme.rtl ? 'margin-left' : 'margin-right')}: ${({ theme }) =>
-  theme.topMenu ? 0 : '280px'};
-        margin-top: 64px;
+        // ${({ theme }) => (!theme.rtl ? 'margin-left' : 'margin-right')}: ${({ theme }) => theme.topMenu ? 0 : '280px'};
+        margin-top: 82px;
         transition: 0.3s ease;
         @media only screen and (max-width: 1150px){
-            ${({ theme }) => (!theme.rtl ? 'margin-left' : 'margin-right')}: auto !important;
+            // ${({ theme }) => (!theme.rtl ? 'margin-left' : 'margin-right')}: auto !important;
         }
         @media print {
             width: 100%;
