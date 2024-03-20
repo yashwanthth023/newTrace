@@ -1251,7 +1251,7 @@ const AddUser = Styled.div`
           &:after{
             position: absolute;
             ${({ theme }) => (!theme.rtl ? 'left' : 'right')}: 0;
-            // bottom: -4px;
+            bottom: -4px;
             width: 100%;
             height: 2px;
             border-radius: 4px;

@@ -106,8 +106,8 @@ const ButtonStyled = Styled(Button)`
     align-items: center;
     justify-content: center;
     border-radius: ${({ shape }) => (!shape ? '4px' : '40px')};
-    padding: 0px 20.5px;
-    height: ${({ size, theme }) => (size !== 'default' ? theme[`btn-height-${size}`] : '42px')};
+    padding: ${({ size, theme }) => (size == 'small2' ? "0px 20.5px" : "0px 6px")}
+    height: ${({ size, theme }) => (size == 'small2' ? '30px' :size !== 'default' ? theme[`btn-height-${size}`] : '42px')};
     font-weight: 500;
     box-shadow: 0 0;
     &:hover, &:focus {
