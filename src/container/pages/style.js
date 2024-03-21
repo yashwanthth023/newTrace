@@ -1246,8 +1246,16 @@ const AddUser = Styled.div`
               font-size: 20px;
           }
           &:before{
-            border:0;
+             color: ${({ theme }) => theme['primary-color']};
+            &:after{
+              opacity: 0;
+              visibility: visible;
+            }
           }
+           &:focus{
+              opacity: 0;
+              visibility: hidden;
+            }
           &:after{
             position: absolute;
             ${({ theme }) => (!theme.rtl ? 'left' : 'right')}: 0;
