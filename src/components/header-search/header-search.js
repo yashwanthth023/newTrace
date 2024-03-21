@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { Div } from './header-search-style';
 import { headerSearchAction } from '../../redux/headerSearch/actionCreator';
 import { Popover } from '../popup/popup';
+import { Button } from '../buttons/buttons';
 
 const HeaderSearch = ({ darkMode }) => {
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const HeaderSearch = ({ darkMode }) => {
   return (
     <>
       <Div className="certain-category-search-wrapper" style={{ width: '100%' }} darkMode={darkMode}>
-        <Row className="ant-row-middle">
+        <Row className="ant-row-middle" style={{display :'none'}}>
           <Col md={2} xs={1} className={rtl ? 'text-left' : 'text-right'}>
             <span className="certain-category-icon">
               <FeatherIcon icon="search" size={16} />
@@ -55,6 +56,9 @@ const HeaderSearch = ({ darkMode }) => {
             </Popover>
           </Col>
         </Row>
+        {/* <div style={{alignSelf :'flex-end'}}>
+        <Button   size="default" key="4" type="primary" >Add Electrochem</Button>
+        </div> */}
       </Div>
     </>
   );

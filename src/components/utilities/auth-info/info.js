@@ -1,7 +1,7 @@
 // import React, { useState } from 'react';
 import React from 'react';
 import { Avatar } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link ,NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import FeatherIcon from 'feather-icons-react';
 // import { InfoWraper, NavAuth, UserDropDwon } from './auth-info-style';
@@ -14,6 +14,7 @@ import { Popover } from '../../popup/popup';
 // import { Dropdown } from '../../dropdown/dropdown';
 import { logOut } from '../../../redux/authentication/actionCreator';
 import Heading from '../../heading/heading';
+import { Button } from '../../buttons/buttons';
 
 function AuthInfo() {
   const dispatch = useDispatch();
@@ -114,6 +115,14 @@ function AuthInfo() {
         </Dropdown>
       </div> */}
 
+        <Button   size="default" key="4" type="primary" >
+       <NavLink to="/electroChem">   
+       <div>
+        <FeatherIcon icon="plus" size={3} />
+          Add Electrochem
+                </div>     
+                </NavLink>
+          </Button>
       <div className="nav-author">
         <Popover placement="bottomRight" content={userContent} action="click">
           <Link to="#" className="head-example">

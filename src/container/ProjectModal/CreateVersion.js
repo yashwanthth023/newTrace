@@ -82,7 +82,7 @@ const handleOk = (values) => {
   return (
     <Modal
       type={state.modalType}
-      title="Create Project"
+      title="Create Version"
       visible={state.visible}
       className={"atbd-modal2"}
       footer={[
@@ -90,7 +90,7 @@ const handleOk = (values) => {
           <Button size="default" type="primary" key="submit" onClick={handleOk}>
             Add New Project
           </Button>
-          <Button size="default" type="white" key="back" outlined onClick={handleCancel}>
+          <Button size="default" type="light" key="back" outlined onClick={handleCancel}>
             Cancel
           </Button>
         </div>,
