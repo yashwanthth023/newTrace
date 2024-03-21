@@ -193,7 +193,7 @@ const ThemeLayout = (WrappedComponent) => {
                     <TopMenuSearch>
                       <div className="top-right-wrap d-flex">
                       <div style={{alignSelf :'flex-end'}}>
-                      <Button2   size="default" key="4" type="primary" >Add Electrochem</Button2>
+                      <Button2   size="default" key="4" type="primary" >EC Details</Button2>
                         </div>
                         <Link
                           className={`${activeSearch ? 'search-toggle active' : 'search-toggle'}`}
