@@ -11,12 +11,14 @@ function versionDetailRoute() {
   return (
     
     <Switch>
-      <Suspense fallback={
-        <div className='spin'>
-          <Spin/>
-        </div>
-      }>
-      <Route exact path={path} component={version} />
+      <Suspense
+        fallback={
+          <div className="spin">
+            <Spin />
+          </div>
+        }
+      >
+        <Route exact path={path} component={version} />
       </Suspense>
     </Switch>
   );
