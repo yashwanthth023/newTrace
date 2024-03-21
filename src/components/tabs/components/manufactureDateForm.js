@@ -6,7 +6,7 @@ import { HorizontalFormStyleWrap } from '../style/formStyle';
 import { BasicFormWrapper } from '../style/wrapperStyle';
 import { Cards } from '../../cards/frame/cards-frame';
 
-function DateForm({ title }) {
+function ManufactureDateForm({ title }) {
     return (
         <BasicFormWrapper>
             <HorizontalFormStyleWrap className="sDash_input-form">
@@ -15,7 +15,7 @@ function DateForm({ title }) {
 
                         <Row align="middle">
                             <Col md={10} xs={24}>
-                                <label htmlFor='design'>Design Completion Date</label>
+                                <label htmlFor='design'>RFQ</label>
                             </Col>
                             <Col md={14} xs={24}>
                                 <Form.Item name="design">
@@ -25,7 +25,7 @@ function DateForm({ title }) {
                         </Row>
                         <Row align="middle">
                             <Col md={10} xs={24}>
-                                <label htmlFor="assembly">Assembly Completion Date</label>
+                                <label htmlFor="assembly">PO</label>
                             </Col>
                             <Col md={14} xs={24}>
                                 <Form.Item name="assembly">
@@ -35,7 +35,7 @@ function DateForm({ title }) {
                         </Row>
                         <Row align="middle">
                             <Col md={10} xs={24}>
-                                <label htmlFor="test">Test Completion Date</label>
+                                <label htmlFor="test">Ready For Assembly</label>
                             </Col>
                             <Col md={14} xs={24}>
                                 <Form.Item name="test">
@@ -51,7 +51,7 @@ function DateForm({ title }) {
     );
 }
 
-DateForm.propTypes = {
+ManufactureDateForm.propTypes = {
     title: propTypes.string
 }
-export default DateForm;
+export default ManufactureDateForm;

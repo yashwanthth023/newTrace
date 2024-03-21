@@ -34,20 +34,22 @@ function Design() {
                 <Cards headless>
                     <Row className='top_form_card'>
                         <div className='top_form_card_left'>
-                            <label className='top_form_card_left_key'>Prototype ID </label>
+                            <label className='top_form_card_left_key'>Prototype Name :</label>
                             <label className='top_form_card_left_value'>NT098-PT</label>
                         </div>
                         <Form className='top_form_card_right'>
                             <div className='top_form_card_right_version'>
-                                <label className='top_form_card_right_version_key'>Version </label>
+                                <label className='top_form_card_right_version_key'>Version ID :</label>
                                 <label className='top_form_card_right_version_value'>NT098-V1 </label>
                             </div>
                             <div className='top_form_card_right_dropdown'>
-                                <label className='top_form_card_right_dropdown_label'>Status </label>
-                                <Select size="small" className='top_form_card_right_dropdown_select' >
+                                <label className='top_form_card_right_dropdown_label'>Status :</label>
+                                <Select value={'1'} size="small" className='top_form_card_right_dropdown_select' >
+                                    <Option value="5">Planned</Option>
                                     <Option value="1">Design</Option>
-                                    <Option value="2">Manufacture</Option>
+                                    <Option value="2">Manufacturing</Option>
                                     <Option value="3">Testing</Option>
+                                    <Option value="4">Archived</Option>
                                 </Select>
                             </div>
                         </Form>
@@ -103,10 +105,8 @@ function Design() {
                                     <Col md={14} xs={24}>
                                         <Form.Item name="electrode-symmetry">
                                             <Select size="small" style={{ width: "100%" }}>
-                                                <Option value="1">Combo Box</Option>
-                                                <Option value="2">Triangle</Option>
-                                                <Option value="3">Square</Option>
-                                                <Option value="4">Cylinder</Option>
+                                                <Option value="1">Symmetrical</Option>
+                                                <Option value="2">Asymmetrical</Option>
                                             </Select>
                                         </Form.Item>
                                     </Col>
@@ -129,6 +129,33 @@ function Design() {
                             <Col xl={12} lg={12} md={24}>
                                 <Row align="middle">
                                     <Col md={10} xs={24}>
+                                        <label htmlFor="moc">EC Anode Details</label>
+                                    </Col>
+                                    <Col md={14} xs={24}>
+                                        <Form.Item name="moc">
+                                            <Input placeholder="sdfa-sdsa-sdsa-adsa" />
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
+                            </Col>
+                            <Col xl={12} lg={12} md={24}>
+                                <Row align="middle">
+                                    <Col md={10} xs={24}>
+                                        <label htmlFor="moc">EC Cathode Details</label>
+                                    </Col>
+                                    <Col md={14} xs={24}>
+                                        <Form.Item name="moc">
+                                            <Input placeholder="sdfa-sdsa-sdsa-adsa" />
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+                        <Row gutter={25}>
+
+                            <Col xl={12} lg={12} md={24}>
+                                <Row align="middle">
+                                    <Col md={10} xs={24}>
                                         <label htmlFor="moc">Electrode Structure</label>
                                     </Col>
                                     <Col md={14} xs={24}>
@@ -141,11 +168,15 @@ function Design() {
                             <Col xl={12} lg={12} md={24}>
                                 <Row align="middle">
                                     <Col md={10} xs={24}>
-                                        <label htmlFor="moc">ElectroChemID_Cathode</label>
+                                        <label htmlFor="moc">Electrode Shape</label>
                                     </Col>
                                     <Col md={14} xs={24}>
                                         <Form.Item name="moc">
-                                            <Input placeholder="sdfa-sdsa-sdsa-adsa" />
+                                            <Select size="small" style={{ width: "100%" }}>
+                                                <Option value="1">Rectangular</Option>
+                                                <Option value="2">Circular</Option>
+                                                <Option value="2">Others</Option>
+                                            </Select>
                                         </Form.Item>
                                     </Col>
                                 </Row>
@@ -155,33 +186,7 @@ function Design() {
                             <Col xl={12} lg={12} md={24}>
                                 <Row align="middle">
                                     <Col md={10} xs={24}>
-                                        <label htmlFor="moc">ElectroChemID_Anode</label>
-                                    </Col>
-                                    <Col md={14} xs={24}>
-                                        <Form.Item name="moc">
-                                            <Input placeholder="sdfa-sdsa-sdsa-adsa" />
-                                        </Form.Item>
-                                    </Col>
-                                </Row>
-                            </Col>
-                            <Col xl={12} lg={12} md={24}>
-                                <Row align="middle">
-                                    <Col md={10} xs={24}>
-                                        <label htmlFor="moc">ElectrodeShape</label>
-                                    </Col>
-                                    <Col md={14} xs={24}>
-                                        <Form.Item name="moc">
-                                            <Input placeholder="round" />
-                                        </Form.Item>
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                        <Row gutter={25}>
-                            <Col xl={12} lg={12} md={24}>
-                                <Row align="middle">
-                                    <Col md={10} xs={24}>
-                                        <label htmlFor="moc">ElectrodeDim Thickness</label>
+                                        <label htmlFor="moc">Electrode Thickness</label>
                                     </Col>
                                     <Col md={14} xs={24}>
                                         <Form.Item name="moc">
@@ -193,7 +198,7 @@ function Design() {
                             <Col xl={12} lg={12} md={24}>
                                 <Row align="middle">
                                     <Col md={10} xs={24}>
-                                        <label htmlFor="moc">ElectrodeDimL</label>
+                                        <label htmlFor="moc">Electrode Length</label>
                                     </Col>
                                     <Col md={14} xs={24}>
                                         <Form.Item name="moc">
@@ -208,7 +213,7 @@ function Design() {
 
                                 <Row align="middle">
                                     <Col md={10} xs={24}>
-                                        <label htmlFor="moc">ElectrodeDimB</label>
+                                        <label htmlFor="moc">Electrode Breadth</label>
                                     </Col>
                                     <Col md={14} xs={24}>
                                         <Form.Item name="moc">
@@ -220,7 +225,7 @@ function Design() {
                             <Col xl={12} lg={12} md={24}>
                                 <Row align="middle">
                                     <Col md={10} xs={24}>
-                                        <label htmlFor="moc">ElectrodeDimDia</label>
+                                        <label htmlFor="moc">Electrode Diameter</label>
                                     </Col>
                                     <Col md={14} xs={24}>
                                         <Form.Item name="moc">
@@ -234,7 +239,7 @@ function Design() {
                             <Col xl={12} lg={12} md={24}>
                                 <Row align="middle">
                                     <Col md={10} xs={24}>
-                                        <label htmlFor="moc">ElectrodeArea</label>
+                                        <label htmlFor="moc">Electrode Area</label>
                                     </Col>
                                     <Col md={14} xs={24}>
                                         <Form.Item name="moc">
@@ -246,7 +251,7 @@ function Design() {
                             <Col xl={12} lg={12} md={24}>
                                 <Row align="middle">
                                     <Col md={10} xs={24}>
-                                        <label htmlFor="moc">ElectrodeGap</label>
+                                        <label htmlFor="moc">Electrode Gap</label>
                                     </Col>
                                     <Col md={14} xs={24}>
                                         <Form.Item name="moc">
@@ -260,7 +265,7 @@ function Design() {
                             <Col xl={12} lg={12} md={24}>
                                 <Row align="middle">
                                     <Col md={10} xs={24}>
-                                        <label htmlFor="moc">nCells</label>
+                                        <label htmlFor="moc">Number of Cells</label>
                                     </Col>
                                     <Col md={14} xs={24}>
                                         <Form.Item name="moc">
