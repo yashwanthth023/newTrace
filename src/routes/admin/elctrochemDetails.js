@@ -4,9 +4,9 @@ import { useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 import withAdminLayout from '../../layout/withAdminLayout';
 import { Spin } from 'antd';
 
-const version = lazy(() => import('../../container/pages/versionDetailPage'))
+const version = lazy(() => import('../../container/pages/electrochemDetailsPage'))
 
-function versionDetailRoute() {
+function electrochemDetailRoute() {
   const { path } = useRouteMatch();
   return (
     
@@ -22,4 +22,4 @@ function versionDetailRoute() {
   );
 }
 
-export default withAdminLayout(versionDetailRoute);
+export default withAdminLayout(electrochemDetailRoute);

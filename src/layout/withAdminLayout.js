@@ -14,6 +14,7 @@ import { Div, SmallScreenAuthInfo, SmallScreenSearch, TopMenuSearch } from './st
 import HeaderSearch from '../components/header-search/header-search';
 import AuthInfo from '../components/utilities/auth-info/info';
 import logo from '../static/img/auth/logo.svg';
+import { Button as Button2 } from '../components/buttons/buttons';
 
 // const { darkTheme } = require('../config/theme/themeVariables');
 
@@ -191,6 +192,9 @@ const ThemeLayout = (WrappedComponent) => {
                   {topMenu && window.innerWidth > 991 ? (
                     <TopMenuSearch>
                       <div className="top-right-wrap d-flex">
+                      <div style={{alignSelf :'flex-end'}}>
+                      <Button2   size="default" key="4" type="primary" >Add Electrochem</Button2>
+                        </div>
                         <Link
                           className={`${activeSearch ? 'search-toggle active' : 'search-toggle'}`}
                           onClick={() => {
@@ -211,6 +215,7 @@ const ThemeLayout = (WrappedComponent) => {
                         </div>
                         <AuthInfo />
                       </div>
+                      
                     </TopMenuSearch>
                   ) : (
                     <AuthInfo />

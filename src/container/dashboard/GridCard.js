@@ -1,7 +1,7 @@
-import React , { useState } from 'react';
+import React, { useState } from 'react';
 import { Progress, Tag } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { Link ,NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { ProjectCard } from './style';
 import { Cards } from '../../components/cards/frame/cards-frame';
@@ -14,34 +14,32 @@ import useSelection from 'antd/lib/table/hooks/useSelection';
 function GridCard({ value }) {
   const { id, title, status, content, percentage } = value;
 
-  const onCancel =()=>
-  {
-     setOpen(false);
+  const onCancel = () => {
+    setOpen(false);
   }
-   const onSubmit =()=>
-   {
+  const onSubmit = () => {
     onCancel();
   }
 
-  const VersionData = [{"id" : "NTP01-V_09" , className : "early" , status : 'Design'},
-  {"id" : "NTP01-V_08" , className : "late" , status : 'Manufacturing'},
-  {"id" : "NTP01-V_07" , className : "progress" , status : 'Testing'},
-  {"id" : "NTP01-V_06" , className : "complete" , status : 'ARCHEIVED'},
-  {"id" : "NTP01-V_05" , className : "complete" , status : 'ARCHEIVED'},
-  {"id" : "NTP01-V_04" , className : "complete" , status : 'ARCHEIVED'},
-  {"id" : "NTP01-V_03" , className : "complete" , status : 'ARCHEIVED'},
-  {"id" : "NTP01-V_02" , className : "complete" , status : 'ARCHEIVED'},
-  {"id" : "NTP01-V_01" , className : "complete" , status : 'ARCHEIVED'},
-]
+  const VersionData = [{ "id": "NTP01-V_09", className: "early", status: 'Design' },
+  { "id": "NTP01-V_08", className: "late", status: 'Manufacturing' },
+  { "id": "NTP01-V_07", className: "progress", status: 'Testing' },
+  { "id": "NTP01-V_06", className: "complete", status: 'ARCHEIVED' },
+  { "id": "NTP01-V_05", className: "complete", status: 'ARCHEIVED' },
+  { "id": "NTP01-V_04", className: "complete", status: 'ARCHEIVED' },
+  { "id": "NTP01-V_03", className: "complete", status: 'ARCHEIVED' },
+  { "id": "NTP01-V_02", className: "complete", status: 'ARCHEIVED' },
+  { "id": "NTP01-V_01", className: "complete", status: 'ARCHEIVED' },
+  ]
 
-  const [open , setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   return (
     <ProjectCard>
       <Cards headless>
         <div className="project-top">
           <div className="project-title">
             <h1>
-              <Link to={`/admin/project/projectDetails/${id}`}>{title}</Link>
+              {title}
               {/* <Tag className={status}>{status}</Tag> */}
             </h1>
             {/* <Dropdown
@@ -78,17 +76,17 @@ function GridCard({ value }) {
               className="progress-primary"
             /> */}
             <h3>Versions :</h3>
-            <Button size="small2" key="2" type="primary" onClick ={()=> setOpen(true)}>
+            <Button size="small2" key="2" type="primary" onClick={() => setOpen(true)}>
               <FeatherIcon icon="plus" size={3} />
               Add New
             </Button>
-            
+
           </div>
         </div>
-        <div className="project-bottom" style={{overflowY :'auto', maxHeight :'150px'}}>
+        <div className="project-bottom" style={{ overflowY: 'auto', maxHeight: '150px' }}>
           <div className="project-assignees">
             {/* <p>Assigned To</p> */}
-            <ul style={{flexDirection :'column'}}>
+            <ul style={{ flexDirection: 'column' }}>
               {
                 VersionData.map((ele)=>
                 <NavLink to="/versionDetails">
@@ -103,7 +101,7 @@ function GridCard({ value }) {
           </div>
         </div>
       </Cards>
-      <CreateVersion onCancel={onCancel} onSubmit ={onSubmit} visible={open} />
+      <CreateVersion onCancel={onCancel} onSubmit={onSubmit} visible={open} />
     </ProjectCard>
   );
 }

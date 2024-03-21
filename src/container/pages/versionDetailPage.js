@@ -71,8 +71,7 @@ const VersionDetailPage = () => {
                                     </div>
                                 }
                             >
-                                <div style={{ height: "100vh" }}>
-
+                                <div style={{ height: "100%" }}>
                                     {tabToShow()}
                                 </div>
 
