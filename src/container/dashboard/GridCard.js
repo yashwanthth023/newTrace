@@ -91,7 +91,7 @@ function GridCard({ value }) {
             <ul style={{flexDirection :'column'}}>
               {
                 VersionData.map((ele)=>
-                <NavLink style={{ display: 'block' }} to="/versionDetails?">
+                <NavLink to="/versionDetails">
                   <li>
                   <span>{ele.id}</span>
                   <Tag className= {ele.className}>{ele.status}</Tag>

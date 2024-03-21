@@ -69,7 +69,7 @@ function CreateProject({ visible, onCancel,onSubmit ,setProtoTypeRemarks,setProt
           <Button size="default" type="primary" key="submit" onClick={handleOk}>
             Add New Project
           </Button>
-          <Button size="default" type="white" key="back" outlined onClick={handleCancel}>
+          <Button size="default" type="light" key="back" outlined onClick={handleCancel}>
             Cancel
           </Button>
         </div>,
