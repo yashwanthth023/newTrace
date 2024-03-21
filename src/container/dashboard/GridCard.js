@@ -10,6 +10,7 @@ import { textRefactor } from '../../components/utilities/utilities';
 import { Button } from '../../components/buttons/buttons';
 import CreateVersion from '../ProjectModal/CreateVersion';
 import useSelection from 'antd/lib/table/hooks/useSelection';
+import Styled from 'styled-components';
 
 function GridCard({ value }) {
   const { id, title, status, content, percentage } = value;
@@ -78,9 +79,8 @@ function GridCard({ value }) {
             <h3>Versions :</h3>
             <Button size="small2" key="2" type="primary" onClick={() => setOpen(true)}>
               <FeatherIcon icon="plus" size={3} />
-              Add New
+              Add Version
             </Button>
-
           </div>
         </div>
         <div className="project-bottom" style={{ overflowY: 'auto', maxHeight: '150px' }}>
@@ -92,7 +92,9 @@ function GridCard({ value }) {
                 <NavLink to="/versionDetails">
                   <li>
                   <span>{ele.id}</span>
-                  <Tag className= {ele.className}>{ele.status}</Tag>
+                  <Tag style={{backgroundColor :'#fff'}} className= {ele.className}>{ele.status}</Tag>
+                  {/* <span className= {ele.className}>{ele.status}</span> */}
+                  {/* <span style={{color : ele.status === "Design" ?'primary-color' : ele.status === "ARCHEIVED" ? 'success-color' : ele.status === "Testing" ?'danger-color' :'warning-color' }}>{ele.status}</span> */}
                 </li>
                 </NavLink>
                 )

@@ -118,8 +118,8 @@ function AuthInfo() {
         <Button   size="default" key="4" type="primary" >
        <NavLink to="/electroChem">   
        <div>
-        <FeatherIcon icon="plus" size={3} />
-          Add Electrochem
+        {/* <FeatherIcon icon="plus" size={3} /> */}
+          EC Details
                 </div>     
                 </NavLink>
           </Button>
