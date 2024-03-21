@@ -96,46 +96,55 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                                 </Form.Item>
                             </Col>
                         </Row>
+                        <br />
                         <Row align="middle">
-                            <Col md={6} xs={24}>
-                                <label htmlFor="input-date">Start Date</label>
+                            <Col xl={12} lg={12} md={24}>
+                                <Col md={6} xs={24}>
+                                    <label htmlFor="start-date">Start Date</label>
+                                </Col>
+                                <Col md={18} xs={24}>
+                                    <Form.Item name="start-date">
+                                        <DatePicker />
+                                    </Form.Item>
+                                </Col>
                             </Col>
-                            <Col md={18} xs={24}>
-                                <Form.Item name="input-date">
-                                    <DatePicker />
-                                </Form.Item>
+                            <Col xl={12} lg={12} md={24}>
+                                <Col lg={24} md={6} xs={24}>
+                                    <label htmlFor="start-time">Start Time</label>
+                                </Col>
+                                <Col md={18} xs={24}>
+                                    <Form.Item name="start-time" initialValue={moment('00:00:00', 'HH:mm:ss')}>
+                                        <TimePicker />
+                                    </Form.Item>
+                                </Col>
                             </Col>
                         </Row>
+                        <br />
+
                         <Row align="middle">
-                            <Col md={6} xs={24}>
-                                <label htmlFor="input-time">Time Start</label>
+                            <Col xl={12} lg={12} md={24} >
+                                <Col md={24} xs={24}>
+                                    <label htmlFor="end-date">End Date</label>
+                                </Col>
+                                <Col md={24} xs={24}>
+                                    <Form.Item name="end-date">
+                                        <DatePicker />
+                                    </Form.Item>
+                                </Col>
                             </Col>
-                            <Col md={18} xs={24}>
-                                <Form.Item name="input-time" initialValue={moment('00:00:00', 'HH:mm:ss')}>
-                                    <TimePicker />
-                                </Form.Item>
+                            <Col xl={12} lg={12} md={24}>
+                                <Col md={6} xs={24}>
+                                    <label htmlFor="end-time">End Time</label>
+                                </Col>
+                                <Col md={18} xs={24}>
+                                    <Form.Item name="end-time" initialValue={moment('00:00:00', 'HH:mm:ss')}>
+                                        <TimePicker />
+                                    </Form.Item>
+                                </Col>
                             </Col>
                         </Row>
-                        <Row align="middle">
-                            <Col md={6} xs={24}>
-                                <label htmlFor="input-date">End Date</label>
-                            </Col>
-                            <Col md={18} xs={24}>
-                                <Form.Item name="input-date">
-                                    <DatePicker />
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                        <Row align="middle">
-                            <Col md={6} xs={24}>
-                                <label htmlFor="input-time">Time End</label>
-                            </Col>
-                            <Col md={18} xs={24}>
-                                <Form.Item name="input-time" initialValue={moment('00:00:00', 'HH:mm:ss')}>
-                                    <TimePicker />
-                                </Form.Item>
-                            </Col>
-                        </Row>
+                        <br />
+
                         <Row align="middle">
                             <Col md={6} xs={24}>
                                 <label htmlFor="input-date">Conclusion</label>
@@ -208,11 +217,11 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                         </Row>
                         <Row align="middle">
                             <Col md={6} xs={24}>
-                                <label htmlFor="input-date">Temp_degC</label>
+                                <label htmlFor="input-date">Temperature</label>
                             </Col>
                             <Col md={18} xs={24}>
                                 <Form.Item name="input-date">
-                                    <Input />
+                                    <Input placeholder='Eg. 60 degree Celsius' />
                                 </Form.Item>
                             </Col>
                         </Row>
