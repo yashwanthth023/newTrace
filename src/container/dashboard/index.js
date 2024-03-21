@@ -24,7 +24,7 @@ const Dashboard = () => {
   const projects  = [
     {
       "id": 1,
-      "title": "Prototype_1",
+      "title": "Prototype1",
       "status": "early",
       "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
       "category": "Web Design",
@@ -34,7 +34,7 @@ const Dashboard = () => {
     },
     {
       "id": 2,
-      "title": "Prototype_2",
+      "title": "Prototype2",
       "status": "progress",
       "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
       "category": "Web Development",
@@ -44,7 +44,7 @@ const Dashboard = () => {
     },
     {
       "id": 3,
-      "title": "Prototype_3",
+      "title": "Prototype3",
       "status": "early",
       "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
       "category": "Graphic Design",
@@ -54,7 +54,7 @@ const Dashboard = () => {
     },
     {
       "id": 4,
-      "title": "Prototype_4",
+      "title": "Prototype4",
       "status": "late",
       "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
       "category": "Web Development",
@@ -64,7 +64,7 @@ const Dashboard = () => {
     },
     {
       "id": 5,
-      "title": "Prototype_5",
+      "title": "Prototype5",
       "status": "progress",
       "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
       "category": "Web Development",
@@ -74,7 +74,7 @@ const Dashboard = () => {
     },
     {
       "id": 6,
-      "title": "Prototype_6",
+      "title": "Prototype6",
       "status": "complete",
       "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
       "category": "Graphic Design",
@@ -84,7 +84,7 @@ const Dashboard = () => {
     },
     {
       "id": 7,
-      "title": "Prototype_7",
+      "title": "Prototype7",
       "status": "progress",
       "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
       "category": "Web Development",
@@ -94,7 +94,7 @@ const Dashboard = () => {
     },
     {
       "id": 8,
-      "title": "Prototype_8",
+      "title": "Prototype8",
       "status": "early",
       "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
       "category": "Graphic Design",
@@ -104,7 +104,7 @@ const Dashboard = () => {
     },
     {
       "id": 9,
-      "title": "Prototype_9",
+      "title": "Prototype9",
       "status": "late",
       "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
       "category": "Web Development",
@@ -114,7 +114,7 @@ const Dashboard = () => {
     },
     {
       "id": 10,
-      "title": "Prototype_10",
+      "title": "Prototype10",
       "status": "progress",
       "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
       "category": "Web Development",
@@ -124,7 +124,7 @@ const Dashboard = () => {
     },
     {
       "id": 11,
-      "title": "Prototype_11",
+      "title": "Prototype11",
       "status": "complete",
       "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
       "category": "Graphic Design",
@@ -134,7 +134,7 @@ const Dashboard = () => {
     },
     {
       "id": 12,
-      "title": "Prototype_12",
+      "title": "Prototype12",
       "status": "early",
       "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
       "category": "Web Design",
@@ -204,7 +204,7 @@ const Dashboard = () => {
               />
             <Button size="small" key="4" type="primary" onClick ={()=> setVisible(true)}>
               <FeatherIcon icon="plus" size={14} />
-              Add New
+              Add Prototype
             </Button>
           </div>
         ]}

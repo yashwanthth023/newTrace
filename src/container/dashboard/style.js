@@ -2017,6 +2017,9 @@ const ProjectPagination = Styled.div`
 `;
 
 const ProjectCard = Styled.div`
+h1{
+    color : '#3333ff'
+}
     .ant-card-body{
         padding: 0px !important;
     }
@@ -2127,19 +2130,13 @@ const ProjectCard = Styled.div`
             margin: -3px;
             padding: 0;
             display: flex;
-            align-items: center;
             flex-wrap: wrap;
             li{
                 list-style: none;
                 padding: 3px;
                 display: flex;
-                  width : 80%;
-                  gap :70px; 
-               
-                @media only screen and (max-width: 1399px){
-                    width: 100%;
-                    gap : 35px
-                }
+                  width :100%;
+                  gap :80px; 
                 @media only screen and (max-width: 991px){
                     width: 80%;
                     gap : 60px;
@@ -2157,20 +2154,20 @@ const ProjectCard = Styled.div`
                 font-size: 10px;
                 ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 0;
                 line-height: 18px;
-                background: red;
-                color: #fff;
+                // background: red;
+              
                 border: 0 none;
                 &.early{
-                    background: ${({ theme }) => theme['primary-color']};
+                    color: ${({ theme }) => theme['primary-color']};
                 }
                 &.progress{
-                    background: ${({ theme }) => theme['danger-color']};
+                    color: ${({ theme }) => theme['danger-color']};
                 }
                 &.late{
-                    background: ${({ theme }) => theme['warning-color']};
+                    color: ${({ theme }) => theme['warning-color']};
                 }
                 &.complete{
-                    background: ${({ theme }) => theme['success-color']};
+                    color: ${({ theme }) => theme['success-color']};
                 }
             }
         }
