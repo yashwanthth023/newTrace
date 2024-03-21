@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Form, Input, Select, Col, Row, DatePicker } from 'antd';
 import propTypes from 'prop-types';
 import { Cards } from '../../components/cards/frame/cards-frame';
+import{ Button as Button2} from 'antd';
 import { Button } from '../../components/buttons/buttons';
 import { Modal } from '../../components/modals/antd-modals';
 import { CheckboxGroup } from '../../components/checkbox/checkbox';
 import { BasicFormWrapper } from '../styled';
+import FeatherIcon from 'feather-icons-react'
 
 const { Option } = Select;
 const dateFormat = 'MM/DD/YYYY';
@@ -122,7 +124,17 @@ function CreateElectrochem({ visible, onCancel }) {
       value: 'public',
     },
   ];
-  console.log('-------notdata--', notData);
+  const deleteRow =(i)=>
+  {
+      console.log(i);
+      const updatedData = notData.filter((word ,index) => index != i);
+       setState2({
+       ...state2,
+       notData: updatedData,
+       });
+  //  console.log("-----------------------",notData); 
+  }
+  // console.log('-------notdata--', notData);
   return (
     <Modal
       type={state.modalType}
@@ -194,11 +206,15 @@ function CreateElectrochem({ visible, onCancel }) {
                           <tr key={index} style={{ padding: '15px', textAlign: 'left' }}>
                             <td>{ele.AtributeName}</td>
                             <td>{ele.Value}</td>
-                          </tr>
+                            {/* <td> */}
+                            <Button2 onClick={()=>deleteRow(index)}>
+                            <FeatherIcon size={16} icon="trash-2" />
+                            </Button2>
+                            </tr>
                         ))}
                       </>
                     </tbody>
-                  </table>\
+                  </table>
                   {/* <Table className="table-responsive" pagination={false} dataSource={notData} columns={columns} /> */}
                 </Col>
               </Row>

@@ -115,14 +115,14 @@ function AuthInfo() {
         </Dropdown>
       </div> */}
 
-        <Button   size="default" key="4" type="primary" >
+        {/* <Button   size="default" key="4" type="primary" >
        <NavLink to="/electroChem">   
        <div>
-        {/* <FeatherIcon icon="plus" size={3} /> */}
+        <FeatherIcon icon="plus" size={3} />
           EC Details
                 </div>     
                 </NavLink>
-          </Button>
+          </Button> */}
       <div className="nav-author">
         <Popover placement="bottomRight" content={userContent} action="click">
           <Link to="#" className="head-example">
