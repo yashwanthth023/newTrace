@@ -6,65 +6,56 @@ import { HorizontalFormStyleWrap } from '../style/formStyle';
 import { BasicFormWrapper } from '../style/wrapperStyle';
 import { Cards } from '../../cards/frame/cards-frame';
 
-function ProtoTypeHeader({ title }) {
+function ProtoTypeHeader() {
     return (
         <BasicFormWrapper>
             <HorizontalFormStyleWrap className="sDash_input-form">
-                <Cards headless>
-                    <Form name="date-form" layout="horizontal">
-                        <Row gutter={25}>
-                            <Col lg={12} xl={8} sm={12}>
+                {/* <Cards headless> */}
+                <Form name="date-form" layout="horizontal">
+                    <Row gutter={25}>
+                        <Col xl={12} lg={12}>
+                            <Col xl={24} >
                                 <Row align="middle" gutter={25}>
-                                    <Col md={10} xs={12}>
-                                        <label htmlFor='design'>Prototype ID :</label>
+                                    <Col md={10} xs={12} xl={6}>
+                                        <label htmlFor='design'>Prototype :</label>
                                     </Col>
                                     <Col md={14} xs={12}>
-                                        {/* <Form.Item name="design"> */}
-                                        {/* <Input /> */}
                                         <label>NT-PT0111</label>
-                                        {/* </Form.Item> */}
                                     </Col>
                                 </Row>
                             </Col>
-                            <Col lg={12} xl={8}>
-                                <Row align="middle">
-                                    <Col md={10} xs={12}>
-                                        <label htmlFor="assembly">Version ID :</label>
+                            <Col xl={24} >
+                                <Row align="middle" gutter={25}>
+                                    <Col md={10} xs={12} xl={6}>
+                                        <label htmlFor='design'>Version :</label>
                                     </Col>
                                     <Col md={14} xs={12}>
-                                        {/* <Form.Item name="assembly">
-                                            <Input value={'hello'} />
-                                        </Form.Item> */}
                                         <label>NT-PT0111</label>
-
                                     </Col>
                                 </Row>
                             </Col>
-                            <Col lg={12} xl={8} >
-                                <Row align="top" gutter={25}>
-                                    <Col md={8} xs={12} >
-                                        <label htmlFor='design'>Status :</label>
-                                    </Col>
-                                    <Col md={16} xs={12}>
-                                        {/* <Form.Item name="design">
-                                            <Input />
-                                        </Form.Item> */}
-                                        <Select size="small" style={{ width: '100%' }} >
+                        </Col>
+                        <Col lg={12} xl={12}>
+                            <Row align="middle" gutter={25} justify={'end'} >
+                                <Col md={8} xs={12} xl={6} lg={6} align='right'>
+                                    <label htmlFor='design'>Status :</label>
+                                </Col>
+                                <Col md={16} xs={12} xl={10}>
+                                    <Form.Item name="name">
+                                        <Select size="small" style={{ width: '100%' }} dropdownAlign='center' dropdownStyle={{ justifySelf: 'flex-start' }} >
                                             <Select.Option value="1">Design</Select.Option>
-                                            <Select.Option value="2">Manufacture</Select.Option>
-                                            <Select.Option value="3">Testing</Select.Option>
+                                            <Select.Option value="2">Planning</Select.Option>
+                                            <Select.Option value="3">Manufacture</Select.Option>
+                                            <Select.Option value="4">Testing</Select.Option>
+                                            <Select.Option value="5">Archived</Select.Option>
                                         </Select>
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-
-                        {/* <Row align="middle" gutter={25}>
-                           
-                        </Row> */}
-
-                    </Form>
-                </Cards>
+                                    </Form.Item>
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                </Form>
+                {/* </Cards> */}
             </HorizontalFormStyleWrap>
         </BasicFormWrapper>
     );

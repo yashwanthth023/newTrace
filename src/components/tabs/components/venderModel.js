@@ -88,7 +88,7 @@ function VenderModel({ visible, onCancel }) {
       footer={[
         <div key="1" className="project-modal-footer">
           <Button size="default" type="primary" key="submit" onClick={handleOk}>
-            Add New Project
+            Save
           </Button>
           <Button size="default" type="white" key="back" outlined onClick={handleCancel}>
             Cancel

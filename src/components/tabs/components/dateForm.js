@@ -10,7 +10,7 @@ function DateForm({ title }) {
     return (
         <BasicFormWrapper>
             <HorizontalFormStyleWrap className="sDash_input-form">
-                <Cards title={title} headStyle={{ textAlign: 'center' }}>
+                <Cards title={title} headStyle={{ textAlign: 'center', fontWeight: 'bold' }}>
                     <Form name="date-form" layout="horizontal">
 
                         <Row align="middle">

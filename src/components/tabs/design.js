@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useState } from 'react';
 import { Row, Col, Form, Input, Select, Upload, message } from 'antd';
 import { Link } from 'react-router-dom';
 import { HorizontalFormStyleWrap } from './style/formStyle';
@@ -7,10 +7,14 @@ import { BasicFormWrapper } from './style/wrapperStyle';
 import DateForm from './components/dateForm';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
+import ProtoTypeHeader from './components/protoTypeInfo';
+import ViewElectroChem from './components/viewElectrochem';
 
 const { Option } = Select;
 const { TextArea } = Input;
 function Design() {
+    const [showModal, setShowModal] = useState(false);
+    const [selectedValue, setSelectedValue] = useState('');
     const props = {
         name: 'file',
         action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
@@ -32,7 +36,7 @@ function Design() {
         <BasicFormWrapper>
             <HorizontalFormStyleWrap className="sDash_input-form">
                 <Cards headless>
-                    <Row className='top_form_card'>
+                    {/* <Row className='top_form_card'>
                         <div className='top_form_card_left'>
                             <label className='top_form_card_left_key'>Prototype Name :</label>
                             <label className='top_form_card_left_value'>NT098-PT</label>
@@ -53,8 +57,10 @@ function Design() {
                                 </Select>
                             </div>
                         </Form>
-                    </Row>
+                    </Row> */}
+                    <ProtoTypeHeader />
                     <br />
+
 
                     <Form >
                         <Row align="middle">
@@ -94,170 +100,212 @@ function Design() {
                             <DateForm title="Actual Date" />
                         </Col>
                     </Row>
+                    <Form>
+                        <Cards title='Electrode Details' headStyle={{ textAlign: 'center', fontWeight: 'bold' }}>
+                            <Row gutter={25}>
+                                <Col xl={12} md={24}>
+                                    <Row align="middle">
+                                        <Col md={10} xs={24}>
+                                            <label htmlFor="electrode-symmetry">Symmetry</label>
+                                        </Col>
+                                        <Col md={14} xs={24}>
+                                            <Form.Item name="electrode-symmetry">
+                                                <Select size="small" style={{ width: "100%" }}>
+                                                    <Option value="1">Symmetrical</Option>
+                                                    <Option value="2">Asymmetrical</Option>
+                                                </Select>
+                                            </Form.Item>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                                <Col xl={12} md={24}>
+                                    <Row align="middle">
+                                        <Col md={10} xs={24}>
+                                            <label htmlFor="moc">Moc</label>
+                                        </Col>
+                                        <Col md={14} xs={24}>
+                                            <Form.Item name="moc">
+                                                <Input placeholder="Electrode Moc" />
+                                            </Form.Item>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            </Row>
+                            <Row gutter={25}>
+                                <Col xl={12} lg={12} md={24}>
+                                    <Row align="middle">
+                                        <Col md={10} xs={24}>
+                                            <label htmlFor="moc">Structure</label>
+                                        </Col>
+                                        <Col md={14} xs={24}>
+                                            <Form.Item name="moc">
+                                                <Input placeholder="Electrode Structure" />
+                                            </Form.Item>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                                <Col xl={12} lg={12} md={24}>
+                                    <Row align="middle">
+                                        <Col md={10} xs={24}>
+                                            <label htmlFor="moc">Shape</label>
+                                        </Col>
+                                        <Col md={14} xs={24}>
+                                            <Form.Item name="moc">
+                                                <Select size="small" style={{ width: "100%" }}>
+                                                    <Option value="1">Rectangular</Option>
+                                                    <Option value="2">Circular</Option>
+                                                    <Option value="2">Others</Option>
+                                                </Select>
+                                            </Form.Item>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            </Row>
+                            <Row gutter={25}>
+                                <Col xl={12} lg={12} md={24}>
+                                    <Row align="middle">
+                                        <Col md={10} xs={24}>
+                                            <label htmlFor="moc">Thickness</label>
+                                        </Col>
+                                        <Col md={14} xs={24}>
+                                            <Form.Item name="moc">
+                                                <Input placeholder="2mm" />
+                                            </Form.Item>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                                <Col xl={12} lg={12} md={24}>
+                                    <Row align="middle">
+                                        <Col md={10} xs={24}>
+                                            <label htmlFor="moc">Length</label>
+                                        </Col>
+                                        <Col md={14} xs={24}>
+                                            <Form.Item name="moc">
+                                                <Input placeholder="20m" />
+                                            </Form.Item>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            </Row>
+                            <Row gutter={25}>
+                                <Col xl={12} lg={12} md={24}>
+
+                                    <Row align="middle">
+                                        <Col md={10} xs={24}>
+                                            <label htmlFor="moc">Breadth</label>
+                                        </Col>
+                                        <Col md={14} xs={24}>
+                                            <Form.Item name="moc">
+                                                <Input placeholder="10m" />
+                                            </Form.Item>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                                <Col xl={12} lg={12} md={24}>
+                                    <Row align="middle">
+                                        <Col md={10} xs={24}>
+                                            <label htmlFor="moc">Diameter</label>
+                                        </Col>
+                                        <Col md={14} xs={24}>
+                                            <Form.Item name="moc">
+                                                <Input placeholder="50cm" />
+                                            </Form.Item>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            </Row>
+                            <Row gutter={25}>
+                                <Col xl={12} lg={12} md={24}>
+                                    <Row align="middle">
+                                        <Col md={10} xs={24}>
+                                            <label htmlFor="moc">Area</label>
+                                        </Col>
+                                        <Col md={14} xs={24}>
+                                            <Form.Item name="moc">
+                                                <Input placeholder="5m.sq" />
+                                            </Form.Item>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                                <Col xl={12} lg={12} md={24}>
+                                    <Row align="middle">
+                                        <Col md={10} xs={24}>
+                                            <label htmlFor="moc">Gap</label>
+                                        </Col>
+                                        <Col md={14} xs={24}>
+                                            <Form.Item name="moc">
+                                                <Input placeholder="5cm" />
+                                            </Form.Item>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            </Row>
+
+                        </Cards>
+                    </Form>
 
                     <Form name="input-form" layout="horizontal">
+
                         <Row gutter={25}>
-                            <Col xl={12} md={24}>
+                            <Col xl={12} lg={12} md={24}>
                                 <Row align="middle">
                                     <Col md={10} xs={24}>
-                                        <label htmlFor="electrode-symmetry">Electrode Symmetry</label>
+                                        <label htmlFor="anode">EC Anode Details</label>
                                     </Col>
                                     <Col md={14} xs={24}>
-                                        <Form.Item name="electrode-symmetry">
-                                            <Select size="small" style={{ width: "100%" }}>
-                                                <Option value="1">Symmetrical</Option>
-                                                <Option value="2">Asymmetrical</Option>
+                                        <Form.Item name="anode">
+                                            <Select size="small" style={{ width: "100%" }} onChange={(value) => {
+                                                setSelectedValue(value);
+                                                console.log(selectedValue)
+                                                if (value) {
+                                                    setShowModal(true);
+                                                }
+                                            }}>
+                                                <Option value="1">EC 1</Option>
+                                                <Option value="2">EC 2</Option>
                                             </Select>
                                         </Form.Item>
                                     </Col>
                                 </Row>
                             </Col>
-                            <Col xl={12} md={24}>
-                                <Row align="middle">
-                                    <Col md={10} xs={24}>
-                                        <label htmlFor="moc">Electrode Moc</label>
-                                    </Col>
-                                    <Col md={14} xs={24}>
-                                        <Form.Item name="moc">
-                                            <Input placeholder="Electrode Moc" />
-                                        </Form.Item>
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                        <Row gutter={25}>
                             <Col xl={12} lg={12} md={24}>
                                 <Row align="middle">
                                     <Col md={10} xs={24}>
-                                        <label htmlFor="moc">EC Anode Details</label>
+                                        <label htmlFor="cathode">EC Cathode Details</label>
                                     </Col>
                                     <Col md={14} xs={24}>
-                                        <Form.Item name="moc">
-                                            <Input placeholder="sdfa-sdsa-sdsa-adsa" />
-                                        </Form.Item>
-                                    </Col>
-                                </Row>
-                            </Col>
-                            <Col xl={12} lg={12} md={24}>
-                                <Row align="middle">
-                                    <Col md={10} xs={24}>
-                                        <label htmlFor="moc">EC Cathode Details</label>
-                                    </Col>
-                                    <Col md={14} xs={24}>
-                                        <Form.Item name="moc">
-                                            <Input placeholder="sdfa-sdsa-sdsa-adsa" />
-                                        </Form.Item>
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                        <Row gutter={25}>
-
-                            <Col xl={12} lg={12} md={24}>
-                                <Row align="middle">
-                                    <Col md={10} xs={24}>
-                                        <label htmlFor="moc">Electrode Structure</label>
-                                    </Col>
-                                    <Col md={14} xs={24}>
-                                        <Form.Item name="moc">
-                                            <Input placeholder="Electrode Structure" />
-                                        </Form.Item>
-                                    </Col>
-                                </Row>
-                            </Col>
-                            <Col xl={12} lg={12} md={24}>
-                                <Row align="middle">
-                                    <Col md={10} xs={24}>
-                                        <label htmlFor="moc">Electrode Shape</label>
-                                    </Col>
-                                    <Col md={14} xs={24}>
-                                        <Form.Item name="moc">
-                                            <Select size="small" style={{ width: "100%" }}>
-                                                <Option value="1">Rectangular</Option>
-                                                <Option value="2">Circular</Option>
-                                                <Option value="2">Others</Option>
+                                        <Form.Item name="cathode">
+                                            <Select
+                                                size="small"
+                                                style={{ width: "100%" }}
+                                                labelInValue
+                                                onChange={(value) => {
+                                                    setSelectedValue(value);
+                                                    console.log(selectedValue)
+                                                    if (value) {
+                                                        setShowModal(true);
+                                                    }
+                                                }}
+                                                value={selectedValue}
+                                            >
+                                                <Option onClick={(value = '1') => {
+                                                    setSelectedValue(value);
+                                                    console.log(selectedValue)
+                                                    if (value) {
+                                                        setShowModal(true);
+                                                    }
+                                                }} value="1" key="1">EC 1</Option>
+                                                <Option onClick={(value = '1') => {
+                                                    setSelectedValue(value);
+                                                    console.log(selectedValue)
+                                                    if (value) {
+                                                        setShowModal(true);
+                                                    }
+                                                }} value="2" key="2">EC 2</Option>
                                             </Select>
                                         </Form.Item>
                                     </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                        <Row gutter={25}>
-                            <Col xl={12} lg={12} md={24}>
-                                <Row align="middle">
-                                    <Col md={10} xs={24}>
-                                        <label htmlFor="moc">Electrode Thickness</label>
-                                    </Col>
-                                    <Col md={14} xs={24}>
-                                        <Form.Item name="moc">
-                                            <Input placeholder="2mm" />
-                                        </Form.Item>
-                                    </Col>
-                                </Row>
-                            </Col>
-                            <Col xl={12} lg={12} md={24}>
-                                <Row align="middle">
-                                    <Col md={10} xs={24}>
-                                        <label htmlFor="moc">Electrode Length</label>
-                                    </Col>
-                                    <Col md={14} xs={24}>
-                                        <Form.Item name="moc">
-                                            <Input placeholder="20m" />
-                                        </Form.Item>
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                        <Row gutter={25}>
-                            <Col xl={12} lg={12} md={24}>
-
-                                <Row align="middle">
-                                    <Col md={10} xs={24}>
-                                        <label htmlFor="moc">Electrode Breadth</label>
-                                    </Col>
-                                    <Col md={14} xs={24}>
-                                        <Form.Item name="moc">
-                                            <Input placeholder="10m" />
-                                        </Form.Item>
-                                    </Col>
-                                </Row>
-                            </Col>
-                            <Col xl={12} lg={12} md={24}>
-                                <Row align="middle">
-                                    <Col md={10} xs={24}>
-                                        <label htmlFor="moc">Electrode Diameter</label>
-                                    </Col>
-                                    <Col md={14} xs={24}>
-                                        <Form.Item name="moc">
-                                            <Input placeholder="50cm" />
-                                        </Form.Item>
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                        <Row gutter={25}>
-                            <Col xl={12} lg={12} md={24}>
-                                <Row align="middle">
-                                    <Col md={10} xs={24}>
-                                        <label htmlFor="moc">Electrode Area</label>
-                                    </Col>
-                                    <Col md={14} xs={24}>
-                                        <Form.Item name="moc">
-                                            <Input placeholder="5m.sq" />
-                                        </Form.Item>
-                                    </Col>
-                                </Row>
-                            </Col>
-                            <Col xl={12} lg={12} md={24}>
-                                <Row align="middle">
-                                    <Col md={10} xs={24}>
-                                        <label htmlFor="moc">Electrode Gap</label>
-                                    </Col>
-                                    <Col md={14} xs={24}>
-                                        <Form.Item name="moc">
-                                            <Input placeholder="5cm" />
-                                        </Form.Item>
-                                    </Col>
+                                    <ViewElectroChem visible={showModal} onCancel={() => setShowModal(false)} />
                                 </Row>
                             </Col>
                         </Row>
