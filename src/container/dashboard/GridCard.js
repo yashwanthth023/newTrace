@@ -39,7 +39,7 @@ function GridCard({ value }) {
         <div className="project-top">
           <div className="project-title">
             <h1>
-              <Link to={`/admin/project/projectDetails/${id}`}>{title}</Link>
+              {title}
               {/* <Tag className={status}>{status}</Tag> */}
             </h1>
             {/* <Dropdown
@@ -88,13 +88,13 @@ function GridCard({ value }) {
             {/* <p>Assigned To</p> */}
             <ul style={{ flexDirection: 'column' }}>
               {
-                VersionData.map((ele, i) =>
-                  <NavLink key={i} to="/versionDetails">
-                    <li>
-                      <span>{ele.id}</span>
-                      <Tag className={ele.className}>{ele.status}</Tag>
-                    </li>
-                  </NavLink>
+                VersionData.map((ele)=>
+                <NavLink to="/versionDetails">
+                  <li>
+                  <span>{ele.id}</span>
+                  <Tag className= {ele.className}>{ele.status}</Tag>
+                </li>
+                </NavLink>
                 )
               }
             </ul>

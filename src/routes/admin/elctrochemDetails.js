@@ -4,24 +4,22 @@ import { useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 import withAdminLayout from '../../layout/withAdminLayout';
 import { Spin } from 'antd';
 
-const version = lazy(() => import('../../container/pages/versionDetailPage'))
+const version = lazy(() => import('../../container/pages/electrochemDetailsPage'))
 
-function versionDetailRoute() {
+function electrochemDetailRoute() {
   const { path } = useRouteMatch();
   return (
     
     <Switch>
-      <Suspense
-        fallback={
-          <div className="spin">
-            <Spin />
-          </div>
-        }
-      >
-        <Route exact path={path} component={version} />
+      <Suspense fallback={
+        <div className='spin'>
+          <Spin/>
+        </div>
+      }>
+      <Route exact path={path} component={version} />
       </Suspense>
     </Switch>
   );
 }
 
-export default withAdminLayout(versionDetailRoute);
+export default withAdminLayout(electrochemDetailRoute);
