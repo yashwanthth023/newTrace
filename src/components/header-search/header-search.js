@@ -56,9 +56,12 @@ const HeaderSearch = ({ darkMode }) => {
             </Popover>
           </Col>
         </Row>
-        {/* <div style={{alignSelf :'flex-end'}}>
-        <Button   size="default" key="4" type="primary" >Add Electrochem</Button>
-        </div> */}
+        <div style={{display :'flex' ,gap :'20px'}}>
+         <NavLink to="/Prototype"> <span style={{color :'rgb(90, 95, 125)'}}>Prototype</span></NavLink>
+         <NavLink to="electroChem"> <span style={{color :'rgb(90, 95, 125)'}}>EC Details</span></NavLink>
+         <div style={{cursor :'pointer',color :'rgb(90, 95, 125)'}} ><span>Settings</span></div>
+        {/* <Button   size="default" key="4" type="primary" >Add Electrochem</Button> */}
+        </div>
       </Div>
     </>
   );
