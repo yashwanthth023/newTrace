@@ -69,7 +69,7 @@ function Testing() {
                     <Row align="right" gutter={25}>
                         <Col align='right' lg={24}>
                             <Button type='primary' onClick={() => setShowModal(true)}>
-                                Add Experiments
+                                Add Experiment
                             </Button>
                         </Col>
                     </Row>
