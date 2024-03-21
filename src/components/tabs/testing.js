@@ -6,6 +6,7 @@ import { BasicFormWrapper } from './style/wrapperStyle';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
 import ExperimentModal from './components/experimentModal';
+import ProtoTypeHeader from './components/protoTypeInfo';
 
 const Option = { Select };
 
@@ -62,28 +63,7 @@ function Testing() {
         <BasicFormWrapper>
             <HorizontalFormStyleWrap className="sDash_input-form">
                 <Cards headless>
-                    <Row className='top_form_card'>
-                        <div className='top_form_card_left'>
-                            <label className='top_form_card_left_key'>Prototype Name :</label>
-                            <label className='top_form_card_left_value'>NT098-PT</label>
-                        </div>
-                        <Form className='top_form_card_right'>
-                            <div className='top_form_card_right_version'>
-                                <label className='top_form_card_right_version_key'>Version ID :</label>
-                                <label className='top_form_card_right_version_value'>NT098-V1 </label>
-                            </div>
-                            <div className='top_form_card_right_dropdown'>
-                                <label className='top_form_card_right_dropdown_label'>Status :</label>
-                                <Select value={'3'} size="small" className='top_form_card_right_dropdown_select' >
-                                    <Option value="5">Planned</Option>
-                                    <Option value="1">Design</Option>
-                                    <Option value="2">Manufacturing</Option>
-                                    <Option value="3">Testing</Option>
-                                    <Option value="4">Archived</Option>
-                                </Select>
-                            </div>
-                        </Form>
-                    </Row>
+                    <ProtoTypeHeader />
                 </Cards>
                 <Cards headless>
                     <Row align="right" gutter={25}>
