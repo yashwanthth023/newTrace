@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
 
@@ -89,16 +88,16 @@ function Manufacturing() {
         console.log("cancelled");
     }
     const onSubmit = () => {
-        notData.push({
-            "id": "13",
-            "title": ProtoTypeName,
-            "status": "early",
-            "content": ProtoTypeDesc,
-            "category": "Web Design",
-            "rate": 5,
-            "popular": 12,
-            "percentage": 3
-        });
+        // notData.push({
+        //     "id": "13",
+        //     "title": ProtoTypeName,
+        //     "status": "early",
+        //     "content": ProtoTypeDesc,
+        //     "category": "Web Design",
+        //     "rate": 5,
+        //     "popular": 12,
+        //     "percentage": 3
+        // });
     }
 
 
