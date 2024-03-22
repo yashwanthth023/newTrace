@@ -17,16 +17,16 @@ function Testing() {
         {
             key: '1',
             exp_title: 'Mike',
-            type: 32,
-            status: '10 Downing Street',
+            type: 'Purity',
+            status: 'Pass',
             created_on: '23/08/2002',
             created_by: 'Gowtham'
         },
         {
             key: '2',
             exp_title: 'John',
-            type: 42,
-            status: '10 Downing Street',
+            type: 'Flow Test',
+            status: 'Fail',
             created_on: '23/08/2002',
             created_by: 'Gowtham'
         },
@@ -34,7 +34,7 @@ function Testing() {
 
     const columns = [
         {
-            title: 'Exp_Title',
+            title: 'Experiment Name',
             dataIndex: 'exp_title',
             key: 'exp_title',
         },

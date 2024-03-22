@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Input, Select, Col, Row, DatePicker } from 'antd';
 import propTypes from 'prop-types';
 import { Cards } from '../../components/cards/frame/cards-frame';
-import{ Button as Button2} from 'antd';
+import { Button as Button2 } from 'antd';
 import { Button } from '../../components/buttons/buttons';
 import { Modal } from '../../components/modals/antd-modals';
 import { CheckboxGroup } from '../../components/checkbox/checkbox';
@@ -22,11 +22,11 @@ function CreateElectrochem({ visible, onCancel }) {
   const dataSource = [
     {
       AtributeName: 'EC1',
-      Value: 'ElectroChem1',
+      Value: '20',
     },
     {
       AtributeName: 'EC2',
-      Value: 'ElectroChem2',
+      Value: '10',
     },
   ];
   const [state2, setState2] = useState({
@@ -34,7 +34,7 @@ function CreateElectrochem({ visible, onCancel }) {
   });
 
   const { notData } = state2;
-  useEffect(() => {}, [name]);
+  useEffect(() => { }, [name]);
   const [state, setState] = useState({
     visible,
     modalType: 'primary',
@@ -124,15 +124,14 @@ function CreateElectrochem({ visible, onCancel }) {
       value: 'public',
     },
   ];
-  const deleteRow =(i)=>
-  {
-      console.log(i);
-      const updatedData = notData.filter((word ,index) => index != i);
-       setState2({
-       ...state2,
-       notData: updatedData,
-       });
-  //  console.log("-----------------------",notData); 
+  const deleteRow = (i) => {
+    console.log(i);
+    const updatedData = notData.filter((word, index) => index != i);
+    setState2({
+      ...state2,
+      notData: updatedData,
+    });
+    //  console.log("-----------------------",notData); 
   }
   // console.log('-------notdata--', notData);
   return (
@@ -156,10 +155,10 @@ function CreateElectrochem({ visible, onCancel }) {
       <div className="project-modal">
         <BasicFormWrapper>
           <Form form={form} name="createProject" onFinish={handleOk}>
-            <Form.Item name="project" label="ElectroChem Id">
-              {/* <Input placeholder="Ec5" value= "Ec5"  style={{color :'black'}}/> */}
-            </Form.Item>
-            <Input placeholder="Atribute Name" value={'EC5'} style={{ marginTop: '-40px', marginBottom: '20px' }} />
+            {/* <Form.Item name="project" label="ElectroChem Id">
+              <Input placeholder="Ec5" value= "Ec5"  style={{color :'black'}}/>
+            </Form.Item> */}
+            {/* <Input placeholder="Atribute Name" value={'EC5'} style={{ marginTop: '-40px', marginBottom: '20px' }} /> */}
             {/* <Form.Item name="category" initialValue="" label="">
               <Select style={{ width: '100%' }}>
                 <Option value="">Project Category</Option>
@@ -168,14 +167,14 @@ function CreateElectrochem({ visible, onCancel }) {
               </Select>
             </Form.Item> */}
 
-            <Form.Item name="Name" label="Name">
+            <Form.Item name="EC Name" label="EC Name">
               <Input placeholder="Name" />
             </Form.Item>
             <Cards headless>
               <Row align="right" gutter={25}>
                 <Col align="right" lg={24}>
                   <Button type="primary" onClick={() => SetShow((val) => !val)}>
-                    Add 
+                    Add
                   </Button>
                 </Col>
               </Row>
@@ -193,7 +192,7 @@ function CreateElectrochem({ visible, onCancel }) {
             </>
             )
         } */}
-                  <table style={{  width: '100%' }}>
+                  <table style={{ width: '100%' }}>
                     <thead>
                       <tr style={{ padding: '20px', textAlign: 'left' }}>
                         <th>Attributes</th>
@@ -207,10 +206,10 @@ function CreateElectrochem({ visible, onCancel }) {
                             <td>{ele.AtributeName}</td>
                             <td>{ele.Value}</td>
                             {/* <td> */}
-                            <Button2 onClick={()=>deleteRow(index)}>
-                            <FeatherIcon size={16} icon="trash-2" />
+                            <Button2 onClick={() => deleteRow(index)}>
+                              <FeatherIcon size={16} icon="trash-2" />
                             </Button2>
-                            </tr>
+                          </tr>
                         ))}
                       </>
                     </tbody>

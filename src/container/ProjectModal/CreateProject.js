@@ -9,7 +9,7 @@ import { BasicFormWrapper } from '../styled';
 const { Option } = Select;
 const dateFormat = 'MM/DD/YYYY';
 
-function CreateProject({ visible, onCancel,onSubmit ,setProtoTypeRemarks,setProtoTypeDesc,setProtoTypeName}) {
+function CreateProject({ visible, onCancel, onSubmit, setProtoTypeRemarks, setProtoTypeDesc, setProtoTypeName }) {
   const [form] = Form.useForm();
 
   const [state, setState] = useState({
@@ -18,9 +18,9 @@ function CreateProject({ visible, onCancel,onSubmit ,setProtoTypeRemarks,setProt
     checked: [],
   });
 
-  const [name , setName] = useState();
-  const [description , setDescription] = useState();
-  const [remarks , setRemarks] = useState();
+  const [name, setName] = useState();
+  const [description, setDescription] = useState();
+  const [remarks, setRemarks] = useState();
 
   useEffect(() => {
     let unmounted = false;
@@ -62,12 +62,12 @@ function CreateProject({ visible, onCancel,onSubmit ,setProtoTypeRemarks,setProt
   return (
     <Modal
       type={state.modalType}
-      title="Create Project"
+      title="Create Prototype"
       visible={state.visible}
       footer={[
         <div key="1" className="project-modal-footer">
           <Button size="default" type="primary" key="submit" onClick={handleOk}>
-            Add New Project
+            Save
           </Button>
           <Button size="default" type="light" key="back" outlined onClick={handleCancel}>
             Cancel
@@ -80,7 +80,7 @@ function CreateProject({ visible, onCancel,onSubmit ,setProtoTypeRemarks,setProt
         <BasicFormWrapper>
           <Form form={form} name="createProject" onFinish={handleOk}>
             <Form.Item name="project" label="Prototype Name" >
-              <Input placeholder="Prototype Name" onChange={(ele)=> setProtoTypeName(ele.target.value)}/>
+              <Input placeholder="Prototype Name" onChange={(ele) => setProtoTypeName(ele.target.value)} />
             </Form.Item>
             {/* <Form.Item name="category" initialValue="" label="">
               <Select style={{ width: '100%' }}>
@@ -90,10 +90,10 @@ function CreateProject({ visible, onCancel,onSubmit ,setProtoTypeRemarks,setProt
               </Select>
             </Form.Item> */}
             <Form.Item name="description" label="Description">
-              <Input.TextArea rows={4} placeholder="Description" onChange={(ele)=> setProtoTypeDesc(ele.target.value)}/>
+              <Input.TextArea rows={4} placeholder="Description" onChange={(ele) => setProtoTypeDesc(ele.target.value)} />
             </Form.Item>
             <Form.Item name="Remarks" label="Remarks" >
-              <Input placeholder="Remarks"  onChange={(ele)=> setProtoTypeRemarks(ele.target.value)}/>
+              <Input placeholder="Remarks" onChange={(ele) => setProtoTypeRemarks(ele.target.value)} />
             </Form.Item>
             {/* <Form.Item name="pricacy" initialValue={['team']} label="Project Privacy">
               <CheckboxGroup options={options} />

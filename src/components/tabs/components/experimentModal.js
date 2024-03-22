@@ -48,7 +48,7 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                     <Form name="experiments" onFinish={onSubmit}>
                         <Row align="middle">
                             <Col md={6} xs={24}>
-                                <label htmlFor="input-date">Experiment Title</label>
+                                <label htmlFor="input-date">Experiment Name</label>
                             </Col>
                             <Col md={18} xs={24}>
                                 <Form.Item name="input-date">
@@ -63,10 +63,10 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                             <Col md={18} xs={24}>
                                 <Form.Item name="input-email">
                                     <Select size="small" style={{ width: "100%" }}>
-                                        <Option value="1">Type 1</Option>
-                                        <Option value="2">Type 2</Option>
-                                        <Option value="3">Type 3</Option>
-                                        <Option value="4">Type 4</Option>
+                                        <Option value="1">Flow Test</Option>
+                                        <Option value="2">VI Characteristics</Option>
+                                        <Option value="3">Purity</Option>
+                                        <Option value="4">Others</Option>
                                     </Select>
                                 </Form.Item>
                             </Col>
@@ -78,17 +78,16 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                             <Col md={18} xs={24}>
                                 <Form.Item name="input-email">
                                     <Select size="small" style={{ width: "100%" }}>
-                                        <Option value="1">Status 1</Option>
-                                        <Option value="2">Status 2</Option>
-                                        <Option value="3">Status 3</Option>
-                                        <Option value="4">Status 4</Option>
+                                        <Option value="1">Pass</Option>
+                                        <Option value="2">Fail</Option>
+
                                     </Select>
                                 </Form.Item>
                             </Col>
                         </Row>
                         <Row align="middle">
                             <Col md={6} xs={24}>
-                                <label htmlFor="Hypothesis">Obj / Hypothesis</label>
+                                <label htmlFor="Hypothesis">Objective / Hypothesis</label>
                             </Col>
                             <Col md={18} xs={24}>
                                 <Form.Item name="Hypothesis">

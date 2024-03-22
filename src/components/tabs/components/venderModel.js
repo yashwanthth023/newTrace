@@ -103,8 +103,8 @@ function VenderModel({ visible, onCancel }) {
             <Form.Item name="Vender" label="Vender Name">
               <Input placeholder="Vender Name" />
             </Form.Item>
-            <Form.Item name="Quototion" label="Quototion">
-              <Input placeholder="Quototion" />
+            <Form.Item name="Quotation" label="Quotation">
+              <Input placeholder="Quotation" />
             </Form.Item>
             <Form.Item name="project" label="Remarks">
               <Input placeholder="remarks" />
