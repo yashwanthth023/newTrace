@@ -30,8 +30,11 @@ function Closure() {
                         </Col>
                     </Row>
                 </Cards>
-                <Row align="middle">
+                <Row align="middle" gutter={25}>
                     <Col md={24} align='right'>
+                        <Button size='small2' type='primary' style={{ marginRight: 5 }}>
+                            Save
+                        </Button>
                         <Button size='small2' type='success' style={{ marginRight: 5 }}>
                             Archive
                         </Button>

@@ -20,7 +20,7 @@ function SignIn() {
 
   const handleSubmit = () => {
     dispatch(login());
-    history.push('/admin');
+    history.push('/prototype');
   };
 
   // const onChange = (checked) => {
