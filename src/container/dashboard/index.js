@@ -1,4 +1,4 @@
-import React ,{useState} from 'react';
+import React, { useState } from 'react';
 import { Row, Col } from 'antd';
 import FeatherIcon from 'feather-icons-react';
 import Grid from './Grid';
@@ -16,15 +16,15 @@ import CreateVersion from '../ProjectModal/CreateVersion';
 
 const Dashboard = () => {
 
-  const [ProtoTypeName , setProtoTypeName] = useState('');
-  const [ProtoTypeDesc , setProtoTypeDesc] = useState('');
-  const [ProtoTypeRemarks , setProtoTypeRemarks] = useState('');
-  const [visible , setVisible] = useState(false);
-  
-  const projects  = [
+  const [ProtoTypeName, setProtoTypeName] = useState('');
+  const [ProtoTypeDesc, setProtoTypeDesc] = useState('');
+  const [ProtoTypeRemarks, setProtoTypeRemarks] = useState('');
+  const [visible, setVisible] = useState(false);
+
+  const projects = [
     {
       "id": 1,
-      "title": "Prototype1",
+      "title": "Lead Acid Fast Charge",
       "status": "early",
       "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
       "category": "Web Design",
@@ -34,7 +34,7 @@ const Dashboard = () => {
     },
     {
       "id": 2,
-      "title": "Prototype2",
+      "title": "Lead Acid super Fast Charge",
       "status": "progress",
       "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
       "category": "Web Development",
@@ -44,7 +44,7 @@ const Dashboard = () => {
     },
     {
       "id": 3,
-      "title": "Prototype3",
+      "title": "lithium ion Fast Charge",
       "status": "early",
       "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
       "category": "Graphic Design",
@@ -54,7 +54,7 @@ const Dashboard = () => {
     },
     {
       "id": 4,
-      "title": "Prototype4",
+      "title": "Lead Acid Fast Charge",
       "status": "late",
       "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
       "category": "Web Development",
@@ -144,8 +144,7 @@ const Dashboard = () => {
     }
   ];
 
-  const onCancel =()=>
-  {
+  const onCancel = () => {
     setVisible(false);
     console.log("cancelled");
   }
@@ -154,28 +153,28 @@ const Dashboard = () => {
   });
 
   const { notData } = state;
-  const onSubmit =()=>
-  {
-    notData.push({"id" : "13",
-    "title": ProtoTypeName,
-    "status": "early",
-    "content": ProtoTypeDesc,
+  const onSubmit = () => {
+    notData.push({
+      "id": "13",
+      "title": ProtoTypeName,
+      "status": "early",
+      "content": ProtoTypeDesc,
       "category": "Web Design",
       "rate": 5,
       "popular": 12,
       "percentage": 3
-  });
+    });
     // setState({
-      // notData: [...state.notData,{"id" : "13",
-      // "title": ProtoTypeName,
-      // "status": "early",
-      // "title": ProtoTypeDesc}],
+    // notData: [...state.notData,{"id" : "13",
+    // "title": ProtoTypeName,
+    // "status": "early",
+    // "title": ProtoTypeDesc}],
     // });
     setVisible(false);
   };
   // }
 
-  console.log("ProtoTypeName  -" , ProtoTypeName);
+  console.log("ProtoTypeName  -", ProtoTypeName);
 
   const handleSearch = (searchText) => {
     const data = projects.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
@@ -187,7 +186,7 @@ const Dashboard = () => {
 
   return (
     <>
-       <PageHeader
+      <PageHeader
         ghost
         title="Prototypes"
         buttons={[
@@ -195,23 +194,23 @@ const Dashboard = () => {
             {/* <CalendarButtonPageHeader key="1" />
             <ExportButtonPageHeader key="2" />
             <ShareButtonPageHeader key="3" /> */}
-               <AutoComplete
-                onSearch={handleSearch}
-                dataSource={notData}
-                width="100%"
-                placeholder="Search by Name"
-                patterns
-              />
-            <Button size="small" key="4" type="primary" onClick ={()=> setVisible(true)}>
+            <AutoComplete
+              onSearch={handleSearch}
+              dataSource={notData}
+              width="100%"
+              placeholder="Search by Name"
+              patterns
+            />
+            <Button size="small" key="4" type="primary" onClick={() => setVisible(true)}>
               <FeatherIcon icon="plus" size={14} />
               Add Prototype
             </Button>
           </div>
         ]}
-      /> 
+      />
       <Main>
-      <Grid projects={notData}/>
-      <CreateProject onCancel={onCancel} onSubmit ={onSubmit} visible={visible}setProtoTypeRemarks={setProtoTypeRemarks} setProtoTypeDesc={setProtoTypeDesc} setProtoTypeName={setProtoTypeName}/>
+        <Grid projects={notData} />
+        <CreateProject onCancel={onCancel} onSubmit={onSubmit} visible={visible} setProtoTypeRemarks={setProtoTypeRemarks} setProtoTypeDesc={setProtoTypeDesc} setProtoTypeName={setProtoTypeName} />
         {/* <Row gutter={25}>
           <Col lg={24} xs={24}>
             <Cards headless>

@@ -254,15 +254,17 @@ function Design() {
                                     </Col>
                                     <Col md={14} xs={24}>
                                         <Form.Item name="anode">
-                                            <Select size="small" style={{ width: "100%" }} onChange={(value) => {
-                                                setSelectedValue(value);
-                                                console.log(selectedValue)
-                                                if (value) {
-                                                    setShowModal(true);
-                                                }
-                                            }}>
-                                                <Option value="1">EC 1</Option>
-                                                <Option value="2">EC 2</Option>
+                                            <Select size="small" style={{ width: "100%" }} >
+                                                <Option value="1" key="1">EC 1<div style={{ textAlign: 'right' }}>
+                                                    <Button size="small" onClick={() => setShowModal(true)}>
+                                                        View
+                                                    </Button>
+                                                </div></Option>
+                                                <Option value="2" key="2">EC 2<div style={{ textAlign: 'right' }}>
+                                                    <Button size="small" onClick={() => setShowModal(true)}>
+                                                        View
+                                                    </Button>
+                                                </div></Option>
                                             </Select>
                                         </Form.Item>
                                     </Col>
@@ -279,29 +281,25 @@ function Design() {
                                                 size="small"
                                                 style={{ width: "100%" }}
                                                 labelInValue
-                                                onChange={(value) => {
-                                                    setSelectedValue(value);
-                                                    console.log(selectedValue)
-                                                    if (value) {
-                                                        setShowModal(true);
-                                                    }
-                                                }}
-                                                value={selectedValue}
+                                            // onChange={(value) => {
+                                            //     setSelectedValue(value);
+                                            //     console.log(selectedValue)
+                                            //     if (value) {
+                                            //         setShowModal(true);
+                                            //     }
+                                            // }}
+                                            // value={selectedValue}
                                             >
-                                                <Option onClick={(value = '1') => {
-                                                    setSelectedValue(value);
-                                                    console.log(selectedValue)
-                                                    if (value) {
-                                                        setShowModal(true);
-                                                    }
-                                                }} value="1" key="1">EC 1</Option>
-                                                <Option onClick={(value = '1') => {
-                                                    setSelectedValue(value);
-                                                    console.log(selectedValue)
-                                                    if (value) {
-                                                        setShowModal(true);
-                                                    }
-                                                }} value="2" key="2">EC 2</Option>
+                                                <Option value="1" key="1">EC 1<div style={{ textAlign: 'right' }}>
+                                                    <Button size="small" onClick={() => setShowModal(true)}>
+                                                        View
+                                                    </Button>
+                                                </div></Option>
+                                                <Option value="2" key="2">EC 2<div style={{ textAlign: 'right' }}>
+                                                    <Button size="small" onClick={() => setShowModal(true)}>
+                                                        View
+                                                    </Button>
+                                                </div></Option>
                                             </Select>
                                         </Form.Item>
                                     </Col>

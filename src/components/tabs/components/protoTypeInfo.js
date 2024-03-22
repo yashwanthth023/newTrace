@@ -16,15 +16,15 @@ function ProtoTypeHeader() {
                         <Col xl={12} lg={12}>
                             <Col xl={24} >
                                 <Row align="middle" gutter={25}>
-                                    <Col md={10} xs={12} xl={6}>
+                                    {/* <Col md={10} xs={12} xl={6}>
                                         <label htmlFor='design'>Prototype :</label>
-                                    </Col>
-                                    <Col md={14} xs={12}>
-                                        <label>NT-PT0111</label>
+                                    </Col> */}
+                                    <Col md={24} xs={12}>
+                                        <label style={{ fontSize: 18 }}>Lead Acid Fast Charge, NT-PT0111</label>
                                     </Col>
                                 </Row>
                             </Col>
-                            <Col xl={24} >
+                            {/* <Col xl={24} >
                                 <Row align="middle" gutter={25}>
                                     <Col md={10} xs={12} xl={6}>
                                         <label htmlFor='design'>Version :</label>
@@ -33,7 +33,7 @@ function ProtoTypeHeader() {
                                         <label>NT-PT0111</label>
                                     </Col>
                                 </Row>
-                            </Col>
+                            </Col> */}
                         </Col>
                         <Col lg={12} xl={12}>
                             <Row align="middle" gutter={25} justify={'end'} >

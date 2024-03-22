@@ -104,7 +104,7 @@ function Manufacturing() {
 
 
     return (
-        <>
+        <BasicFormWrapper>
             {/* <PageHeader
         ghost
         title="Form"
@@ -122,77 +122,107 @@ function Manufacturing() {
       /> */}
             {/* <Main style={{ background: '#ffffff' }} > */}
             <HorizontalFormStyleWrap className="sDash_input-form">
+
                 <Cards headless>
                     <ProtoTypeHeader />
                 </Cards>
-            </HorizontalFormStyleWrap>
-            <br />
+                <Cards headless>
 
-            <Row gutter={25}>
+                    <Row align="middle" gutter={25}>
+                        <Col md={6} xs={24}>
+                            <label htmlFor="input-date">Component Description</label>
+                        </Col>
+                        <Col md={18} xs={24}>
+                            <Form.Item name="input-date">
+                                <TextArea rows={3} />
+                            </Form.Item>
+                        </Col>
+                    </Row>
+                </Cards>
 
 
-                <Col md={12} sm={24} xs={24} className="centered-column" >
+                <Cards title='Assembly Complete Date' headStyle={{ textAlign: 'center' }}>
+                    <Form name="date-form" layout="horizontal" >
 
-                    <ManufactureDateForm title={'Target Date'} />
-                </Col>
-                <Col md={12} sm={24} xs={24} className="centered-column" >
-                    <ManufactureDateForm title={'Actual Date'} />
-                </Col>
-            </Row>
-            <Cards headless>
-                <Row align="middle" gutter={25}>
-                    <Col md={6} xs={24}>
-                        <label htmlFor="input-date">Component Description</label>
+                        <Row gutter={25} align='middle'>
+                            <Col xl={12} md={24}>
+                                <Row align="middle" gutter={25}>
+                                    <Col md={10} xs={24}>
+                                        <label htmlFor="projection">Projection</label>
+                                    </Col>
+                                    <Col md={14} xs={24}>
+                                        <Form.Item name="design">
+                                            <DatePicker />
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
+                            </Col>
+                            <Col xl={12} md={24}>
+                                <Row align="middle" gutter={25}>
+                                    <Col md={10} xs={24} >
+                                        <label htmlFor="actual">Actual</label>
+                                    </Col>
+                                    <Col md={14} xs={24}>
+                                        <Form.Item name="assembly">
+                                            <DatePicker />
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+
+                    </Form>
+                </Cards>
+                <Row gutter={25}>
+                    <Col md={12} sm={24} xs={24} className="centered-column" >
+
+                        <ManufactureDateForm title={'Target Date'} />
                     </Col>
-                    <Col md={18} xs={24}>
-                        <Form.Item name="input-date">
-                            <TextArea />
-                        </Form.Item>
+                    <Col md={12} sm={24} xs={24} className="centered-column" >
+                        <ManufactureDateForm title={'Actual Date'} />
                     </Col>
                 </Row>
-            </Cards>
+                <Cards headless>
+                    <Row>
+                        <Col md={12} align='left'>
+                            <h2>Vender List</h2>
+                        </Col>
+                        <Col md={12} align='right'>
+                            <Button size="small2" type="primary" onClick={() => setVisible(true)}>
+                                <FeatherIcon icon="plus" size={14} />
+                                Add Vendor
+                            </Button>
+                        </Col>
+                        <Col md={24} align='right'>
+                            <VenderModel onCancel={onCancel} onSubmit={onSubmit} visible={visible} setProtoTypeRemarks={setProtoTypeRemarks} setProtoTypeDesc={setProtoTypeDesc} setProtoTypeName={setProtoTypeName} />
 
-            <Cards headless>
+                            <br />
+                            <Table className="table-responsive" pagination={false} dataSource={dataSource} columns={columns} />
+                        </Col>
+                    </Row>
+                </Cards>
+                <br />
+                <br />
+
                 <Row>
-                    <Col md={12} align='left'>
-                        <h2>Vender List</h2>
+                    <Col md={24}>
+                        <Manufacture title='Purchase Order' />
                     </Col>
-                    <Col md={12} align='right'>
-                        <Button size="small2" type="primary" onClick={() => setVisible(true)}>
-                            <FeatherIcon icon="plus" size={14} />
-                            Add Vendor
+                </Row>
+                <br />
+                <Row align="middle">
+                    <Col md={24} align='right'>
+                        <Button size='small2' type='primary' style={{ marginRight: 5 }}>
+                            save
+                        </Button>
+                        <Button size='small2' type='light'>
+                            cancel
                         </Button>
                     </Col>
-                    <Col md={24} align='right'>
-                        <VenderModel onCancel={onCancel} onSubmit={onSubmit} visible={visible} setProtoTypeRemarks={setProtoTypeRemarks} setProtoTypeDesc={setProtoTypeDesc} setProtoTypeName={setProtoTypeName} />
-
-                        <br />
-                        <Table className="table-responsive" pagination={false} dataSource={dataSource} columns={columns} />
-                    </Col>
                 </Row>
-            </Cards>
-            <br />
-            <br />
-
-            <Row>
-                <Col md={24}>
-                    <Manufacture title='Purchase Order' />
-                </Col>
-            </Row>
-            <br />
-            <Row align="middle">
-                <Col md={24} align='right'>
-                    <Button size='small2' type='primary' style={{ marginRight: 5 }}>
-                        save
-                    </Button>
-                    <Button size='small2' type='light'>
-                        cancel
-                    </Button>
-                </Col>
-            </Row>
-
+            </HorizontalFormStyleWrap>
             {/* </Main> */}
-        </>
+        </BasicFormWrapper>
     );
 }
 

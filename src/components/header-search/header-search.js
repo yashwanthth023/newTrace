@@ -39,7 +39,7 @@ const HeaderSearch = ({ darkMode }) => {
   return (
     <>
       <Div className="certain-category-search-wrapper" style={{ width: '100%' }} darkMode={darkMode}>
-        <Row className="ant-row-middle" style={{display :'none'}}>
+        <Row className="ant-row-middle" style={{ display: 'none' }}>
           <Col md={2} xs={1} className={rtl ? 'text-left' : 'text-right'}>
             <span className="certain-category-icon">
               <FeatherIcon icon="search" size={16} />
@@ -56,11 +56,11 @@ const HeaderSearch = ({ darkMode }) => {
             </Popover>
           </Col>
         </Row>
-        <div style={{display :'flex' ,gap :'20px'}}>
-         <NavLink to="/Prototype"> <span style={{color :'rgb(90, 95, 125)'}}>Prototype</span></NavLink>
-         <NavLink to="electroChem"> <span style={{color :'rgb(90, 95, 125)'}}>EC Details</span></NavLink>
-         <div style={{cursor :'pointer',color :'rgb(90, 95, 125)'}} ><span>Settings</span></div>
-        {/* <Button   size="default" key="4" type="primary" >Add Electrochem</Button> */}
+        <div style={{ display: 'flex', gap: '20px' }}>
+          <NavLink to="/Prototype"> <span style={{ color: 'rgb(90, 95, 125)' }}>Prototypes</span></NavLink>
+          <NavLink to="electroChem"> <span style={{ color: 'rgb(90, 95, 125)' }}>EC Details</span></NavLink>
+          <div style={{ cursor: 'pointer', color: 'rgb(90, 95, 125)' }} ><span>Settings</span></div>
+          {/* <Button   size="default" key="4" type="primary" >Add Electrochem</Button> */}
         </div>
       </Div>
     </>

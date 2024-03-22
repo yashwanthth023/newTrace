@@ -127,11 +127,11 @@ function ViewElectroChem({ visible, onCancel }) {
       <div className="project-modal">
         <BasicFormWrapper>
           <Form form={form} name="createProject" onFinish={handleOk}>
-            <Form.Item name="project" label="ElectroChem Id">
+            {/* <Form.Item name="project" label="ElectroChem Id">
             </Form.Item>
-            <Input disabled placeholder="Atribute Name" value={'EC5'} style={{ marginTop: '-40px', marginBottom: '20px' }} />
+            <Input disabled placeholder="Atribute Name" value={'EC5'} style={{ marginTop: '-40px', marginBottom: '20px' }} /> */}
 
-            <Form.Item name="Name" label="Name">
+            <Form.Item name="EC Name" label="EC Name">
               <Input disabled placeholder="Name" />
             </Form.Item>
             <Cards headless>
@@ -171,7 +171,11 @@ function ViewElectroChem({ visible, onCancel }) {
                 </Col>
               </Row>
 
+
             </Cards>
+            <Form.Item name="Remarks" label="Remarks">
+              <Input.TextArea disabled rows={3} placeholder="Remarks" />
+            </Form.Item>
           </Form>
         </BasicFormWrapper>
       </div>

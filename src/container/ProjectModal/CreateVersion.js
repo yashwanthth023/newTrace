@@ -30,26 +30,26 @@ function CreateVersion({ visible, onCancel }) {
     };
   }, [visible]);
 
-//   const handleOk = (e ) => {
-   
-//     e.preventDefault()
-//     form.getFieldsValue((e)=>console.log(e))
-//     form.validateFields((error, values) => {
-//     console.log("called22");
-//         if (error) {
-//           console.log('error while validating')
-//         } 
-//         else if (values) {
-//            console.log('name: ', values.project, 'email: ', values.description)
-//          }
-//     })
-//     // onCancel();
-//   };
-const handleOk = (values) => {
+  //   const handleOk = (e ) => {
+
+  //     e.preventDefault()
+  //     form.getFieldsValue((e)=>console.log(e))
+  //     form.validateFields((error, values) => {
+  //     console.log("called22");
+  //         if (error) {
+  //           console.log('error while validating')
+  //         } 
+  //         else if (values) {
+  //            console.log('name: ', values.project, 'email: ', values.description)
+  //          }
+  //     })
+  //     // onCancel();
+  //   };
+  const handleOk = (values) => {
     // Access the form values here
     console.log('Submitted values:', values);
     console.log('Submitted values:', values.project);
-    
+
     // If you want to access specific fields, you can do so like this:
     const { project, description, remarks, Design, Assembly, Testing } = values;
     console.log('Project:', project);
@@ -88,7 +88,7 @@ const handleOk = (values) => {
       footer={[
         <div key="1" className="project-modal-footer">
           <Button size="default" type="primary" key="submit" onClick={handleOk}>
-            Add New Project
+            Save
           </Button>
           <Button size="default" type="light" key="back" outlined onClick={handleCancel}>
             Cancel
@@ -99,7 +99,7 @@ const handleOk = (values) => {
     >
       <div className="project-modal">
         <BasicFormWrapper>
-          <Form form={form} name="createProject"  onFinish={handleOk}>
+          <Form form={form} name="createProject" onFinish={handleOk}>
             <Form.Item name="project" label="Version Name">
               <Input placeholder="Version Name" />
             </Form.Item>
@@ -129,19 +129,19 @@ const handleOk = (values) => {
               <img style={{ width: '35px' }} src={require(`../../../static/img/users/4.png`)} alt="" />
               <img style={{ width: '35px' }} src={require(`../../../static/img/users/5.png`)} alt="" /> */}
             </div>
-            <Row gutter={15} style={{display :"flex" , flexDirection :'column'}}>
-              <Col md={12}>
-                <Form.Item name="Design" label="Design Completion Date">
+            <Row style={{ display: "flex", flexDirection: 'column' }}>
+              <Col md={12} xl={12}>
+                <Form.Item name="Design" label="Projected Design Completion Date">
                   <DatePicker placeholder="mm/dd/yyyy" format={dateFormat} />
                 </Form.Item>
               </Col>
-              <Col md={12}>
-                <Form.Item name="Assembly" label="Assembly Completion Date">
+              <Col md={12} xl={12}>
+                <Form.Item name="Assembly" label="Projected Assembly Completion Date">
                   <DatePicker placeholder="mm/dd/yyyy" format={dateFormat} />
                 </Form.Item>
               </Col>
-              <Col md={12}>
-                <Form.Item name="Testing" label="Testing Completion Date">
+              <Col md={12} xl={12}>
+                <Form.Item name="Testing" label="Projected Testing Completion Date">
                   <DatePicker placeholder="mm/dd/yyyy" format={dateFormat} />
                 </Form.Item>
               </Col>
