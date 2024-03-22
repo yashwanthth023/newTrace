@@ -57,7 +57,7 @@ function Manufacturing() {
             key: 'name',
         },
         {
-            title: 'Vender',
+            title: 'Vendor',
             dataIndex: 'name',
             key: 'age',
         },

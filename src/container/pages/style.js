@@ -1220,6 +1220,10 @@ const AddUser = Styled.div`
     }
   }
   .card-nav{
+    // position: sticky;
+    // top: 0;
+    // background-color: #fff;
+    // z-index: 999;
     ul{
       flex-wrap: wrap;
       margin-bottom: -4px -10px;
