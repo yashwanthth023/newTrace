@@ -1,4 +1,5 @@
 {
+  "homepage": "https://yashwanthth023.github.io/newTrace/",
   "name": "strikingDash",
   "version": "3.0.0",
   "private": true,
@@ -67,14 +68,10 @@
   "scripts": {
     "start": "craco start",
     "build": "set \"GENERATE_SOURCEMAP=false\" && craco --max-old-space-size=4096 build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "craco test",
     "eject": "craco eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
@@ -107,6 +104,7 @@
     "prettier": "^2.7.1",
     "react-hot-loader": "^4.13.0",
     "redux-devtools-extension": "^2.13.9",
-    "yarn": "^1.22.17"
+    "yarn": "^1.22.17",
+    "gh-pages": "^6.0.0"
   }
 }
