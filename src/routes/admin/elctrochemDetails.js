@@ -6,7 +6,7 @@ import { Spin } from 'antd';
 
 const version = lazy(() => import('../../container/pages/electrochemDetailsPage'))
 
-function electrochemDetailRoute() {
+function ElectrochemDetailRoute() {
   const { path } = useRouteMatch();
   return (
     
@@ -22,4 +22,4 @@ function electrochemDetailRoute() {
   );
 }
 
-export default withAdminLayout(electrochemDetailRoute);
+export default withAdminLayout(ElectrochemDetailRoute);

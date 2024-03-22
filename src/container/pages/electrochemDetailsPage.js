@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react';
  import { Cards } from '../../components/cards/frame/cards-frame';
  import { Button } from '../../components/buttons/buttons';
  import { Row, Col, Form, Select, Table } from 'antd'
@@ -6,7 +6,7 @@ import CreateElectrochem from '../ProjectModal/CreateElectrochem';
 import FeatherIcon from 'feather-icons-react';
 
 
-const electrochemDetailsPage = () => {
+const ElectrochemDetailsPage = () => {
     
    const [visible, setVisible] = useState(false);
      const onCancel =()=>
@@ -102,4 +102,4 @@ const electrochemDetailsPage = () => {
   )
 }
 
-export default electrochemDetailsPage
+export default ElectrochemDetailsPage;
