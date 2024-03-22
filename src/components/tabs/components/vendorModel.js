@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Input, Select, Col, Row, DatePicker, Upload } from 'antd';
 import propTypes from 'prop-types';
-import { Button } from '../../../components/buttons/buttons';
-import { Modal } from '../../../components/modals/antd-modals';
+import { Button } from '../../buttons/buttons';
+import { Modal } from '../../modals/antd-modals';
 import { BasicFormWrapper } from '../style/wrapperStyle';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 const { Option } = Select;
 const dateFormat = 'MM/DD/YYYY';
 
-function VenderModel({ visible, onCancel }) {
+function VendorModal({ visible, onCancel }) {
   const [form] = Form.useForm();
 
   const [state, setState] = useState({
@@ -100,8 +100,8 @@ function VenderModel({ visible, onCancel }) {
       <div className="project-modal">
         <BasicFormWrapper>
           <Form form={form} name="" onFinish={handleOk}>
-            <Form.Item name="Vender" label="Vender Name">
-              <Input placeholder="Vender Name" />
+            <Form.Item name="Vendor" label="Vendor Name">
+              <Input placeholder="Vendor Name" />
             </Form.Item>
             <Form.Item name="Quotation" label="Quotation">
               <Input placeholder="Quotation" />
@@ -131,5 +131,5 @@ function VenderModel({ visible, onCancel }) {
 //   onCancel: propTypes.func.isRequired,
 // };
 
-export default VenderModel;
+export default VendorModal;
 
