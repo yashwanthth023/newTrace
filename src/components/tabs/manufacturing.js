@@ -116,6 +116,7 @@ function Manufacturing() {
                     <Form>
                         <Row align="middle" gutter={25}>
                             <Col md={6} xs={24}>
+                                {/* eslint-disable-next-line */}
                                 <label id='component' htmlFor='component'>Component Description</label>
                             </Col>
                             <Col md={18} xs={24}>
