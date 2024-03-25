@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import { Div } from './header-search-style';
 import { headerSearchAction } from '../../redux/headerSearch/actionCreator';
 import { Popover } from '../popup/popup';
-import { Button } from '../buttons/buttons';
 
 const HeaderSearch = ({ darkMode }) => {
   const dispatch = useDispatch();

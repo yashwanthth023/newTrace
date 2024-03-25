@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Select, Col, Row, DatePicker } from 'antd';
+import { Form, Input, Col, Row , Button as Button2  } from 'antd';
 import propTypes from 'prop-types';
+import FeatherIcon from 'feather-icons-react'
 import { Cards } from '../../components/cards/frame/cards-frame';
-import { Button as Button2 } from 'antd';
 import { Button } from '../../components/buttons/buttons';
 import { Modal } from '../../components/modals/antd-modals';
-import { CheckboxGroup } from '../../components/checkbox/checkbox';
 import { BasicFormWrapper } from '../styled';
-import FeatherIcon from 'feather-icons-react'
 
-const { Option } = Select;
-const dateFormat = 'MM/DD/YYYY';
+// const { Option } = Select;
+// const dateFormat = 'MM/DD/YYYY';
 
 function CreateElectrochem({ visible, onCancel }) {
   const [form] = Form.useForm();
@@ -41,18 +39,18 @@ function CreateElectrochem({ visible, onCancel }) {
     checked: [],
   });
 
-  const columns = [
-    {
-      title: 'Atribute Name',
-      dataIndex: 'AtributeName',
-      key: 'AtributeName',
-    },
-    {
-      title: 'Value',
-      dataIndex: 'Value',
-      key: 'Value',
-    },
-  ];
+  // const columns = [
+  //   {
+  //     title: 'Atribute Name',
+  //     dataIndex: 'AtributeName',
+  //     key: 'AtributeName',
+  //   },
+  //   {
+  //     title: 'Value',
+  //     dataIndex: 'Value',
+  //     key: 'Value',
+  //   },
+  // ];
 
   useEffect(() => {
     let unmounted = false;
@@ -81,7 +79,7 @@ function CreateElectrochem({ visible, onCancel }) {
   //     })
   //     // onCancel();
   //   };
-  const handleOk = (values) => {
+  const handleOk = () => {
     // Access the form values here
   };
 
@@ -91,7 +89,7 @@ function CreateElectrochem({ visible, onCancel }) {
 
   const AddAtribute = () => {
     console.log('calling');
-    if (name != '' && value != '') {
+    if (name !== '' && value !== '') {
       const updatedData = [...notData, { AtributeName: name, Value: value }];
       setState2({
         ...state2,
@@ -110,23 +108,23 @@ function CreateElectrochem({ visible, onCancel }) {
     SetShow(false);
   };
 
-  const options = [
-    {
-      label: 'Privet',
-      value: 'privet',
-    },
-    {
-      label: 'Team',
-      value: 'team',
-    },
-    {
-      label: 'Public',
-      value: 'public',
-    },
-  ];
+  // const options = [
+  //   {
+  //     label: 'Privet',
+  //     value: 'privet',
+  //   },
+  //   {
+  //     label: 'Team',
+  //     value: 'team',
+  //   },
+  //   {
+  //     label: 'Public',
+  //     value: 'public',
+  //   },
+  // ];
   const deleteRow = (i) => {
     console.log(i);
-    const updatedData = notData.filter((word, index) => index != i);
+    const updatedData = notData.filter((word, index) => index !== i);
     setState2({
       ...state2,
       notData: updatedData,
@@ -139,7 +137,7 @@ function CreateElectrochem({ visible, onCancel }) {
       type={state.modalType}
       title="Create Electrochem"
       visible={state.visible}
-      className={'atbd-modal2'}
+      className='atbd-modal2'
       footer={[
         <div key="1" className="project-modal-footer">
           <Button size="default" type="primary" key="submit" onClick={handleOk}>
@@ -274,9 +272,9 @@ function CreateElectrochem({ visible, onCancel }) {
   );
 }
 
-// CreateProject.propTypes = {
-//   visible: propTypes.bool.isRequired,
-//   onCancel: propTypes.func.isRequired,
-// };
+CreateElectrochem.propTypes = {
+  visible: propTypes.bool.isRequired,
+  onCancel: propTypes.func.isRequired,
+};
 
 export default CreateElectrochem;
