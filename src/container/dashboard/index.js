@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Row, Col } from 'antd';
 import FeatherIcon from 'feather-icons-react';
 import Grid from './Grid';
 import CreateProject from '../ProjectModal/CreateProject';
@@ -9,7 +8,6 @@ import { PageHeader } from '../../components/page-headers/page-headers';
 import { Button } from '../../components/buttons/buttons';
 import { Main } from '../styled';
 import { AutoComplete } from '../../components/autoComplete/autoComplete';
-import CreateVersion from '../ProjectModal/CreateVersion';
 // import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
 // import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
 // import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
@@ -162,7 +160,8 @@ const Dashboard = () => {
       "category": "Web Design",
       "rate": 5,
       "popular": 12,
-      "percentage": 3
+      "percentage": 3,
+      "remarks" : ProtoTypeRemarks
     });
     // setState({
     // notData: [...state.notData,{"id" : "13",

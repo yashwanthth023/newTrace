@@ -1,16 +1,14 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
-
 import { Row, Col, Form, Input, Table, Upload } from 'antd';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper, } from './style/wrapperStyle';
-import { Cards } from '../cards/frame/cards-frame';
-import { Button } from '../buttons/buttons';
-import Manufacture from './components/formForManufacturer';
-import VendorModel from './components/vendorModel';
 import ManufactureDateForm from './components/manufactureDateForm';
 import ProtoTypeHeader from './components/protoTypeInfo';
+import VendorModel from './components/vendorModel';
+import Manufacture from './components/formForManufacturer';
+import { Cards } from '../cards/frame/cards-frame';
+import { Button } from '../buttons/buttons';
 
 const { TextArea } = Input;
 
@@ -118,11 +116,11 @@ function Manufacturing() {
                     <Form>
                         <Row align="middle" gutter={25}>
                             <Col md={6} xs={24}>
-                                <label htmlFor="input-date">Component Description</label>
+                                <label id='component' htmlFor='component'>Component Description</label>
                             </Col>
                             <Col md={18} xs={24}>
-                                <Form.Item name="input-date">
-                                    <TextArea rows={3} />
+                                <Form.Item name="component">
+                                    <TextArea rows={3} id='component' name='component' />
                                 </Form.Item>
                             </Col>
                         </Row>
@@ -165,10 +163,10 @@ function Manufacturing() {
                 <Row gutter={25}>
                     <Col md={12} sm={24} xs={24} className="centered-column" >
 
-                        <ManufactureDateForm title={'Projected Date'} />
+                        <ManufactureDateForm title='Projected Date' />
                     </Col>
                     <Col md={12} sm={24} xs={24} className="centered-column" >
-                        <ManufactureDateForm title={'Actual Date'} />
+                        <ManufactureDateForm title='Actual Date' />
                     </Col>
                 </Row>
                 <Cards headless>

@@ -4,10 +4,10 @@
     "es6": true,
     "jest": true
   },
+  // eslint-disable-next-line no-global-assign
   "extends": [
     "airbnb",
-    "plugin:prettier/recommended",
-    "prettier"
+    "plugin:prettier/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -55,7 +55,7 @@
     ],
     "no-shadow": "off",
     "import/prefer-default-export": 0,
-    //"react-hooks/rules-of-hooks": 0,
+    // "react-hooks/rules-of-hooks": 0, // Uncomment this line if you want to enable React Hooks linting rules
     "import/no-extraneous-dependencies": 0,
     "jsx-a11y/anchor-is-valid": 0,
     "react/jsx-props-no-spreading": 0,
@@ -76,6 +76,7 @@
     "no-alert": 0,
     "func-names": 0,
     "react/function-component-definition": 0,
-    "no-console": 0
+    "no-console": 0,
+    "import/no-unresolved": 0
   }
 }

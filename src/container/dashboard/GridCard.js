@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
-import { Progress, Tag } from 'antd';
+import {  Tag } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import { Link, NavLink } from 'react-router-dom';
+import {  NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { ProjectCard } from './style';
 import { Cards } from '../../components/cards/frame/cards-frame';
-import { Dropdown } from '../../components/dropdown/dropdown';
 import { textRefactor } from '../../components/utilities/utilities';
 import { Button } from '../../components/buttons/buttons';
 import CreateVersion from '../ProjectModal/CreateVersion';
-import useSelection from 'antd/lib/table/hooks/useSelection';
-import Styled from 'styled-components';
 
 function GridCard({ value }) {
-  const { id, title, status, content, percentage } = value;
+  const {  title, content } = value;
 
+  const [open, setOpen] = useState(false);
   const onCancel = () => {
     setOpen(false);
   }
@@ -33,7 +31,6 @@ function GridCard({ value }) {
   { "id": "NTP01-V_01", className: "complete", status: 'ARCHEIVED' },
   ]
 
-  const [open, setOpen] = useState(false);
   return (
     <ProjectCard>
       <Cards headless>
@@ -110,6 +107,8 @@ function GridCard({ value }) {
 
 GridCard.propTypes = {
   value: PropTypes.object,
+  title: PropTypes.any,
+  content: PropTypes.any,
 };
 
 export default GridCard;

@@ -3,9 +3,9 @@ import React from 'react';
 import { Row, Col, Form, Input } from 'antd';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper } from './style/wrapperStyle';
+import ProtoTypeHeader from './components/protoTypeInfo';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
-import ProtoTypeHeader from './components/protoTypeInfo';
 
 
 function Closure() {
