@@ -6,20 +6,20 @@ import { Spin } from 'antd';
 
 const version = lazy(() => import('../../container/pages/electrochemDetailsPage'))
 
-function electrochemDetailRoute() {
+function ElectrochemDetailRoute() {
   const { path } = useRouteMatch();
   return (
-    
+
     <Switch>
       <Suspense fallback={
         <div className='spin'>
-          <Spin/>
+          <Spin />
         </div>
       }>
-      <Route exact path={path} component={version} />
+        <Route exact path={path} component={version} />
       </Suspense>
     </Switch>
   );
 }
 
-export default withAdminLayout(electrochemDetailRoute);
+export default withAdminLayout(ElectrochemDetailRoute);

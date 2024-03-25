@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
-import { Row, Col, Form, Input, Select, Upload, message } from 'antd';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Row, Col, Form, Input, Select } from 'antd';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper } from './style/wrapperStyle';
 import DateForm from './components/dateForm';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
-import ProtoTypeHeader from './components/protoTypeInfo';
-import ViewElectroChem from './components/viewElectrochem';
 
-const { Option } = Select;
 const { TextArea } = Input;
 function General() {
     return (

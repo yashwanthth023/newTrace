@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Select, Col, Row, DatePicker, Upload } from 'antd';
-import propTypes from 'prop-types';
+import { Form, Input, Upload } from 'antd';
 import { Button } from '../../buttons/buttons';
 import { Modal } from '../../modals/antd-modals';
 import { BasicFormWrapper } from '../style/wrapperStyle';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
-
-const { Option } = Select;
-const dateFormat = 'MM/DD/YYYY';
 
 function VendorModal({ visible, onCancel }) {
   const [form] = Form.useForm();
@@ -64,20 +60,6 @@ function VendorModal({ visible, onCancel }) {
     onCancel();
   };
 
-  const options = [
-    {
-      label: 'Privet',
-      value: 'privet',
-    },
-    {
-      label: 'Team',
-      value: 'team',
-    },
-    {
-      label: 'Public',
-      value: 'public',
-    },
-  ];
 
   return (
     <Modal

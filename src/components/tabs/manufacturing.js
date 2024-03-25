@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
 
-import { Row, Col, Form, Select, Input, Table, Upload, DatePicker } from 'antd';
+import { Row, Col, Form, Input, Table, Upload } from 'antd';
 import { HorizontalFormStyleWrap } from './style/formStyle';
-import { Main, BasicFormWrapper, } from './style/wrapperStyle';
+import { BasicFormWrapper, } from './style/wrapperStyle';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
 import Manufacture from './components/formForManufacturer';
@@ -12,11 +12,7 @@ import VendorModel from './components/vendorModel';
 import ManufactureDateForm from './components/manufactureDateForm';
 import ProtoTypeHeader from './components/protoTypeInfo';
 
-
-
-const { Option } = Select;
 const { TextArea } = Input;
-
 
 function Manufacturing() {
     const [ProtoTypeName, setProtoTypeName] = useState('');
@@ -89,16 +85,7 @@ function Manufacturing() {
         console.log("cancelled");
     }
     const onSubmit = () => {
-        notData.push({
-            "id": "13",
-            "title": ProtoTypeName,
-            "status": "early",
-            "content": ProtoTypeDesc,
-            "category": "Web Design",
-            "rate": 5,
-            "popular": 12,
-            "percentage": 3
-        });
+        console.log(ProtoTypeName, ProtoTypeDesc, ProtoTypeRemarks);
     }
 
 

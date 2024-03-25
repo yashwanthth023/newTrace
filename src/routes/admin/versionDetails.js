@@ -6,10 +6,10 @@ import { Spin } from 'antd';
 
 const version = lazy(() => import('../../container/pages/versionDetailPage'))
 
-function versionDetailRoute() {
+function VersionDetailRoute() {
   const { path } = useRouteMatch();
   return (
-    
+
     <Switch>
       <Suspense
         fallback={
@@ -24,4 +24,4 @@ function versionDetailRoute() {
   );
 }
 
-export default withAdminLayout(versionDetailRoute);
+export default withAdminLayout(VersionDetailRoute);

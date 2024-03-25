@@ -1,14 +1,12 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import { Row, Col, Form, Select, Input } from 'antd';
+import { Row, Col, Form, Input } from 'antd';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper } from './style/wrapperStyle';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
-import ExperimentModal from './components/experimentModal';
 import ProtoTypeHeader from './components/protoTypeInfo';
 
-const Option = { Select };
 
 function Closure() {
 
