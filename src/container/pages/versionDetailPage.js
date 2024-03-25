@@ -36,9 +36,9 @@ const VersionDetailPage = () => {
         <>
             <Main>
                 <Row >
-                    <Col lg={24} xs={24}>
+                    <Col lg={24} xs={24} >
                         <AddUser>
-                            <Cards
+                            <Cards headStyle={{ position: 'relative' }}
                                 title={
                                     <div className="card-nav">
                                         <ul>

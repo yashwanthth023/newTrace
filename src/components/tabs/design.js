@@ -4,17 +4,16 @@ import { Row, Col, Form, Input, Select, Upload, message } from 'antd';
 import { Link } from 'react-router-dom';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper } from './style/wrapperStyle';
-import DateForm from './components/dateForm';
-import { Cards } from '../cards/frame/cards-frame';
-import { Button } from '../buttons/buttons';
 import ProtoTypeHeader from './components/protoTypeInfo';
 import ViewElectroChem from './components/viewElectrochem';
+import { Cards } from '../cards/frame/cards-frame';
+import { Button } from '../buttons/buttons';
 
 const { Option } = Select;
 const { TextArea } = Input;
 function Design() {
     const [showModal, setShowModal] = useState(false);
-    const [selectedValue, setSelectedValue] = useState('');
+    // const [selectedValue, setSelectedValue] = useState('');
     const props = {
         name: 'file',
         action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',

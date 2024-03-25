@@ -9,7 +9,7 @@ const version = lazy(() => import('../../container/pages/versionDetailPage'))
 function VersionDetailRoute() {
   const { path } = useRouteMatch();
   return (
-    
+
     <Switch>
       <Suspense
         fallback={

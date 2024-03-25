@@ -1,10 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import { Row, Col, Form, DatePicker, Input, Select } from 'antd';
-import propTypes from 'prop-types';
+import { Row, Col, Form, Select } from 'antd';
 import { HorizontalFormStyleWrap } from '../style/formStyle';
 import { BasicFormWrapper } from '../style/wrapperStyle';
-import { Cards } from '../../cards/frame/cards-frame';
 
 function ProtoTypeHeader() {
     return (
@@ -36,7 +34,7 @@ function ProtoTypeHeader() {
                             </Col> */}
                         </Col>
                         <Col lg={12} xl={12}>
-                            <Row align="middle" gutter={25} justify={'end'} >
+                            <Row align="middle" gutter={25} justify='end' >
                                 <Col md={8} xs={12} xl={6} lg={6} align='right'>
                                     <label htmlFor='design'>Status :</label>
                                 </Col>
@@ -61,7 +59,4 @@ function ProtoTypeHeader() {
     );
 }
 
-ProtoTypeHeader.propTypes = {
-    title: propTypes.string
-}
 export default ProtoTypeHeader;

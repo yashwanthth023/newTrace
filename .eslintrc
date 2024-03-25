@@ -4,7 +4,11 @@
     "es6": true,
     "jest": true
   },
-  "extends": ["airbnb", "plugin:prettier/recommended", "prettier"],
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -19,20 +23,39 @@
     "allowImportExportEverywhere": true,
     "requireConfigFile": false
   },
-  "plugins": ["react", "import", "react-hooks"],
+  "plugins": [
+    "react",
+    "import",
+    "react-hooks"
+  ],
   "rules": {
     "prettier/prettier": 0,
     "import/no-named-as-default-member": 0,
-    "import/order": [2, { "groups": ["external", "index", "sibling", "parent", "internal", "builtin"] }],
+    "import/order": [
+      2,
+      {
+        "groups": [
+          "external",
+          "index",
+          "sibling",
+          "parent",
+          "internal",
+          "builtin"
+        ]
+      }
+    ],
     "react/jsx-filename-extension": [
       0,
       {
-        "extensions": [".js", ".jsx"]
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
       }
     ],
     "no-shadow": "off",
     "import/prefer-default-export": 0,
-    //"react-hooks/rules-of-hooks": 0,
+    // "react-hooks/rules-of-hooks": 0, // Uncomment this line if you want to enable React Hooks linting rules
     "import/no-extraneous-dependencies": 0,
     "jsx-a11y/anchor-is-valid": 0,
     "react/jsx-props-no-spreading": 0,

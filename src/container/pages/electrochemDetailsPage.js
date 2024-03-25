@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
 import { Row, Col, Table } from 'antd'
 import FeatherIcon from 'feather-icons-react';
- import { Cards } from '../../components/cards/frame/cards-frame';
- import { Button } from '../../components/buttons/buttons';
+import { Cards } from '../../components/cards/frame/cards-frame';
+import { Button } from '../../components/buttons/buttons';
 import CreateElectrochem from '../ProjectModal/CreateElectrochem';
 
 
 const ElectrochemDetailsPage = () => {
-    
-   const [visible, setVisible] = useState(false);
-     const onCancel =()=>
-     {
+
+    const [visible, setVisible] = useState(false);
+    const onCancel = () => {
         setVisible(false);
         console.log("canclel");
-     }
-     const onSubmit =()=>
-     {
-     console.log("submit");
-     onCancel();
-     }
+    }
+    const onSubmit = () => {
+        console.log("submit");
+        onCancel();
+    }
     const dataSource = [
         {
             id: 'EC1',
@@ -76,30 +74,29 @@ const ElectrochemDetailsPage = () => {
             key: 'created_by',
         }
     ]
-  return (
-  <div style={{display :'flex'}}>
-    <Cards headless>
-    <Row align="right" gutter={25}>
-        <Col align='right' lg={24}>
-            <Button type='primary' onClick={() => setVisible(true)}>
-            <FeatherIcon icon="plus" size={3} /> 
-                Add EC Details 
-            </Button>
-        </Col>
-    </Row>
-    {/* <ExperimentModal visible={showModal} onCancel={() => setShowModal(false)} /> */}
-    <br />
-    <Row align="middle" gutter={25}>
-        <Col lg={24}>
-            <Table className="table-responsive" pagination={false} dataSource={dataSource} columns={columns} />
-        </Col>
-    </Row>
+    return (
+        <div style={{ display: 'flex' }}>
+            <Cards headless>
+                <Row align="right" gutter={25}>
+                    <Col align='right' lg={24}>
+                        <Button type='primary' onClick={() => setVisible(true)}>
+                            <FeatherIcon icon="plus" size={3} />
+                            Add EC Details
+                        </Button>
+                    </Col>
+                </Row>
+                {/* <ExperimentModal visible={showModal} onCancel={() => setShowModal(false)} /> */}
+                <br />
+                <Row align="middle" gutter={25}>
+                    <Col lg={24}>
+                        <Table className="table-responsive" pagination={false} dataSource={dataSource} columns={columns} />
+                    </Col>
+                </Row>
 
-</Cards>
-<CreateElectrochem onCancel={onCancel} onSubmit ={onSubmit} visible={visible}/>
-{/* <CreateProject onCancel={onCancel} onSubmit ={onSubmit} visible={visible} setProtoTypeRemarks={setProtoTypeRemarks} setProtoTypeDesc={setProtoTypeDesc} setProtoTypeName={setProtoTypeName}/> */}
-  </div>
-  )
+            </Cards>
+            <CreateElectrochem onCancel={onCancel} onSubmit={onSubmit} visible={visible} />
+        </div>
+    )
 }
 
 export default ElectrochemDetailsPage;

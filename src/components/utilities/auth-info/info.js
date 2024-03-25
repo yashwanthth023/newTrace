@@ -1,7 +1,7 @@
 // import React, { useState } from 'react';
 import React from 'react';
 import { Avatar } from 'antd';
-import { Link  } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import FeatherIcon from 'feather-icons-react';
 // import { InfoWraper, NavAuth, UserDropDwon } from './auth-info-style';
@@ -114,7 +114,7 @@ function AuthInfo() {
         </Dropdown>
       </div> */}
 
-        {/* <Button   size="default" key="4" type="primary" >
+      {/* <Button   size="default" key="4" type="primary" >
        <NavLink to="/electroChem">   
        <div>
         <FeatherIcon icon="plus" size={3} />

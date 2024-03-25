@@ -2,10 +2,10 @@
 import React from 'react';
 import { Row, Col, Form, DatePicker, Input, Upload, Select } from 'antd';
 import propTypes from 'prop-types';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 import { HorizontalFormStyleWrap } from '../style/formStyle';
 import { BasicFormWrapper } from '../style/wrapperStyle';
 import { Cards } from '../../cards/frame/cards-frame';
-import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 const { Option } = Select;
 function Manufacture({ title }) {

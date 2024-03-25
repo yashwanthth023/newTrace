@@ -1,21 +1,16 @@
 import React, { useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
-
-import { Row, Col, Form, Select, Input, Table, Upload, DatePicker } from 'antd';
+import { Row, Col, Form, Input, Table, Upload } from 'antd';
 import { HorizontalFormStyleWrap } from './style/formStyle';
-import { Main, BasicFormWrapper, } from './style/wrapperStyle';
-import { Cards } from '../cards/frame/cards-frame';
-import { Button } from '../buttons/buttons';
-import Manufacture from './components/formForManufacturer';
-import VendorModel from './components/vendorModel';
+import { BasicFormWrapper, } from './style/wrapperStyle';
 import ManufactureDateForm from './components/manufactureDateForm';
 import ProtoTypeHeader from './components/protoTypeInfo';
+import VendorModel from './components/vendorModel';
+import Manufacture from './components/formForManufacturer';
+import { Cards } from '../cards/frame/cards-frame';
+import { Button } from '../buttons/buttons';
 
-
-
-const { Option } = Select;
 const { TextArea } = Input;
-
 
 function Manufacturing() {
     const [ProtoTypeName, setProtoTypeName] = useState('');
@@ -56,7 +51,7 @@ function Manufacturing() {
             key: 'name',
         },
         {
-            title: 'Vender',
+            title: 'Vendor',
             dataIndex: 'name',
             key: 'age',
         },
@@ -88,16 +83,7 @@ function Manufacturing() {
         console.log("cancelled");
     }
     const onSubmit = () => {
-        // notData.push({
-        //     "id": "13",
-        //     "title": ProtoTypeName,
-        //     "status": "early",
-        //     "content": ProtoTypeDesc,
-        //     "category": "Web Design",
-        //     "rate": 5,
-        //     "popular": 12,
-        //     "percentage": 3
-        // });
+        console.log(ProtoTypeName, ProtoTypeDesc, ProtoTypeRemarks);
     }
 
 
@@ -130,11 +116,12 @@ function Manufacturing() {
                     <Form>
                         <Row align="middle" gutter={25}>
                             <Col md={6} xs={24}>
-                                <label htmlFor="input-date">Component Description</label>
+                                {/* eslint-disable-next-line */}
+                                <label id='component' htmlFor='component'>Component Description</label>
                             </Col>
                             <Col md={18} xs={24}>
-                                <Form.Item name="input-date">
-                                    <TextArea rows={3} />
+                                <Form.Item name="component">
+                                    <TextArea rows={3} id='component' name='component' />
                                 </Form.Item>
                             </Col>
                         </Row>
@@ -177,10 +164,10 @@ function Manufacturing() {
                 <Row gutter={25}>
                     <Col md={12} sm={24} xs={24} className="centered-column" >
 
-                        <ManufactureDateForm title={'Projected Date'} />
+                        <ManufactureDateForm title='Projected Date' />
                     </Col>
                     <Col md={12} sm={24} xs={24} className="centered-column" >
-                        <ManufactureDateForm title={'Actual Date'} />
+                        <ManufactureDateForm title='Actual Date' />
                     </Col>
                 </Row>
                 <Cards headless>
