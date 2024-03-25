@@ -35,8 +35,9 @@ function General() {
                             </Col> */}
                     </Col>
                     <Col lg={12} xl={12}>
-                        <Row align="middle" gutter={25} justify={'end'} >
+                        <Row align="middle" gutter={25} justify='end' >
                             <Col md={8} xs={12} xl={6} lg={6} align='right'>
+                                {/* eslint-disable-next-line */}
                                 <label htmlFor='design'>Status :</label>
                             </Col>
                             <Col md={16} xs={12} xl={10}>
@@ -58,6 +59,7 @@ function General() {
                         <Form >
                             <Row align="middle" gutter={25}>
                                 <Col md={6} xs={24}>
+                                    {/* eslint-disable-next-line */}
                                     <label htmlFor="name">Name</label>
                                 </Col>
                                 <Col md={18} xs={24}>
@@ -66,6 +68,7 @@ function General() {
                                     </Form.Item>
                                 </Col>
                                 <Col md={6} xs={24}>
+                                    {/* eslint-disable-next-line */}
                                     <label htmlFor="description">Description</label>
                                 </Col>
                                 <Col md={18} xs={24}>
@@ -91,6 +94,7 @@ function General() {
                         <Form >
                             <Row align="middle" gutter={25} >
                                 <Col md={6} xs={24}>
+                                    {/* eslint-disable-next-line */}
                                     <label htmlFor="name">Name</label>
                                 </Col>
                                 <Col md={18} xs={24}>
@@ -99,6 +103,7 @@ function General() {
                                     </Form.Item>
                                 </Col>
                                 <Col md={6} xs={24}>
+                                    {/* eslint-disable-next-line */}
                                     <label htmlFor="description">Description / Version Changes</label>
                                 </Col>
                                 <Col md={18} xs={24}>
@@ -107,6 +112,7 @@ function General() {
                                     </Form.Item>
                                 </Col>
                                 <Col md={6} xs={24}>
+                                    {/* eslint-disable-next-line */}
                                     <label htmlFor="remarks">Remarks</label>
                                 </Col>
                                 <Col md={18} xs={24}>

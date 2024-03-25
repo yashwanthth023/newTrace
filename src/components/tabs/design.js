@@ -4,10 +4,10 @@ import { Row, Col, Form, Input, Select, Upload, message } from 'antd';
 import { Link } from 'react-router-dom';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper } from './style/wrapperStyle';
-import { Cards } from '../cards/frame/cards-frame';
-import { Button } from '../buttons/buttons';
 import ProtoTypeHeader from './components/protoTypeInfo';
 import ViewElectroChem from './components/viewElectrochem';
+import { Cards } from '../cards/frame/cards-frame';
+import { Button } from '../buttons/buttons';
 
 const { Option } = Select;
 const { TextArea } = Input;
