@@ -8,7 +8,7 @@ import { BasicFormWrapper } from '../styled';
 // const { Option } = Select;
 // const dateFormat = 'MM/DD/YYYY';
 
-function CreateProject({ visible, onCancel, onSubmit, setProtoTypeRemarks, setProtoTypeDesc, setProtoTypeName }) {
+function CreateProject({ visible, onCancel, onSubmit , setProtoTypeDesc, setProtoTypeName }) {
   const [form] = Form.useForm();
 
   const [state, setState] = useState({
@@ -126,7 +126,6 @@ CreateProject.propTypes = {
   visible: propTypes.bool.isRequired,
   onCancel: propTypes.func.isRequired,
   onSubmit : propTypes.func.isRequired,
-  setProtoTypeRemarks : propTypes.func.isRequired,
   setProtoTypeDesc : propTypes.func.isRequired ,
   setProtoTypeName : propTypes.func.isRequired 
 };
