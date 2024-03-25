@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Select, Col, Row, DatePicker } from 'antd';
+import { Form, Input } from 'antd';
 import propTypes from 'prop-types';
 import { Button } from '../../components/buttons/buttons';
 import { Modal } from '../../components/modals/antd-modals';
-import { CheckboxGroup } from '../../components/checkbox/checkbox';
 import { BasicFormWrapper } from '../styled';
 
-const { Option } = Select;
-const dateFormat = 'MM/DD/YYYY';
+// const { Option } = Select;
+// const dateFormat = 'MM/DD/YYYY';
 
-function CreateProject({ visible, onCancel, onSubmit, setProtoTypeRemarks, setProtoTypeDesc, setProtoTypeName }) {
+function CreateProject({ visible, onCancel, onSubmit , setProtoTypeDesc, setProtoTypeName }) {
   const [form] = Form.useForm();
 
   const [state, setState] = useState({
@@ -17,10 +16,6 @@ function CreateProject({ visible, onCancel, onSubmit, setProtoTypeRemarks, setPr
     modalType: 'primary',
     checked: [],
   });
-
-  const [name, setName] = useState();
-  const [description, setDescription] = useState();
-  const [remarks, setRemarks] = useState();
 
   useEffect(() => {
     let unmounted = false;
@@ -34,7 +29,7 @@ function CreateProject({ visible, onCancel, onSubmit, setProtoTypeRemarks, setPr
     };
   }, [visible]);
 
-  const handleOk = (ele) => {
+  const handleOk = () => {
     // console.log("form data  -----------",ele);
     onSubmit();
   };
@@ -44,20 +39,20 @@ function CreateProject({ visible, onCancel, onSubmit, setProtoTypeRemarks, setPr
     onCancel();
   };
 
-  const options = [
-    {
-      label: 'Privet',
-      value: 'privet',
-    },
-    {
-      label: 'Team',
-      value: 'team',
-    },
-    {
-      label: 'Public',
-      value: 'public',
-    },
-  ];
+  // const options = [
+  //   {
+  //     label: 'Privet',
+  //     value: 'privet',
+  //   },
+  //   {
+  //     label: 'Team',
+  //     value: 'team',
+  //   },
+  //   {
+  //     label: 'Public',
+  //     value: 'public',
+  //   },
+  // ];
 
   return (
     <Modal
@@ -130,6 +125,9 @@ function CreateProject({ visible, onCancel, onSubmit, setProtoTypeRemarks, setPr
 CreateProject.propTypes = {
   visible: propTypes.bool.isRequired,
   onCancel: propTypes.func.isRequired,
+  onSubmit : propTypes.func.isRequired,
+  setProtoTypeDesc : propTypes.func.isRequired ,
+  setProtoTypeName : propTypes.func.isRequired 
 };
 
 export default CreateProject;

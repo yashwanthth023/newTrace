@@ -1,8 +1,8 @@
 import React, { Suspense, lazy } from 'react';
+import { Spin } from 'antd';
 import { Switch, Route } from 'react-router-dom';
 import { useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 import withAdminLayout from '../../layout/withAdminLayout';
-import { Spin } from 'antd';
 
 const version = lazy(() => import('../../container/pages/electrochemDetailsPage'))
 

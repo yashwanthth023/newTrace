@@ -1,4 +1,5 @@
 {
+  "homepage": "https://yashwanthth023.github.io/newTrace/",
   "name": "strikingDash",
   "version": "3.0.0",
   "private": true,
@@ -63,18 +64,13 @@
     "web-vitals": "^2.1.4",
     "xlsx": "^0.17.4"
   },
-  "homepage": "/strikingdash-react",
   "scripts": {
     "start": "craco start",
     "build": "set \"GENERATE_SOURCEMAP=false\" && craco --max-old-space-size=4096 build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "craco test",
     "eject": "craco eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
@@ -89,20 +85,12 @@
     ]
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.18.9",
     "@craco/craco": "^6.4.3",
     "airbnb": "^0.0.2",
     "browserify": "^17.0.0",
     "craco-less": "^2.0.0",
-    "eslint": "^8.22.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.6.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.30.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
     "esm": "^3.2.25",
+    "gh-pages": "^6.1.1",
     "node-sass": "^7.0.1",
     "prettier": "^2.7.1",
     "react-hot-loader": "^4.13.0",
