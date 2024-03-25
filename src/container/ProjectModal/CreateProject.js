@@ -87,9 +87,9 @@ function CreateProject({ visible, onCancel, onSubmit, setProtoTypeRemarks, setPr
             <Form.Item name="description" label="Description">
               <Input.TextArea rows={4} placeholder="Description" onChange={(ele) => setProtoTypeDesc(ele.target.value)} />
             </Form.Item>
-            <Form.Item name="Remarks" label="Remarks" >
+            {/* <Form.Item name="Remarks" label="Remarks" >
               <Input placeholder="Remarks" onChange={(ele) => setProtoTypeRemarks(ele.target.value)} />
-            </Form.Item>
+            </Form.Item> */}
             {/* <Form.Item name="pricacy" initialValue={['team']} label="Project Privacy">
               <CheckboxGroup options={options} />
             </Form.Item> */}

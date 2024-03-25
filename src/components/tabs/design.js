@@ -59,10 +59,10 @@ function Design() {
                         </Form>
                     </Row> */}
                     <ProtoTypeHeader />
-                    <br />
+                    {/* <br /> */}
 
 
-                    <Form >
+                    {/* <Form >
                         <Row align="middle">
                             <Col md={6} xs={24}>
                                 <label htmlFor="name">Name</label>
@@ -89,17 +89,17 @@ function Design() {
                                 </Form.Item>
                             </Col>
                         </Row>
-                    </Form>
+                    </Form> */}
 
 
-                    <Row gutter={25}>
+                    {/* <Row gutter={25}>
                         <Col lg={12} xs={24}>
                             <DateForm title="Projected Date" />
                         </Col>
                         <Col lg={12} xs={24}>
                             <DateForm title="Actual Date" />
                         </Col>
-                    </Row>
+                    </Row> */}
                     <Form>
                         <Cards title='Electrode Details' headStyle={{ textAlign: 'center', fontWeight: 'bold' }}>
                             <Row gutter={25}>

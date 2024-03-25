@@ -7,7 +7,7 @@ import { Main, BasicFormWrapper, } from './style/wrapperStyle';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
 import Manufacture from './components/formForManufacturer';
-import VenderModel from './components/venderModel';
+import VendorModel from './components/vendorModel';
 import ManufactureDateForm from './components/manufactureDateForm';
 import ProtoTypeHeader from './components/protoTypeInfo';
 
@@ -127,20 +127,22 @@ function Manufacturing() {
                 </Cards>
                 <Cards headless>
 
-                    <Row align="middle" gutter={25}>
-                        <Col md={6} xs={24}>
-                            <label htmlFor="input-date">Component Description</label>
-                        </Col>
-                        <Col md={18} xs={24}>
-                            <Form.Item name="input-date">
-                                <TextArea rows={3} />
-                            </Form.Item>
-                        </Col>
-                    </Row>
+                    <Form>
+                        <Row align="middle" gutter={25}>
+                            <Col md={6} xs={24}>
+                                <label htmlFor="input-date">Component Description</label>
+                            </Col>
+                            <Col md={18} xs={24}>
+                                <Form.Item name="input-date">
+                                    <TextArea rows={3} />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                    </Form>
                 </Cards>
 
 
-                <Cards title='Assembly Complete Date' headStyle={{ textAlign: 'center' }}>
+                {/* <Cards title='Assembly Complete Date' headStyle={{ textAlign: 'center' }}>
                     <Form name="date-form" layout="horizontal" >
 
                         <Row gutter={25} align='middle'>
@@ -171,11 +173,11 @@ function Manufacturing() {
                         </Row>
 
                     </Form>
-                </Cards>
+                </Cards> */}
                 <Row gutter={25}>
                     <Col md={12} sm={24} xs={24} className="centered-column" >
 
-                        <ManufactureDateForm title={'Target Date'} />
+                        <ManufactureDateForm title={'Projected Date'} />
                     </Col>
                     <Col md={12} sm={24} xs={24} className="centered-column" >
                         <ManufactureDateForm title={'Actual Date'} />
@@ -184,7 +186,7 @@ function Manufacturing() {
                 <Cards headless>
                     <Row>
                         <Col md={12} align='left'>
-                            <h2>Vender List</h2>
+                            <h2>Vendor List</h2>
                         </Col>
                         <Col md={12} align='right'>
                             <Button size="small2" type="primary" onClick={() => setVisible(true)}>
@@ -193,7 +195,7 @@ function Manufacturing() {
                             </Button>
                         </Col>
                         <Col md={24} align='right'>
-                            <VenderModel onCancel={onCancel} onSubmit={onSubmit} visible={visible} setProtoTypeRemarks={setProtoTypeRemarks} setProtoTypeDesc={setProtoTypeDesc} setProtoTypeName={setProtoTypeName} />
+                            <VendorModel onCancel={onCancel} onSubmit={onSubmit} visible={visible} setProtoTypeRemarks={setProtoTypeRemarks} setProtoTypeDesc={setProtoTypeDesc} setProtoTypeName={setProtoTypeName} />
 
                             <br />
                             <Table className="table-responsive" pagination={false} dataSource={dataSource} columns={columns} />

@@ -93,8 +93,8 @@ function CreateVersion({ visible, onCancel }) {
                 <Option value="two">Project Two</Option>
               </Select>
             </Form.Item> */}
-            <Form.Item name="description" label="Description">
-              <Input.TextArea rows={3} placeholder="Version Description" />
+            <Form.Item name="description" label="Reason for Version Changes">
+              <Input.TextArea rows={3} placeholder="Description" />
             </Form.Item>
             <Form.Item name="project" label="Remarks">
               <Input placeholder="remarks" />
