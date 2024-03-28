@@ -7,8 +7,8 @@ import { BasicFormWrapper } from '../styled';
 
 // const { Option } = Select;
 // const dateFormat = 'MM/DD/YYYY';
+function CreateProject({ visible, onCancel, onSubmit, setProtoTypeDesc, setProtoTypeName }) { 
 
-function CreateProject({ visible, onCancel, onSubmit , setProtoTypeDesc, setProtoTypeName }) {
   const [form] = Form.useForm();
 
   const [state, setState] = useState({
@@ -30,7 +30,6 @@ function CreateProject({ visible, onCancel, onSubmit , setProtoTypeDesc, setProt
   }, [visible]);
 
   const handleOk = () => {
-    // console.log("form data  -----------",ele);
     onSubmit();
   };
 
@@ -38,6 +37,10 @@ function CreateProject({ visible, onCancel, onSubmit , setProtoTypeDesc, setProt
     console.log("cancel");
     onCancel();
   };
+
+  // const onSubmit = (data) => {
+  //   console.log(data);
+  // }
 
   // const options = [
   //   {
@@ -61,7 +64,7 @@ function CreateProject({ visible, onCancel, onSubmit , setProtoTypeDesc, setProt
       visible={state.visible}
       footer={[
         <div key="1" className="project-modal-footer">
-          <Button size="default" type="primary" key="submit" onClick={handleOk}>
+          <Button size="default" type="primary" key="submit" htmlType="submit" form="createProject">
             Save
           </Button>
           <Button size="default" type="light" key="back" outlined onClick={handleCancel}>
@@ -71,11 +74,16 @@ function CreateProject({ visible, onCancel, onSubmit , setProtoTypeDesc, setProt
       ]}
       onCancel={handleCancel}
     >
-      <div className="project-modal">
+    
+    <div className="project-modal">
         <BasicFormWrapper>
-          <Form form={form} name="createProject" onFinish={handleOk}>
-            <Form.Item name="project" label="Prototype Name" >
-              <Input placeholder="Prototype Name" onChange={(ele) => setProtoTypeName(ele.target.value)} />
+          <Form form={form} id="createProject" name="createProject" onFinish={handleOk} > { /* onFinish={handleOk} */ }
+            <Form.Item label="Prototype Name" name="propertyName" rules={[
+              { required: true, message: 'Prototype name required!' },
+              { whitespace: true, message: 'Prototype name cannot be empty space!' },
+              { max: 100, message: 'Prototype name cannot exceed 50 characters!' }
+              ]}>
+              <Input placeholder="Prototype Name" onChange={(ele) => setProtoTypeName(ele.target.value)} /> 
             </Form.Item>
             {/* <Form.Item name="category" initialValue="" label="">
               <Select style={{ width: '100%' }}>
@@ -85,7 +93,7 @@ function CreateProject({ visible, onCancel, onSubmit , setProtoTypeDesc, setProt
               </Select>
             </Form.Item> */}
             <Form.Item name="description" label="Description">
-              <Input.TextArea rows={4} placeholder="Description" onChange={(ele) => setProtoTypeDesc(ele.target.value)} />
+              <Input.TextArea rows={4} placeholder="Description" onChange={(ele) => setProtoTypeDesc(ele.target.value)}/>
             </Form.Item>
             {/* <Form.Item name="Remarks" label="Remarks" >
               <Input placeholder="Remarks" onChange={(ele) => setProtoTypeRemarks(ele.target.value)} />
@@ -118,6 +126,7 @@ function CreateProject({ visible, onCancel, onSubmit , setProtoTypeDesc, setProt
           </Form>
         </BasicFormWrapper>
       </div>
+
     </Modal>
   );
 }
@@ -125,9 +134,9 @@ function CreateProject({ visible, onCancel, onSubmit , setProtoTypeDesc, setProt
 CreateProject.propTypes = {
   visible: propTypes.bool.isRequired,
   onCancel: propTypes.func.isRequired,
-  onSubmit : propTypes.func.isRequired,
-  setProtoTypeDesc : propTypes.func.isRequired ,
-  setProtoTypeName : propTypes.func.isRequired 
+  onSubmit: propTypes.func.isRequired,
+  setProtoTypeDesc: propTypes.func.isRequired,
+  setProtoTypeName: propTypes.func.isRequired 
 };
 
 export default CreateProject;
