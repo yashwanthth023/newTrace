@@ -16,7 +16,7 @@ const Dashboard = () => {
 
   const [ProtoTypeName, setProtoTypeName] = useState('');
   const [ProtoTypeDesc, setProtoTypeDesc] = useState('');
-  const [ProtoTypeRemarks, setProtoTypeRemarks] = useState('');
+  // const [ProtoTypeRemarks, setProtoTypeRemarks] = useState('');
   const [visible, setVisible] = useState(false);
 
   const projects = [
@@ -152,6 +152,10 @@ const Dashboard = () => {
 
   const { notData } = state;
   const onSubmit = () => {
+
+    console.log("ProtoTypeName : ", ProtoTypeName);
+    console.log("ProtoTypeDesc : ", ProtoTypeDesc);
+
     notData.push({
       "id": "13",
       "title": ProtoTypeName,
@@ -161,8 +165,8 @@ const Dashboard = () => {
       "rate": 5,
       "popular": 12,
       "percentage": 3,
-      "remarks" : ProtoTypeRemarks
     });
+
     // setState({
     // notData: [...state.notData,{"id" : "13",
     // "title": ProtoTypeName,
@@ -172,8 +176,6 @@ const Dashboard = () => {
     setVisible(false);
   };
   // }
-
-  console.log("ProtoTypeName  -", ProtoTypeName);
 
   const handleSearch = (searchText) => {
     const data = projects.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
@@ -209,7 +211,7 @@ const Dashboard = () => {
       />
       <Main>
         <Grid projects={notData} />
-        <CreateProject onCancel={onCancel} onSubmit={onSubmit} visible={visible} setProtoTypeRemarks={setProtoTypeRemarks} setProtoTypeDesc={setProtoTypeDesc} setProtoTypeName={setProtoTypeName} />
+        <CreateProject onCancel={onCancel} onSubmit={onSubmit} visible={visible} setProtoTypeDesc={setProtoTypeDesc} setProtoTypeName={setProtoTypeName} />
         {/* <Row gutter={25}>
           <Col lg={24} xs={24}>
             <Cards headless>
