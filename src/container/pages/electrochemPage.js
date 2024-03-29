@@ -95,13 +95,28 @@ const ElectrochemPage = () => {
     console.log('submit');
     onCancel();
   };
+
+  const handleEdit = (record) => {
+    // For demonstration: Simply alert the ID of the item to edit
+    // In a real app, you might open a modal with the item's data here
+    console.log(`Editing item ${record.id}`);
+    setShowOption(true);
+  };
+  
+
   const dataSource = [
     {
-      id: 'EC1',
+      id: 'EC1', 
       name: 'ElectroChem1',
       remarks: 'remarks',
       created_on: '23/08/2002',
       created_by: 'Yashwanth',
+      render: (_, record) => (
+        <Button onClick={() => handleEdit(record)} type="primary">
+          Edit
+        </Button>
+      ),
+      
     },
     {
       id: 'EC2',
@@ -109,6 +124,11 @@ const ElectrochemPage = () => {
       remarks: 'remarks',
       created_on: '23/08/2002',
       created_by: 'Yashwanth',
+      render: (_, record) => (
+        <Button onClick={() => handleEdit(record)} type="primary">
+          Edit
+        </Button>
+      ),
     },
     {
       id: 'EC3',
@@ -116,14 +136,24 @@ const ElectrochemPage = () => {
       remarks: 'remarks',
       created_on: '23/08/2002',
       created_by: 'Yashwanth',
+      render: (_, record) => (
+        <Button onClick={() => handleEdit(record)} type="primary">
+          Edit
+        </Button>
+      ),
     },
-    {
-      id: 'EC4',
-      name: 'ElectroChem4',
-      remarks: 'remarks',
-      created_on: '23/08/2002',
-      created_by: 'Yashwanth',
-    },
+    // {
+    //   id: 'EC4',
+    //   name: 'ElectroChem4',
+    //   remarks: 'remarks',
+    //   created_on: '23/08/2002',
+    //   created_by: 'Yashwanth',
+    //   render: (_, record) => (
+    //     <Button onClick={() => handleEdit(record)} type="primary">
+    //       Edit
+    //     </Button>
+    //   ),
+    // },
   ];
   const columns = [
     {
@@ -151,6 +181,15 @@ const ElectrochemPage = () => {
       dataIndex: 'created_by',
       key: 'created_by',
     },
+    {
+        title: 'Action',
+        key: 'action',
+        render: (_, record) => (
+          <Button onClick={() => handleEdit(record)} type="primary">
+            Edit
+          </Button>
+        ),
+      }
   ];
   return (
    <ProjectCard>
@@ -348,7 +387,7 @@ const ElectrochemPage = () => {
                 </Form>
               </Cards>
               
-              <div className="project-timing">
+              {/* <div className="project-timing">
               <div>
               <span>Created on</span>
               <strong>26 Dec 2019</strong>
@@ -367,8 +406,19 @@ const ElectrochemPage = () => {
               <span>Modified By</span>
               <strong>Yashwanth</strong>
             </div>
-          </div>
+          </div> */}
               {/* </Col> */}
+              <Cards headless>
+                <Row gutter={25} align="middle">
+                  <Col md={4} xs={24}>
+                    {/* eslint-disable-next-line */}
+                    <label htmlFor="electrode-symmetry">Remarks</label>
+                  </Col>
+                  <Col md={20} xs={24}>
+                    <TextArea placeholder="Value" value="" />
+                  </Col>
+                </Row>
+              </Cards>
             </Panel>
             <Panel header="Catalyst" key="2">
               <Cards headless>
@@ -586,17 +636,6 @@ const ElectrochemPage = () => {
                 </div>
               </div>
 
-              <Cards headless>
-                <Row gutter={25} align="middle">
-                  <Col md={4} xs={24}>
-                    {/* eslint-disable-next-line */}
-                    <label htmlFor="electrode-symmetry">Remarks</label>
-                  </Col>
-                  <Col md={20} xs={24}>
-                    <TextArea placeholder="Value" value="" />
-                  </Col>
-                </Row>
-              </Cards>
             </Panel>
           </Collapse>
           <div style={{ display: 'flex',flexDirection :'row', margin: '5px', alignItems: 'flex-end', justifyContent: 'flex-end',gap :"10px" }}>
