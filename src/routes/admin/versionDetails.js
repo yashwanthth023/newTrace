@@ -1,15 +1,15 @@
 import React, { Suspense, lazy } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { Spin } from 'antd';
 import { useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 import withAdminLayout from '../../layout/withAdminLayout';
-import { Spin } from 'antd';
 
 const version = lazy(() => import('../../container/pages/versionDetailPage'))
 
-function versionDetailRoute() {
+function VersionDetailRoute() {
   const { path } = useRouteMatch();
   return (
-    
+
     <Switch>
       <Suspense
         fallback={
@@ -24,4 +24,4 @@ function versionDetailRoute() {
   );
 }
 
-export default withAdminLayout(versionDetailRoute);
+export default withAdminLayout(VersionDetailRoute);

@@ -1,5 +1,6 @@
 import React, { useState, lazy, Suspense } from 'react';
 import { Row, Col, Pagination, Skeleton } from 'antd';
+import propTypes from 'prop-types';
 // import { useSelector } from 'react-redux';
 import { ProjectPagination } from './style';
 import Heading from '../../components/heading/heading';
@@ -38,10 +39,10 @@ function Grid({ projects }) {
     setState({ ...state, current, pageSize });
   };
 
-  const [state2, setState2] = useState({
-    notData: 0,
-    // notData: searchData,
-  });
+  // const [state2, setState2] = useState({
+  //   notData: 0,
+  //   // notData: searchData,
+  // });
 
 //   const { notData } = state;
 //   const handleSearch = (searchText) => {
@@ -97,4 +98,10 @@ function Grid({ projects }) {
   );
 }
 
+
+Grid.propTypes = {
+  projects: propTypes.array.isRequired,
+};
+
 export default Grid;
+

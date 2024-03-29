@@ -1,12 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import { Row, Col, Form, DatePicker, Input, Upload } from 'antd';
+import { Row, Col, Form, DatePicker, Input, Upload, Select } from 'antd';
 import propTypes from 'prop-types';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 import { HorizontalFormStyleWrap } from '../style/formStyle';
 import { BasicFormWrapper } from '../style/wrapperStyle';
 import { Cards } from '../../cards/frame/cards-frame';
-import { Link } from 'react-router-dom/cjs/react-router-dom';
 
+const { Option } = Select;
 function Manufacture({ title }) {
     return (
         <BasicFormWrapper>
@@ -39,9 +40,14 @@ function Manufacture({ title }) {
                                 <label htmlFor="input-date">Vender</label>
                             </Col>
                             <Col md={18} xs={24}>
-                                <Form.Item name="input-date">
-                                    <Input />
+                                {/* <Form.Item name="input-date"> */}
+                                <Form.Item name="electrode-symmetry">
+                                    <Select size="small" style={{ width: "100%" }}>
+                                        <Option value="1">cfg</Option>
+                                        <Option value="2">dfd</Option>
+                                    </Select>
                                 </Form.Item>
+                                {/* </Form.Item> */}
                             </Col>
                         </Row>
                         <Row align="middle">

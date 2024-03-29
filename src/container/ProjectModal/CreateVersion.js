@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Select, Col, Row, DatePicker } from 'antd';
+import { Form, Input, Col, Row, DatePicker } from 'antd';
 import propTypes from 'prop-types';
 import { Button } from '../../components/buttons/buttons';
 import { Modal } from '../../components/modals/antd-modals';
-import { CheckboxGroup } from '../../components/checkbox/checkbox';
 import { BasicFormWrapper } from '../styled';
 
-const { Option } = Select;
 const dateFormat = 'MM/DD/YYYY';
 
 function CreateVersion({ visible, onCancel }) {
@@ -64,27 +62,12 @@ function CreateVersion({ visible, onCancel }) {
     onCancel();
   };
 
-  const options = [
-    {
-      label: 'Privet',
-      value: 'privet',
-    },
-    {
-      label: 'Team',
-      value: 'team',
-    },
-    {
-      label: 'Public',
-      value: 'public',
-    },
-  ];
-
   return (
     <Modal
       type={state.modalType}
       title="Create Version"
       visible={state.visible}
-      className={"atbd-modal2"}
+      className="atbd-modal2"
       footer={[
         <div key="1" className="project-modal-footer">
           <Button size="default" type="primary" key="submit" onClick={handleOk}>
@@ -110,8 +93,8 @@ function CreateVersion({ visible, onCancel }) {
                 <Option value="two">Project Two</Option>
               </Select>
             </Form.Item> */}
-            <Form.Item name="description" label="Description">
-              <Input.TextArea rows={3} placeholder="Version Description" />
+            <Form.Item name="description" label="Reason for Version Changes">
+              <Input.TextArea rows={3} placeholder="Description" />
             </Form.Item>
             <Form.Item name="project" label="Remarks">
               <Input placeholder="remarks" />
@@ -153,10 +136,10 @@ function CreateVersion({ visible, onCancel }) {
   );
 }
 
-// CreateProject.propTypes = {
-//   visible: propTypes.bool.isRequired,
-//   onCancel: propTypes.func.isRequired,
-// };
+CreateVersion.propTypes = {
+  visible: propTypes.bool.isRequired,
+  onCancel: propTypes.func.isRequired,
+};
 
 export default CreateVersion;
 

@@ -4,22 +4,22 @@ import { AddUser } from './style';
 import { Cards } from '../../components/cards/frame/cards-frame';
 import { Main } from '../styled';
 import Design from '../../components/tabs/design';
-import ElectrodeChem from '../../components/tabs/electrodeChem';
+import General from '../../components/tabs/general';
 import Manufacturing from '../../components/tabs/manufacturing';
 import Testing from '../../components/tabs/testing';
 import Closure from '../../components/tabs/closure';
 
 
 const VersionDetailPage = () => {
-    const [tab, setTab] = useState('design');
+    const [tab, setTab] = useState('general');
 
 
     const tabToShow = () => {
         switch (tab) {
             case 'design':
                 return <Design />;
-            case 'ec':
-                return <ElectrodeChem />;
+            case 'general':
+                return <General />;
             case 'manufacturing':
                 return <Manufacturing />;
             case 'testing':
@@ -27,7 +27,7 @@ const VersionDetailPage = () => {
             case 'closure':
                 return <Closure />;
             default:
-                return <Design />
+                return <General />
         }
     }
     useEffect(() => { }, [tab])
@@ -36,22 +36,22 @@ const VersionDetailPage = () => {
         <>
             <Main>
                 <Row >
-                    <Col lg={24} xs={24}>
+                    <Col lg={24} xs={24} >
                         <AddUser>
-                            <Cards
+                            <Cards headStyle={{ position: 'relative' }}
                                 title={
                                     <div className="card-nav">
                                         <ul>
+                                            <li>
+                                                <Button className={`${tab === 'general' && 'active'}`} onClick={() => setTab('general')}>
+                                                    General
+                                                </Button>
+                                            </li>
                                             <li>
                                                 <Button className={`${tab === 'design' && 'active'}`} onClick={() => setTab('design')}>
                                                     Design
                                                 </Button>
                                             </li>
-                                            {/* <li>
-                                                <Button className={`${tab === 'ec' && 'active'}`} onClick={() => setTab('ec')}>
-                                                    E C
-                                                </Button>
-                                            </li> */}
                                             <li>
                                                 <Button className={`${tab === 'manufacturing' && 'active'}`} onClick={() => setTab('manufacturing')}>
                                                     Manufacturing

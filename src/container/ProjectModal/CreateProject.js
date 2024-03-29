@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Select, Col, Row, DatePicker } from 'antd';
+import { Form, Input } from 'antd';
 import propTypes from 'prop-types';
 import { Button } from '../../components/buttons/buttons';
 import { Modal } from '../../components/modals/antd-modals';
-import { CheckboxGroup } from '../../components/checkbox/checkbox';
 import { BasicFormWrapper } from '../styled';
 
-const { Option } = Select;
-const dateFormat = 'MM/DD/YYYY';
+// const { Option } = Select;
+// const dateFormat = 'MM/DD/YYYY';
+function CreateProject({ visible, onCancel, onSubmit, setProtoTypeDesc, setProtoTypeName }) { 
 
-function CreateProject({ visible, onCancel, onSubmit, setProtoTypeRemarks, setProtoTypeDesc, setProtoTypeName }) {
   const [form] = Form.useForm();
 
   const [state, setState] = useState({
@@ -17,10 +16,6 @@ function CreateProject({ visible, onCancel, onSubmit, setProtoTypeRemarks, setPr
     modalType: 'primary',
     checked: [],
   });
-
-  const [name, setName] = useState();
-  const [description, setDescription] = useState();
-  const [remarks, setRemarks] = useState();
 
   useEffect(() => {
     let unmounted = false;
@@ -34,8 +29,7 @@ function CreateProject({ visible, onCancel, onSubmit, setProtoTypeRemarks, setPr
     };
   }, [visible]);
 
-  const handleOk = (ele) => {
-    // console.log("form data  -----------",ele);
+  const handleOk = () => {
     onSubmit();
   };
 
@@ -44,20 +38,24 @@ function CreateProject({ visible, onCancel, onSubmit, setProtoTypeRemarks, setPr
     onCancel();
   };
 
-  const options = [
-    {
-      label: 'Privet',
-      value: 'privet',
-    },
-    {
-      label: 'Team',
-      value: 'team',
-    },
-    {
-      label: 'Public',
-      value: 'public',
-    },
-  ];
+  // const onSubmit = (data) => {
+  //   console.log(data);
+  // }
+
+  // const options = [
+  //   {
+  //     label: 'Privet',
+  //     value: 'privet',
+  //   },
+  //   {
+  //     label: 'Team',
+  //     value: 'team',
+  //   },
+  //   {
+  //     label: 'Public',
+  //     value: 'public',
+  //   },
+  // ];
 
   return (
     <Modal
@@ -66,7 +64,7 @@ function CreateProject({ visible, onCancel, onSubmit, setProtoTypeRemarks, setPr
       visible={state.visible}
       footer={[
         <div key="1" className="project-modal-footer">
-          <Button size="default" type="primary" key="submit" onClick={handleOk}>
+          <Button size="default" type="primary" key="submit" htmlType="submit" form="createProject">
             Save
           </Button>
           <Button size="default" type="light" key="back" outlined onClick={handleCancel}>
@@ -76,11 +74,16 @@ function CreateProject({ visible, onCancel, onSubmit, setProtoTypeRemarks, setPr
       ]}
       onCancel={handleCancel}
     >
-      <div className="project-modal">
+    
+    <div className="project-modal">
         <BasicFormWrapper>
-          <Form form={form} name="createProject" onFinish={handleOk}>
-            <Form.Item name="project" label="Prototype Name" >
-              <Input placeholder="Prototype Name" onChange={(ele) => setProtoTypeName(ele.target.value)} />
+          <Form form={form} id="createProject" name="createProject" onFinish={handleOk} > { /* onFinish={handleOk} */ }
+            <Form.Item label="Prototype Name" name="propertyName" rules={[
+              { required: true, message: 'Prototype name required!' },
+              { whitespace: true, message: 'Prototype name cannot be empty space!' },
+              { max: 100, message: 'Prototype name cannot exceed 50 characters!' }
+              ]}>
+              <Input placeholder="Prototype Name" onChange={(ele) => setProtoTypeName(ele.target.value)} /> 
             </Form.Item>
             {/* <Form.Item name="category" initialValue="" label="">
               <Select style={{ width: '100%' }}>
@@ -90,11 +93,11 @@ function CreateProject({ visible, onCancel, onSubmit, setProtoTypeRemarks, setPr
               </Select>
             </Form.Item> */}
             <Form.Item name="description" label="Description">
-              <Input.TextArea rows={4} placeholder="Description" onChange={(ele) => setProtoTypeDesc(ele.target.value)} />
+              <Input.TextArea rows={4} placeholder="Description" onChange={(ele) => setProtoTypeDesc(ele.target.value)}/>
             </Form.Item>
-            <Form.Item name="Remarks" label="Remarks" >
+            {/* <Form.Item name="Remarks" label="Remarks" >
               <Input placeholder="Remarks" onChange={(ele) => setProtoTypeRemarks(ele.target.value)} />
-            </Form.Item>
+            </Form.Item> */}
             {/* <Form.Item name="pricacy" initialValue={['team']} label="Project Privacy">
               <CheckboxGroup options={options} />
             </Form.Item> */}
@@ -123,6 +126,7 @@ function CreateProject({ visible, onCancel, onSubmit, setProtoTypeRemarks, setPr
           </Form>
         </BasicFormWrapper>
       </div>
+
     </Modal>
   );
 }
@@ -130,6 +134,9 @@ function CreateProject({ visible, onCancel, onSubmit, setProtoTypeRemarks, setPr
 CreateProject.propTypes = {
   visible: propTypes.bool.isRequired,
   onCancel: propTypes.func.isRequired,
+  onSubmit: propTypes.func.isRequired,
+  setProtoTypeDesc: propTypes.func.isRequired,
+  setProtoTypeName: propTypes.func.isRequired 
 };
 
 export default CreateProject;

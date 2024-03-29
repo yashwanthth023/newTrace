@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Row, Col } from 'antd';
 import FeatherIcon from 'feather-icons-react';
 import Grid from './Grid';
 import CreateProject from '../ProjectModal/CreateProject';
@@ -9,7 +8,6 @@ import { PageHeader } from '../../components/page-headers/page-headers';
 import { Button } from '../../components/buttons/buttons';
 import { Main } from '../styled';
 import { AutoComplete } from '../../components/autoComplete/autoComplete';
-import CreateVersion from '../ProjectModal/CreateVersion';
 // import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
 // import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
 // import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
@@ -18,7 +16,7 @@ const Dashboard = () => {
 
   const [ProtoTypeName, setProtoTypeName] = useState('');
   const [ProtoTypeDesc, setProtoTypeDesc] = useState('');
-  const [ProtoTypeRemarks, setProtoTypeRemarks] = useState('');
+  // const [ProtoTypeRemarks, setProtoTypeRemarks] = useState('');
   const [visible, setVisible] = useState(false);
 
   const projects = [
@@ -154,6 +152,10 @@ const Dashboard = () => {
 
   const { notData } = state;
   const onSubmit = () => {
+
+    console.log("ProtoTypeName : ", ProtoTypeName);
+    console.log("ProtoTypeDesc : ", ProtoTypeDesc);
+
     notData.push({
       "id": "13",
       "title": ProtoTypeName,
@@ -162,8 +164,9 @@ const Dashboard = () => {
       "category": "Web Design",
       "rate": 5,
       "popular": 12,
-      "percentage": 3
+      "percentage": 3,
     });
+
     // setState({
     // notData: [...state.notData,{"id" : "13",
     // "title": ProtoTypeName,
@@ -173,8 +176,6 @@ const Dashboard = () => {
     setVisible(false);
   };
   // }
-
-  console.log("ProtoTypeName  -", ProtoTypeName);
 
   const handleSearch = (searchText) => {
     const data = projects.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
@@ -210,7 +211,7 @@ const Dashboard = () => {
       />
       <Main>
         <Grid projects={notData} />
-        <CreateProject onCancel={onCancel} onSubmit={onSubmit} visible={visible} setProtoTypeRemarks={setProtoTypeRemarks} setProtoTypeDesc={setProtoTypeDesc} setProtoTypeName={setProtoTypeName} />
+        <CreateProject onCancel={onCancel} onSubmit={onSubmit} visible={visible} setProtoTypeDesc={setProtoTypeDesc} setProtoTypeName={setProtoTypeName} />
         {/* <Row gutter={25}>
           <Col lg={24} xs={24}>
             <Cards headless>

@@ -4,17 +4,16 @@ import { Row, Col, Form, Input, Select, Upload, message } from 'antd';
 import { Link } from 'react-router-dom';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper } from './style/wrapperStyle';
-import DateForm from './components/dateForm';
-import { Cards } from '../cards/frame/cards-frame';
-import { Button } from '../buttons/buttons';
 import ProtoTypeHeader from './components/protoTypeInfo';
 import ViewElectroChem from './components/viewElectrochem';
+import { Cards } from '../cards/frame/cards-frame';
+import { Button } from '../buttons/buttons';
 
 const { Option } = Select;
 const { TextArea } = Input;
 function Design() {
     const [showModal, setShowModal] = useState(false);
-    const [selectedValue, setSelectedValue] = useState('');
+    // const [selectedValue, setSelectedValue] = useState('');
     const props = {
         name: 'file',
         action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
@@ -59,10 +58,10 @@ function Design() {
                         </Form>
                     </Row> */}
                     <ProtoTypeHeader />
-                    <br />
+                    {/* <br /> */}
 
 
-                    <Form >
+                    {/* <Form >
                         <Row align="middle">
                             <Col md={6} xs={24}>
                                 <label htmlFor="name">Name</label>
@@ -89,17 +88,17 @@ function Design() {
                                 </Form.Item>
                             </Col>
                         </Row>
-                    </Form>
+                    </Form> */}
 
 
-                    <Row gutter={25}>
+                    {/* <Row gutter={25}>
                         <Col lg={12} xs={24}>
                             <DateForm title="Projected Date" />
                         </Col>
                         <Col lg={12} xs={24}>
                             <DateForm title="Actual Date" />
                         </Col>
-                    </Row>
+                    </Row> */}
                     <Form>
                         <Cards title='Electrode Details' headStyle={{ textAlign: 'center', fontWeight: 'bold' }}>
                             <Row gutter={25}>

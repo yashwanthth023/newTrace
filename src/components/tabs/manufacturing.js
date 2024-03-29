@@ -1,22 +1,16 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
-
-import { Row, Col, Form, Select, Input, Table, Upload, DatePicker } from 'antd';
+import { Row, Col, Form, Input, Table, Upload } from 'antd';
 import { HorizontalFormStyleWrap } from './style/formStyle';
-import { Main, BasicFormWrapper, } from './style/wrapperStyle';
-import { Cards } from '../cards/frame/cards-frame';
-import { Button } from '../buttons/buttons';
-import Manufacture from './components/formForManufacturer';
-import VenderModel from './components/venderModel';
+import { BasicFormWrapper, } from './style/wrapperStyle';
 import ManufactureDateForm from './components/manufactureDateForm';
 import ProtoTypeHeader from './components/protoTypeInfo';
+import VendorModel from './components/vendorModel';
+import Manufacture from './components/formForManufacturer';
+import { Cards } from '../cards/frame/cards-frame';
+import { Button } from '../buttons/buttons';
 
-
-
-const { Option } = Select;
 const { TextArea } = Input;
-
 
 function Manufacturing() {
     const [ProtoTypeName, setProtoTypeName] = useState('');
@@ -57,7 +51,7 @@ function Manufacturing() {
             key: 'name',
         },
         {
-            title: 'Vender',
+            title: 'Vendor',
             dataIndex: 'name',
             key: 'age',
         },
@@ -89,16 +83,7 @@ function Manufacturing() {
         console.log("cancelled");
     }
     const onSubmit = () => {
-        notData.push({
-            "id": "13",
-            "title": ProtoTypeName,
-            "status": "early",
-            "content": ProtoTypeDesc,
-            "category": "Web Design",
-            "rate": 5,
-            "popular": 12,
-            "percentage": 3
-        });
+        console.log(ProtoTypeName, ProtoTypeDesc, ProtoTypeRemarks);
     }
 
 
@@ -128,20 +113,23 @@ function Manufacturing() {
                 </Cards>
                 <Cards headless>
 
-                    <Row align="middle" gutter={25}>
-                        <Col md={6} xs={24}>
-                            <label htmlFor="input-date">Component Description</label>
-                        </Col>
-                        <Col md={18} xs={24}>
-                            <Form.Item name="input-date">
-                                <TextArea rows={3} />
-                            </Form.Item>
-                        </Col>
-                    </Row>
+                    <Form>
+                        <Row align="middle" gutter={25}>
+                            <Col md={6} xs={24}>
+                                {/* eslint-disable-next-line */}
+                                <label id='component' htmlFor='component'>Component Description</label>
+                            </Col>
+                            <Col md={18} xs={24}>
+                                <Form.Item name="component">
+                                    <TextArea rows={3} id='component' name='component' />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                    </Form>
                 </Cards>
 
 
-                <Cards title='Assembly Complete Date' headStyle={{ textAlign: 'center' }}>
+                {/* <Cards title='Assembly Complete Date' headStyle={{ textAlign: 'center' }}>
                     <Form name="date-form" layout="horizontal" >
 
                         <Row gutter={25} align='middle'>
@@ -172,20 +160,20 @@ function Manufacturing() {
                         </Row>
 
                     </Form>
-                </Cards>
+                </Cards> */}
                 <Row gutter={25}>
                     <Col md={12} sm={24} xs={24} className="centered-column" >
 
-                        <ManufactureDateForm title={'Target Date'} />
+                        <ManufactureDateForm title='Projected Date' />
                     </Col>
                     <Col md={12} sm={24} xs={24} className="centered-column" >
-                        <ManufactureDateForm title={'Actual Date'} />
+                        <ManufactureDateForm title='Actual Date' />
                     </Col>
                 </Row>
                 <Cards headless>
                     <Row>
                         <Col md={12} align='left'>
-                            <h2>Vender List</h2>
+                            <h2>Vendor List</h2>
                         </Col>
                         <Col md={12} align='right'>
                             <Button size="small2" type="primary" onClick={() => setVisible(true)}>
@@ -194,7 +182,7 @@ function Manufacturing() {
                             </Button>
                         </Col>
                         <Col md={24} align='right'>
-                            <VenderModel onCancel={onCancel} onSubmit={onSubmit} visible={visible} setProtoTypeRemarks={setProtoTypeRemarks} setProtoTypeDesc={setProtoTypeDesc} setProtoTypeName={setProtoTypeName} />
+                            <VendorModel onCancel={onCancel} onSubmit={onSubmit} visible={visible} setProtoTypeRemarks={setProtoTypeRemarks} setProtoTypeDesc={setProtoTypeDesc} setProtoTypeName={setProtoTypeName} />
 
                             <br />
                             <Table className="table-responsive" pagination={false} dataSource={dataSource} columns={columns} />

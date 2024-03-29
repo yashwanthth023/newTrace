@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Select, Col, Row, DatePicker, Upload } from 'antd';
-import propTypes from 'prop-types';
-import { Button } from '../../../components/buttons/buttons';
-import { Modal } from '../../../components/modals/antd-modals';
-import { BasicFormWrapper } from '../style/wrapperStyle';
+import { Form, Input, Upload } from 'antd';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
+import propTypes from 'prop-types';
+import { Button } from '../../buttons/buttons';
+import { Modal } from '../../modals/antd-modals';
+import { BasicFormWrapper } from '../style/wrapperStyle';
 
-const { Option } = Select;
-const dateFormat = 'MM/DD/YYYY';
-
-function VenderModel({ visible, onCancel }) {
+function VendorModal({ visible, onCancel }) {
   const [form] = Form.useForm();
 
   const [state, setState] = useState({
@@ -64,27 +61,13 @@ function VenderModel({ visible, onCancel }) {
     onCancel();
   };
 
-  const options = [
-    {
-      label: 'Privet',
-      value: 'privet',
-    },
-    {
-      label: 'Team',
-      value: 'team',
-    },
-    {
-      label: 'Public',
-      value: 'public',
-    },
-  ];
 
   return (
     <Modal
       type={state.modalType}
       title="Add Vendor"
       visible={state.visible}
-      className={"atbd-modal2"}
+      className="atbd-modal2"
       footer={[
         <div key="1" className="project-modal-footer">
           <Button size="default" type="primary" key="submit" onClick={handleOk}>
@@ -100,8 +83,8 @@ function VenderModel({ visible, onCancel }) {
       <div className="project-modal">
         <BasicFormWrapper>
           <Form form={form} name="" onFinish={handleOk}>
-            <Form.Item name="Vender" label="Vender Name">
-              <Input placeholder="Vender Name" />
+            <Form.Item name="Vendor" label="Vendor Name">
+              <Input placeholder="Vendor Name" />
             </Form.Item>
             <Form.Item name="Quotation" label="Quotation">
               <Input placeholder="Quotation" />
@@ -126,10 +109,10 @@ function VenderModel({ visible, onCancel }) {
   );
 }
 
-// CreateProject.propTypes = {
-//   visible: propTypes.bool.isRequired,
-//   onCancel: propTypes.func.isRequired,
-// };
+VendorModal.propTypes = {
+  visible: propTypes.bool,
+  onCancel: propTypes.func
+};
 
-export default VenderModel;
+export default VendorModal;
 

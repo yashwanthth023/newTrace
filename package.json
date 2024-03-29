@@ -1,8 +1,9 @@
 {
-  "name": "strikingDash",
-  "version": "3.0.0",
+  "name": "New-Trace",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -37,6 +38,7 @@
     "react-dom": "^18.2.0",
     "react-fontawesome": "^1.7.1",
     "react-google-charts": "^4.0.0",
+    "react-hook-form": "^7.51.2",
     "react-id-swiper": "^4.0.0",
     "react-leaflet": "2.8.0",
     "react-leaflet-markercluster": "2.0.0-rc3",
@@ -61,20 +63,17 @@
     "swiper": "^8.0.7",
     "uuid": "^9.0.0",
     "web-vitals": "^2.1.4",
-    "xlsx": "^0.17.4"
+    "xlsx": "^0.17.4",
+    "yup": "^1.4.0"
   },
-  "homepage": "/strikingdash-react",
+  "homepage": ".",
   "scripts": {
     "start": "craco start",
     "build": "set \"GENERATE_SOURCEMAP=false\" && craco --max-old-space-size=4096 build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "craco test",
     "eject": "craco eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
@@ -89,12 +88,11 @@
     ]
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.18.9",
     "@craco/craco": "^6.4.3",
     "airbnb": "^0.0.2",
     "browserify": "^17.0.0",
     "craco-less": "^2.0.0",
-    "eslint": "^8.22.0",
+    "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
@@ -103,6 +101,7 @@
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "esm": "^3.2.25",
+    "gh-pages": "^6.1.1",
     "node-sass": "^7.0.1",
     "prettier": "^2.7.1",
     "react-hot-loader": "^4.13.0",
