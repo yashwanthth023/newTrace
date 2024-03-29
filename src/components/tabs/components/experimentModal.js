@@ -1,7 +1,6 @@
 import React from 'react';
-import { Form, Input, Select, Col, Row, DatePicker, TimePicker, Upload, message } from 'antd';
+import { Form, Input, Select, Col, Row, DatePicker, TimePicker} from 'antd';
 import propTypes from 'prop-types';
-import { Link } from 'react-router-dom/cjs/react-router-dom';
 import moment from 'moment';
 import { BasicFormWrapper } from '../style/wrapperStyle';
 import { Modal } from '../../modals/antd-modals';
@@ -10,23 +9,23 @@ import { Button } from '../../buttons/buttons';
 const { Option } = Select;
 
 function ExperimentModal({ visible, onCancel, onSubmit }) {
-    const props = {
-        name: 'file',
-        action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-        headers: {
-            authorization: 'authorization-text',
-        },
-        onChange(info) {
-            if (info.file.status !== 'uploading') {
-                // console.log(info.file, info.fileList);
-            }
-            if (info.file.status === 'done') {
-                message.success(`${info.file.name} file uploaded successfully`);
-            } else if (info.file.status === 'error') {
-                message.error(`${info.file.name} file upload failed.`);
-            }
-        },
-    };
+    // const props = {
+    //     name: 'file',
+    //     action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+    //     headers: {
+    //         authorization: 'authorization-text',
+    //     },
+    //     onChange(info) {
+    //         if (info.file.status !== 'uploading') {
+    //             // console.log(info.file, info.fileList);
+    //         }
+    //         if (info.file.status === 'done') {
+    //             message.success(`${info.file.name} file uploaded successfully`);
+    //         } else if (info.file.status === 'error') {
+    //             message.error(`${info.file.name} file upload failed.`);
+    //         }
+    //     },
+    // };
     return (
         <Modal
             title="Add Experiment"
@@ -49,7 +48,7 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                         <Row align="middle">
                             <Col md={6} xs={24}>
                                 {/* eslint-disable-next-line */}
-                                <label htmlFor="experiment-name">Experiment Name</label>
+                                <label htmlFor="experiment-name">Experiment Title</label>
                             </Col>
                             <Col md={18} xs={24}>
                                 <Form.Item name="experiment-name">
@@ -57,6 +56,7 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                                 </Form.Item>
                             </Col>
                         </Row>
+                       
                         <Row align="middle">
                             <Col md={6} xs={24}>
                                 {/* eslint-disable-next-line */}
@@ -70,6 +70,17 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                                         <Option value="3">Purity</Option>
                                         <Option value="4">Others</Option>
                                     </Select>
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        <Row align="middle">
+                            <Col md={6} xs={24}>
+                                {/* eslint-disable-next-line */}
+                                <label htmlFor="experiment-name">Electrolyte</label>
+                            </Col>
+                            <Col md={18} xs={24}>
+                                <Form.Item name="experiment-name">
+                                    <Input id='experiment-name' />
                                 </Form.Item>
                             </Col>
                         </Row>
@@ -152,100 +163,104 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                         </Row>
                         <br />
 
+                       
                         <Row align="middle">
                             <Col md={6} xs={24}>
                                 {/* eslint-disable-next-line */}
-                                <label htmlFor="conclusion">Conclusion</label>
+                                <label htmlFor="experiment-name">Electrolyte Flowrate</label>
                             </Col>
                             <Col md={18} xs={24}>
-                                <Form.Item name="conclusion">
-                                    <Input.TextArea id='conclusion' />
+                                <Form.Item name="experiment-name">
+                                    <Input id='experiment-name' />
                                 </Form.Item>
                             </Col>
                         </Row>
                         <Row align="middle">
                             <Col md={6} xs={24}>
                                 {/* eslint-disable-next-line */}
-                                <label htmlFor="moc">Flow Test</label>
+                                <label htmlFor="experiment-name">Max Current</label>
                             </Col>
                             <Col md={18} xs={24}>
-                                <Form.Item name="moc">
-                                    <Upload className="sDash_upload-basic" {...props} id='moc'>
-                                        <span className="sDash_upload-text">Select File</span>
-                                        <Link to="#" className="sDash_upload-browse">
-                                            Browse
-                                        </Link>
-                                    </Upload>
+                                <Form.Item name="experiment-name">
+                                    <Input id='experiment-name' />
                                 </Form.Item>
                             </Col>
                         </Row>
                         <Row align="middle">
                             <Col md={6} xs={24}>
                                 {/* eslint-disable-next-line */}
-                                <label htmlFor="powerTest">Power Up Test</label>
+                                <label htmlFor="experiment-name">Max Voltage</label>
                             </Col>
                             <Col md={18} xs={24}>
-                                <Form.Item name="powerTest">
-                                    <Upload className="sDash_upload-basic" {...props} id='powerTest'>
-                                        <span className="sDash_upload-text">Select File</span>
-                                        <Link to="#" className="sDash_upload-browse">
-                                            Browse
-                                        </Link>
-                                    </Upload>
+                                <Form.Item name="experiment-name">
+                                    <Input id='experiment-name' />
                                 </Form.Item>
                             </Col>
                         </Row>
                         <Row align="middle">
                             <Col md={6} xs={24}>
                                 {/* eslint-disable-next-line */}
-                                <label htmlFor="impedanceTest">Impedance Test</label>
+                                <label htmlFor="experiment-name">Max Voltage</label>
                             </Col>
                             <Col md={18} xs={24}>
-                                <Form.Item name="impedanceTest">
-                                    <Upload className="sDash_upload-basic" {...props} id='impedanceTest'>
-                                        <span className="sDash_upload-text">Select File</span>
-                                        <Link to="#" className="sDash_upload-browse">
-                                            Browse
-                                        </Link>
-                                    </Upload>
+                                <Form.Item name="Max Voltage">
+                                    <Input id='experiment-name' />
                                 </Form.Item>
                             </Col>
                         </Row>
                         <Row align="middle">
                             <Col md={6} xs={24}>
                                 {/* eslint-disable-next-line */}
-                                <label htmlFor="purityTest">Purity Test</label>
-                            </Col>
-                            <Col md={18} xs={24}>
-                                <Form.Item name="purityTest">
-                                    <Upload className="sDash_upload-basic" {...props} id='purityTest'>
-                                        <span className="sDash_upload-text">Select File</span>
-                                        <Link to="#" className="sDash_upload-browse">
-                                            Browse
-                                        </Link>
-                                    </Upload>
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                        <Row align="middle">
-                            <Col md={6} xs={24}>
-                                {/* eslint-disable-next-line */}
-                                <label htmlFor="temperature">Temperature</label>
+                                <label htmlFor="temperature">Gas Flowrate</label>
                             </Col>
                             <Col md={18} xs={24}>
                                 <Form.Item name="temperature">
-                                    <Input placeholder='Eg. 60 degree Celsius' id='temperature' />
+                                    <Input placeholder='' id='temperature' />
                                 </Form.Item>
                             </Col>
                         </Row>
                         <Row align="middle">
                             <Col md={6} xs={24}>
                                 {/* eslint-disable-next-line */}
-                                <label htmlFor="runTime">Run Time</label>
+                                <label htmlFor="temperature">H2 Absolute Percentage</label>
                             </Col>
                             <Col md={18} xs={24}>
-                                <Form.Item name="runTime">
-                                    <Input id='runTime' />
+                                <Form.Item name="temperature">
+                                    <Input placeholder='' id='temperature' />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+
+                        <Row align="middle">
+                            <Col md={6} xs={24}>
+                                {/* eslint-disable-next-line */}
+                                <label htmlFor="temperature">H2 Absolute Impurity Percentage</label>
+                            </Col>
+                            <Col md={18} xs={24}>
+                                <Form.Item name="temperature">
+                                    <Input placeholder='' id='temperature' />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        <Row align="middle">
+                            <Col md={6} xs={24}>
+                                {/* eslint-disable-next-line */}
+                                <label htmlFor="temperature">O2 Absolute Percentage</label>
+                            </Col>
+                            <Col md={18} xs={24}>
+                                <Form.Item name="temperature">
+                                    <Input placeholder='' id='temperature' />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        <Row align="middle">
+                            <Col md={6} xs={24}>
+                                {/* eslint-disable-next-line */}
+                                <label htmlFor="temperature">O2 Absolute Impurity Percentage</label>
+                            </Col>
+                            <Col md={18} xs={24}>
+                                <Form.Item name="temperature">
+                                    <Input placeholder='' id='temperature' />
                                 </Form.Item>
                             </Col>
                         </Row>
@@ -258,6 +273,17 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                             <Col md={18} xs={24}>
                                 <Form.Item name="remarks">
                                     <Input.TextArea id='remarks' />
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        <Row align="middle">
+                            <Col md={6} xs={24}>
+                                {/* eslint-disable-next-line */}
+                                <label htmlFor="conclusion">Conclusion</label>
+                            </Col>
+                            <Col md={18} xs={24}>
+                                <Form.Item name="conclusion">
+                                    <Input.TextArea id='conclusion' />
                                 </Form.Item>
                             </Col>
                         </Row>

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { Row, Col, Form, Input, Select, Upload, message } from 'antd';
+import { Row, Col, Form, Input, Select, Upload, message,Checkbox, DatePicker } from 'antd';
 import { Link } from 'react-router-dom';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper } from './style/wrapperStyle';
@@ -10,7 +10,7 @@ import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
 
 const { Option } = Select;
-const { TextArea } = Input;
+// const { TextArea } = Input;
 function Design() {
     const [showModal, setShowModal] = useState(false);
     // const [selectedValue, setSelectedValue] = useState('');
@@ -57,7 +57,41 @@ function Design() {
                             </div>
                         </Form>
                     </Row> */}
+                   
+                   
+
                     <ProtoTypeHeader />
+                    <Form name="date-form" layout="horizontal">
+                    <Row gutter={25}>
+                        <Col xl={12} lg={12}> 
+                        <Row align="middle" gutter={25}>                          
+                                <Col md={10} xs={8}>
+                                    {/* <label htmlFor="moc"></label> */}
+                                    {/* eslint-disable-next-line */}
+                                    <label>Mark as Design Complete:</label>
+                                </Col>
+                                <Col md={4} style={{marginTop : 20}}>
+                                    <Checkbox style={{height: 20, width: 20, fontSize: 30}}/>
+                                </Col>                                     
+                            </Row>                           
+                                
+                           
+                        </Col>
+                        <Col  xl={12} lg={12}>
+                            <Row align="middle">
+                                <Col md={6} xs={12} xl={12} lg={6} >
+                                    <label htmlFor="moc">Actual Date Design Complete:</label>
+                                </Col>
+                                <Col md={12} xs={24} align='right'>                                    
+                                <Form.Item name="assembly">
+                                    <DatePicker />
+                                </Form.Item>                                   
+                                </Col>
+                            </Row>
+                       </Col>
+                    </Row>
+                </Form>
+                    
                     {/* <br /> */}
 
 
@@ -103,6 +137,7 @@ function Design() {
                         <Cards title='Electrode Details' headStyle={{ textAlign: 'center', fontWeight: 'bold' }}>
                             <Row gutter={25}>
                                 <Col xl={12} md={24}>
+                                    
                                     <Row align="middle">
                                         <Col md={10} xs={24}>
                                             <label htmlFor="electrode-symmetry">Symmetry</label>
@@ -322,7 +357,7 @@ function Design() {
                             <Col xl={12} lg={12} md={24}>
                                 <Row align="middle">
                                     <Col md={10} xs={24}>
-                                        <label htmlFor="moc">Uploads</label>
+                                        <label htmlFor="moc">Design Documents</label>
                                     </Col>
                                     <Col md={14} xs={24}>
                                         <Form.Item name="moc">
@@ -341,7 +376,7 @@ function Design() {
                     <br />
                     <Form name="sDash_upload" layout="vertical">
 
-                        <br />
+                        {/* <br />
                         <Row align="middle">
                             <Col md={6} xs={24}>
                                 <label htmlFor="moc">Integrity Test</label>
@@ -351,7 +386,7 @@ function Design() {
                                     <TextArea placeholder="write something." />
                                 </Form.Item>
                             </Col>
-                        </Row>
+                        </Row> */}
                         <br />
                         <br />
                         <Row align="middle">

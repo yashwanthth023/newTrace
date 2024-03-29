@@ -1,10 +1,11 @@
 import React from 'react';
-import { Row, Col, Form, Input, Select } from 'antd';
+import { Row, Col, Form, Input,} from 'antd';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper } from './style/wrapperStyle';
 import DateForm from './components/dateForm';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
+// import { Checkbox } from '../checkbox/checkbox';
 
 const { TextArea } = Input;
 function General() {
@@ -41,14 +42,9 @@ function General() {
                                 <label htmlFor='design'>Status :</label>
                             </Col>
                             <Col md={16} xs={12} xl={10}>
-                                <Form.Item name="name">
-                                    <Select size="small" style={{ width: '100%' }} dropdownAlign='center' dropdownStyle={{ justifySelf: 'flex-start' }} >
-                                        <Select.Option value="1">Design</Select.Option>
-                                        <Select.Option value="2">Planning</Select.Option>
-                                        <Select.Option value="3">Manufacture</Select.Option>
-                                        <Select.Option value="4">Testing</Select.Option>
-                                        <Select.Option value="5">Archived</Select.Option>
-                                    </Select>
+                               <Form.Item name="name">
+                                        <Input placeholder="" />
+                                  
                                 </Form.Item>
                             </Col>
                         </Row>
@@ -142,6 +138,7 @@ function General() {
                         </Button>
                     </Col>
                 </Row>
+              
 
             </HorizontalFormStyleWrap>
         </BasicFormWrapper>
