@@ -4,9 +4,9 @@ import { Switch, Route } from 'react-router-dom';
 import { useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 import withAdminLayout from '../../layout/withAdminLayout';
 
-const version = lazy(() => import('../../container/pages/electrochemDetailsPage'))
+const AddComponent = lazy(() => import('../../container/pages/AddComponent'))
 
-function ElectrochemDetailRoute() {
+function AddComponentRoute() {
   const { path } = useRouteMatch();
   return (
 
@@ -16,10 +16,10 @@ function ElectrochemDetailRoute() {
           <Spin />
         </div>
       }>
-        <Route exact path={path} component={version} />
+        <Route exact path={path} component={AddComponent} />
       </Suspense>
     </Switch>
   );
 }
 
-export default withAdminLayout(ElectrochemDetailRoute);
+export default withAdminLayout(AddComponentRoute);

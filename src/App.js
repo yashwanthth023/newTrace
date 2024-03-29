@@ -8,7 +8,10 @@ import { ConfigProvider } from 'antd';
 import store from './redux/store';
 import Admin from './routes/admin';
 import versionDetailRoute from './routes/admin/versionDetails';
-import ElectroChemRoute from './routes/admin/elctrochemDetails'
+
+import ElectroChemRoute from './routes/admin/elctrochem'
+import addComponentRoute from './routes/admin/addComponentRoute';
+
 import Auth from './routes/auth';
 import './static/css/style.css';
 import config from './config/config';
@@ -47,6 +50,7 @@ function ProviderConfig() {
           )}
           <ProtectedRoute path="/versionDetails" component={versionDetailRoute} />
           <ProtectedRoute path="/electroChem" component={ElectroChemRoute} />
+          <ProtectedRoute path="/AddComponent" component={addComponentRoute} />
         </Router>
       </ThemeProvider>
     </ConfigProvider>

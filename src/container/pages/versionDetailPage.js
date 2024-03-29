@@ -5,9 +5,10 @@ import { Cards } from '../../components/cards/frame/cards-frame';
 import { Main } from '../styled';
 import Design from '../../components/tabs/design';
 import General from '../../components/tabs/general';
-import Manufacturing from '../../components/tabs/manufacturing';
+import ComponentProcurement from '../../components/tabs/componentProcurement';
 import Testing from '../../components/tabs/testing';
 import Closure from '../../components/tabs/closure';
+import Assembly from '../../components/tabs/assembly';
 
 
 const VersionDetailPage = () => {
@@ -20,12 +21,14 @@ const VersionDetailPage = () => {
                 return <Design />;
             case 'general':
                 return <General />;
-            case 'manufacturing':
-                return <Manufacturing />;
+            case 'componentProcurement':
+                return <ComponentProcurement />;
             case 'testing':
                 return <Testing />;
             case 'closure':
                 return <Closure />;
+            case 'assembly':
+                return <Assembly />;
             default:
                 return <General />
         }
@@ -53,8 +56,13 @@ const VersionDetailPage = () => {
                                                 </Button>
                                             </li>
                                             <li>
-                                                <Button className={`${tab === 'manufacturing' && 'active'}`} onClick={() => setTab('manufacturing')}>
-                                                    Manufacturing
+                                                <Button className={`${tab === 'componentProcurement' && 'active'}`} onClick={() => setTab('componentProcurement')}>
+                                                    Component Procurement
+                                                </Button>
+                                            </li>
+                                            <li>
+                                                <Button className={`${tab === 'assembly' && 'active'}`} onClick={() => setTab('assembly')}>
+                                                    Assembly
                                                 </Button>
                                             </li>
                                             <li>
