@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Upload } from 'antd';
+import { DatePicker, Form, Input, Upload } from 'antd';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import propTypes from 'prop-types';
 import { Button } from '../../buttons/buttons';
@@ -89,9 +89,13 @@ function VendorModal({ visible, onCancel }) {
             <Form.Item name="Quotation" label="Quotation">
               <Input placeholder="Quotation" />
             </Form.Item>
+            <Form.Item name="project" label="RFQ">
+              <DatePicker />
+            </Form.Item>
             <Form.Item name="project" label="Remarks">
               <Input placeholder="remarks" />
             </Form.Item>
+
 
             <Form.Item name="Testing" label="Upload RFQ Documents">
               <Upload className="sDash_upload-basic">

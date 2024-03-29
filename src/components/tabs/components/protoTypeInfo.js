@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import { Row, Col, Form, Select } from 'antd';
+import { Row, Col, Form } from 'antd';
 import { HorizontalFormStyleWrap } from '../style/formStyle';
 import { BasicFormWrapper } from '../style/wrapperStyle';
 
@@ -39,15 +39,18 @@ function ProtoTypeHeader() {
                                     <label htmlFor='design'>Status :</label>
                                 </Col>
                                 <Col md={16} xs={12} xl={10}>
-                                    <Form.Item name="name">
-                                        <Select size="small" style={{ width: '100%' }} dropdownAlign='center' dropdownStyle={{ justifySelf: 'flex-start' }} >
+                                    {/* <Form.Item name="name"> */}
+                                    {/* <Select size="small" style={{ width: '100%' }} dropdownAlign='center' dropdownStyle={{ justifySelf: 'flex-start' }} >
                                             <Select.Option value="1">Design</Select.Option>
                                             <Select.Option value="2">Planning</Select.Option>
                                             <Select.Option value="3">Manufacture</Select.Option>
                                             <Select.Option value="4">Testing</Select.Option>
                                             <Select.Option value="5">Archived</Select.Option>
-                                        </Select>
-                                    </Form.Item>
+                                        </Select> */}
+                                    <label>
+                                        Design
+                                    </label>
+                                    {/* </Form.Item> */}
                                 </Col>
                             </Row>
                         </Col>
