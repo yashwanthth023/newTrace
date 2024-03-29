@@ -58,13 +58,23 @@ function GridCard({ value }) {
           <p className="project-desc">{textRefactor(content, 13)}</p>
           <div className="project-timing">
             <div>
-              <span>created Date</span>
+              <span>created on</span>
               <strong>26 Dec 2019</strong>
             </div>
-            {/* <div>
-              <span>Deadline</span>
-              <strong>18 Mar 2020</strong>
-            </div> */}
+            <div>
+              <span>created BY</span>
+              <strong>Yashwanth</strong>
+            </div>
+          </div>
+          <div className="project-timing">
+            <div>
+              <span>Modified on</span>
+              <strong>26 Dec 2019</strong>
+            </div>
+            <div>
+              <span>Modified By</span>
+              <strong>Yashwanth</strong>
+            </div>
           </div>
           <div className="project-progress">
             {/* <Progress
