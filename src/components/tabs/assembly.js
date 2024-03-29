@@ -5,6 +5,7 @@ import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper, } from './style/wrapperStyle';
 import ProtoTypeHeader from './components/protoTypeInfo';
 import { Cards } from '../cards/frame/cards-frame';
+import { Button } from '../buttons/buttons';
 // import { Button } from '../buttons/buttons';
 
 
@@ -75,6 +76,16 @@ function Assembly() {
                                 </Col>
                             </Row>
                         </Form>
+                        <Row align="middle">
+                            <Col md={24} align='right'>
+                                <Button size='default' type='primary' style={{ marginRight: 5 }}>
+                                    save
+                                </Button>
+                                <Button size='default' type='light'>
+                                    cancel
+                                </Button>
+                            </Col>
+                        </Row>
                     </Cards>
                 </div>
             </HorizontalFormStyleWrap>
