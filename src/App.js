@@ -8,7 +8,7 @@ import { ConfigProvider } from 'antd';
 import store from './redux/store';
 import Admin from './routes/admin';
 import versionDetailRoute from './routes/admin/versionDetails';
-import ElectroChemRoute from './routes/admin/elctrochemDetails'
+import ElectroChemRoute from './routes/admin/elctrochem'
 import Auth from './routes/auth';
 import './static/css/style.css';
 import config from './config/config';
