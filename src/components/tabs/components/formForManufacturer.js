@@ -52,6 +52,21 @@ function Manufacture({ title }) {
                         </Row>
                         <Row align="middle">
                             <Col md={6} xs={24}>
+                                <label htmlFor="rfqDocument">RFQ Document</label>
+                            </Col>
+                            <Col md={18} xs={24}>
+                                <Form.Item name="rfqDocument">
+                                    <Upload className="sDash_upload-basic">
+                                        <span className="sDash_upload-text">Select File</span>
+                                        <Link to="#" className="sDash_upload-browse">
+                                            Browse
+                                        </Link>
+                                    </Upload>
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        <Row align="middle">
+                            <Col md={6} xs={24}>
                                 <label htmlFor="input-date">PO Document</label>
                             </Col>
                             <Col md={18} xs={24}>
