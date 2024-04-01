@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { Row, Col, Table } from 'antd';
+import { Row, Col, Table, DatePicker, Checkbox, Form } from 'antd';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper } from './style/wrapperStyle';
 import ExperimentModal from './components/experimentModal';
@@ -61,7 +61,45 @@ function Testing() {
         <BasicFormWrapper>
             <HorizontalFormStyleWrap className="sDash_input-form">
                 <Cards headless>
+               
                     <ProtoTypeHeader />
+                    <Form name="date-form" layout="horizontal">
+                    <Row gutter={25}>
+                        <Col xl={12} lg={12}>                           
+                            <Row align="middle" gutter={25}>                          
+                                <Col md={10} xs={8}>
+                                    {/* <label htmlFor="moc"></label> */}
+                                    {/* eslint-disable-next-line */}
+                                    <label>Mark as Testing Complete:</label>
+                                </Col>
+                                <Col md={4} style={{marginTop : 20}}>
+                                    <Checkbox style={{height: 20, width: 20, fontSize: 30}}/>
+                                </Col>                                     
+                            </Row>                           
+                        </Col>
+                        <Col  xl={12} lg={12}>
+                        <Row align="middle">
+                            <Col md={6} xs={12} xl={12} lg={6}>
+                                {/* <label htmlFor="moc"></label> */}
+                                    <Form.Item
+                                    label="Actual Date Test Complete:"
+                                    name="assembly"
+                                    htmlFor="assembly"
+                                    rules={[{ required: true, message: 'Please select a date' }]}>
+                                {/* <label>Actual Date Design Complete:</label> */}
+                                {/* <DatePicker id="assembly" /> */}
+                            </Form.Item>
+                            </Col>
+                            <Col md={12} xs={24} align='right'>                                    
+                                <Form.Item name="assembly">
+                                    <DatePicker />
+                                </Form.Item>                                   
+                            </Col>
+                        </Row>
+
+                       </Col>
+                    </Row>
+                </Form>
                 </Cards>
                 <Cards headless>
                     <Row align="right" gutter={25}>

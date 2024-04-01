@@ -3,7 +3,7 @@ import { Row, Col, Button } from 'antd';
 import { AddUser } from './style';
 import { Cards } from '../../components/cards/frame/cards-frame';
 import { Main } from '../styled';
-import Design from '../../components/tabs/design';
+import Specification from '../../components/tabs/design';
 import General from '../../components/tabs/general';
 import ComponentProcurement from '../../components/tabs/componentProcurement';
 import Testing from '../../components/tabs/testing';
@@ -18,7 +18,7 @@ const VersionDetailPage = () => {
     const tabToShow = () => {
         switch (tab) {
             case 'design':
-                return <Design />;
+                return <Specification />;
             case 'general':
                 return <General />;
             case 'componentProcurement':
