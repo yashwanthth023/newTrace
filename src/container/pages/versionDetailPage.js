@@ -52,7 +52,7 @@ const VersionDetailPage = () => {
                                             </li>
                                             <li>
                                                 <Button className={`${tab === 'design' && 'active'}`} onClick={() => setTab('design')}>
-                                                    Design
+                                                    Specification
                                                 </Button>
                                             </li>
                                             <li>
