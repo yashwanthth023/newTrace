@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
 import { Link } from 'react-router-dom';
 import { Row, Col, Table } from 'antd';
@@ -7,9 +7,11 @@ import { BasicFormWrapper, } from './style/wrapperStyle';
 import ProtoTypeHeader from './components/protoTypeInfo';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
+import AddComponent from '../../container/pages/AddComponent';
 
 
 function ComponentProcurement() {
+    const [isAddPage, setIsAddPage] = useState(false);
     const dataSource = [
         {
             key: '1',
@@ -91,33 +93,40 @@ function ComponentProcurement() {
         <BasicFormWrapper>
             <HorizontalFormStyleWrap className="sDash_input-form">
 
-                <Cards headless>
-                    <ProtoTypeHeader />
-                </Cards>
-
-                <div style={{ display: 'flex' }}>
+                {isAddPage ? <>
+                    <AddComponent setIsAddPage={setIsAddPage} />
+                </> : <>
                     <Cards headless>
-                        <Row align="right" gutter={25}>
-                            <Col align='right' lg={24}>
-                                <Link to="/AddComponent">
+                        <ProtoTypeHeader />
+                    </Cards>
 
-                                    <Button type='primary' >
+                    <div style={{ display: 'flex' }}>
+                        <Cards headless>
+                            <Row align="right" gutter={25}>
+                                <Col align='right' lg={24}>
+                                    {/* <Link to="/AddComponent"> */}
+
+                                    <Button type='primary' onClick={() => setIsAddPage(true)}>
                                         <FeatherIcon icon="plus" size={3} />
                                         Add Component
                                     </Button>
-                                </Link>
-                            </Col>
-                        </Row>
-                        {/* <ExperimentModal visible={showModal} onCancel={() => setShowModal(false)} /> */}
-                        <br />
-                        <Row align="middle" gutter={25}>
-                            <Col lg={24}>
-                                <Table className="table-responsive" pagination={false} dataSource={dataSource} columns={columns} />
-                            </Col>
-                        </Row>
+                                    {/* </Link> */}
+                                </Col>
+                            </Row>
+                            {/* <ExperimentModal visible={showModal} onCancel={() => setShowModal(false)} /> */}
+                            <br />
+                            <Row align="middle" gutter={25}>
+                                <Col lg={24}>
+                                    <Table className="table-responsive" pagination={false} dataSource={dataSource} columns={columns} />
+                                </Col>
+                            </Row>
 
-                    </Cards>
-                </div>
+                        </Cards>
+                    </div>
+                </>
+                }
+
+
             </HorizontalFormStyleWrap>
         </BasicFormWrapper >
     );
