@@ -222,9 +222,20 @@ const ElectrochemPage = () => {
               close
             </Button>
           </div>
-          <Collapse defaultActiveKey={['1']} accordion>
+          <Collapse defaultActiveKey={['1']} >
             <Panel header="General" key="1">
               {/* <Col xl={12} md={24}> */}
+              <Cards headless>
+                <Row gutter={25} align="middle">
+                  <Col md={4} xs={24}>
+                    {/* eslint-disable-next-line */}
+                    <label htmlFor="electrode-symmetry">Description</label>
+                  </Col>
+                  <Col md={20} xs={24}>
+                    <TextArea placeholder="Value" value="" />
+                  </Col>
+                </Row>
+              </Cards>
               <Cards headless>
                 <Form>
                   <Row align="middle" gutter={25}>
@@ -254,7 +265,7 @@ const ElectrochemPage = () => {
                         </Col>
                         <Col md={3} xs={24}>
                           {/* eslint-disable-next-line */}
-                          <label htmlFor="electrode-symmetry">%</label>
+                          <label className='units' htmlFor="electrode-symmetry">%</label>
                         </Col>
                       </Row>
                     </Col>
@@ -283,14 +294,14 @@ const ElectrochemPage = () => {
                       <Row gutter={25} align="middle">
                         <Col md={8} xs={24}>
                           {/* eslint-disable-next-line */}
-                          <label htmlFor="electrode-symmetry">Electrode Pore Dia Max</label>
+                          <label htmlFor="electrode-symmetry">Maximum Electrode Pore Diameter</label>
                         </Col>
                         <Col md={13} xs={24}>
                           <Input placeholder="Value" value="" />
                         </Col>
                         <Col md={3} xs={24}>
                           {/* eslint-disable-next-line */}
-                          <label htmlFor="electrode-symmetry">um</label>
+                          <label className='units' htmlFor="electrode-symmetry">&mu;m</label>
                         </Col>
                       </Row>
                     </Col>
@@ -301,15 +312,12 @@ const ElectrochemPage = () => {
                       <Row gutter={25} align="middle">
                         <Col md={8} xs={24}>
                           {/* eslint-disable-next-line */}
-                          <label htmlFor="electrode-symmetry">Electrode Structure</label>
+                          <label htmlFor="electrode-symmetry">Electrode Substrate</label>
                         </Col>
                         <Col md={16} xs={24}>
                           <Select size="small" style={{ width: '100%' }}>
-                            <Option value="1">Solid</Option>
-                            <Option value="2">Mesh</Option>
-                            <Option value="2">Felt</Option>
-                            <Option value="2">Foam</Option>
-                            <Option value="2">Other</Option>
+                            <Option value="1">A</Option>
+                            <Option value="2">B</Option>
                           </Select>
                         </Col>
                       </Row>
@@ -325,7 +333,7 @@ const ElectrochemPage = () => {
                         </Col>
                         <Col md={3} xs={24}>
                           {/* eslint-disable-next-line */}
-                          <label htmlFor="electrode-symmetry">x10^-12 m^2</label>
+                          <label className='units' htmlFor="electrode-symmetry">x10<sup>-12</sup> m<sup>2</sup></label>
                         </Col>
                       </Row>
                     </Col>
@@ -354,7 +362,7 @@ const ElectrochemPage = () => {
                         </Col>
                         <Col md={3} xs={24}>
                           {/* eslint-disable-next-line */}
-                          <label htmlFor="electrode-symmetry">m^2/g</label>
+                          <label className='units' htmlFor="electrode-symmetry">m<sup>2</sup>/g</label>
                         </Col>
                       </Row>
                     </Col>
@@ -433,9 +441,9 @@ const ElectrochemPage = () => {
                         <Col md={14} xs={24}>
                           <Input placeholder="Value" value="" />
                         </Col>
-                        <Col md={2} xs={24}>
+                        <Col md={2} xs={24} style={{marginLeft :'-10px !important'}}>
                           {/* eslint-disable-next-line */}
-                          <label htmlFor="electrode-symmetry">degC</label>
+                          <label className='units' htmlFor="electrode-symmetry">&deg;C</label>
                         </Col>
                       </Row>
                     </Col>
@@ -450,7 +458,7 @@ const ElectrochemPage = () => {
                         </Col>
                         <Col md={2} xs={24}>
                           {/* eslint-disable-next-line */}
-                          <label htmlFor="electrode-symmetry">nm</label>
+                          <label className='units' htmlFor="electrode-symmetry">nm</label>
                         </Col>
                       </Row>
                     </Col>
@@ -479,7 +487,7 @@ const ElectrochemPage = () => {
                         </Col>
                         <Col md={2} xs={24}>
                           {/* eslint-disable-next-line */}
-                          <label htmlFor="electrode-symmetry">pH</label>
+                          <label className='units' htmlFor="electrode-symmetry">pH</label>
                         </Col>
                       </Row>
                     </Col>
@@ -508,7 +516,7 @@ const ElectrochemPage = () => {
                         </Col>
                         <Col md={2} xs={24}>
                           {/* eslint-disable-next-line */}
-                          <label htmlFor="electrode-symmetry">hr</label>
+                          <label className='units' htmlFor="electrode-symmetry">hr</label>
                         </Col>
                       </Row>
                     </Col>
@@ -526,7 +534,7 @@ const ElectrochemPage = () => {
                         </Col>
                         <Col md={2} xs={24}>
                           {/* eslint-disable-next-line */}
-                          <label htmlFor="electrode-symmetry">min</label>
+                          <label className='units' htmlFor="electrode-symmetry">min</label>
                         </Col>
                       </Row>
                     </Col>
@@ -541,7 +549,7 @@ const ElectrochemPage = () => {
                         </Col>
                         <Col md={2} xs={24}>
                           {/* eslint-disable-next-line */}
-                          <label htmlFor="electrode-symmetry">ASD</label>
+                          <label className='units' htmlFor="electrode-symmetry">ASD</label>
                         </Col>
                       </Row>
                     </Col>
@@ -559,7 +567,7 @@ const ElectrochemPage = () => {
                         </Col>
                         <Col md={2} xs={24}>
                           {/* eslint-disable-next-line */}
-                          <label htmlFor="electrode-symmetry">V</label>
+                          <label className='units' htmlFor="electrode-symmetry">V</label>
                         </Col>
                       </Row>
                     </Col>
