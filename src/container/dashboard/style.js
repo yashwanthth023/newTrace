@@ -2086,6 +2086,7 @@ h1{
         display: flex;
         align-items: center;
         margin-bottom: 15px;
+        justify-content : space-between;
         div{
             ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 30px;
             &:last-child{

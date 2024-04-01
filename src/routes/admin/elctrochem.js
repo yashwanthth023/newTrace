@@ -4,9 +4,9 @@ import { Switch, Route } from 'react-router-dom';
 import { useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 import withAdminLayout from '../../layout/withAdminLayout';
 
-const version = lazy(() => import('../../container/pages/electrochemDetailsPage'))
+const version = lazy(() => import('../../container/pages/electrochemPage'))
 
-function ElectrochemDetailRoute() {
+function ElectrochemRoute() {
   const { path } = useRouteMatch();
   return (
 
@@ -22,4 +22,4 @@ function ElectrochemDetailRoute() {
   );
 }
 
-export default withAdminLayout(ElectrochemDetailRoute);
+export default withAdminLayout(ElectrochemRoute);

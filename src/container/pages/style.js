@@ -2290,6 +2290,32 @@ const SupportContentWrap = Styled.div`
   }
 `;
 
+const ProjectCard = Styled.div`
+.project-timing{
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  justify-content : space-between;
+  padding: 0px 25px;
+  div{
+      ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 30px;
+      &:last-child{
+          ${({ theme }) => (theme.rtl ? 'margin-left' : 'margin-right')}: 0;
+      }
+      span, strong{
+          display: block;
+      }
+      span{
+          font-size: 12px;
+          margin-bottom: 2px;
+          color: ${({ theme }) => theme['gray-solid']};
+      }
+      strong{
+          font-weight: 500;
+      }
+  }
+}`;
+
 export {
   TestimonialWrapper,
   PricingCard,
@@ -2315,4 +2341,5 @@ export {
   UserCarrdTop,
   SupportTopWrap,
   SupportContentWrap,
+  ProjectCard
 };
