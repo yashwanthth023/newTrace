@@ -2314,7 +2314,12 @@ const ProjectCard = Styled.div`
           font-weight: 500;
       }
   }
-}`;
+}
+.units
+{
+  margin-left : -20px;
+}
+`;
 
 export {
   TestimonialWrapper,

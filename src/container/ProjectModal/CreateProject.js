@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input } from 'antd';
+import { Row, Col, Form, Input, DatePicker } from 'antd';
 import propTypes from 'prop-types';
 import { Button } from '../../components/buttons/buttons';
 import { Modal } from '../../components/modals/antd-modals';
 import { BasicFormWrapper } from '../styled';
 
 // const { Option } = Select;
-// const dateFormat = 'MM/DD/YYYY';
+const dateFormat = 'MM/DD/YYYY';
 function CreateProject({ visible, onCancel, onSubmit, setProtoTypeDesc, setProtoTypeName }) { 
 
   const [form] = Form.useForm();
@@ -123,6 +123,23 @@ function CreateProject({ visible, onCancel, onSubmit, setProtoTypeDesc, setProto
                 </Form.Item>
               </Col>
             </Row> */}
+               <Row style={{ display: "flex", flexDirection: 'column' }}>
+              <Col md={12} xl={12}>
+                <Form.Item name="Design" label="Projected Design Completion Date">
+                  <DatePicker placeholder="mm/dd/yyyy" format={dateFormat} />
+                </Form.Item>
+              </Col>
+              <Col md={12} xl={12}>
+                <Form.Item name="Assembly" label="Projected Assembly Completion Date">
+                  <DatePicker placeholder="mm/dd/yyyy" format={dateFormat} />
+                </Form.Item>
+              </Col>
+              <Col md={12} xl={12}>
+                <Form.Item name="Testing" label="Projected Testing Completion Date">
+                  <DatePicker placeholder="mm/dd/yyyy" format={dateFormat} />
+                </Form.Item>
+              </Col>
+            </Row>
           </Form>
         </BasicFormWrapper>
       </div>

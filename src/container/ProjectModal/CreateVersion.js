@@ -83,8 +83,8 @@ function CreateVersion({ visible, onCancel }) {
       <div className="project-modal">
         <BasicFormWrapper>
           <Form form={form} name="createProject" onFinish={handleOk}>
-            <Form.Item name="project" label="Version Name">
-              <Input placeholder="Version Name" />
+            <Form.Item name="project" label="Version ID">
+              <Input placeholder="Version ID" />
             </Form.Item>
             {/* <Form.Item name="category" initialValue="" label="">
               <Select style={{ width: '100%' }}>
