@@ -163,107 +163,114 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                         </Row>
                         <br />
 
+                        <Row align="middle">
+                            <Col xl={12} lg={12} md={24}>
+                                <Col md={18} xs={24}>
+                                    {/* eslint-disable-next-line */}
+                                    <label htmlFor="start-date">Electrolyte Flowrate</label>
+                                </Col>
+                                <Col md={18} xs={24}>
+                                    <Form.Item name="start-date">
+                                    <Input id='experiment-name' />
+                                    </Form.Item>
+                                </Col>
+                            </Col>
+                            <Col xl={12} lg={12} md={24}>
+                                <Col lg={24} md={6} xs={24}>
+                                    {/* eslint-disable-next-line */}
+                                    <label htmlFor="start-time">Max Current</label>
+                                </Col>
+                                <Col md={18} xs={24}>
+                                <Form.Item name="start-date">
+                                    <Input id='experiment-name' />
+                                    </Form.Item>
+                                </Col>
+                            </Col>
+                        </Row>
+                        <Row align="middle">
+                            <Col xl={12} lg={12} md={24}>
+                                <Col md={18} xs={24}>
+                                    {/* eslint-disable-next-line */}
+                                    <label htmlFor="start-date">Max Voltage</label>
+                                </Col>
+                                <Col md={18} xs={24}>
+                                    <Form.Item name="start-date">
+                                    <Input id='experiment-name' />
+                                    </Form.Item>
+                                </Col>
+                            </Col>
+                            <Col xl={12} lg={12} md={24}>
+                                <Col lg={24} md={6} xs={24}>
+                                    {/* eslint-disable-next-line */}
+                                    <label htmlFor="start-time">Gas Flowrate</label>
+                                </Col>
+                                <Col md={18} xs={24}>
+                                    <Form.Item name="start-date">
+                                    <Input id='experiment-name' />
+                                    </Form.Item>
+                                </Col>
+                            </Col>
+                        </Row> 
+                        <Row align="middle">
+                            <Col xl={12} lg={12} md={24}>
+                                <Col md={18} xs={24}>
+                                    {/* eslint-disable-next-line */}
+                                    <label htmlFor="start-date">H2 Absolute Percentage</label>
+                                </Col>
+                                <Col md={18} xs={24}>
+                                    <Form.Item name="start-date">
+                                    <Input id='experiment-name' />
+                                    </Form.Item>
+                                </Col>
+                            </Col>
+                            <Col xl={12} lg={12} md={24}>
+                                <Col lg={24} md={6} xs={24}>
+                                    {/* eslint-disable-next-line */}
+                                    <label htmlFor="start-time">H2 Absolute Impurity Percentage</label>
+                                </Col>
+                                <Col md={18} xs={24}>
+                                <Form.Item name="start-date">
+                                    <Input id='experiment-name' />
+                                    </Form.Item>
+                                </Col>
+                            </Col>
+                        </Row>                 
+                        <Row align="middle">
+                            <Col xl={12} lg={12} md={24}>
+                                <Col md={18} xs={24}>
+                                    {/* eslint-disable-next-line */}
+                                    <label htmlFor="start-date">O2 Absolute Percentage</label>
+                                </Col>
+                                <Col md={18} xs={24}>
+                                    <Form.Item name="start-date">
+                                    <Input id='experiment-name' />
+                                    </Form.Item>
+                                </Col>
+                            </Col>
+                            <Col xl={12} lg={12} md={24}>
+                                <Col lg={24} md={6} xs={24}>
+                                    {/* eslint-disable-next-line */}
+                                    <label htmlFor="start-time">O2 Absolute Impurity Percentage</label>
+                                </Col>
+                                <Col md={18} xs={24}>
+                                <Form.Item name="start-date">
+                                    <Input id='experiment-name' />
+                                    </Form.Item>
+                                </Col>
+                            </Col>
+                        </Row>    
+                        
+                        
+                        
+                        
+                        
                        
-                        <Row align="middle">
-                            <Col md={6} xs={24}>
-                                {/* eslint-disable-next-line */}
-                                <label htmlFor="experiment-name">Electrolyte Flowrate</label>
-                            </Col>
-                            <Col md={18} xs={24}>
-                                <Form.Item name="experiment-name">
-                                    <Input id='experiment-name' />
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                        <Row align="middle">
-                            <Col md={6} xs={24}>
-                                {/* eslint-disable-next-line */}
-                                <label htmlFor="experiment-name">Max Current</label>
-                            </Col>
-                            <Col md={18} xs={24}>
-                                <Form.Item name="experiment-name">
-                                    <Input id='experiment-name' />
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                        <Row align="middle">
-                            <Col md={6} xs={24}>
-                                {/* eslint-disable-next-line */}
-                                <label htmlFor="experiment-name">Max Voltage</label>
-                            </Col>
-                            <Col md={18} xs={24}>
-                                <Form.Item name="experiment-name">
-                                    <Input id='experiment-name' />
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                        <Row align="middle">
-                            <Col md={6} xs={24}>
-                                {/* eslint-disable-next-line */}
-                                <label htmlFor="experiment-name">Max Voltage</label>
-                            </Col>
-                            <Col md={18} xs={24}>
-                                <Form.Item name="Max Voltage">
-                                    <Input id='experiment-name' />
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                        <Row align="middle">
-                            <Col md={6} xs={24}>
-                                {/* eslint-disable-next-line */}
-                                <label htmlFor="temperature">Gas Flowrate</label>
-                            </Col>
-                            <Col md={18} xs={24}>
-                                <Form.Item name="temperature">
-                                    <Input placeholder='' id='temperature' />
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                        <Row align="middle">
-                            <Col md={6} xs={24}>
-                                {/* eslint-disable-next-line */}
-                                <label htmlFor="temperature">H2 Absolute Percentage</label>
-                            </Col>
-                            <Col md={18} xs={24}>
-                                <Form.Item name="temperature">
-                                    <Input placeholder='' id='temperature' />
-                                </Form.Item>
-                            </Col>
-                        </Row>
+                        
+                        
 
-                        <Row align="middle">
-                            <Col md={6} xs={24}>
-                                {/* eslint-disable-next-line */}
-                                <label htmlFor="temperature">H2 Absolute Impurity Percentage</label>
-                            </Col>
-                            <Col md={18} xs={24}>
-                                <Form.Item name="temperature">
-                                    <Input placeholder='' id='temperature' />
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                        <Row align="middle">
-                            <Col md={6} xs={24}>
-                                {/* eslint-disable-next-line */}
-                                <label htmlFor="temperature">O2 Absolute Percentage</label>
-                            </Col>
-                            <Col md={18} xs={24}>
-                                <Form.Item name="temperature">
-                                    <Input placeholder='' id='temperature' />
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                        <Row align="middle">
-                            <Col md={6} xs={24}>
-                                {/* eslint-disable-next-line */}
-                                <label htmlFor="temperature">O2 Absolute Impurity Percentage</label>
-                            </Col>
-                            <Col md={18} xs={24}>
-                                <Form.Item name="temperature">
-                                    <Input placeholder='' id='temperature' />
-                                </Form.Item>
-                            </Col>
-                        </Row>
+                        
+                       
+                        
 
                         <Row align="middle">
                             <Col md={6} xs={24}>

@@ -14,6 +14,8 @@ function ComponentProcurement() {
         {
             key: '1',
             name: 'dfd',
+            createdon: '01-04-2024',
+            modifiedon:'03-04-2024',
             status: 'link',
             button:
                 <div style={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
@@ -72,6 +74,16 @@ function ComponentProcurement() {
             title: 'Name',
             dataIndex: 'name',
             key: 'status',
+        },
+        {
+            title: 'Created On',
+            dataIndex: 'createdon',
+            key: 'createdon',
+        },
+        {
+            title: 'Modified On',
+            dataIndex: 'modifiedon',
+            key: 'modifiedon',
         },
         {
             title: 'Status',

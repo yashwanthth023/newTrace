@@ -135,10 +135,10 @@ function Design() {
                     </Row> */}
                     <Form>
                         <Cards title='Electrode Details' headStyle={{ textAlign: 'center', fontWeight: 'bold' }}>
-                            <Row gutter={25}>
-                                <Col xl={12} md={24}>
+                            {/* <Row gutter={25}>
+                                {/* <Col xl={12} md={24}>
                                     
-                                    <Row align="middle">
+                                    {/* <Row align="middle">
                                         <Col md={10} xs={24}>
                                             <label htmlFor="electrode-symmetry">Symmetry</label>
                                         </Col>
@@ -150,8 +150,8 @@ function Design() {
                                                 </Select>
                                             </Form.Item>
                                         </Col>
-                                    </Row>
-                                </Col>
+                                    </Row> 
+                                </Col> 
                                 <Col xl={12} md={24}>
                                     <Row align="middle">
                                         <Col md={10} xs={24}>
@@ -164,12 +164,12 @@ function Design() {
                                         </Col>
                                     </Row>
                                 </Col>
-                            </Row>
+                            </Row> */}
                             <Row gutter={25}>
                                 <Col xl={12} lg={12} md={24}>
                                     <Row align="middle">
                                         <Col md={10} xs={24}>
-                                            <label htmlFor="moc">Structure</label>
+                                            <label htmlFor="moc">Dimensions</label>
                                         </Col>
                                         <Col md={14} xs={24}>
                                             <Form.Item name="moc">
@@ -195,59 +195,8 @@ function Design() {
                                     </Row>
                                 </Col>
                             </Row>
-                            <Row gutter={25}>
-                                <Col xl={12} lg={12} md={24}>
-                                    <Row align="middle">
-                                        <Col md={10} xs={24}>
-                                            <label htmlFor="moc">Thickness</label>
-                                        </Col>
-                                        <Col md={14} xs={24}>
-                                            <Form.Item name="moc">
-                                                <Input placeholder="2mm" />
-                                            </Form.Item>
-                                        </Col>
-                                    </Row>
-                                </Col>
-                                <Col xl={12} lg={12} md={24}>
-                                    <Row align="middle">
-                                        <Col md={10} xs={24}>
-                                            <label htmlFor="moc">Length</label>
-                                        </Col>
-                                        <Col md={14} xs={24}>
-                                            <Form.Item name="moc">
-                                                <Input placeholder="20m" />
-                                            </Form.Item>
-                                        </Col>
-                                    </Row>
-                                </Col>
-                            </Row>
-                            <Row gutter={25}>
-                                <Col xl={12} lg={12} md={24}>
-
-                                    <Row align="middle">
-                                        <Col md={10} xs={24}>
-                                            <label htmlFor="moc">Breadth</label>
-                                        </Col>
-                                        <Col md={14} xs={24}>
-                                            <Form.Item name="moc">
-                                                <Input placeholder="10m" />
-                                            </Form.Item>
-                                        </Col>
-                                    </Row>
-                                </Col>
-                                <Col xl={12} lg={12} md={24}>
-                                    <Row align="middle">
-                                        <Col md={10} xs={24}>
-                                            <label htmlFor="moc">Diameter</label>
-                                        </Col>
-                                        <Col md={14} xs={24}>
-                                            <Form.Item name="moc">
-                                                <Input placeholder="50cm" />
-                                            </Form.Item>
-                                        </Col>
-                                    </Row>
-                                </Col>
-                            </Row>
+                            
+                           
                             <Row gutter={25}>
                                 <Col xl={12} lg={12} md={24}>
                                     <Row align="middle">
