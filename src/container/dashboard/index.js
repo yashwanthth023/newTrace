@@ -8,7 +8,6 @@ import { PageHeader } from '../../components/page-headers/page-headers';
 import { Button } from '../../components/buttons/buttons';
 import { Main } from '../styled';
 import { AutoComplete } from '../../components/autoComplete/autoComplete';
-import { getPrototypes } from '../../api/registerApi';
 
 // import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
 // import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
@@ -25,7 +24,7 @@ const Dashboard = () => {
 
   const fetchPtotypes = async()=>
   {
-    const result = await getPrototypes();
+    const result = "0";
     setPrototype(result);
     console.log("----------------",Prototype);
   }
