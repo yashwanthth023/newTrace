@@ -1,7 +1,7 @@
 import axios from 'axios'
 import axiosRetry from 'axios-retry'
 
-import { errorMsg, showToast } from '../components/Shared';
+import { errorMsg } from '../components/Shared';
 import { Url } from "../helper/apiRoutes";
 import { SessionStorage } from '../util/SessionStorage'
 import { fortmatData } from '../util/utils';
@@ -73,7 +73,7 @@ axiosInstance.interceptors.response.use(function (response) {
     return response;
 }, errorResponseHandler);
 
-export const getAPICall = async (url, data) => await axiosInstance.get(url, data);
-export const postAPICall = async (url, data) => await axiosInstance.post(url, data);
-export const putAPICall = async (url, data) => await axiosInstance.put(url, data);
-export const deleteAPICall = async (url, data) => await axiosInstance.delete(url, data);
+export const getAPICall = async (url, data) =>  axiosInstance.get(url, data);
+export const postAPICall = async (url, data) =>  axiosInstance.post(url, data);
+export const putAPICall = async (url, data) =>  axiosInstance.put(url, data);
+export const deleteAPICall = async (url, data) =>  axiosInstance.delete(url, data);

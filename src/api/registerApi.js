@@ -1,64 +1,65 @@
 // getPredictedOutcomebyClassId
 import * as apiClient from './httpCommon';
-import { apiRoutes } from "../helper/apiRoutes";
+// import { apiRoutes } from "../helper/apiRoutes";
 
-export const userRegisterAPI = async (data) => await apiClient.postAPICall(apiRoutes.userRegister, data).then(res => res.data);
-export const getCategoryItemsByName = async (data) => await apiClient.postAPICall(apiRoutes.getCategoryItemsByName, data).then(res => res.data);
-export const getCategoryItemsByNames = async (data) => await apiClient.postAPICall(apiRoutes.getCategoryItemsByNames, data).then(res => res.data);
-export const addHardSkillsToPassport = async (data) => await apiClient.postAPICall(apiRoutes.addHardSkillsToPassport, data).then(res => res.data)
-export const otpForResetPassword = async (data) => await apiClient.postAPICall(apiRoutes.otpForResetPassword, data).then(res => res.data)
-export const otpValidationForResetPassword = async (data) => await apiClient.postAPICall(apiRoutes.otpValidationForResetPassword, data).then(res => res.data)
-export const resetPassword = async (data) => await apiClient.postAPICall(apiRoutes.resetPassword, data).then(res => res.data);
-export const userLogin = async (data) => await apiClient.postAPICall(apiRoutes.userLogin, data).then(res => res.data);
-export const fetchUserDetails = async (data) => await apiClient.postAPICall(apiRoutes.fetchUserDetails, data).then(res => res.data);
-export const validateOtp = async (data) => await apiClient.postAPICall(apiRoutes.validateOtp, data).then(res => res.data);
-export const reSendOtp = async (data) => await apiClient.postAPICall(apiRoutes.reSendOtp, data).then(res => res.data);
-export const updatePartialPassportAndRelevance = async (data) => await apiClient.postAPICall(apiRoutes.updatePartialPassportAndRelevance, data).then(res => res.data);
-export const addProfilePic = async (data) => await apiClient.postAPICall(apiRoutes.addProfilePic, data).then(res => res.data);
-export const updateEmployeeStatus = async (data) => await apiClient.postAPICall(apiRoutes.updateEmployeeStatus, data).then(res => res.data);
-export const updateEmployeeProfile = async (data) => await apiClient.postAPICall(apiRoutes.updateEmployeeProfile, data).then(res => res.data);
-export const changePassword = async (data) => await apiClient.postAPICall(apiRoutes.changePassword, data).then(res => res.data);
-export const updateDesiredJobTitles = async (data) => await apiClient.postAPICall(apiRoutes.updateDesiredJobTitles, data).then(res => res.data)
-export const getSignedUrltoUpload = async (data) => await apiClient.postAPICall(apiRoutes.getSignedUrltoUpload, data).then(res => res.data);
-export const getSignedUrltoDelete = async (data) => await apiClient.postAPICall(apiRoutes.getSignedUrltoDelete, data).then(res => res.data);
-export const addAttachment = async (data) => await apiClient.postAPICall(apiRoutes.addAttachment, data).then(res => res.data);
-export const fetchCoursesBasedOnJobTitles = async (data) => await apiClient.postAPICall(apiRoutes.fetchCoursesBasedOnJobTitles, data).then(res => res.data)
-export const deleteAttachment = async (data) => await apiClient.postAPICall(apiRoutes.deleteAttachment, data).then(res => res.data);
-export const getSignedUrltoAccess = async (data) => await apiClient.postAPICall(apiRoutes.getSignedUrltoAccess, data).then(res => res.data);
-export const googleSocialSingin = async (data) => await apiClient.postAPICall(apiRoutes.googleSocialSingin, data).then(res => res.data);
-export const googleSocialFacebook = async (data) => await apiClient.postAPICall(apiRoutes.googleSocialFacebook, data).then(res => res.data);
-export const employeeSocialRegister = async (data) => await apiClient.postAPICall(apiRoutes.employeeSocialRegister, data).then(res => res.data);
-export const fetchCompanyProfile = async (data) => await apiClient.postAPICall(apiRoutes.fetchCompanyProfile, data).then(res => res.data);
-export const updateCompanyProfile = async (data) => await apiClient.postAPICall(apiRoutes.updateCompanyProfile, data).then(res => res.data);
-export const employerRegisterApi = async (data) => await apiClient.postAPICall(apiRoutes.employerRegister, data).then(res => res.data)
-export const updatepartialjobandrelevance = async (data) => await apiClient.postAPICall(apiRoutes.updatepartialjobandrelevance, data).then(res => res.data);
-export const fetchEmployerDetails = async (data) => await apiClient.postAPICall(apiRoutes.fetchEmployerDetails, data).then(res => res.data);
-export const getIndustryByName = async (data) => await apiClient.postAPICall(apiRoutes.getIndustryByName, data).then(res => res.data);
-export const getCategoryByIndustry = async (data) => await apiClient.postAPICall(apiRoutes.getCategoryByIndustry, data).then(res => res.data);
-export const addCompanyLogo = async (data) => await apiClient.postAPICall(apiRoutes.addCompanyLogo, data).then(res => res.data);
-export const addJobAdImage = async (data) => await apiClient.postAPICall(apiRoutes.addJobAdImage, data).then(res => res.data);
-export const getSASUrltoAccess = async (data) => await apiClient.postAPICall(apiRoutes.getSASUrltoAccess, data).then(res => res.data);
-export const clonePublishedJob = async (data) => await apiClient.postAPICall(apiRoutes.clonePublishedJob, data).then(res => res.data);
-export const fetchPassportByIdForEmployerApi = async (data) => await apiClient.postAPICall(apiRoutes.fetchPassportByIdForEmployer, data).then(res => res.data);
-export const fetchPassportsByJobId = async (data) => await apiClient.postAPICall(apiRoutes.fetchPassportsByJobId, data).then(res => res.data);
-export const fetchJobById = async (data) => await apiClient.postAPICall(apiRoutes.fetchJobById, data).then(res => res.data);
-export const publishJob = async (data) => await apiClient.postAPICall(apiRoutes.publishJob, data).then(res => res.data);
-export const applicationBasedOnStatus = async (data) => await apiClient.postAPICall(apiRoutes.fetchPassportsBasedOnApplicationStatus, data).then(res => res.data);
-export const fetchJobByPassportId = async (data) => await apiClient.postAPICall(apiRoutes.fetchJobByPassportId, data).then(res => res.data);
-export const addJobApplicationStatusApi = async (data) => await apiClient.postAPICall(apiRoutes.addJobApplicationStatus, data).then(res => res.data);
-export const updateJobApplicationStatusApi = async (data) => await apiClient.postAPICall(apiRoutes.updateJobApplicationStatus, data).then(res => res.data);
-export const updateJobStatusByJobIdApi = async (data) => await apiClient.postAPICall(apiRoutes.updateJobStatusByJobId, data).then(res => res.data);
-export const fetchMessages = async (data) => await apiClient.postAPICall(apiRoutes.fetchMessages, data).then(res => res.data)
-export const addMessage = async (data) => await apiClient.postAPICall(apiRoutes.addMessage, data).then(res => res.data)
-export const fetchJobByIdApi = async (data) => await apiClient.postAPICall(apiRoutes.fetchJobById, data).then(res => res.data);
-export const fetchCompanyProfileBasedonJobId = async (data) => await apiClient.postAPICall(apiRoutes.fetchCompanyProfileBasedonJobId, data).then(res => res.data);
-export const updateJobStatusByJobId = async (data) => await apiClient.postAPICall(apiRoutes.updateJobStatusByJobId, data).then(res => res.data);
-export const fetchJobsBasedOnApplicationStatusApi = async (data) => await apiClient.postAPICall(apiRoutes.fetchJobsBasedOnApplicationStatus, data).then(res => res.data);
-export const getSASUrltoAccessPdf = async (data) => await apiClient.postAPICall(apiRoutes.getSASUrltoAccessPdf, data).then(res => res.data);
-export const fetchCoversationList = async (data) => await apiClient.postAPICall(apiRoutes.fetchCoversationList, data).then(res => res.data);
-export const fetchMessagesNJobDetailsFrmChatList = async (data) => await apiClient.postAPICall(apiRoutes.fetchMessagesNJobDetailsFrmChatList, data).then(res => res.data);
-export const googleSignInforWeb = async (data) => await apiClient.postAPICall(apiRoutes.googleSignInforWeb, data).then(res => res.data);
-export const searchPostedJobsApi = async (data) => await apiClient.postAPICall(apiRoutes.searchPostedJobs, data).then(res => res.data);
-export const employeeProfileDownload = async (data) => await apiClient.postAPICall(apiRoutes.employeeProfileDownload, data).then(res => res.data);
-export const otpForNormalUserResetPassword = async (data) => await apiClient.postAPICall(apiRoutes.otpForNormalUserResetPassword, data).then(res => res.data);
-export const fetchJobApplicationStatusByPassportIdApi = async (data) => await apiClient.postAPICall(apiRoutes.fetchJobApplicationStatusByPassportId, data).then(res => res.data);
+export const getPrototypes = async (data) => apiClient.postAPICall('dev_newtrace_prototype_master', data).then(res => res.data);
+// export const userRegisterAPI = async (data) => await apiClient.postAPICall(apiRoutes.userRegister, data).then(res => res.data);
+// export const getCategoryItemsByName = async (data) => await apiClient.postAPICall(apiRoutes.getCategoryItemsByName, data).then(res => res.data);
+// export const getCategoryItemsByNames = async (data) => await apiClient.postAPICall(apiRoutes.getCategoryItemsByNames, data).then(res => res.data);
+// export const addHardSkillsToPassport = async (data) => await apiClient.postAPICall(apiRoutes.addHardSkillsToPassport, data).then(res => res.data)
+// export const otpForResetPassword = async (data) => await apiClient.postAPICall(apiRoutes.otpForResetPassword, data).then(res => res.data)
+// export const otpValidationForResetPassword = async (data) => await apiClient.postAPICall(apiRoutes.otpValidationForResetPassword, data).then(res => res.data)
+// export const resetPassword = async (data) => await apiClient.postAPICall(apiRoutes.resetPassword, data).then(res => res.data);
+// export const userLogin = async (data) => await apiClient.postAPICall(apiRoutes.userLogin, data).then(res => res.data);
+// export const fetchUserDetails = async (data) => await apiClient.postAPICall(apiRoutes.fetchUserDetails, data).then(res => res.data);
+// export const validateOtp = async (data) => await apiClient.postAPICall(apiRoutes.validateOtp, data).then(res => res.data);
+// export const reSendOtp = async (data) => await apiClient.postAPICall(apiRoutes.reSendOtp, data).then(res => res.data);
+// export const updatePartialPassportAndRelevance = async (data) => await apiClient.postAPICall(apiRoutes.updatePartialPassportAndRelevance, data).then(res => res.data);
+// export const addProfilePic = async (data) => await apiClient.postAPICall(apiRoutes.addProfilePic, data).then(res => res.data);
+// export const updateEmployeeStatus = async (data) => await apiClient.postAPICall(apiRoutes.updateEmployeeStatus, data).then(res => res.data);
+// export const updateEmployeeProfile = async (data) => await apiClient.postAPICall(apiRoutes.updateEmployeeProfile, data).then(res => res.data);
+// export const changePassword = async (data) => await apiClient.postAPICall(apiRoutes.changePassword, data).then(res => res.data);
+// export const updateDesiredJobTitles = async (data) => await apiClient.postAPICall(apiRoutes.updateDesiredJobTitles, data).then(res => res.data)
+// export const getSignedUrltoUpload = async (data) => await apiClient.postAPICall(apiRoutes.getSignedUrltoUpload, data).then(res => res.data);
+// export const getSignedUrltoDelete = async (data) => await apiClient.postAPICall(apiRoutes.getSignedUrltoDelete, data).then(res => res.data);
+// export const addAttachment = async (data) => await apiClient.postAPICall(apiRoutes.addAttachment, data).then(res => res.data);
+// export const fetchCoursesBasedOnJobTitles = async (data) => await apiClient.postAPICall(apiRoutes.fetchCoursesBasedOnJobTitles, data).then(res => res.data)
+// export const deleteAttachment = async (data) => await apiClient.postAPICall(apiRoutes.deleteAttachment, data).then(res => res.data);
+// export const getSignedUrltoAccess = async (data) => await apiClient.postAPICall(apiRoutes.getSignedUrltoAccess, data).then(res => res.data);
+// export const googleSocialSingin = async (data) => await apiClient.postAPICall(apiRoutes.googleSocialSingin, data).then(res => res.data);
+// export const googleSocialFacebook = async (data) => await apiClient.postAPICall(apiRoutes.googleSocialFacebook, data).then(res => res.data);
+// export const employeeSocialRegister = async (data) => await apiClient.postAPICall(apiRoutes.employeeSocialRegister, data).then(res => res.data);
+// export const fetchCompanyProfile = async (data) => await apiClient.postAPICall(apiRoutes.fetchCompanyProfile, data).then(res => res.data);
+// export const updateCompanyProfile = async (data) => await apiClient.postAPICall(apiRoutes.updateCompanyProfile, data).then(res => res.data);
+// export const employerRegisterApi = async (data) => await apiClient.postAPICall(apiRoutes.employerRegister, data).then(res => res.data)
+// export const updatepartialjobandrelevance = async (data) => await apiClient.postAPICall(apiRoutes.updatepartialjobandrelevance, data).then(res => res.data);
+// export const fetchEmployerDetails = async (data) => await apiClient.postAPICall(apiRoutes.fetchEmployerDetails, data).then(res => res.data);
+// export const getIndustryByName = async (data) => await apiClient.postAPICall(apiRoutes.getIndustryByName, data).then(res => res.data);
+// export const getCategoryByIndustry = async (data) => await apiClient.postAPICall(apiRoutes.getCategoryByIndustry, data).then(res => res.data);
+// export const addCompanyLogo = async (data) => await apiClient.postAPICall(apiRoutes.addCompanyLogo, data).then(res => res.data);
+// export const addJobAdImage = async (data) => await apiClient.postAPICall(apiRoutes.addJobAdImage, data).then(res => res.data);
+// export const getSASUrltoAccess = async (data) => await apiClient.postAPICall(apiRoutes.getSASUrltoAccess, data).then(res => res.data);
+// export const clonePublishedJob = async (data) => await apiClient.postAPICall(apiRoutes.clonePublishedJob, data).then(res => res.data);
+// export const fetchPassportByIdForEmployerApi = async (data) => await apiClient.postAPICall(apiRoutes.fetchPassportByIdForEmployer, data).then(res => res.data);
+// export const fetchPassportsByJobId = async (data) => await apiClient.postAPICall(apiRoutes.fetchPassportsByJobId, data).then(res => res.data);
+// export const fetchJobById = async (data) => await apiClient.postAPICall(apiRoutes.fetchJobById, data).then(res => res.data);
+// export const publishJob = async (data) => await apiClient.postAPICall(apiRoutes.publishJob, data).then(res => res.data);
+// export const applicationBasedOnStatus = async (data) => await apiClient.postAPICall(apiRoutes.fetchPassportsBasedOnApplicationStatus, data).then(res => res.data);
+// export const fetchJobByPassportId = async (data) => await apiClient.postAPICall(apiRoutes.fetchJobByPassportId, data).then(res => res.data);
+// export const addJobApplicationStatusApi = async (data) => await apiClient.postAPICall(apiRoutes.addJobApplicationStatus, data).then(res => res.data);
+// export const updateJobApplicationStatusApi = async (data) => await apiClient.postAPICall(apiRoutes.updateJobApplicationStatus, data).then(res => res.data);
+// export const updateJobStatusByJobIdApi = async (data) => await apiClient.postAPICall(apiRoutes.updateJobStatusByJobId, data).then(res => res.data);
+// export const fetchMessages = async (data) => await apiClient.postAPICall(apiRoutes.fetchMessages, data).then(res => res.data)
+// export const addMessage = async (data) => await apiClient.postAPICall(apiRoutes.addMessage, data).then(res => res.data)
+// export const fetchJobByIdApi = async (data) => await apiClient.postAPICall(apiRoutes.fetchJobById, data).then(res => res.data);
+// export const fetchCompanyProfileBasedonJobId = async (data) => await apiClient.postAPICall(apiRoutes.fetchCompanyProfileBasedonJobId, data).then(res => res.data);
+// export const updateJobStatusByJobId = async (data) => await apiClient.postAPICall(apiRoutes.updateJobStatusByJobId, data).then(res => res.data);
+// export const fetchJobsBasedOnApplicationStatusApi = async (data) => await apiClient.postAPICall(apiRoutes.fetchJobsBasedOnApplicationStatus, data).then(res => res.data);
+// export const getSASUrltoAccessPdf = async (data) => await apiClient.postAPICall(apiRoutes.getSASUrltoAccessPdf, data).then(res => res.data);
+// export const fetchCoversationList = async (data) => await apiClient.postAPICall(apiRoutes.fetchCoversationList, data).then(res => res.data);
+// export const fetchMessagesNJobDetailsFrmChatList = async (data) => await apiClient.postAPICall(apiRoutes.fetchMessagesNJobDetailsFrmChatList, data).then(res => res.data);
+// export const googleSignInforWeb = async (data) => await apiClient.postAPICall(apiRoutes.googleSignInforWeb, data).then(res => res.data);
+// export const searchPostedJobsApi = async (data) => await apiClient.postAPICall(apiRoutes.searchPostedJobs, data).then(res => res.data);
+// export const employeeProfileDownload = async (data) => await apiClient.postAPICall(apiRoutes.employeeProfileDownload, data).then(res => res.data);
+// export const otpForNormalUserResetPassword = async (data) => await apiClient.postAPICall(apiRoutes.otpForNormalUserResetPassword, data).then(res => res.data);
+// export const fetchJobApplicationStatusByPassportIdApi = async (data) => await apiClient.postAPICall(apiRoutes.fetchJobApplicationStatusByPassportId, data).then(res => res.data);
