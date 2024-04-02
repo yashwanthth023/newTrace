@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom/cjs/react-router-dom';
 import { HorizontalFormStyleWrap } from '../style/formStyle';
 import { BasicFormWrapper } from '../style/wrapperStyle';
 import { Cards } from '../../cards/frame/cards-frame';
+// import TextArea from 'antd/lib/input/TextArea';
+
+const { TextArea } = Input;
 
 const { Option } = Select;
 function Manufacture({ title }) {
@@ -37,7 +40,7 @@ function Manufacture({ title }) {
                         </Row>
                         <Row align="middle">
                             <Col md={6} xs={24}>
-                                <label htmlFor="input-date">Vender</label>
+                                <label htmlFor="input-date">Vendor</label>
                             </Col>
                             <Col md={18} xs={24}>
                                 {/* <Form.Item name="input-date"> */}
@@ -48,6 +51,17 @@ function Manufacture({ title }) {
                                     </Select>
                                 </Form.Item>
                                 {/* </Form.Item> */}
+                            </Col>
+                        </Row>
+                        <Row align="middle">
+                            <Col md={6} xs={24}>
+                                <label htmlFor="rfqDocument">Delivery Note</label>
+                            </Col>
+                            <Col md={18} xs={24}>
+                                <Form.Item name="note">
+                                                <TextArea rows={3} id='note' name='note' />
+                                </Form.Item>
+                               
                             </Col>
                         </Row>
                         <Row align="middle">

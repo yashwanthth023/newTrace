@@ -1,24 +1,65 @@
-import React from 'react';
-import { Row, Col, Form, Input } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Row, Col, Form, Input, Upload } from 'antd';
+import { Link } from 'react-router-dom';
+import moment from 'moment';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper } from './style/wrapperStyle';
 import DateForm from './components/dateForm';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
-// import { fetchPrototypeDetailsAPI } from '../../api/registerApi';
-// import { Checkbox } from '../checkbox/checkbox';
+import { getVersionByIdAPI, updatePrototypeDetailsAPI, updateVersionByIdAPI } from '../../api/api';
+// import { SessionStorage } from '../../util/SessionStorage';
+// import { success } from '../../Shared';
+
 const { TextArea } = Input;
 
 function General() {
+    const [formDetails, setFormDetails] = useState({})
     const [form1] = Form.useForm();
     const [form2] = Form.useForm();
 
-    const handlePrototypeData = (data) => {
-        console.log(data)
+    const fetchData = async () => {
+        const response = await getVersionByIdAPI({ id: 'ab5fb012-5796-4774-a184-4add002311fa' });
+        console.log(response)
+        setFormDetails(response);
     }
-    const handleVersionData = (data) => {
-        console.log(data)
+
+    useEffect(() => {
+        fetchData();
+    }, [])
+
+    useEffect(() => {
+        if (Object.keys(formDetails).length !== 0) {
+            form1.setFieldsValue({
+                prototypeName: formDetails.prototypeName,
+                description: formDetails.prototypeDescription,
+                remarks: formDetails.prototypeRemarks ? formDetails.prototypeRemarks : undefined,
+            });
+            form2.setFieldsValue({
+                versionName: formDetails.versionName,
+                description: formDetails.description ? formDetails.description : undefined,
+                remarks: formDetails.remarks ? formDetails.remarks : undefined,
+                projectedDesignCompletionDate: formDetails.projectedDesignCompletionDate ? moment(formDetails.projectedDesignCompletionDate) : undefined,
+                projectedAssemblyCompletionDate: formDetails.projectedAssemblyCompletionDate ? moment(formDetails.projectedAssemblyCompletionDate) : undefined,
+                projectedTestCompletionDate: formDetails.projectedTestCompletionDate ? moment(formDetails.projectedTestCompletionDate) : undefined,
+                actualDesignCompletionDate: formDetails.actualDesignCompletionDate ? moment(formDetails.actualDesignCompletionDate) : undefined,
+                actualAssemblyCompletionDate: formDetails.actualAssemblyCompletionDate ? moment(formDetails.actualAssemblyCompletionDate) : undefined,
+                actualTestCompletionDate: formDetails.actualTestCompletionDate ? moment(formDetails.actualTestCompletionDate) : undefined,
+            })
+        }
+    }, [formDetails, form1, form2]);
+
+    const handlePrototypeData = async () => {
+        const prototypeData = await form1.validateFields()
+        const response = await updatePrototypeDetailsAPI({ id: '7e897fa8-cdb5-4648-95fc-c9b969994964', ...prototypeData });
+        console.log("updatedValues", response)
     }
+    const handleVersionData = async () => {
+        const versionData = await form2.validateFields();
+        const response = await updateVersionByIdAPI({ id: 'ab5fb012-5796-4774-a184-4add002311fa', ...versionData });
+        console.log(response)
+    }
+
     return (
         <BasicFormWrapper>
             <HorizontalFormStyleWrap className="sDash_input-form">
@@ -28,10 +69,10 @@ function General() {
                             <Row align="middle" gutter={25}>
                                 <Col md={6} xs={24}>
                                     {/* eslint-disable-next-line */}
-                                    <label htmlFor="name">Name</label>
+                                    <label htmlFor="prototypeName">Name</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                    <Form.Item name="name" rules={[
+                                    <Form.Item name="prototypeName" rules={[
                                         { required: true, message: 'Prototype name required!' },
                                         { whitespace: true, message: 'Prototype name cannot be empty space!' },
                                         { max: 100, message: 'Prototype name cannot exceed 50 characters!' }
@@ -83,10 +124,10 @@ function General() {
                             <Row align="middle" gutter={25} >
                                 <Col md={6} xs={24}>
                                     {/* eslint-disable-next-line */}
-                                    <label htmlFor="name">Name</label>
+                                    <label htmlFor="versionName">Name</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                    <Form.Item name="name" rules={[
+                                    <Form.Item name="versionName" rules={[
                                         { required: true, message: 'Version name required!' },
                                         { whitespace: true, message: 'Version name cannot be empty space!' },
                                         { max: 100, message: 'Version name cannot exceed 50 characters!' }
@@ -117,12 +158,28 @@ function General() {
                                     </Form.Item>
                                 </Col>
                             </Row>
+                            <Row align="middle" gutter={25} >
+                                <Col md={6} xs={24}>
+                                    {/* eslint-disable-next-line */}
+                                    <label htmlFor="file">Design Documents</label>
+                                </Col>
+                                <Col md={18} xs={24}>
+                                    <Form.Item name="file">
+                                        <Upload className="sDash_upload-basic">
+                                            <span className="sDash_upload-text">Select File</span>
+                                            <Link to="#" className="sDash_upload-browse">
+                                                Browse
+                                            </Link>
+                                        </Upload>
+                                    </Form.Item>
+                                </Col>
+                            </Row>
                             <Row gutter={25}>
                                 <Col lg={12} xs={24}>
-                                    <DateForm title="Projected Date" data={["projectedDesignCompletionDate", "projectedAssemblyCompletionDate", "projectedDTestCompletionDate"]} />
+                                    <DateForm title="Projected Date" data={["projectedDesignCompletionDate", "projectedAssemblyCompletionDate", "projectedTestCompletionDate"]} />
                                 </Col>
                                 <Col lg={12} xs={24}>
-                                    <DateForm title="Actual Date" data={["actualDesignCompletionDate", "actualAssemblyCompletionDate", "actualDTestCompletionDate"]} />
+                                    <DateForm title="Actual Date" data={["actualDesignCompletionDate", "actualAssemblyCompletionDate", "actualTestCompletionDate"]} />
                                 </Col>
                             </Row>
                             <Row align="middle">
@@ -136,8 +193,6 @@ function General() {
                                 </Col>
                             </Row>
                         </Form>
-
-
                     </Cards>
                 </Row>
             </HorizontalFormStyleWrap>

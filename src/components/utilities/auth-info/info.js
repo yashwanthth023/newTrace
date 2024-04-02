@@ -33,8 +33,8 @@ function AuthInfo() {
         <figure className="user-dropdwon__info">
           <img src={require('../../../static/img/avatar/chat-auth.png')} alt="" />
           <figcaption>
-            <Heading as="h5">Abdullah Bin Talha</Heading>
-            <p>UI Expert</p>
+            <Heading as="h5">Project Manager</Heading>
+            {/* <p>UI Expert</p> */}
           </figcaption>
         </figure>
         <ul className="user-dropdwon__links">
@@ -48,16 +48,16 @@ function AuthInfo() {
               <FeatherIcon icon="settings" /> Settings
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="#">
               <FeatherIcon icon="dollar-sign" /> Billing
             </Link>
-          </li>
-          <li>
+          </li> */}
+          {/* <li>
             <Link to="#">
               <FeatherIcon icon="users" /> Activity
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link to="#">
               <FeatherIcon icon="bell" /> Help

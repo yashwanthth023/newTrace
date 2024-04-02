@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Form, Input, DatePicker } from 'antd';
 import propTypes from 'prop-types';
+import moment from 'moment';
 import { Button } from '../../components/buttons/buttons';
 import { Modal } from '../../components/modals/antd-modals';
 import { BasicFormWrapper } from '../styled';
 
 // const { Option } = Select;
 const dateFormat = 'MM/DD/YYYY';
-function CreateProject({ visible, onCancel, onSubmit, setProtoTypeDesc, setProtoTypeName }) { 
+function CreateProject({ visible, onCancel, setProtoTypeDesc, setProtoTypeName }) { 
 
   const [form] = Form.useForm();
 
   const [state, setState] = useState({
-    visible,
+    visible,  
     modalType: 'primary',
     checked: [],
   });
@@ -29,9 +30,30 @@ function CreateProject({ visible, onCancel, onSubmit, setProtoTypeDesc, setProto
     };
   }, [visible]);
 
-  const handleOk = () => {
-    onSubmit();
+  const handleOk = async() => {
+    try {
+      // Validate form fields
+      // console.log(form.getFieldValue('propertyName'));
+      // const values = await form.current.validateFields();
+      // console.log('Form Values:', values);
+      const values = await form.validateFields();
+      console.log('Form Values:', values);
+    
+    } catch (errorInfo) {
+      console.log('Validation Failed:', errorInfo);
+    }
   };
+
+  // const onReset = () => {
+  //   // Reset the form fields to initialValues
+  //   formRef.current.resetFields();
+  // };
+
+  // const setRandomName = () => {
+  //   // Set the value of a specific field
+  //   formRef.current.setFieldsValue({ username: `RandomUser${Math.floor(Math.random() * 100)}` });
+  // };
+
 
   const handleCancel = () => {
     console.log("cancel");
@@ -74,68 +96,91 @@ function CreateProject({ visible, onCancel, onSubmit, setProtoTypeDesc, setProto
       ]}
       onCancel={handleCancel}
     >
-    
+
     <div className="project-modal">
         <BasicFormWrapper>
           <Form form={form} id="createProject" name="createProject" onFinish={handleOk} > { /* onFinish={handleOk} */ }
-            <Form.Item label="Prototype Name" name="propertyName" rules={[
+            <Form.Item label="Prototype Name" name="propertyName" 
+            rules={[
               { required: true, message: 'Prototype name required!' },
               { whitespace: true, message: 'Prototype name cannot be empty space!' },
               { max: 100, message: 'Prototype name cannot exceed 50 characters!' }
-              ]}>
+              ]}
+              >
               <Input placeholder="Prototype Name" onChange={(ele) => setProtoTypeName(ele.target.value)} /> 
             </Form.Item>
-            {/* <Form.Item name="category" initialValue="" label="">
-              <Select style={{ width: '100%' }}>
-                <Option value="">Project Category</Option>
-                <Option value="one">Project One</Option>
-                <Option value="two">Project Two</Option>
-              </Select>
-            </Form.Item> */}
-            <Form.Item name="description" label="Description">
+            <Form.Item name="description" label="Description"
+            rules={[
+              {
+                required: true,
+                message: 'Please input the description!',
+              },
+            ]}
+            >
               <Input.TextArea rows={4} placeholder="Description" onChange={(ele) => setProtoTypeDesc(ele.target.value)}/>
+           
             </Form.Item>
-            {/* <Form.Item name="Remarks" label="Remarks" >
-              <Input placeholder="Remarks" onChange={(ele) => setProtoTypeRemarks(ele.target.value)} />
-            </Form.Item> */}
-            {/* <Form.Item name="pricacy" initialValue={['team']} label="Project Privacy">
-              <CheckboxGroup options={options} />
-            </Form.Item> */}
-            {/* <Form.Item name="members" label="Project Members">
-              <Input placeholder="Search Members" />
-            </Form.Item> */}
-            {/* <div className="projects-members mb-30">
-              <img style={{ width: '35px' }} src={require(`../../../static/img/users/1.png`)} alt="" />
-              <img style={{ width: '35px' }} src={require(`../../../static/img/users/2.png`)} alt="" />
-              <img style={{ width: '35px' }} src={require(`../../../static/img/users/3.png`)} alt="" />
-              <img style={{ width: '35px' }} src={require(`../../../static/img/users/4.png`)} alt="" />
-              <img style={{ width: '35px' }} src={require(`../../../static/img/users/5.png`)} alt="" />
-            </div> */}
-            {/* <Row gutter={15}>
-              <Col md={12}>
-                <Form.Item name="start" label="Start Date">
-                  <DatePicker placeholder="mm/dd/yyyy" format={dateFormat} />
-                </Form.Item>
-              </Col>
-              <Col md={12}>
-                <Form.Item name="end" label="End Date">
-                  <DatePicker placeholder="mm/dd/yyyy" format={dateFormat} />
-                </Form.Item>
-              </Col>
-            </Row> */}
+            <Form.Item >
+              <span>Version ID : V1</span>
+              </Form.Item>
                <Row style={{ display: "flex", flexDirection: 'column' }}>
               <Col md={12} xl={12}>
-                <Form.Item name="Design" label="Projected Design Completion Date">
+                <Form.Item name="Design" label="Projected Design Completion Date"
+                 rules={[
+                  {
+                    required: true,
+                    message: 'Please select the projected design completion date!',
+                  },
+                  () => ({
+                    validator(_, value) {
+                      if (!value || value.isAfter(moment())) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(new Error('Date must be in the future!'));
+                    },
+                  }),
+                ]}
+                >
                   <DatePicker placeholder="mm/dd/yyyy" format={dateFormat} />
                 </Form.Item>
               </Col>
               <Col md={12} xl={12}>
-                <Form.Item name="Assembly" label="Projected Assembly Completion Date">
+                <Form.Item name="Assembly" label="Projected Assembly Completion Date"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please select the projected assembly completion date!',
+                  },
+                  () => ({
+                    validator(_, value) {
+                      if (!value || value.isAfter(moment())) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(new Error('Date must be in the future!'));
+                    },
+                  }),
+                ]}
+                >
                   <DatePicker placeholder="mm/dd/yyyy" format={dateFormat} />
                 </Form.Item>
               </Col>
               <Col md={12} xl={12}>
-                <Form.Item name="Testing" label="Projected Testing Completion Date">
+                <Form.Item name="Testing" label="Projected Testing Completion Date"
+                 rules={[
+                  {
+                    required: true,
+                    message: 'Please select the projected testing completion date!',
+                  },
+                  () => ({
+                    validator(_, value) {
+                      if (!value || value.isAfter(moment())) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(new Error('Date must be in the future!'));
+                    },
+                  }),
+                ]}
+                >
                   <DatePicker placeholder="mm/dd/yyyy" format={dateFormat} />
                 </Form.Item>
               </Col>
@@ -143,7 +188,6 @@ function CreateProject({ visible, onCancel, onSubmit, setProtoTypeDesc, setProto
           </Form>
         </BasicFormWrapper>
       </div>
-
     </Modal>
   );
 }
@@ -151,7 +195,7 @@ function CreateProject({ visible, onCancel, onSubmit, setProtoTypeDesc, setProto
 CreateProject.propTypes = {
   visible: propTypes.bool.isRequired,
   onCancel: propTypes.func.isRequired,
-  onSubmit: propTypes.func.isRequired,
+  // onSubmit: propTypes.func.isRequired,
   setProtoTypeDesc: propTypes.func.isRequired,
   setProtoTypeName: propTypes.func.isRequired 
 };
