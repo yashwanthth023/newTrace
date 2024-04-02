@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
-import Grid from './grid';
+import Grid from './Grid';
 import CreateProject from '../ProjectModal/CreateProject';
 
 import { PageHeader } from '../../components/page-headers/page-headers';
@@ -178,7 +178,7 @@ const Dashboard = () => {
       "content": ProtoTypeDesc,
       "category": "Web Design",
       "rate": 5,
-      "popular": 12,
+    "popular": 12,
       "percentage": 3,
     });
 
