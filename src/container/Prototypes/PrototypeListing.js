@@ -1,9 +1,9 @@
-import React, { lazy, useState, Suspense } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Row, Col, Spin, Select } from 'antd';
-import { Switch, NavLink, Route, Link } from 'react-router-dom';
-import FeatherIcon from 'feather-icons-react';
-import propTypes from 'prop-types';
+// import React, { useState, Suspense } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { Row, Col, Spin, Select } from 'antd';
+// import { Switch, NavLink, Route, Link } from 'react-router-dom';
+// import FeatherIcon from 'feather-icons-react';
+// import propTypes from 'prop-types';
 // import CreateProject from './overview/CreateProject';
 // import { ProjectHeader, ProjectSorting } from './style';
 // import { AutoComplete } from '../../components/autoComplete/autoComplete';
@@ -15,54 +15,55 @@ import propTypes from 'prop-types';
 // const Grid = lazy(() => import('./overview/Grid'));
 // const List = lazy(() => import('./overview/List'));
 
-function Project({ match }) {
-  const dispatch = useDispatch();
-  const searchData = useSelector((state) => state.headerSearchData);
-  const { path } = match;
-  const [state, setState] = useState({
-    notData: searchData,
-    visible: false,
-    categoryActive: 'all',
-  });
+// function Project({ match }) {
+  function Project() {
+  // const dispatch = useDispatch();
+  // const searchData = useSelector((state) => state.headerSearchData);
+  // const { path } = match;
+  // const [state, setState] = useState({
+  //   notData: searchData,
+  //   visible: false,
+  //   categoryActive: 'all',
+  // });
 
-  const { notData, visible } = state;
-  const handleSearch = (searchText) => {
-    const data = searchData.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
-    setState({
-      ...state,
-      notData: data,
-    });
-  };
+  // const { notData, visible } = state;
+  // const handleSearch = (searchText) => {
+  //   const data = searchData.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
+  //   setState({
+  //     ...state,
+  //     notData: data,
+  //   });
+  // };
 
-  const onSorting = (selectedItems) => {
-    dispatch(sortingProjectByCategory(selectedItems));
-  };
+  // const onSorting = (selectedItems) => {
+  //   dispatch(sortingProjectByCategory(selectedItems));
+  // };
 
-  const onChangeCategory = (value) => {
-    setState({
-      ...state,
-      categoryActive: value,
-    });
-    dispatch(filterProjectByStatus(value));
-  };
+  // const onChangeCategory = (value) => {
+  //   setState({
+  //     ...state,
+  //     categoryActive: value,
+  //   });
+  //   dispatch(filterProjectByStatus(value));
+  // };
 
-  const showModal = () => {
-    setState({
-      ...state,
-      visible: true,
-    });
-  };
+  // const showModal = () => {
+  //   setState({
+  //     ...state,
+  //     visible: true,
+  //   });
+  // };
 
-  const onCancel = () => {
-    setState({
-      ...state,
-      visible: false,
-    });
-  };
+  // const onCancel = () => {
+  //   setState({
+  //     ...state,
+  //     visible: false,
+  //   });
+  // };
 
   return (
     <>
-      <ProjectHeader>
+      {/* <ProjectHeader>
         <PageHeader
           ghost
           title="Projects"
@@ -73,8 +74,8 @@ function Project({ match }) {
             </Button>,
           ]}
         />
-      </ProjectHeader>
-      <Main>
+      </ProjectHeader> */}
+      {/* <Main>
         <Row gutter={25}>
           <Col xs={24}>
             <ProjectSorting>
@@ -153,13 +154,13 @@ function Project({ match }) {
           </Col>
         </Row>
         <CreateProject onCancel={onCancel} visible={visible} />
-      </Main>
+      </Main> */}
     </>
   );
 }
 
 Project.propTypes = {
-  match: propTypes.object,
+  // match: propTypes.object,
 };
 
 export default Project;
