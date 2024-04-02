@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
-import { Row, Col, Form, Input, Table, Upload, Select } from 'antd';
+import { Row, Col, Form, Input, Table, Upload, Select, DatePicker } from 'antd';
 import propTypes from 'prop-types';
 // import { HorizontalFormStyleWrap } from '../../components/tabs/style/formStyle';
 // import { BasicFormWrapper } from '../styled';
@@ -66,7 +66,7 @@ const AddComponent = ({ setIsAddPage }) => {
         //     key: 'address',
         // },
         {
-            title: '',
+            title: 'RFQ Document',
             dataIndex: 'upload',
             key: 'upload',
             //   render: (text, record) => (
@@ -92,7 +92,7 @@ const AddComponent = ({ setIsAddPage }) => {
 
         <Cards headless>
 
-            <Cards title='Add Component Procurement' headStyle={{ textAlign: 'center', fontWeight: 'bold' }}>
+                    <Cards title='Add Component Details' headStyle={{ textAlign: 'center', fontWeight: 'bold' }}>
 
                 <Form>
                     <Row align="middle" gutter={25}>
@@ -126,42 +126,44 @@ const AddComponent = ({ setIsAddPage }) => {
                                 </Col>
                             </Row>
 
-                        </Col>
-                    </Row>
-                    {/* <br /> */}
-                    <Row align="middle" gutter={25}>
-                        <Col lg={12} sm={24}>
-                            <Row align="middle" gutter={25}>
-                                <Col md={6} xs={24} >
-                                    {/* eslint-disable-next-line */}
-                                    <label id='component' htmlFor='component'>Component Description</label>
                                 </Col>
-                                <Col md={18} xs={24}>
-                                    <Form.Item name="component">
-                                        <TextArea rows={3} id='component' name='component' />
-                                    </Form.Item>
-                                </Col>
-                            </Row>
-                        </Col>
-                        <Col lg={12} sm={24}>
-                            <Row align="middle" gutter={25}>
-                                <Col md={6} xs={24} >
-                                    {/* eslint-disable-next-line */}
-                                    <label id='note' htmlFor='note'>Delivery Note</label>
-                                </Col>
-                                <Col md={18} xs={24}>
-                                    <Form.Item name="note">
-                                        <TextArea rows={3} id='note' name='note' />
-                                    </Form.Item>
-                                </Col>
-                            </Row>
-                        </Col>
 
-                    </Row>
-                </Form>
-            </Cards>
-            <Row gutter={25}>
-                <Col md={12} sm={24} xs={24} className="centered-column" >
+                            </Row>
+                            {/* <br /> */}
+                            <Row align="middle" gutter={25}>
+                                <Col lg={12} sm={24}>
+                                    <Row align="middle" gutter={25}>
+                                        <Col md={6} xs={24} >
+                                            {/* eslint-disable-next-line */}
+                                            <label id='component' htmlFor='component'>Component Description</label>
+                                        </Col>
+                                        <Col md={18} xs={24}>
+                                            <Form.Item name="component">
+                                                <TextArea rows={3} id='component' name='component' />
+                                            </Form.Item>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                               <Col lg={12} sm={24}>
+                                    <Row align="middle" gutter={25}>
+                                        <Col md={6} xs={24} >
+                                            {/* eslint-disable-next-line */}
+                                            <label id='name' htmlFor='name'>Target date</label>
+                                        </Col>
+                                        <Col md={18} xs={24}>
+                                         <Form.Item name="design">
+                                            <DatePicker />
+                                        </Form.Item>
+                                        </Col>
+                                    </Row>
+                                </Col>
+
+                            </Row>
+                            
+                        </Form>
+                    </Cards>
+                    <Row gutter={25}>
+                        <Col md={12} sm={24} xs={24} className="centered-column" >
 
                     <ManufactureDateForm title='Projected Date' />
                 </Col>

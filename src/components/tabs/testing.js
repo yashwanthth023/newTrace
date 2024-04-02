@@ -55,6 +55,16 @@ function Testing() {
             title: 'Created By',
             dataIndex: 'created_by',
             key: 'created_by',
+        },
+        {
+            title: 'Modified On',
+            dataIndex: 'modified_on',
+            key: 'modified_on',
+        },
+        {
+            title: 'Modified By',
+            dataIndex: 'modified_by',
+            key: 'modified_by',
         }
     ];
     return (
