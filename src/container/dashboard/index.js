@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
-import Grid from './grid';
+import Grid from './Grid';
 import CreateProject from '../ProjectModal/CreateProject';
 
 import { PageHeader } from '../../components/page-headers/page-headers';
@@ -8,7 +8,7 @@ import { PageHeader } from '../../components/page-headers/page-headers';
 import { Button } from '../../components/buttons/buttons';
 import { Main } from '../styled';
 import { AutoComplete } from '../../components/autoComplete/autoComplete';
-import { getPrototypes } from '../../api/registerApi';
+import { fetchPrototypeDetailsAPI } from '../../api/api';
 
 // import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
 // import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
@@ -21,18 +21,16 @@ const Dashboard = () => {
   // const [ProtoTypeRemarks, setProtoTypeRemarks] = useState('');
   const [visible, setVisible] = useState(false);
 
-  const[Prototype , setPrototype]= useState();
+  const [Prototype, setPrototype] = useState();
 
-  const fetchPtotypes = async()=>
-  {
-    const result = await getPrototypes();
+  const fetchPtotypes = async () => {
+    const result = await fetchPrototypeDetailsAPI();
     setPrototype(result);
-    console.log("----------------",Prototype);
+    console.log("----------------", Prototype);
   }
-  useEffect(()=>
-  {
-       fetchPtotypes();
-  },[])
+  useEffect(() => {
+    fetchPtotypes();
+  }, [])
 
 
   const projects = [
