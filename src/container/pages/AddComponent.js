@@ -26,7 +26,7 @@ const AddComponent = ({ setIsAddPage }) => {
             age: 40,
             address: 'link',
             upload: <Upload beforeUpload={() => false}>
-                <Button type="primary" size="small">
+                <Button type="primary" size="small2">
                     Upload
                 </Button>
             </Upload>
@@ -37,7 +37,7 @@ const AddComponent = ({ setIsAddPage }) => {
             age: 42,
             address: 'link',
             upload: <Upload beforeUpload={() => false}>
-                <Button type="primary" size="small">
+                <Button type="primary" size="small2">
                     Upload
                 </Button>
             </Upload>
@@ -100,7 +100,7 @@ const AddComponent = ({ setIsAddPage }) => {
                             <Row align="middle" gutter={25}>
                                 <Col md={6} xs={24} >
                                     {/* eslint-disable-next-line */}
-                                    <label id='name' htmlFor='name'>Name</label>
+                                    <label id='name' htmlFor='name'>Component Name</label>
                                 </Col>
                                 <Col md={18} xs={24}>
                                     <Form.Item name="name">
@@ -119,8 +119,8 @@ const AddComponent = ({ setIsAddPage }) => {
                                     <Form.Item name="status">
                                         <Select size="small" style={{ width: '100%' }} dropdownAlign='center' dropdownStyle={{ justifySelf: 'flex-start' }} >
                                             <Select.Option value='1'>PO Process</Select.Option>
-                                            <Select.Option value='2'>Proceed</Select.Option>
                                             <Select.Option value='3'>Yet to be delivered</Select.Option>
+                                            <Select.Option value='2'>Procured</Select.Option>
                                         </Select>
                                     </Form.Item>
                                 </Col>

@@ -17,24 +17,24 @@ function ComponentProcurement() {
             key: '1',
             name: 'dfd',
             createdon: '01-04-2024',
-            modifiedon:'03-04-2024',
+            modifiedon: '03-04-2024',
             status: 'link',
             button:
                 <div style={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
                     <div style={{ marginRight: 10 }}>
-                        <Link to='/addComponent'>
-                            <Button type="primary" size="small2">
-                                View
-                            </Button>
-                        </Link>
+                        {/* <Link to='/addComponent'> */}
+                        <Button type="primary" size="small2" onClick={() => setIsAddPage(true)}>
+                            View
+                        </Button>
+                        {/* </Link> */}
                     </div>
                     <div>
-                        <Link to='/addComponent'>
-                            <Button type="warning" size="small2">
-                                Edit
-                            </Button>
+                        {/* <Link to='/addComponent'> */}
+                        <Button type="warning" size="small2" onClick={() => setIsAddPage(true)}>
+                            Edit
+                        </Button>
 
-                        </Link>
+                        {/* </Link> */}
                     </div>
 
                 </div>
