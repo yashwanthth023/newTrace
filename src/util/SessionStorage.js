@@ -1,12 +1,12 @@
 export const SessionStorage = {
   setItem: (key, value) => {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      localStorage.setItem(key, value);
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      sessionStorage.setItem(key, value);
     }
   },
   getItem: (key) => {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      const value = localStorage.getItem(key);
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      const value = sessionStorage.getItem(key);
       if (value && value.startsWith("function")) {
         return value;
       }
@@ -15,13 +15,13 @@ export const SessionStorage = {
     return null;
   },
   removeItem: (key) => {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      localStorage.removeItem(key);
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      sessionStorage.removeItem(key);
     }
   },
   clearAll: () => {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      localStorage.clear();
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      sessionStorage.clear();
     }
   }
 };
