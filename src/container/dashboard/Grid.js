@@ -9,8 +9,8 @@ import { Cards } from '../../components/cards/frame/cards-frame';
 const GridCard = lazy(() => import('./GridCard'));
 
 function Grid({ projects }) {
-    console.log("-----------------------------------");
-    console.log(projects);
+    // console.log("-----------------------------------");
+    // console.log(projects);
 //   const project = useSelector(state => state.projects.data);
   const [state, setState] = useState({
     // projects: project,
