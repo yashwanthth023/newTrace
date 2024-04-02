@@ -73,7 +73,7 @@ function ComponentProcurement() {
             key: 'name',
         },
         {
-            title: 'Name',
+            title: 'Component Name',
             dataIndex: 'name',
             key: 'status',
         },
@@ -83,9 +83,19 @@ function ComponentProcurement() {
             key: 'createdon',
         },
         {
+            title: 'Created By',
+            dataIndex: 'createdby',
+            key: 'createdby',
+        },
+        {
             title: 'Modified On',
             dataIndex: 'modifiedon',
             key: 'modifiedon',
+        },
+        {
+            title: 'Modified By',
+            dataIndex: 'modifiedby',
+            key: 'modifiedby',
         },
         {
             title: 'Status',
