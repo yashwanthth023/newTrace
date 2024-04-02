@@ -6,3 +6,4 @@ export const fetchPrototypeDetailsAPI = async (data) => apiClient.postAPICall(ap
 export const updateVersionByIdAPI = async (data) => apiClient.postAPICall(apiRoutes.updateVersionById, data).then(res => res.data);
 export const updatePrototypeDetailsAPI = async (data) => apiClient.postAPICall(apiRoutes.updatePrototypeDetails, data).then(res => res.data);
 export const getVersionByIdAPI = async (data) => apiClient.postAPICall(apiRoutes.getVersionById, data).then(res => res.data);
+export const addVersionAPI = async (data) => apiClient.postAPICall(apiRoutes.addVersion, data).then(res => res.data);

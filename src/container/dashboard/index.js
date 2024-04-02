@@ -177,7 +177,7 @@ const Dashboard = () => {
       "content": ProtoTypeDesc,
       "category": "Web Design",
       "rate": 5,
-      "popular": 12,
+    "popular": 12,
       "percentage": 3,
     });
 
