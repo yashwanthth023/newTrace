@@ -5,7 +5,7 @@ import propTypes from 'prop-types';
 import { Button } from '../../components/buttons/buttons';
 import { Modal } from '../../components/modals/antd-modals';
 import { BasicFormWrapper } from '../styled';
-import { addVersionAPI } from '../../api/registerApi';
+import { addVersionAPI } from '../../api/api';
 
 const dateFormat = 'MM/DD/YYYY';
 

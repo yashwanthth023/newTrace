@@ -5,7 +5,7 @@ import moment from 'moment';
 import { Button } from '../../components/buttons/buttons';
 import { Modal } from '../../components/modals/antd-modals';
 import { BasicFormWrapper } from '../styled';
-import { addPrototypeMasterAPI } from '../../api/registerApi';
+import { addPrototypeMasterAPI } from '../../api/api';
 
 // const { Option } = Select;
 function CreateProject({ visible, onCancel, setProtoTypeDesc, setProtoTypeName }) { 
