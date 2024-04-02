@@ -11,9 +11,11 @@ const Url = {
 
 const apiRoutes = {
     addPrototypeMaster: "/addPrototypeMaster",
-    fetchPrototypeDetails: "/fetchPrototypeDetails"
-
-
+    fetchPrototypeDetails: "/fetchPrototypeDetails",
+    updateVersionById: "/updateVersionById",
+    getVersionById: "/getVersionById",
+    updatePrototypeDetails: "/updatePrototypeDetails",
+    addVersion: "/addVersion"
 }
 
 export { Url, apiRoutes };
