@@ -21,12 +21,14 @@ const Dashboard = () => {
   // const [ProtoTypeRemarks, setProtoTypeRemarks] = useState('');
   const [visible, setVisible] = useState(false);
 
-  const [Prototype, setPrototype] = useState();
-
-  const fetchPtotypes = async () => {
+  const[Prototype , setPrototype]= useState();
+ 
+  const fetchPrototypes = async()=>
+  {
+    console.log("calling222-------------------------------------------------------------");
     const result = await fetchPrototypeDetailsAPI();
     setPrototype(result);
-    console.log("----------------", Prototype);
+    console.log("----------------",Prototype);
   }
   useEffect(() => {
     fetchPtotypes();
@@ -224,7 +226,9 @@ const Dashboard = () => {
         ]}
       />
       <Main>
-        <Grid projects={notData} />
+        {
+Prototype && <Grid projects={Prototype} />
+        }
         <CreateProject onCancel={onCancel} onSubmit={onSubmit} visible={visible} setProtoTypeDesc={setProtoTypeDesc} setProtoTypeName={setProtoTypeName} />
         {/* <Row gutter={25}>
           <Col lg={24} xs={24}>

@@ -10,7 +10,7 @@ import { Button } from '../../components/buttons/buttons';
 import CreateVersion from '../ProjectModal/CreateVersion';
 
 function GridCard({ value }) {
-  const {  title, content } = value;
+  const {  prototypeName } = value;
 
   const [open, setOpen] = useState(false);
   const onCancel = () => {
@@ -37,7 +37,7 @@ function GridCard({ value }) {
         <div className="project-top">
           <div className="project-title">
             <h1>
-              {title}
+              {prototypeName}
               {/* <Tag className={status}>{status}</Tag> */}
             </h1>
             {/* <Dropdown
@@ -55,7 +55,7 @@ function GridCard({ value }) {
               </Link>
             </Dropdown> */}
           </div>
-          <p className="project-desc">{textRefactor(content, 13)}</p>
+          <p className="project-desc">{textRefactor(prototypeName , 13) }</p>
           <div className="project-timing">
             <div>
               <span>created on</span>
@@ -117,8 +117,7 @@ function GridCard({ value }) {
 
 GridCard.propTypes = {
   value: PropTypes.object,
-  title: PropTypes.any,
-  content: PropTypes.any,
+  prototypeName: PropTypes.any,
 };
 
 export default GridCard;
