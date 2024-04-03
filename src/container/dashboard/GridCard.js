@@ -9,8 +9,11 @@ import { textRefactor } from '../../components/utilities/utilities';
 import { Button } from '../../components/buttons/buttons';
 import CreateVersion from '../ProjectModal/CreateVersion';
 
+
 function GridCard({ value }) {
-  const {  prototypeName } = value;
+  const {  prototypeName ,description,versions} = value;
+  const descriptionText = description ? textRefactor(description, 13) : "";
+
 
   const [open, setOpen] = useState(false);
   const onCancel = () => {
@@ -20,16 +23,16 @@ function GridCard({ value }) {
     onCancel();
   }
 
-  const VersionData = [{ "id": "NTP01-V_09", className: "early", status: 'Design' },
-  { "id": "NTP01-V_08", className: "late", status: 'Manufacturing' },
-  { "id": "NTP01-V_07", className: "progress", status: 'Testing' },
-  { "id": "NTP01-V_06", className: "complete", status: 'ARCHEIVED' },
-  { "id": "NTP01-V_05", className: "complete", status: 'ARCHEIVED' },
-  { "id": "NTP01-V_04", className: "complete", status: 'ARCHEIVED' },
-  { "id": "NTP01-V_03", className: "complete", status: 'ARCHEIVED' },
-  { "id": "NTP01-V_02", className: "complete", status: 'ARCHEIVED' },
-  { "id": "NTP01-V_01", className: "complete", status: 'ARCHEIVED' },
-  ]
+  // const VersionData = [{ "id": "NTP01-V_09", className: "early", status: 'Design' },
+  // { "id": "NTP01-V_08", className: "late", status: 'Manufacturing' },
+  // { "id": "NTP01-V_07", className: "progress", status: 'Testing' },
+  // { "id": "NTP01-V_06", className: "complete", status: 'ARCHEIVED' },
+  // { "id": "NTP01-V_05", className: "complete", status: 'ARCHEIVED' },
+  // { "id": "NTP01-V_04", className: "complete", status: 'ARCHEIVED' },
+  // { "id": "NTP01-V_03", className: "complete", status: 'ARCHEIVED' },
+  // { "id": "NTP01-V_02", className: "complete", status: 'ARCHEIVED' },
+  // { "id": "NTP01-V_01", className: "complete", status: 'ARCHEIVED' },
+  // ]
 
   return (
     <ProjectCard>
@@ -55,7 +58,7 @@ function GridCard({ value }) {
               </Link>
             </Dropdown> */}
           </div>
-          <p className="project-desc">{textRefactor(prototypeName , 13) }</p>
+          <p className="project-desc">{descriptionText}</p>
           <div className="project-timing">
             <div>
               <span>created on</span>
@@ -95,11 +98,11 @@ function GridCard({ value }) {
             {/* <p>Assigned To</p> */}
             <ul style={{ flexDirection: 'column' }}>
               {
-                VersionData.map((ele)=>
+               versions &&  versions.map((ele)=>
                 <NavLink to="/versionDetails">
                   <li>
-                  <span>{ele.id}</span>
-                  <Tag style={{backgroundColor :'#fff'}} className= {ele.className}>{ele.status}</Tag>
+                  <span>{ele.versionName}</span>
+                  <Tag style={{backgroundColor :'#fff'}} className= {ele.versionName}>{ele.versionStatus}</Tag>
                   {/* <span className= {ele.className}>{ele.status}</span> */}
                   {/* <span style={{color : ele.status === "Design" ?'primary-color' : ele.status === "ARCHEIVED" ? 'success-color' : ele.status === "Testing" ?'danger-color' :'warning-color' }}>{ele.status}</span> */}
                 </li>
@@ -118,6 +121,7 @@ function GridCard({ value }) {
 GridCard.propTypes = {
   value: PropTypes.object,
   prototypeName: PropTypes.any,
+  description: PropTypes.any,
 };
 
 export default GridCard;

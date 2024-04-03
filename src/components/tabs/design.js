@@ -1,17 +1,56 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Row, Col, Form, Input, Select, Upload, message,Checkbox, DatePicker } from 'antd';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper } from './style/wrapperStyle';
 import ProtoTypeHeader from './components/protoTypeInfo';
 import ViewElectroChem from './components/viewElectrochem';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
+import { getVersionByIdAPI, updateVersionById } from '../../api/api';
+
 
 const { Option } = Select;
 // const { TextArea } = Input;
 function Design() {
+    const [formDetails, setFormDetails] = useState({})
+    const [form] = Form.useForm();
+
+    const fetchData = async () => {
+        const response = await getVersionByIdAPI({ id: '097d0488-237a-407b-8c3e-098ca8e06717' });
+        console.log(response)
+        setFormDetails(response);
+    }
+    useEffect(() => {
+        fetchData();
+    }, [])
+
+    useEffect(() => {
+        if (Object.keys(formDetails).length !== 0) {           
+            form.setFieldsValue({
+                electrodeDimension: formDetails.electrodeDimension,
+                electrodeShape: formDetails.electrodeShape,
+                electrodeArea: formDetails.electrodeArea,
+                electrodeGap: formDetails.electrodeGap,
+                electroChemAnode: formDetails.electroChemAnode,
+                electroChemCathode: formDetails.electroChemCathode,
+                nCell: formDetails.nCell,
+                markAsDesignComplete: formDetails.markAsDesignComplete,               
+                actualDateDesignComplete: formDetails.actualDateDesignComplete ? moment(formDetails.actualDateDesignComplete) : undefined,                
+            });
+            
+        }
+    }, [formDetails, form]);
+
+    const handlePrototypeData = async () => {
+        const prototypeData = await form.validateFields()
+        const response = await updateVersionById({ id: '7e897fa8-cdb5-4648-95fc-c9b969994964', ...prototypeData });
+        console.log("updatedValues", response)
+    }
+
+
     const [showModal, setShowModal] = useState(false);
     // const [selectedValue, setSelectedValue] = useState('');
     const props = {
@@ -34,44 +73,22 @@ function Design() {
     return (
         <BasicFormWrapper>
             <HorizontalFormStyleWrap className="sDash_input-form">
-                <Cards headless>
-                    {/* <Row className='top_form_card'>
-                        <div className='top_form_card_left'>
-                            <label className='top_form_card_left_key'>Prototype Name :</label>
-                            <label className='top_form_card_left_value'>NT098-PT</label>
-                        </div>
-                        <Form className='top_form_card_right'>
-                            <div className='top_form_card_right_version'>
-                                <label className='top_form_card_right_version_key'>Version ID :</label>
-                                <label className='top_form_card_right_version_value'>NT098-V1 </label>
-                            </div>
-                            <div className='top_form_card_right_dropdown'>
-                                <label className='top_form_card_right_dropdown_label'>Status :</label>
-                                <Select value={'1'} size="small" className='top_form_card_right_dropdown_select' >
-                                    <Option value="5">Planned</Option>
-                                    <Option value="1">Design</Option>
-                                    <Option value="2">Manufacturing</Option>
-                                    <Option value="3">Testing</Option>
-                                    <Option value="4">Archived</Option>
-                                </Select>
-                            </div>
-                        </Form>
-                    </Row> */}
+                <Cards headless>                 
                    
                    
 
                     <ProtoTypeHeader />
-                    <Form name="date-form" layout="horizontal">
+                    <Form form={form} name="date-form" layout="horizontal" onFinish={handlePrototypeData}>
                     <Row gutter={25}>
                         <Col xl={12} lg={12}> 
                         <Row align="middle" gutter={25}>                          
                                 <Col md={10} xs={8}>
                                     {/* <label htmlFor="moc"></label> */}
                                     {/* eslint-disable-next-line */}
-                                    <label>Mark as Design Complete:</label>
+                                    <label htmlFor="markAsDesignComplete">Mark as Design Complete:</label>
                                 </Col>
                                 <Col md={4} style={{marginTop : 20}}>
-                                    <Checkbox style={{height: 20, width: 20, fontSize: 30}}/>
+                                    <Checkbox name="markAsDesignComplete" style={{height: 20, width: 20, fontSize: 30}}/>
                                 </Col>                                     
                             </Row>                           
                                 
@@ -80,111 +97,46 @@ function Design() {
                         <Col  xl={12} lg={12}>
                             <Row align="middle">
                                 <Col md={6} xs={12} xl={12} lg={6} >
-                                    <label htmlFor="moc">Actual Date Design Complete:</label>
+                                    <label htmlFor="actualDateDesignComplete">Actual Date Design Complete:</label>
                                 </Col>
                                 <Col md={12} xs={24} align='right'>                                    
-                                <Form.Item name="assembly">
+                                <Form.Item name="actualDateDesignComplete">
                                     <DatePicker />
                                 </Form.Item>                                   
                                 </Col>
                             </Row>
                        </Col>
                     </Row>
-                </Form>
-                    
-                    {/* <br /> */}
-
-
-                    {/* <Form >
-                        <Row align="middle">
-                            <Col md={6} xs={24}>
-                                <label htmlFor="name">Name</label>
-                            </Col>
-                            <Col md={18} xs={24}>
-                                <Form.Item name="name">
-                                    <Input placeholder="Duran Clayton" />
-                                </Form.Item>
-                            </Col>
-                            <Col md={6} xs={24}>
-                                <label htmlFor="description">Description</label>
-                            </Col>
-                            <Col md={18} xs={24}>
-                                <Form.Item name="description">
-                                    <TextArea placeholder="write something." />
-                                </Form.Item>
-                            </Col>
-                            <Col md={6} xs={24}>
-                                <label htmlFor="remarks">Remarks</label>
-                            </Col>
-                            <Col md={18} xs={24}>
-                                <Form.Item name="remarks">
-                                    <TextArea placeholder="write remarks." />
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                    </Form> */}
-
-
-                    {/* <Row gutter={25}>
-                        <Col lg={12} xs={24}>
-                            <DateForm title="Projected Date" />
-                        </Col>
-                        <Col lg={12} xs={24}>
-                            <DateForm title="Actual Date" />
-                        </Col>
-                    </Row> */}
-                    <Form>
+                                   
+                   
+                   
                         <Cards title='Electrode Details' headStyle={{ textAlign: 'center', fontWeight: 'bold' }}>
-                            {/* <Row gutter={25}>
-                                {/* <Col xl={12} md={24}>
-                                    
-                                    {/* <Row align="middle">
-                                        <Col md={10} xs={24}>
-                                            <label htmlFor="electrode-symmetry">Symmetry</label>
-                                        </Col>
-                                        <Col md={14} xs={24}>
-                                            <Form.Item name="electrode-symmetry">
-                                                <Select size="small" style={{ width: "100%" }}>
-                                                    <Option value="1">Symmetrical</Option>
-                                                    <Option value="2">Asymmetrical</Option>
-                                                </Select>
-                                            </Form.Item>
-                                        </Col>
-                                    </Row> 
-                                </Col> 
-                                <Col xl={12} md={24}>
-                                    <Row align="middle">
-                                        <Col md={10} xs={24}>
-                                            <label htmlFor="moc">Moc</label>
-                                        </Col>
-                                        <Col md={14} xs={24}>
-                                            <Form.Item name="moc">
-                                                <Input placeholder="Electrode Moc" />
-                                            </Form.Item>
-                                        </Col>
-                                    </Row>
-                                </Col>
-                            </Row> */}
+                            
                             <Row gutter={25}>
                                 <Col xl={12} lg={12} md={24}>
                                     <Row align="middle">
                                         <Col md={10} xs={24}>
-                                            <label htmlFor="moc">Dimensions</label>
+                                            <label htmlFor="electrodeDimension">Dimensions</label>
                                         </Col>
                                         <Col md={14} xs={24}>
-                                            <Form.Item name="moc">
-                                                <Input placeholder="Electrode Structure" />
+                                                <Form.Item name="electrodeDimension" rules={[
+                                                { required: true, message: 'Dimension value required!' },
+                                                { whitespace: true, message: 'Dimension value cannot be empty space!' },
+                                                { max: 100, message: 'Dimension value cannot exceed 50 characters!' }
+                                            ]}>
+                                                <Input placeholder="Electrode Dimension" />
                                             </Form.Item>
+                                            
                                         </Col>
                                     </Row>
                                 </Col>
                                 <Col xl={12} lg={12} md={24}>
                                     <Row align="middle">
                                         <Col md={10} xs={24}>
-                                            <label htmlFor="moc">Shape</label>
+                                            <label htmlFor="electrodeShape">Shape</label>
                                         </Col>
                                         <Col md={14} xs={24}>
-                                            <Form.Item name="moc">
+                                            <Form.Item name="electrodeShape">
                                                 <Select size="small" style={{ width: "100%" }}>
                                                     <Option value="1">Rectangular</Option>
                                                     <Option value="2">Circular</Option>
@@ -201,42 +153,48 @@ function Design() {
                                 <Col xl={12} lg={12} md={24}>
                                     <Row align="middle">
                                         <Col md={10} xs={24}>
-                                            <label htmlFor="moc">Area</label>
+                                            <label htmlFor="electrodeArea">Area</label>
                                         </Col>
                                         <Col md={14} xs={24}>
-                                            <Form.Item name="moc">
-                                                <Input placeholder="5m.sq" />
-                                            </Form.Item>
+                                        <Form.Item name="electrodeArea" rules={[
+                                                { required: true, message: 'Area value required!' },
+                                                { whitespace: true, message: 'Area value cannot be empty space!' },
+                                                { max: 100, message: 'Area value cannot exceed 50 characters!' }
+                                            ]}>
+                                                <Input placeholder="Electrode Area" />
+                                            </Form.Item>                                           
                                         </Col>
                                     </Row>
                                 </Col>
                                 <Col xl={12} lg={12} md={24}>
                                     <Row align="middle">
                                         <Col md={10} xs={24}>
-                                            <label htmlFor="moc">Gap</label>
+                                            <label htmlFor="electrodeGap">Gap</label>
                                         </Col>
                                         <Col md={14} xs={24}>
-                                            <Form.Item name="moc">
-                                                <Input placeholder="5cm" />
+                                        <Form.Item name="electrodeGap" rules={[
+                                                { required: true, message: 'Gap value required!' },
+                                                { whitespace: true, message: 'Gap value cannot be empty space!' },
+                                                { max: 100, message: 'Gap value cannot exceed 50 characters!' }
+                                            ]}>
+                                                <Input placeholder="Electrode Gap" />
                                             </Form.Item>
+                                           
                                         </Col>
                                     </Row>
                                 </Col>
                             </Row>
 
-                        </Cards>
-                    </Form>
-
-                    <Form name="input-form" layout="horizontal">
+                        </Cards>                   
 
                         <Row gutter={25}>
                             <Col xl={12} lg={12} md={24}>
                                 <Row align="middle">
                                     <Col md={10} xs={24}>
-                                        <label htmlFor="anode">EC Anode Details</label>
+                                        <label htmlFor="electroChemAnode">EC Anode Details</label>
                                     </Col>
                                     <Col md={14} xs={24}>
-                                        <Form.Item name="anode">
+                                        <Form.Item name="electroChemAnode">
                                             <Select size="small" style={{ width: "100%" }} >
                                                 <Option value="1" key="1">EC 1<div style={{ textAlign: 'right' }}>
                                                     <Button size="small" onClick={() => setShowModal(true)}>
@@ -256,22 +214,15 @@ function Design() {
                             <Col xl={12} lg={12} md={24}>
                                 <Row align="middle">
                                     <Col md={10} xs={24}>
-                                        <label htmlFor="cathode">EC Cathode Details</label>
+                                        <label htmlFor="electroChemCathode">EC Cathode Details</label>
                                     </Col>
                                     <Col md={14} xs={24}>
-                                        <Form.Item name="cathode">
+                                        <Form.Item name="electroChemCathode">
                                             <Select
                                                 size="small"
                                                 style={{ width: "100%" }}
                                                 labelInValue
-                                            // onChange={(value) => {
-                                            //     setSelectedValue(value);
-                                            //     console.log(selectedValue)
-                                            //     if (value) {
-                                            //         setShowModal(true);
-                                            //     }
-                                            // }}
-                                            // value={selectedValue}
+                                           
                                             >
                                                 <Option value="1" key="1">EC 1<div style={{ textAlign: 'right' }}>
                                                     <Button size="small" onClick={() => setShowModal(true)}>
@@ -294,12 +245,16 @@ function Design() {
                             <Col xl={12} lg={12} md={24}>
                                 <Row align="middle">
                                     <Col md={10} xs={24}>
-                                        <label htmlFor="moc">Number of Cells</label>
+                                        <label htmlFor="nCell">Number of Cells</label>
                                     </Col>
                                     <Col md={14} xs={24}>
-                                        <Form.Item name="moc">
-                                            <Input placeholder="10" />
-                                        </Form.Item>
+                                    <Form.Item name="nCell" rules={[
+                                                { required: true, message: 'nCell value required!' },
+                                                { whitespace: true, message: 'nCell value cannot be empty space!' },
+                                                { max: 100, message: 'nCell value cannot exceed 50 characters!' }
+                                            ]}>
+                                                <Input placeholder="nCell" />
+                                            </Form.Item>
                                     </Col>
                                 </Row>
                             </Col>
