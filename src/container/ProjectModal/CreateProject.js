@@ -38,11 +38,20 @@ function CreateProject({ visible, onCancel, setProtoTypeDesc, setProtoTypeName }
       const values = await form.validateFields();
       console.log('Form Values:', values);
 
-      const result = addPrototypeMasterAPI(values);
-      console.log('result ===', result);
-      form.current.resetFields();
-      onCancel();
-    
+      const result = await addPrototypeMasterAPI(values);
+      if(result)
+      {
+        console.log('result ===', result);
+        form.resetFields();
+        onCancel();
+        // form.setFields([
+        //   {
+        //     name: 'prototypeName',
+        //     errors: ['Prototype name already exists!'],
+        //   },
+        // ]);
+      }
+
 
     } catch (errorInfo) {
       console.log('Validation Failed:', errorInfo);

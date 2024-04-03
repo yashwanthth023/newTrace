@@ -36,9 +36,11 @@ function CreateVersion({ visible, onCancel }) {
       const values = await form.validateFields();
     
       const response = await addVersionAPI(values);
-      console.log("-----",response);
-      form.current.resetFields();
-      onCancel();
+      if(response)
+      {
+        form.resetFields();
+        onCancel();
+      }
     } catch (errorInfo) {
       console.log('Validation Failed:', errorInfo);
     }
