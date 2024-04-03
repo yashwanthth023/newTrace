@@ -111,6 +111,14 @@ export const fileUpload = async (url, file) => {
     }
 }
 
+export const ISOFormat =(date)=>
+{
+    const Isodate = new Date(date);
+
+    // Convert the date to ISO 8601 format
+      return Isodate.toISOString();
+}
+
 
 
 // export { ConvertToUtc, fortmatData, getCurrentDateTime, GetDate, GetDateYYYY_MM_DD, GetTime, GetTZDate, hasNoText, hasText, isEmptyArray, isEmptyObject, isNullOrEmpty, isPastDateTime, parseArray, parseStr,    strToLowercase, strToUppercase, sortArrayOfObjects }

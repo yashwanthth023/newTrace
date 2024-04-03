@@ -5,9 +5,9 @@ import moment from 'moment';
 import { Button } from '../../components/buttons/buttons';
 import { Modal } from '../../components/modals/antd-modals';
 import { BasicFormWrapper } from '../styled';
+import { addPrototypeMasterAPI } from '../../api/api';
 
 // const { Option } = Select;
-const dateFormat = 'MM/DD/YYYY';
 function CreateProject({ visible, onCancel, setProtoTypeDesc, setProtoTypeName }) { 
 
   const [form] = Form.useForm();
@@ -35,20 +35,19 @@ function CreateProject({ visible, onCancel, setProtoTypeDesc, setProtoTypeName }
       // Validate form fields
       // console.log(form.getFieldValue('propertyName'));
       // const values = await form.current.validateFields();
-      // console.log('Form Values:', values);
       const values = await form.validateFields();
       console.log('Form Values:', values);
+
+      const result = addPrototypeMasterAPI(values);
+      console.log('result ===', result);
+      form.current.resetFields();
+      onCancel();
     
+
     } catch (errorInfo) {
       console.log('Validation Failed:', errorInfo);
     }
   };
-
-  // const onReset = () => {
-  //   // Reset the form fields to initialValues
-  //   formRef.current.resetFields();
-  // };
-
   // const setRandomName = () => {
   //   // Set the value of a specific field
   //   formRef.current.setFieldsValue({ username: `RandomUser${Math.floor(Math.random() * 100)}` });
@@ -100,7 +99,7 @@ function CreateProject({ visible, onCancel, setProtoTypeDesc, setProtoTypeName }
     <div className="project-modal">
         <BasicFormWrapper>
           <Form form={form} id="createProject" name="createProject" onFinish={handleOk} > { /* onFinish={handleOk} */ }
-            <Form.Item label="Prototype Name" name="propertyName" 
+            <Form.Item label="Prototype Name" name="prototypeName" 
             rules={[
               { required: true, message: 'Prototype name required!' },
               { whitespace: true, message: 'Prototype name cannot be empty space!' },
@@ -125,7 +124,7 @@ function CreateProject({ visible, onCancel, setProtoTypeDesc, setProtoTypeName }
               </Form.Item>
                <Row style={{ display: "flex", flexDirection: 'column' }}>
               <Col md={12} xl={12}>
-                <Form.Item name="Design" label="Projected Design Completion Date"
+                <Form.Item name="projectedDesignCompletionDate" label="Projected Design Completion Date"
                  rules={[
                   {
                     required: true,
@@ -141,11 +140,11 @@ function CreateProject({ visible, onCancel, setProtoTypeDesc, setProtoTypeName }
                   }),
                 ]}
                 >
-                  <DatePicker placeholder="mm/dd/yyyy" format={dateFormat} />
+                  <DatePicker  />
                 </Form.Item>
               </Col>
               <Col md={12} xl={12}>
-                <Form.Item name="Assembly" label="Projected Assembly Completion Date"
+                <Form.Item name="projectedAssemblyCompletionDate" label="Projected Assembly Completion Date"
                 rules={[
                   {
                     required: true,
@@ -161,11 +160,11 @@ function CreateProject({ visible, onCancel, setProtoTypeDesc, setProtoTypeName }
                   }),
                 ]}
                 >
-                  <DatePicker placeholder="mm/dd/yyyy" format={dateFormat} />
+                  <DatePicker />
                 </Form.Item>
               </Col>
               <Col md={12} xl={12}>
-                <Form.Item name="Testing" label="Projected Testing Completion Date"
+                <Form.Item name="ProjectedTestingCompletionDate" label="Projected Testing Completion Date"
                  rules={[
                   {
                     required: true,
@@ -181,7 +180,7 @@ function CreateProject({ visible, onCancel, setProtoTypeDesc, setProtoTypeName }
                   }),
                 ]}
                 >
-                  <DatePicker placeholder="mm/dd/yyyy" format={dateFormat} />
+                  <DatePicker/>
                 </Form.Item>
               </Col>
             </Row>
