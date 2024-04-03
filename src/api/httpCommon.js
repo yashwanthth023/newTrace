@@ -1,7 +1,7 @@
 import axios from 'axios'
 import axiosRetry from 'axios-retry'
 
-import { errorMsg } from '../Shared';
+import { message } from 'antd';
 import { Url } from "../helper/apiRoutes";
 // import { SessionStorage } from '../util/SessionStorage'
 import { formatData } from '../util/utils';
@@ -48,13 +48,13 @@ function errorResponseHandler(error) {
         //     errorMsg('Invalid current password');
         // }
         // else {
-        errorMsg(error.response.data);
+        message.error(error.response.data, 5)
         // }
     }
     else if (error.message) {
-        errorMsg(error.message);
+        message.error(error.message, 5);
     } else {
-        errorMsg("Please contact message...", { autoClose: 5000 });
+        message.error("Please contact message...", 5);
     }
     return error;
 }

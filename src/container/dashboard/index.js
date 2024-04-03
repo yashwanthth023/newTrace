@@ -8,6 +8,7 @@ import { PageHeader } from '../../components/page-headers/page-headers';
 import { Button } from '../../components/buttons/buttons';
 import { Main } from '../styled';
 import { AutoComplete } from '../../components/autoComplete/autoComplete';
+import { fetchPrototypeDetailsAPI } from '../../api/api';
 
 // import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
 // import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
@@ -21,17 +22,17 @@ const Dashboard = () => {
   const [visible, setVisible] = useState(false);
 
   const[Prototype , setPrototype]= useState();
-
-  const fetchPtotypes = async()=>
+ 
+  const fetchPrototypes = async()=>
   {
-    const result = 0;
+    console.log("calling222-------------------------------------------------------------");
+    const result = await fetchPrototypeDetailsAPI();
     setPrototype(result);
     console.log("----------------",Prototype);
   }
-  useEffect(()=>
-  {
-       fetchPtotypes();
-  },[])
+  useEffect(() => {
+    fetchPrototypes();
+  }, [])
 
 
   const projects = [
@@ -178,7 +179,7 @@ const Dashboard = () => {
       "content": ProtoTypeDesc,
       "category": "Web Design",
       "rate": 5,
-      "popular": 12,
+    "popular": 12,
       "percentage": 3,
     });
 
@@ -225,7 +226,9 @@ const Dashboard = () => {
         ]}
       />
       <Main>
-        <Grid projects={notData} />
+        {
+Prototype && <Grid projects={Prototype} />
+        }
         <CreateProject onCancel={onCancel} onSubmit={onSubmit} visible={visible} setProtoTypeDesc={setProtoTypeDesc} setProtoTypeName={setProtoTypeName} />
         {/* <Row gutter={25}>
           <Col lg={24} xs={24}>

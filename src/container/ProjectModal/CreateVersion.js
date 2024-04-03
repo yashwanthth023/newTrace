@@ -5,6 +5,7 @@ import propTypes from 'prop-types';
 import { Button } from '../../components/buttons/buttons';
 import { Modal } from '../../components/modals/antd-modals';
 import { BasicFormWrapper } from '../styled';
+import { addVersionAPI } from '../../api/api';
 
 const dateFormat = 'MM/DD/YYYY';
 
@@ -30,14 +31,16 @@ function CreateVersion({ visible, onCancel }) {
   }, [visible]);
 
   const handleOk = async() => {
+    console.log("-calling");
     try {
-      // Validate form fields
-      // console.log(form.getFieldValue('propertyName'));
-      // const values = await form.current.validateFields();
-      // console.log('Form Values:', values);
       const values = await form.validateFields();
-      console.log('Form Values:', values);
     
+      const response = await addVersionAPI(values);
+      if(response)
+      {
+        form.resetFields();
+        onCancel();
+      }
     } catch (errorInfo) {
       console.log('Validation Failed:', errorInfo);
     }
@@ -55,7 +58,7 @@ function CreateVersion({ visible, onCancel }) {
       className="atbd-modal2"
       footer={[
         <div key="1" className="project-modal-footer">
-          <Button size="default" type="primary" key="submit" onClick={handleOk}>
+          <Button size="default" type="primary" key="submit" form="createVersion" onClick ={handleOk}>
             Save
           </Button>
           <Button size="default" type="light" key="back" outlined onClick={handleCancel}>
@@ -67,8 +70,8 @@ function CreateVersion({ visible, onCancel }) {
     >
       <div className="project-modal">
         <BasicFormWrapper>
-          <Form form={form} name="createProject" onFinish={handleOk}>
-            <Form.Item name="versionId" label="Version ID"
+          <Form form={form} id="createVersion" name="createVersion"  onFinish={handleOk}>
+            <Form.Item name="versionName" label="Version ID"
              rules={[
               {
                 required: true,
@@ -112,7 +115,7 @@ function CreateVersion({ visible, onCancel }) {
             </Form.Item>
             <Row style={{ display: "flex", flexDirection: 'column' }}>
               <Col md={12} xl={12}>
-                <Form.Item name="Design" label="Projected Design Completion Date"
+                <Form.Item name="projectedDesignCompletionDate" label="Projected Design Completion Date"
                 rules={[
                   {
                     required: true,
@@ -128,7 +131,7 @@ function CreateVersion({ visible, onCancel }) {
                 </Form.Item>
               </Col>
               <Col md={12} xl={12}>
-                <Form.Item name="Assembly" label="Projected Assembly Completion Date"
+                <Form.Item name="projectedAssemblyCompletionDate" label="Projected Assembly Completion Date"
                  rules={[
                   {
                     required: true,
@@ -144,7 +147,7 @@ function CreateVersion({ visible, onCancel }) {
                 </Form.Item>
               </Col>
               <Col md={12} xl={12}>
-                <Form.Item name="Testing" label="Projected Testing Completion Date"
+                <Form.Item name="ProjectedTestingCompletionDate" label="Projected Testing Completion Date"
                 rules={[
                   {
                     required: true,
