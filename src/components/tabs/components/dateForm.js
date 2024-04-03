@@ -18,7 +18,9 @@ function DateForm({ title, data }) {
                             <label htmlFor='design'>Design Completion Date</label>
                         </Col>
                         <Col md={14} xs={24}>
-                            <Form.Item name={data[0]}>
+                            <Form.Item name={data[0]} rules={[
+                                { required: data[0] === 'projectedDesignCompletionDate', message: 'Projection Design Completion Date required!' }
+                            ]}>
                                 <DatePicker />
                             </Form.Item>
                         </Col>
@@ -28,7 +30,9 @@ function DateForm({ title, data }) {
                             <label htmlFor="assembly">Assembly Completion Date</label>
                         </Col>
                         <Col md={14} xs={24}>
-                            <Form.Item name={data[1]}>
+                            <Form.Item name={data[1]} rules={[
+                                { required: data[0] === 'projectedAssemblyCompletionDate', message: 'Projection Assembly Completion Date required!' }
+                            ]}>
                                 <DatePicker />
                             </Form.Item>
                         </Col>
@@ -38,7 +42,9 @@ function DateForm({ title, data }) {
                             <label htmlFor="test">Test Completion Date</label>
                         </Col>
                         <Col md={14} xs={24}>
-                            <Form.Item name={data[2]}>
+                            <Form.Item name={data[2]} rules={[
+                                { required: data[0] === 'projectedTestCompletionDate', message: 'Projection Test Completion Date required!' }
+                            ]}>
                                 <DatePicker />
                             </Form.Item>
                         </Col>

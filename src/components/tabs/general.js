@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Form, Input, Upload } from 'antd';
+import { Row, Col, Form, Input, Upload, Alert } from 'antd';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { HorizontalFormStyleWrap } from './style/formStyle';
@@ -9,7 +9,6 @@ import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
 import { getVersionByIdAPI, updatePrototypeDetailsAPI, updateVersionByIdAPI } from '../../api/api';
 // import { SessionStorage } from '../../util/SessionStorage';
-// import { success } from '../../Shared';
 
 const { TextArea } = Input;
 
@@ -17,11 +16,14 @@ function General() {
     const [formDetails, setFormDetails] = useState({})
     const [form1] = Form.useForm();
     const [form2] = Form.useForm();
+    const [successMessageVisible, setSuccessMessageVisible] = useState(false);
 
     const fetchData = async () => {
         const response = await getVersionByIdAPI({ id: 'ab5fb012-5796-4774-a184-4add002311fa' });
-        console.log(response)
-        setFormDetails(response);
+        if (response) {
+            console.log(response)
+            setFormDetails(response);
+        }
     }
 
     useEffect(() => {
@@ -49,16 +51,27 @@ function General() {
         }
     }, [formDetails, form1, form2]);
 
+    const showSuccessMessage = () => {
+        setSuccessMessageVisible(true);
+        setTimeout(() => {
+            setSuccessMessageVisible(false);
+        }, 5000);
+    };
+
     const handlePrototypeData = async () => {
         const prototypeData = await form1.validateFields()
         const response = await updatePrototypeDetailsAPI({ id: '7e897fa8-cdb5-4648-95fc-c9b969994964', ...prototypeData });
+        showSuccessMessage();
         console.log("updatedValues", response)
     }
     const handleVersionData = async () => {
         const versionData = await form2.validateFields();
         const response = await updateVersionByIdAPI({ id: 'ab5fb012-5796-4774-a184-4add002311fa', ...versionData });
+        showSuccessMessage();
         console.log(response)
     }
+
+
 
     return (
         <BasicFormWrapper>
@@ -195,6 +208,17 @@ function General() {
                         </Form>
                     </Cards>
                 </Row>
+                {successMessageVisible && (
+                    <div style={{ position: 'fixed', bottom: 20, right: 20, zIndex: 9999 }}>
+                        <Alert
+                            type='success'
+                            message="Success"
+                            showIcon
+                            closable
+                            onClose={() => setSuccessMessageVisible(false)}
+                        />
+                    </div>
+                )}
             </HorizontalFormStyleWrap>
         </BasicFormWrapper>
     )
