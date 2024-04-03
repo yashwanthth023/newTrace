@@ -31,7 +31,7 @@ const Dashboard = () => {
     console.log("----------------",Prototype);
   }
   useEffect(() => {
-    fetchPtotypes();
+    fetchPrototypes();
   }, [])
 
 
