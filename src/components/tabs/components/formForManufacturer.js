@@ -11,20 +11,19 @@ import { Cards } from '../../cards/frame/cards-frame';
 const { TextArea } = Input;
 
 const { Option } = Select;
-function Manufacture({ title }) {
+function Manufacture({ title, isView }) {
     return (
         <BasicFormWrapper>
             <HorizontalFormStyleWrap className="sDash_input-form">
                 <Cards title={title} headStyle={{ textAlign: 'center' }}>
                     {/* <Form name="input-form" layout="horizontal"> */}
-
                     <Row align="middle">
                         <Col md={6} xs={24}>
                             <label htmlFor="PONumber">PO Number</label>
                         </Col>
                         <Col md={18} xs={24}>
                             <Form.Item name="PONumber">
-                                <Input />
+                                <Input disabled={isView} />
                             </Form.Item>
                         </Col>
                     </Row>
@@ -34,7 +33,7 @@ function Manufacture({ title }) {
                         </Col>
                         <Col md={18} xs={24}>
                             <Form.Item name="PODate">
-                                <DatePicker placeholder="date" />
+                                <DatePicker placeholder="date" disabled={isView} />
                             </Form.Item>
                         </Col>
                     </Row>
@@ -47,7 +46,7 @@ function Manufacture({ title }) {
                             <Form.Item name="vendor" rules={[
                                 { required: true, message: 'Vendor is required!' }
                             ]}>
-                                <Select size="small" style={{ width: "100%" }}>
+                                <Select size="small" style={{ width: "100%" }} disabled={isView}>
                                     <Option value="1">cfg</Option>
                                     <Option value="2">dfd</Option>
                                 </Select>
@@ -61,7 +60,7 @@ function Manufacture({ title }) {
                         </Col>
                         <Col md={18} xs={24}>
                             <Form.Item name="deliveryNote">
-                                <TextArea rows={3} id='note' name='note' />
+                                <TextArea rows={3} id='note' name='note' disabled={isView} />
                             </Form.Item>
 
                         </Col>
@@ -72,7 +71,7 @@ function Manufacture({ title }) {
                         </Col>
                         <Col md={18} xs={24}>
                             <Form.Item name="rfqDocument">
-                                <Upload className="sDash_upload-basic">
+                                <Upload className="sDash_upload-basic" disabled={isView}>
                                     <span className="sDash_upload-text">Select File</span>
                                     <Link to="#" className="sDash_upload-browse">
                                         Browse
@@ -87,7 +86,7 @@ function Manufacture({ title }) {
                         </Col>
                         <Col md={18} xs={24}>
                             <Form.Item name="PODocument">
-                                <Upload className="sDash_upload-basic">
+                                <Upload className="sDash_upload-basic" disabled={isView}>
                                     <span className="sDash_upload-text">Select File</span>
                                     <Link to="#" className="sDash_upload-browse">
                                         Browse
@@ -105,6 +104,7 @@ function Manufacture({ title }) {
 }
 
 Manufacture.propTypes = {
-    title: propTypes.string
+    title: propTypes.string,
+    isView: propTypes.bool,
 }
 export default Manufacture;

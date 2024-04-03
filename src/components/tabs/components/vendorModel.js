@@ -69,4 +69,3 @@ VendorModal.propTypes = {
 };
 
 export default VendorModal;
-
