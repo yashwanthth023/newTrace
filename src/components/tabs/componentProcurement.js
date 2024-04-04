@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
-import { Link } from 'react-router-dom';
 import { Row, Col, Table } from 'antd';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper, } from './style/wrapperStyle';
@@ -8,63 +7,63 @@ import ProtoTypeHeader from './components/protoTypeInfo';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
 import AddComponent from '../../container/pages/AddComponent';
+import { fetchManufacturingDetailsByVersionIdAPI } from '../../api/api';
+import { SessionStorage } from '../../util/SessionStorage';
 
 
 function ComponentProcurement() {
     const [isAddPage, setIsAddPage] = useState(false);
-    const dataSource = [
-        {
-            key: '1',
-            name: 'dfd',
-            createdon: '01-04-2024',
-            modifiedon: '03-04-2024',
-            status: 'link',
+    const [isEdit, setIsEdit] = useState(false);
+    const [isView, setIsView] = useState(false);
+    const [componentData, setComponentData] = useState([]);
+    // const [index, setIndex] = useState();
+
+    const fetchManufacturingData = async () => {
+        const response = await fetchManufacturingDetailsByVersionIdAPI({ versionId: "ab5fb012-5796-4774-a184-4add002311fa" })
+        if (response) {
+            setComponentData(response);
+        }
+    }
+
+    useEffect(() => {
+        fetchManufacturingData();
+    }, [])
+
+    useEffect(() => {
+        fetchManufacturingData();
+    }, [isAddPage]);
+
+
+
+    const dataSource = componentData?.map((data, i) => {
+        return {
+            key: i + 1,
+            name: data.componentName,
+            createdOn: data?.createdOn ? data.createdOn : '',
+            modifiedOn: data?.modifiedOn ? data.modifiedOn : '',
+            status: data.status,
             button:
                 <div style={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
                     <div style={{ marginRight: 10 }}>
-                        {/* <Link to='/addComponent'> */}
-                        <Button type="primary" size="small2" onClick={() => setIsAddPage(true)}>
+                        <Button type="primary" size="small2" onClick={() => { setIsView(true); SessionStorage.setItem('componentId', data.id); setIsAddPage(true) }}>
                             View
                         </Button>
-                        {/* </Link> */}
                     </div>
                     <div>
-                        {/* <Link to='/addComponent'> */}
-                        <Button type="warning" size="small2" onClick={() => setIsAddPage(true)}>
+                        <Button type="warning" size="small2" onClick={() => { setIsEdit(true); SessionStorage.setItem('componentId', data.id); setIsAddPage(true) }}>
                             Edit
                         </Button>
-
-                        {/* </Link> */}
                     </div>
 
                 </div>
-        },
-        {
-            key: '2',
-            name: 'cdf',
-            status: 'link',
-            button:
-                <div style={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
-                    <div style={{ marginRight: 10 }}>
-                        <Link to='/addComponent'>
-                            <Button type="primary" size="small2">
-                                View
-                            </Button>
-                        </Link>
-                    </div>
-                    <div>
-                        <Link to='/addComponent'>
-                            <Button type="warning" size="small2">
-                                Edit
-                            </Button>
-
-                        </Link>
-                    </div>
-
-                </div>
-
         }
-    ];
+    });
+
+    const onCancel = () => {
+        setIsEdit(false);
+        setIsView(false);
+    }
+
 
     const columns = [
         {
@@ -109,14 +108,12 @@ function ComponentProcurement() {
         },
     ];
 
-
-
     return (
         <BasicFormWrapper>
             <HorizontalFormStyleWrap className="sDash_input-form">
 
                 {isAddPage ? <>
-                    <AddComponent setIsAddPage={setIsAddPage} />
+                    <AddComponent setIsAddPage={setIsAddPage} setComponentData={setComponentData} isEdit={isEdit} isView={isView} onCancel={onCancel} />
                 </> : <>
                     <Cards headless>
                         <ProtoTypeHeader />
