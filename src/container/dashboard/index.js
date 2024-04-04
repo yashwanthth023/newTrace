@@ -10,6 +10,8 @@ import { Main } from '../styled';
 import { AutoComplete } from '../../components/autoComplete/autoComplete';
 import { fetchPrototypeDetailsAPI } from '../../api/api';
 
+
+
 // import { ShareButtonPageHeader } from '../../components/buttons/share-button/share-button';
 // import { ExportButtonPageHeader } from '../../components/buttons/export-button/export-button';
 // import { CalendarButtonPageHeader } from '../../components/buttons/calendar-button/calendar-button';
@@ -17,171 +19,52 @@ import { fetchPrototypeDetailsAPI } from '../../api/api';
 const Dashboard = () => {
 
   const [ProtoTypeName, setProtoTypeName] = useState('');
-  const [ProtoTypeDesc, setProtoTypeDesc] = useState('');
+  const [description, setProtoTypeDesc] = useState('');
   // const [ProtoTypeRemarks, setProtoTypeRemarks] = useState('');
   const [visible, setVisible] = useState(false);
 
   const[Prototype , setPrototype]= useState();
+  const[filterPrototype , setFilterPrototype]= useState();
+
+  // const[version, setVersion]= useState([]);
  
   const fetchPrototypes = async()=>
   {
     console.log("calling222-------------------------------------------------------------");
     const result = await fetchPrototypeDetailsAPI();
     setPrototype(result);
+    setFilterPrototype(result);
+
     console.log("----------------",Prototype);
   }
   useEffect(() => {
     fetchPrototypes();
   }, [])
 
-
-  const projects = [
-    {
-      "id": 1,
-      "title": "Lead Acid Fast Charge",
-      "status": "early",
-      "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
-      "category": "Web Design",
-      "rate": 5,
-      "popular": 1,
-      "percentage": 85
-    },
-    {
-      "id": 2,
-      "title": "Lead Acid super Fast Charge",
-      "status": "progress",
-      "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
-      "category": "Web Development",
-      "rate": 3,
-      "popular": 2,
-      "percentage": 38
-    },
-    {
-      "id": 3,
-      "title": "lithium ion Fast Charge",
-      "status": "early",
-      "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
-      "category": "Graphic Design",
-      "rate": 4,
-      "popular": 3,
-      "percentage": 46
-    },
-    {
-      "id": 4,
-      "title": "Lead Acid Fast Charge",
-      "status": "late",
-      "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
-      "category": "Web Development",
-      "rate": 5,
-      "popular": 4,
-      "percentage": 29
-    },
-    {
-      "id": 5,
-      "title": "Prototype5",
-      "status": "progress",
-      "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
-      "category": "Web Development",
-      "rate": 4,
-      "popular": 5,
-      "percentage": 96
-    },
-    {
-      "id": 6,
-      "title": "Prototype6",
-      "status": "complete",
-      "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
-      "category": "Graphic Design",
-      "rate": 3,
-      "popular": 6,
-      "percentage": 73
-    },
-    {
-      "id": 7,
-      "title": "Prototype7",
-      "status": "progress",
-      "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
-      "category": "Web Development",
-      "rate": 2,
-      "popular": 7,
-      "percentage": 42
-    },
-    {
-      "id": 8,
-      "title": "Prototype8",
-      "status": "early",
-      "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
-      "category": "Graphic Design",
-      "rate": 4,
-      "popular": 8,
-      "percentage": 36
-    },
-    {
-      "id": 9,
-      "title": "Prototype9",
-      "status": "late",
-      "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
-      "category": "Web Development",
-      "rate": 3,
-      "popular": 9,
-      "percentage": 82
-    },
-    {
-      "id": 10,
-      "title": "Prototype10",
-      "status": "progress",
-      "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
-      "category": "Web Development",
-      "rate": 2,
-      "popular": 10,
-      "percentage": 63
-    },
-    {
-      "id": 11,
-      "title": "Prototype11",
-      "status": "complete",
-      "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
-      "category": "Graphic Design",
-      "rate": 1,
-      "popular": 11,
-      "percentage": 53
-    },
-    {
-      "id": 12,
-      "title": "Prototype12",
-      "status": "early",
-      "content": "Adipisicing eu magna velit est exercitation et consequat Lorem laboris nulla. Laborum exercitation minim id ea ea. Minim cillum magna excepteur laboris duis labore pariatur Lorem aute cupidatat velit sunt non. Est laborum anim aliqua in elit consequat elit elit cupidatat. Nulla excepteur laborum voluptate nisi eiusmod nostrud sit. Aute aliquip sit non consectetur laborum velit in exercitation laboris officia adipisicing deserunt. Sint laboris aute minim aliqua aute culpa laboris ad amet dolor ea Lorem sit.",
-      "category": "Web Design",
-      "rate": 5,
-      "popular": 12,
-      "percentage": 33
-    }
-  ];
-
   const onCancel = () => {
     setVisible(false);
     console.log("cancelled");
   }
-  const [state, setState] = useState({
-    notData: projects,
-  });
+  // const [state, setState] = useState({
+  //   notData: Prototype,
+  // });
 
-  const { notData } = state;
+  // const { notData } = state;
   const onSubmit = () => {
 
     console.log("ProtoTypeName : ", ProtoTypeName);
-    console.log("ProtoTypeDesc : ", ProtoTypeDesc);
+    console.log("description : ", description);
 
-    notData.push({
-      "id": "13",
-      "title": ProtoTypeName,
-      "status": "early",
-      "content": ProtoTypeDesc,
-      "category": "Web Design",
-      "rate": 5,
-    "popular": 12,
-      "percentage": 3,
-    });
+    // notData.push({
+    //   "id": "13",
+    //   "title": ProtoTypeName,
+    //   "status": "early",
+    //   "content": ProtoTypeDesc,
+    //   "category": "Web Design",
+    //   "rate": 5,
+    // "popular": 12,
+    //   "percentage": 3,
+    // });
 
     // setState({
     // notData: [...state.notData,{"id" : "13",
@@ -194,12 +77,21 @@ const Dashboard = () => {
   // }
 
   const handleSearch = (searchText) => {
-    const data = projects.filter((item) => item.title.toUpperCase().startsWith(searchText.toUpperCase()));
-    setState({
-      ...state,
-      notData: data,
-    });
-  };
+    console.log(Prototype);
+    const data = Prototype.length > 0 ? Prototype?.filter((item) => 
+        (item.prototypeName?.toUpperCase()?.startsWith(searchText?.toUpperCase()) || 
+        item.description?.toUpperCase()?.includes(searchText.toUpperCase()))
+         ||
+        item.versions && item.versions.length && item.versions.some((version)=>version.versionName.toUpperCase().includes(searchText.toUpperCase()))
+    ) : [];
+    setFilterPrototype(data);
+    // setState({
+    //     ...state,
+    //     notData: data,
+    // });
+};
+
+
 
   return (
     <>
@@ -213,7 +105,7 @@ const Dashboard = () => {
             <ShareButtonPageHeader key="3" /> */}
             <AutoComplete
               onSearch={handleSearch}
-              dataSource={notData}
+              dataSource={Prototype}
               width="100%"
               placeholder="Search by Name"
               patterns
@@ -227,7 +119,7 @@ const Dashboard = () => {
       />
       <Main>
         {
-Prototype && <Grid projects={Prototype} />
+           Prototype && <Grid projects={filterPrototype} />
         }
         <CreateProject onCancel={onCancel} onSubmit={onSubmit} visible={visible} setProtoTypeDesc={setProtoTypeDesc} setProtoTypeName={setProtoTypeName} />
         {/* <Row gutter={25}>
