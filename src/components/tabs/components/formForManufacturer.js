@@ -11,7 +11,7 @@ import { Cards } from '../../cards/frame/cards-frame';
 const { TextArea } = Input;
 
 const { Option } = Select;
-function Manufacture({ title, isView }) {
+function Manufacture({ title, isView, vendor }) {
     return (
         <BasicFormWrapper>
             <HorizontalFormStyleWrap className="sDash_input-form">
@@ -44,11 +44,14 @@ function Manufacture({ title, isView }) {
                         <Col md={18} xs={24}>
                             {/* <Form.Item name="input-date"> */}
                             <Form.Item name="vendor" rules={[
-                                { required: true, message: 'Vendor is required!' }
+                                { required: true, message: 'Vendor is required!' },
                             ]}>
                                 <Select size="small" style={{ width: "100%" }} disabled={isView}>
-                                    <Option value="1">cfg</Option>
-                                    <Option value="2">dfd</Option>
+                                    {vendor.length > 0 ?
+                                        vendor.map((ven) =>
+                                            <Option key={ven.index} value={ven.index}>{ven.vendorName}</Option>
+                                        ) : <Option value=''>Please Add vendor to select</Option>
+                                    }
                                 </Select>
                             </Form.Item>
                             {/* </Form.Item> */}
@@ -106,5 +109,6 @@ function Manufacture({ title, isView }) {
 Manufacture.propTypes = {
     title: propTypes.string,
     isView: propTypes.bool,
+    vendor: propTypes.array
 }
 export default Manufacture;

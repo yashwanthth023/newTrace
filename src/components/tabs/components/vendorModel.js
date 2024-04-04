@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form, Input, Upload } from 'antd';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import propTypes from 'prop-types';
@@ -6,16 +6,40 @@ import { Button } from '../../buttons/buttons';
 import { Modal } from '../../modals/antd-modals';
 import { BasicFormWrapper } from '../style/wrapperStyle';
 
-function VendorModal({ visible, onCancel, setVendorList }) {
+function VendorModal({ visible, onCancel, setVendorList, isEdit, index, vendorData }) {
   const [form] = Form.useForm();
 
   const handleSubmit = async () => {
     const data = await form.validateFields();
-    setVendorList(data);
+    if (isEdit) {
+      setVendorList((list) => {
+        list[index] = data;
+        return list;
+      });
+    } else {
+      setVendorList((list) => [...list, data]);
+    }
+    form.resetFields();
     onCancel();
   };
 
+  const fillForm = () => {
+    if (vendorData && Object.keys(vendorData).length !== 0) {
+      if (isEdit) {
+        form.setFieldsValue({
+          vendorName: vendorData[index].vendorName,
+          quotation: vendorData[index].quotation
+        });
+      }
+    }
+  }
+
+  useEffect(() => {
+    fillForm();
+  }, [vendorData, index, form]);
+
   const handleCancel = () => {
+    form.resetFields();
     onCancel();
   };
 
@@ -28,7 +52,7 @@ function VendorModal({ visible, onCancel, setVendorList }) {
       className="atbd-modal2"
       footer={[
         <div key="1" className="project-modal-footer">
-          <Button size="default" type="primary" key="submit" onClick={handleSubmit}>
+          <Button size="default" htmlType='submit' type="primary" key="submit" onClick={handleSubmit}>
             Save
           </Button>
           <Button size="default" type="white" key="back" outlined onClick={handleCancel}>
@@ -47,7 +71,7 @@ function VendorModal({ visible, onCancel, setVendorList }) {
             <Form.Item name="quotation" label="Quotation">
               <Input placeholder="Quotation" />
             </Form.Item>
-            <Form.Item name="Testing" label="Upload RFQ Documents">
+            <Form.Item name="rfqDocuments" label="Upload RFQ Documents">
               <Upload className="sDash_upload-basic">
                 <span className="sDash_upload-text">Select File</span>
                 <Link to="#" className="sDash_upload-browse">
@@ -65,7 +89,10 @@ function VendorModal({ visible, onCancel, setVendorList }) {
 VendorModal.propTypes = {
   visible: propTypes.bool,
   onCancel: propTypes.func,
-  setVendorList: propTypes.func
+  setVendorList: propTypes.func,
+  isEdit: propTypes.bool,
+  index: propTypes.number,
+  vendorData: propTypes.object
 };
 
 export default VendorModal;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import FeatherIcon from 'feather-icons-react';
+import { useSelector } from 'react-redux';
 import { Row, Col, Table } from 'antd';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper, } from './style/wrapperStyle';
@@ -7,7 +8,7 @@ import ProtoTypeHeader from './components/protoTypeInfo';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
 import AddComponent from '../../container/pages/AddComponent';
-import { fetchManufacturingDetailsByVersionIdAPI } from '../../api/api';
+// import { fetchManufacturingDetailsByVersionIdAPI } from '../../api/api';
 import { SessionStorage } from '../../util/SessionStorage';
 
 
@@ -16,32 +17,42 @@ function ComponentProcurement() {
     const [isEdit, setIsEdit] = useState(false);
     const [isView, setIsView] = useState(false);
     const [componentData, setComponentData] = useState([]);
-    // const [index, setIndex] = useState();
+    const componentDetails = useSelector((state) => state.versionInfo.componentDetails);
 
-    const fetchManufacturingData = async () => {
-        const response = await fetchManufacturingDetailsByVersionIdAPI({ versionId: "ab5fb012-5796-4774-a184-4add002311fa" })
-        if (response) {
-            setComponentData(response);
-        }
-    }
-
-    useEffect(() => {
-        fetchManufacturingData();
-    }, [])
+    // const fetchManufacturingData = async () => {
+    //     const response = await fetchManufacturingDetailsByVersionIdAPI({ versionId: "ab5fb012-5796-4774-a184-4add002311fa" })
+    //     if (response) {
+    //         setComponentData(response);
+    //     }
+    // }
 
     useEffect(() => {
-        fetchManufacturingData();
-    }, [isAddPage]);
+        setComponentData(componentDetails);
+        // fetchManufacturingData();
+    }, [componentDetails, isAddPage])
 
-
+    // useEffect(() => {
+    //     fetchManufacturingData();
+    // }, [isAddPage]);
 
     const dataSource = componentData?.map((data, i) => {
         return {
             key: i + 1,
             name: data.componentName,
-            createdOn: data?.createdOn ? data.createdOn : '',
-            modifiedOn: data?.modifiedOn ? data.modifiedOn : '',
+            createdOn: data?.createdOn ?
+                new Date(data.createdOn).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                }) : '',
+            modifiedOn: data?.modifiedOn ? new Date(data?.modifiedOn).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            }) : '',
             status: data.status,
+            createdBy: 'Gowtham',
+            modifiedBy: 'Gowtham',
             button:
                 <div style={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
                     <div style={{ marginRight: 10 }}>
@@ -62,6 +73,7 @@ function ComponentProcurement() {
     const onCancel = () => {
         setIsEdit(false);
         setIsView(false);
+        setIsView(false);
     }
 
 
@@ -78,23 +90,23 @@ function ComponentProcurement() {
         },
         {
             title: 'Created On',
-            dataIndex: 'createdon',
-            key: 'createdon',
+            dataIndex: 'createdOn',
+            key: 'createdOn',
         },
         {
             title: 'Created By',
-            dataIndex: 'createdby',
-            key: 'createdby',
+            dataIndex: 'createdBy',
+            key: 'createdBy',
         },
         {
             title: 'Modified On',
-            dataIndex: 'modifiedon',
-            key: 'modifiedon',
+            dataIndex: 'modifiedOn',
+            key: 'modifiedOn',
         },
         {
             title: 'Modified By',
-            dataIndex: 'modifiedby',
-            key: 'modifiedby',
+            dataIndex: 'modifiedBy',
+            key: 'modifiedBy',
         },
         {
             title: 'Status',
