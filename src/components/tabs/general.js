@@ -19,7 +19,7 @@ function General() {
     const [successMessageVisible, setSuccessMessageVisible] = useState(false);
 
     const fetchData = async () => {
-        const response = await getVersionByIdAPI({ id: 'ab5fb012-5796-4774-a184-4add002311fa' });
+        const response = await getVersionByIdAPI({ id: '5e63dc36-3f2a-4988-85eb-7fd355030357' });
         if (response) {
             console.log(response)
             setFormDetails(response);
@@ -60,13 +60,13 @@ function General() {
 
     const handlePrototypeData = async () => {
         const prototypeData = await form1.validateFields()
-        const response = await updatePrototypeDetailsAPI({ id: '7e897fa8-cdb5-4648-95fc-c9b969994964', ...prototypeData });
+        const response = await updatePrototypeDetailsAPI({ id: '74bd2fca-2441-4a6c-a5d3-4313495f56f1', ...prototypeData });
         showSuccessMessage();
         console.log("updatedValues", response)
     }
     const handleVersionData = async () => {
         const versionData = await form2.validateFields();
-        const response = await updateVersionByIdAPI({ id: 'ab5fb012-5796-4774-a184-4add002311fa', ...versionData });
+        const response = await updateVersionByIdAPI({ id: '5e63dc36-3f2a-4988-85eb-7fd355030357', ...versionData });
         showSuccessMessage();
         console.log(response)
     }
