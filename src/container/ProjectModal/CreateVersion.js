@@ -34,7 +34,7 @@ function CreateVersion({ visible, onCancel }) {
     console.log("-calling");
     try {
       const values = await form.validateFields();
-    
+      console.log("values------------------",values);
       const response = await addVersionAPI(values);
       if(response)
       {
@@ -64,7 +64,7 @@ function CreateVersion({ visible, onCancel }) {
           <Button size="default" type="light" key="back" outlined onClick={handleCancel}>
             Cancel
           </Button>
-        </div>,
+        </div>
       ]}
       onCancel={handleCancel}
     >

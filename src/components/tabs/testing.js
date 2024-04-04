@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import { Row, Col, Table, DatePicker, Checkbox, Form } from 'antd';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper } from './style/wrapperStyle';
@@ -7,9 +7,27 @@ import ExperimentModal from './components/experimentModal';
 import ProtoTypeHeader from './components/protoTypeInfo';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
+import { getVersionByIdAPI } from '../../api/api';
 
 function Testing() {
     const [showModal, setShowModal] = useState(false);
+    const [ formDetails, setFormDetails] = useState(false);
+    // const [checkBoxValue ,setCheckBoxValue] = useState(false);
+
+
+    const fetchData = async () => {
+        const response = await getVersionByIdAPI({ id: '8308218c-7ba6-4453-9c2d-70a6f3acb82a' });
+        if (response) {
+            console.log(response)
+            setFormDetails(response);
+            console.log(formDetails);
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, [])
+
 
     const dataSource = [
         {
@@ -85,7 +103,7 @@ function Testing() {
                                 <Col md={4} style={{marginTop : 20}}>
                                     <Checkbox style={{height: 20, width: 20, fontSize: 30}}/>
                                 </Col>                                     
-                            </Row>                           
+                            </Row>                              
                         </Col>
                         <Col  xl={12} lg={12}>
                         <Row align="middle">
@@ -93,15 +111,15 @@ function Testing() {
                                 {/* <label htmlFor="moc"></label> */}
                                     <Form.Item
                                     label="Actual Date Test Complete:"
-                                    name="assembly"
-                                    htmlFor="assembly"
+                                    name="ActualTestingCompletionDate"
+                                    htmlFor="ActualTestingCompletionDate"
                                     rules={[{ required: true, message: 'Please select a date' }]}>
                                 {/* <label>Actual Date Design Complete:</label> */}
                                 {/* <DatePicker id="assembly" /> */}
                             </Form.Item>
                             </Col>
                             <Col md={12} xs={24} align='right'>                                    
-                                <Form.Item name="assembly">
+                                <Form.Item name="ActualTestingCompletionDate">
                                     <DatePicker />
                                 </Form.Item>                                   
                             </Col>

@@ -15,7 +15,8 @@ const apiRoutes = {
     updateVersionById: "/updateVersionById",
     getVersionById: "/getVersionById",
     updatePrototypeDetails: "/updatePrototypeDetails",
-    addVersion: "/addVersion"
+    addVersion: "/addVersion",
+    addExperiment : "/addExperiment"
 }
 
 export { Url, apiRoutes };

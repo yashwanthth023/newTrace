@@ -5,10 +5,12 @@ import moment from 'moment';
 import { BasicFormWrapper } from '../style/wrapperStyle';
 import { Modal } from '../../modals/antd-modals';
 import { Button } from '../../buttons/buttons';
+import { addExperimentAPI } from '../../../api/api';
 
 const { Option } = Select;
 
-function ExperimentModal({ visible, onCancel, onSubmit }) {
+function ExperimentModal({ visible, onCancel }) {
+    const [form] = Form.useForm();
     // const props = {
     //     name: 'file',
     //     action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
@@ -26,32 +28,50 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
     //         }
     //     },
     // };
+
+    const handleSubmit = async()=>
+    {
+        console.log("called");
+        try {
+            const values = await form.validateFields();
+            console.log("------values----------",values);
+            const response = await addExperimentAPI(values);
+            console.log("-----response-----------",response);
+            if(response)
+            {
+            //   form.resetFields();
+              onCancel();
+            }
+          } catch (errorInfo) {
+            console.log('Validation Failed:', errorInfo);
+          }
+    }
     return (
         <Modal
             title="Add Experiment"
             visible={visible}
             footer={[
                 <div key="1" className="project-modal-footer">
-                    <Button size="default" type="primary" key="submit" onClick={onSubmit}>
+                    <Button size="default" type="primary" key="submit" htmlType="submit"  form="experiments">
                         Save
                     </Button>
                     <Button size="default" type="white" key="back" outlined onClick={onCancel}>
                         Cancel
                     </Button>
-                </div>,
+                </div>
             ]}
             onCancel={onCancel}
         >
             <div className="project-modal">
                 <BasicFormWrapper>
-                    <Form name="experiments" onFinish={onSubmit}>
+                    <Form name="experiments"  form={form} onFinish={handleSubmit}>
                         <Row align="middle">
                             <Col md={6} xs={24}>
                                 {/* eslint-disable-next-line */}
                                 <label htmlFor="experiment-name">Experiment Title</label>
                             </Col>
                             <Col md={18} xs={24}>
-                                <Form.Item name="experiment-name">
+                                <Form.Item name="experimentName">
                                     <Input id='experiment-name' />
                                 </Form.Item>
                             </Col>
@@ -63,7 +83,7 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                                 <label htmlFor="experiment-type">Experiment Type</label>
                             </Col>
                             <Col md={18} xs={24}>
-                                <Form.Item name="input-email">
+                                <Form.Item name="experimentType">
                                     <Select size="small" style={{ width: "100%" }} id='experiment-type'>
                                         <Option value="1">Flow Test</Option>
                                         <Option value="2">VI Characteristics</Option>
@@ -79,7 +99,7 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                                 <label htmlFor="experiment-name">Electrolyte</label>
                             </Col>
                             <Col md={18} xs={24}>
-                                <Form.Item name="experiment-name">
+                                <Form.Item name="electrolyte">
                                     <Input id='experiment-name' />
                                 </Form.Item>
                             </Col>
@@ -90,7 +110,7 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                                 <label htmlFor="status">Status</label>
                             </Col>
                             <Col md={18} xs={24}>
-                                <Form.Item name="input-email">
+                                <Form.Item name="status">
                                     <Select size="small" style={{ width: "100%" }} id='status'>
                                         <Option value="1">Pass</Option>
                                         <Option value="2">Fail</Option>
@@ -118,7 +138,7 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                                     <label htmlFor="start-date">Start Date</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                    <Form.Item name="start-date">
+                                    <Form.Item name="startDate">
                                         <DatePicker id='start-date' />
                                     </Form.Item>
                                 </Col>
@@ -129,7 +149,7 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                                     <label htmlFor="start-time">Start Time</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                    <Form.Item name="start-time" initialValue={moment('00:00:00', 'HH:mm:ss')}>
+                                    <Form.Item name="startTime" initialValue={moment('00:00:00', 'HH:mm:ss')}>
                                         <TimePicker id='start-time' />
                                     </Form.Item>
                                 </Col>
@@ -144,7 +164,7 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                                     <label htmlFor="end-date">End Date</label>
                                 </Col>
                                 <Col md={24} xs={24}>
-                                    <Form.Item name="end-date">
+                                    <Form.Item name="endDate">
                                         <DatePicker id='end-date' />
                                     </Form.Item>
                                 </Col>
@@ -155,7 +175,7 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                                     <label htmlFor="end-time">End Time</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                    <Form.Item name="end-time" initialValue={moment('00:00:00', 'HH:mm:ss')}>
+                                    <Form.Item name="endTime" initialValue={moment('00:00:00', 'HH:mm:ss')}>
                                         <TimePicker id='end-time' />
                                     </Form.Item>
                                 </Col>
@@ -170,7 +190,7 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                                     <label htmlFor="start-date">Electrolyte Flowrate</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                    <Form.Item name="start-date">
+                                    <Form.Item name="electrolyteFlowrate">
                                     <Input id='experiment-name' />
                                     </Form.Item>
                                 </Col>
@@ -181,7 +201,7 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                                     <label htmlFor="start-time">Max Current</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                <Form.Item name="start-date">
+                                <Form.Item name="maximumCurrent">
                                     <Input id='experiment-name' />
                                     </Form.Item>
                                 </Col>
@@ -194,7 +214,7 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                                     <label htmlFor="start-date">Max Voltage</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                    <Form.Item name="start-date">
+                                    <Form.Item name="maximumVoltage">
                                     <Input id='experiment-name' />
                                     </Form.Item>
                                 </Col>
@@ -205,7 +225,7 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                                     <label htmlFor="start-time">Gas Flowrate</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                    <Form.Item name="start-date">
+                                    <Form.Item name="gasFlowrate">
                                     <Input id='experiment-name' />
                                     </Form.Item>
                                 </Col>
@@ -218,7 +238,7 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                                     <label htmlFor="start-date">H2 Absolute Percentage</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                    <Form.Item name="start-date">
+                                    <Form.Item name="H2AbsolutePercentage">
                                     <Input id='experiment-name' />
                                     </Form.Item>
                                 </Col>
@@ -229,7 +249,7 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                                     <label htmlFor="start-time">H2 Absolute Impurity Percentage</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                <Form.Item name="start-date">
+                                <Form.Item name="H2AbsoluteImpurityPercentage">
                                     <Input id='experiment-name' />
                                     </Form.Item>
                                 </Col>
@@ -242,7 +262,7 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                                     <label htmlFor="start-date">O2 Absolute Percentage</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                    <Form.Item name="start-date">
+                                    <Form.Item name="O2AbsolutePercentage">
                                     <Input id='experiment-name' />
                                     </Form.Item>
                                 </Col>
@@ -253,23 +273,12 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
                                     <label htmlFor="start-time">O2 Absolute Impurity Percentage</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                <Form.Item name="start-date">
+                                <Form.Item name="O2AbsoluteImpurityPercentage">
                                     <Input id='experiment-name' />
                                     </Form.Item>
                                 </Col>
                             </Col>
-                        </Row>    
-                        
-                        
-                        
-                        
-                        
-                       
-                        
-                        
-
-                        
-                       
+                        </Row>     
                         
 
                         <Row align="middle">
@@ -304,7 +313,6 @@ function ExperimentModal({ visible, onCancel, onSubmit }) {
 ExperimentModal.propTypes = {
     visible: propTypes.bool.isRequired,
     onCancel: propTypes.func.isRequired,
-    onSubmit: propTypes.func
 };
 
 export default ExperimentModal;
