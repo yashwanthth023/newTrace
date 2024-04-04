@@ -3,12 +3,15 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col, Form, Input, Upload, Checkbox, DatePicker, message, Alert } from 'antd';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper, } from './style/wrapperStyle';
 import ProtoTypeHeader from './components/protoTypeInfo';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
-import { getVersionByIdAPI, updateVersionByIdAPI } from '../../api/api';
+import { updateVersionByIdAPI } from '../../api/api';
+import { setVersionDetails } from '../../redux/versionDetails/versionSlice';
+import { SessionStorage } from '../../util/SessionStorage';
 // import { Button } from '../buttons/buttons';
 
 const { TextArea } = Input;
@@ -19,18 +22,20 @@ function Assembly() {
     const [assemblyCompleted, setassemblyCompleted] = useState(false);
     const [assemblyForm] = Form.useForm();
     const [successMessageVisible, setSuccessMessageVisible] = useState(false);
+    const data = useSelector((state) => state?.versionInfo?.versionDetails)
+    const dispatch = useDispatch();
 
-    const fetchData = async () => {
-        const response = await getVersionByIdAPI({ id: '5e63dc36-3f2a-4988-85eb-7fd355030357' });
-        if (response) {
-            console.log(response)
-            setFormDetails(response);
-        }
-    }
+    // const fetchData = async () => {
+    //     const response = await getVersionByIdAPI({ id: '5e63dc36-3f2a-4988-85eb-7fd355030357' });
+    //     if (response) {
+    //         console.log(response)
+    //         setFormDetails(response);
+    //     }
+    // }
 
     useEffect(() => {
-        fetchData();
-    }, [])
+        setFormDetails(data);
+    }, [data])
 
     useEffect(() => {
         if (Object.keys(formDetails).length !== 0) {
@@ -68,9 +73,9 @@ function Assembly() {
 
     const handleAssemblyData = async () => {
         const updateAssemblyData = await assemblyForm.validateFields();
-        console.log("updateAssemblyData : ", updateAssemblyData);
-        const response = await updateVersionByIdAPI({ id: '5e63dc36-3f2a-4988-85eb-7fd355030357', ...updateAssemblyData });
-        showSuccessMessage();
+        const response = await updateVersionByIdAPI({ id: SessionStorage.getItem('versionId'), markAsAssemblyComplete: assemblyCompleted,  ...updateAssemblyData });
+        dispatch(setVersionDetails(response));
+        showSuccessMessage();        
         console.log(response)
     }
 
