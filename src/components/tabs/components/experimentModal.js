@@ -71,7 +71,9 @@ function ExperimentModal({ visible, onCancel }) {
                                 <label htmlFor="experiment-name">Experiment Title</label>
                             </Col>
                             <Col md={18} xs={24}>
-                                <Form.Item name="experimentName">
+                                <Form.Item name="experimentName"
+                                  rules={[{ required: true, message: 'Please enter the experiment title!' }]}
+                                  >
                                     <Input id='experiment-name' />
                                 </Form.Item>
                             </Col>
@@ -83,12 +85,14 @@ function ExperimentModal({ visible, onCancel }) {
                                 <label htmlFor="experiment-type">Experiment Type</label>
                             </Col>
                             <Col md={18} xs={24}>
-                                <Form.Item name="experimentType">
+                                <Form.Item name="experimentType"
+                                 rules={[{ required: true, message: 'Please select the experiment type!' }]}
+                                >
                                     <Select size="small" style={{ width: "100%" }} id='experiment-type'>
-                                        <Option value="1">Flow Test</Option>
-                                        <Option value="2">VI Characteristics</Option>
-                                        <Option value="3">Purity</Option>
-                                        <Option value="4">Others</Option>
+                                        <Option value="Flow Test">Flow Test</Option>
+                                        <Option value="Characteristics">VI Characteristics</Option>
+                                        <Option value="Purity">Purity</Option>
+                                        <Option value="Others">Others</Option>
                                     </Select>
                                 </Form.Item>
                             </Col>
@@ -99,7 +103,9 @@ function ExperimentModal({ visible, onCancel }) {
                                 <label htmlFor="experiment-name">Electrolyte</label>
                             </Col>
                             <Col md={18} xs={24}>
-                                <Form.Item name="electrolyte">
+                                <Form.Item name="electrolyte"
+                                 rules={[{ required: true, message: 'Please enter the electrolyte!' }]}
+                                >
                                     <Input id='experiment-name' />
                                 </Form.Item>
                             </Col>
@@ -110,10 +116,12 @@ function ExperimentModal({ visible, onCancel }) {
                                 <label htmlFor="status">Status</label>
                             </Col>
                             <Col md={18} xs={24}>
-                                <Form.Item name="status">
+                                <Form.Item name="status"
+                                rules={[{ required: true, message: 'Please select the status!' }]}
+                                >
                                     <Select size="small" style={{ width: "100%" }} id='status'>
-                                        <Option value="1">Pass</Option>
-                                        <Option value="2">Fail</Option>
+                                        <Option value="Pass">Pass</Option>
+                                        <Option value="Fail">Fail</Option>
 
                                     </Select>
                                 </Form.Item>
@@ -125,7 +133,9 @@ function ExperimentModal({ visible, onCancel }) {
                                 <label htmlFor="Hypothesis">Objective / Hypothesis</label>
                             </Col>
                             <Col md={18} xs={24}>
-                                <Form.Item name="Hypothesis">
+                                <Form.Item name="Hypothesis"
+                                rules={[{ required: true, message: 'Please enter the Hypothesis!' }]}
+                                >
                                     <Input.TextArea id='Hypothesis' />
                                 </Form.Item>
                             </Col>
@@ -138,7 +148,10 @@ function ExperimentModal({ visible, onCancel }) {
                                     <label htmlFor="start-date">Start Date</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                    <Form.Item name="startDate">
+                                    <Form.Item name="startDate"
+                                    rules={[{ required: true, message: 'Please select the start date!' }]}
+                                    >
+
                                         <DatePicker id='start-date' />
                                     </Form.Item>
                                 </Col>
@@ -164,7 +177,9 @@ function ExperimentModal({ visible, onCancel }) {
                                     <label htmlFor="end-date">End Date</label>
                                 </Col>
                                 <Col md={24} xs={24}>
-                                    <Form.Item name="endDate">
+                                    <Form.Item name="endDate"
+                                    rules={[{ required: true, message: 'Please select the end date!' }]}
+                                    >
                                         <DatePicker id='end-date' />
                                     </Form.Item>
                                 </Col>
@@ -190,7 +205,9 @@ function ExperimentModal({ visible, onCancel }) {
                                     <label htmlFor="start-date">Electrolyte Flowrate</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                    <Form.Item name="electrolyteFlowrate">
+                                    <Form.Item name="electrolyteFlowrate"
+                                    rules={[{ required: true, message: 'Please enter the Electrolyte Flowrate!' },]}
+                                    >
                                     <Input id='experiment-name' />
                                     </Form.Item>
                                 </Col>
@@ -201,7 +218,9 @@ function ExperimentModal({ visible, onCancel }) {
                                     <label htmlFor="start-time">Max Current</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                <Form.Item name="maximumCurrent">
+                                <Form.Item name="maximumCurrent"
+                                rules={[{ required: true, message: 'Please enter the maximum current!' }]}
+                                >
                                     <Input id='experiment-name' />
                                     </Form.Item>
                                 </Col>
@@ -214,7 +233,9 @@ function ExperimentModal({ visible, onCancel }) {
                                     <label htmlFor="start-date">Max Voltage</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                    <Form.Item name="maximumVoltage">
+                                    <Form.Item name="maximumVoltage"
+                                      rules={[{ required: true, message: 'Please enter the maximum voltage!' }]}
+                                    >
                                     <Input id='experiment-name' />
                                     </Form.Item>
                                 </Col>
@@ -225,7 +246,9 @@ function ExperimentModal({ visible, onCancel }) {
                                     <label htmlFor="start-time">Gas Flowrate</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                    <Form.Item name="gasFlowrate">
+                                    <Form.Item name="gasFlowrate"
+                                      rules={[{ required: true, message: 'Please enter the gas flowrate!' }]}
+                                    >
                                     <Input id='experiment-name' />
                                     </Form.Item>
                                 </Col>
@@ -238,7 +261,9 @@ function ExperimentModal({ visible, onCancel }) {
                                     <label htmlFor="start-date">H2 Absolute Percentage</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                    <Form.Item name="H2AbsolutePercentage">
+                                    <Form.Item name="H2AbsolutePercentage"
+                                         rules={[{ required: true, message: 'Please enter the H2 Absolute Percentage!' }]}
+                                    >
                                     <Input id='experiment-name' />
                                     </Form.Item>
                                 </Col>
@@ -249,7 +274,9 @@ function ExperimentModal({ visible, onCancel }) {
                                     <label htmlFor="start-time">H2 Absolute Impurity Percentage</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                <Form.Item name="H2AbsoluteImpurityPercentage">
+                                <Form.Item name="H2AbsoluteImpurityPercentage"
+                                  rules={[{ required: true, message: 'Please enter the H2 Absolute Impurity Percentage!' }]}
+                                >
                                     <Input id='experiment-name' />
                                     </Form.Item>
                                 </Col>
@@ -259,10 +286,12 @@ function ExperimentModal({ visible, onCancel }) {
                             <Col xl={12} lg={12} md={24}>
                                 <Col md={18} xs={24}>
                                     {/* eslint-disable-next-line */}
-                                    <label htmlFor="start-date">O2 Absolute Percentage</label>
+                                    <label htmlFor="start-date">O<sub>2</sub> Absolute Percentage</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                    <Form.Item name="O2AbsolutePercentage">
+                                    <Form.Item name="O2AbsolutePercentage"
+                                    rules={[{ required: true, message: 'Please enter the O2 Absolute Percentage!' }]}
+                                    >
                                     <Input id='experiment-name' />
                                     </Form.Item>
                                 </Col>
@@ -270,16 +299,17 @@ function ExperimentModal({ visible, onCancel }) {
                             <Col xl={12} lg={12} md={24}>
                                 <Col lg={24} md={6} xs={24}>
                                     {/* eslint-disable-next-line */}
-                                    <label htmlFor="start-time">O2 Absolute Impurity Percentage</label>
+                                    <label htmlFor="start-time">O<sub>2</sub> Absolute Impurity Percentage</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                <Form.Item name="O2AbsoluteImpurityPercentage">
+                                <Form.Item name="O2AbsoluteImpurityPercentage"
+                                rules={[{ required: true, message: 'Please enter the O2 Absolute Percentage!' }]}
+                                >
                                     <Input id='experiment-name' />
                                     </Form.Item>
                                 </Col>
                             </Col>
-                        </Row>     
-                        
+                        </Row>            
 
                         <Row align="middle">
                             <Col md={6} xs={24}>
@@ -298,7 +328,9 @@ function ExperimentModal({ visible, onCancel }) {
                                 <label htmlFor="conclusion">Conclusion</label>
                             </Col>
                             <Col md={18} xs={24}>
-                                <Form.Item name="conclusion">
+                                <Form.Item name="conclusion"
+                                 rules={[{ required: true, message: 'Please enter the conclusion!' }]}
+                                >
                                     <Input.TextArea id='conclusion' />
                                 </Form.Item>
                             </Col>

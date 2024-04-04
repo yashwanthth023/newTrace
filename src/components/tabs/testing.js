@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState ,useEffect } from 'react';
+// import moment from 'moment';
 import { Row, Col, Table, DatePicker, Checkbox, Form } from 'antd';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper } from './style/wrapperStyle';
@@ -7,20 +8,22 @@ import ExperimentModal from './components/experimentModal';
 import ProtoTypeHeader from './components/protoTypeInfo';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
-import { getVersionByIdAPI } from '../../api/api';
+import { fetchAllExperiments} from '../../api/api';
+import { DateFormat } from '../../util/utils';
 
 function Testing() {
     const [showModal, setShowModal] = useState(false);
-    const [ formDetails, setFormDetails] = useState(false);
+    const [ formDetails, setFormDetails] = useState();
     // const [checkBoxValue ,setCheckBoxValue] = useState(false);
 
 
     const fetchData = async () => {
-        const response = await getVersionByIdAPI({ id: '8308218c-7ba6-4453-9c2d-70a6f3acb82a' });
+        const response = await fetchAllExperiments();
+        console.log("---------------------------------");
+        console.log(response);
         if (response) {
-            console.log(response)
             setFormDetails(response);
-            console.log(formDetails);
+            // console.log("formDetails ---------",new Date(formDetails[0]?.createdTs),);
         }
     }
 
@@ -28,36 +31,41 @@ function Testing() {
         fetchData();
     }, [])
 
+    const onRowClick = (record, rowIndex) => {
+        return {
+          onClick: () => {
+            console.log('Clicked row:', record, rowIndex);
+            // You can do various actions here. For example, navigate to a different page or display a modal.
+          },
+        };
+      };
 
-    const dataSource = [
-        {
-            key: '1',
-            exp_title: 'Mike',
-            type: 'Purity',
-            status: 'Pass',
-            created_on: '23/08/2002',
-            created_by: 'Gowtham'
-        },
-        {
-            key: '2',
-            exp_title: 'John',
-            type: 'Flow Test',
-            status: 'Fail',
-            created_on: '23/08/2002',
-            created_by: 'Gowtham'
-        },
-    ];
+
+    const dataSource = formDetails?.map((item, i)=>
+    {
+        return {
+            key: i+1,
+            id : item.id,
+            experimentName: item.experimentName,
+            experimentType: item.experimentType,
+            status: item.status,
+            createdTs: DateFormat(item?.createdTs),
+            created_by: 'Yashwanth',
+            updatedTs :DateFormat(item?.updatedTs),
+            modified_by : 'Yashwanth'
+        }
+    })
 
     const columns = [
         {
             title: 'Experiment Name',
-            dataIndex: 'exp_title',
-            key: 'exp_title',
+            dataIndex: 'experimentName',
+            key: 'experimentName',
         },
         {
             title: 'Type',
-            dataIndex: 'type',
-            key: 'type',
+            dataIndex: 'experimentType',
+            key: 'experimentType',
         },
         {
             title: 'Status',
@@ -66,8 +74,8 @@ function Testing() {
         },
         {
             title: 'Created On',
-            dataIndex: 'created_on',
-            key: 'created_on',
+            dataIndex: 'createdTs',
+            key: 'createdTs',
         },
         {
             title: 'Created By',
@@ -76,8 +84,8 @@ function Testing() {
         },
         {
             title: 'Modified On',
-            dataIndex: 'modified_on',
-            key: 'modified_on',
+            dataIndex: 'updatedTs',
+            key: 'updatedTs',
         },
         {
             title: 'Modified By',
@@ -137,11 +145,12 @@ function Testing() {
                             </Button>
                         </Col>
                     </Row>
-                    <ExperimentModal visible={showModal} onCancel={() => setShowModal(false)} />
+                    <ExperimentModal visible={showModal} id='sd'
+                     onCancel={() => setShowModal(false)} />
                     <br />
                     <Row align="middle" gutter={25}>
                         <Col lg={24}>
-                            <Table className="table-responsive" pagination={false} dataSource={dataSource} columns={columns} />
+                            <Table className="table-responsive" pagination={false} dataSource={dataSource} columns={columns} onRow={onRowClick} />
                         </Col>
                     </Row>
 
