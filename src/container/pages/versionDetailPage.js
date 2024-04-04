@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Button } from 'antd';
+import { useDispatch } from 'react-redux';
 import { AddUser } from './style';
 import { Cards } from '../../components/cards/frame/cards-frame';
 import { Main } from '../styled';
@@ -9,11 +10,28 @@ import ComponentProcurement from '../../components/tabs/componentProcurement';
 import Testing from '../../components/tabs/testing';
 import Closure from '../../components/tabs/closure';
 import Assembly from '../../components/tabs/assembly';
+import { fetchVersionDetailsAPI } from '../../api/api';
+import { setComponentDetails, setVersionDetails } from '../../redux/versionDetails/versionSlice';
+import { SessionStorage } from '../../util/SessionStorage';
 
 
 const VersionDetailPage = () => {
     const [tab, setTab] = useState('general');
+    const dispatch = useDispatch();
+    // const userData = useSelector((state) => state.versionInfo.versionDetails)
 
+    const fetchData = async () => {
+        const response = await fetchVersionDetailsAPI({ id: SessionStorage.getItem('versionId') });
+        if (response) {
+            console.log(response);
+            dispatch(setVersionDetails(response.versionDetails));
+            dispatch(setComponentDetails(response.manufactureDetails));
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, [])
 
     const tabToShow = () => {
         switch (tab) {

@@ -1,14 +1,17 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Form, Input, Upload, Checkbox, DatePicker, message } from 'antd';
+import { Row, Col, Form, Input, Upload, Checkbox, DatePicker, message, Alert } from 'antd';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper, } from './style/wrapperStyle';
 import ProtoTypeHeader from './components/protoTypeInfo';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
-import { getVersionByIdAPI } from '../../api/api';
+import { updateVersionByIdAPI } from '../../api/api';
+import { setVersionDetails } from '../../redux/versionDetails/versionSlice';
+import { SessionStorage } from '../../util/SessionStorage';
 // import { Button } from '../buttons/buttons';
 
 const { TextArea } = Input;
@@ -18,23 +21,26 @@ function Assembly() {
     const [formDetails, setFormDetails] = useState({});
     const [assemblyCompleted, setassemblyCompleted] = useState(false);
     const [assemblyForm] = Form.useForm();
+    const [successMessageVisible, setSuccessMessageVisible] = useState(false);
+    const data = useSelector((state) => state?.versionInfo?.versionDetails)
+    const dispatch = useDispatch();
 
-    const fetchData = async () => {
-        const response = await getVersionByIdAPI({ id: '5e63dc36-3f2a-4988-85eb-7fd355030357' });
-        if (response) {
-            console.log(response)
-            setFormDetails(response);
-        }
-    }
+    // const fetchData = async () => {
+    //     const response = await getVersionByIdAPI({ id: '5e63dc36-3f2a-4988-85eb-7fd355030357' });
+    //     if (response) {
+    //         console.log(response)
+    //         setFormDetails(response);
+    //     }
+    // }
 
     useEffect(() => {
-        fetchData();
-    }, [])
+        setFormDetails(data);
+    }, [data])
 
     useEffect(() => {
         if (Object.keys(formDetails).length !== 0) {
             assemblyForm.setFieldsValue({
-                integrityTest: formDetails.integrityTests ? formDetails.integrityTests : undefined,
+                integrityTests: formDetails.integrityTests ? formDetails.integrityTests : undefined,
                 actualAssemblyCompletionDate: formDetails.actualAssemblyCompletionDate ? moment(formDetails.actualAssemblyCompletionDate) : undefined,
             });            
             setassemblyCompleted(formDetails.markAsAssemblyComplete && formDetails.markAsAssemblyComplete === true);
@@ -58,13 +64,28 @@ function Assembly() {
             setassemblyCompleted(false);
     }
 
+    const showSuccessMessage = () => {
+        setSuccessMessageVisible(true);
+        setTimeout(() => {
+            setSuccessMessageVisible(false);
+        }, 5000);
+    };
+
+    const handleAssemblyData = async () => {
+        const updateAssemblyData = await assemblyForm.validateFields();
+        const response = await updateVersionByIdAPI({ id: SessionStorage.getItem('versionId'), markAsAssemblyComplete: assemblyCompleted,  ...updateAssemblyData });
+        dispatch(setVersionDetails(response));
+        showSuccessMessage();        
+        console.log(response)
+    }
+
     return (
         <BasicFormWrapper>
             <HorizontalFormStyleWrap className="sDash_input-form">
                 <div style={{ display: 'flex' }}>
                     <Cards headless>
                         <ProtoTypeHeader />
-                        <Form form={assemblyForm}>
+                        <Form form={assemblyForm} onFinish={handleAssemblyData}>
                             <Row gutter={25}>
                                 <Col xl={12} lg={12}>                           
                                     <Row align="middle" gutter={25}>                          
@@ -96,11 +117,11 @@ function Assembly() {
                                     <Row align="middle" gutter={25}>
                                         <Col md={6} xs={24} >
                                             {/* eslint-disable-next-line */}
-                                            <label htmlFor='integrityTest'>Integrity Tests</label>
+                                            <label htmlFor='integrityTests'>Integrity Tests</label>
                                         </Col>
                                         <Col md={18} xs={24}>
-                                            <Form.Item name="integrityTest">
-                                                {/* <Input.TextArea rows={4} id='integrityTest' name='integrityTest' />
+                                            <Form.Item name="integrityTests">
+                                                {/* <Input.TextArea rows={4} id='integrityTests' name='integrityTests' />
                                                 < */}
                                                  <TextArea placeholder="write something." />
                                             </Form.Item>
@@ -147,10 +168,9 @@ function Assembly() {
 
                                 </Col>
                             </Row>
-                        </Form>
-                        <Row align="middle">
+                            <Row align="middle">
                             <Col md={24} align='right'>
-                                <Button size='default' type='primary' style={{ marginRight: 5 }}>
+                                <Button size='default' htmlType='submit' key="submit" type='primary' style={{ marginRight: 5 }}>
                                     save
                                 </Button>
                                 <Button size='default' type='light'>
@@ -158,8 +178,20 @@ function Assembly() {
                                 </Button>
                             </Col>
                         </Row>
+                        </Form>                        
                     </Cards>
                 </div>
+                {successMessageVisible && (
+                    <div style={{ position: 'fixed', bottom: 20, right: 20, zIndex: 9999 }}>
+                        <Alert
+                            type='success'
+                            message="Success"
+                            showIcon
+                            closable
+                            onClose={() => setSuccessMessageVisible(false)}
+                        />
+                    </div>
+                )}
             </HorizontalFormStyleWrap>
         </BasicFormWrapper >
     );
