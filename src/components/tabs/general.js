@@ -10,7 +10,6 @@ import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
 import { updatePrototypeDetailsAPI, updateVersionByIdAPI } from '../../api/api';
 import { setPrototypeDetails, setVersionDetails } from '../../redux/versionDetails/versionSlice';
-// import { getVersionByIdAPI, updatePrototypeDetailsAPI, updateVersionByIdAPI } from '../../api/api';
 // import { SessionStorage } from '../../util/SessionStorage';
 
 const { TextArea } = Input;
@@ -23,10 +22,8 @@ function General() {
     const data = useSelector((state) => state?.versionInfo?.versionDetails)
     const dispatch = useDispatch();
 
-
     useEffect(() => {
         setFormDetails(data);
-        // fetchData();
     }, [data])
 
     useEffect(() => {
@@ -59,7 +56,7 @@ function General() {
 
     const handlePrototypeData = async () => {
         const prototypeData = await form1.validateFields()
-        const response = await updatePrototypeDetailsAPI({ id: '7e897fa8-cdb5-4648-95fc-c9b969994964', ...prototypeData });
+        const response = await updatePrototypeDetailsAPI({ id: '74bd2fca-2441-4a6c-a5d3-4313495f56f1', ...prototypeData });
         showSuccessMessage();
         dispatch(setPrototypeDetails(response));
         console.log("updatedValues", response)
@@ -71,8 +68,6 @@ function General() {
         showSuccessMessage();
         console.log(response)
     }
-
-
 
     return (
         <BasicFormWrapper>
