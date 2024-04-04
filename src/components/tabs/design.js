@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Form, Input, Select, Upload, message,Checkbox, DatePicker } from 'antd';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper } from './style/wrapperStyle';
@@ -9,8 +10,9 @@ import ProtoTypeHeader from './components/protoTypeInfo';
 import ViewElectroChem from './components/viewElectrochem';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
-import { getVersionByIdAPI, updateVersionByIdAPI,fetchEcDetailsAPI } from '../../api/api';
+import {  updateVersionByIdAPI,fetchEcDetailsAPI } from '../../api/api';
 import { SessionStorage } from '../../util/SessionStorage';
+import { setVersionDetails } from '../../redux/versionDetails/versionSlice';
 
 
 const { Option } = Select;
@@ -18,15 +20,17 @@ const { Option } = Select;
 function Design() {
     const [formDetails, setFormDetails] = useState({})
     const [form] = Form.useForm();
-
-    const fetchData = async () => {
-        const response = await getVersionByIdAPI({ id: SessionStorage.getItem('versionId') });
-        console.log(response)
-        setFormDetails(response);
-    }
+    const versionDetails = useSelector((state)=> state.versionInfo.versionDetails)
+    const dispatch = useDispatch()
+    // const fetchData = async () => {
+    //     const response = await getVersionByIdAPI({ id: SessionStorage.getItem('versionId') });
+    //     console.log(response)
+    //     setFormDetails(response);
+    // }
     useEffect(() => {
-        fetchData();
-    }, [])
+        setFormDetails(versionDetails)
+        // fetchData();
+    }, [versionDetails])
 
     useEffect(() => {
         if (Object.keys(formDetails).length !== 0) {           
@@ -48,6 +52,11 @@ function Design() {
     const handlePrototypeData = async (values) => {
         const prototypeData = await form.validateFields()
         const response = await updateVersionByIdAPI( { id: SessionStorage.getItem('versionId') , ...prototypeData });
+        if(response){
+
+            dispatch(setVersionDetails(response));
+        }
+
         console.log("updatedValues", response)
         const { markAsDesignComplete, actualDateDesignComplete } = values;
         if (markAsDesignComplete && actualDateDesignComplete) {

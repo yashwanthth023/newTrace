@@ -13,7 +13,7 @@ import { SessionStorage } from '../../util/SessionStorage';
 
 function GridCard({ value }) {
   const history = useHistory();
-  const {  prototypeName ,description,versions} = value;
+  const {  prototypeName ,description,versions, id} = value;
   const descriptionText = description ? textRefactor(description, 13) : "";
 
 
@@ -25,8 +25,9 @@ function GridCard({ value }) {
     onCancel();
   }
 
-  const handleClick = (id) => {
-    SessionStorage.setItem('versionId',id )
+  const handleClick = (vId) => {
+    SessionStorage.setItem('versionId',vId )
+    SessionStorage.setItem('prototypeId',id )
     history.push('/versionDetails')
   }
 
