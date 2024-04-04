@@ -1,36 +1,108 @@
-import React from 'react';
-import { Row, Col, Form, Input, Upload } from 'antd';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useEffect, useState } from 'react';
+import { Row, Col, Form, Input, Upload, Checkbox, DatePicker, message } from 'antd';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import moment from 'moment';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper, } from './style/wrapperStyle';
 import ProtoTypeHeader from './components/protoTypeInfo';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
+import { getVersionByIdAPI } from '../../api/api';
 // import { Button } from '../buttons/buttons';
 
+const { TextArea } = Input;
 
 function Assembly() {
+
+    const [formDetails, setFormDetails] = useState({});
+    const [assemblyCompleted, setassemblyCompleted] = useState(false);
+    const [assemblyForm] = Form.useForm();
+
+    const fetchData = async () => {
+        const response = await getVersionByIdAPI({ id: '5e63dc36-3f2a-4988-85eb-7fd355030357' });
+        if (response) {
+            console.log(response)
+            setFormDetails(response);
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, [])
+
+    useEffect(() => {
+        if (Object.keys(formDetails).length !== 0) {
+            assemblyForm.setFieldsValue({
+                integrityTest: formDetails.integrityTests ? formDetails.integrityTests : undefined,
+                actualAssemblyCompletionDate: formDetails.actualAssemblyCompletionDate ? moment(formDetails.actualAssemblyCompletionDate) : undefined,
+            });            
+            setassemblyCompleted(formDetails.markAsAssemblyComplete && formDetails.markAsAssemblyComplete === true);
+        }
+    }, [formDetails, assemblyForm]);
+
+    const changeToCompleted = async (e) => {
+        const assemblyData = await assemblyForm.validateFields();
+        if(assemblyData.actualAssemblyCompletionDate)
+        {
+            setassemblyCompleted(e.target.checked);
+        }
+        else
+        {
+            message.error("Please select completion date!");
+        }
+    };
+
+    const handleDateChange = (date) => {
+        if(!date)
+            setassemblyCompleted(false);
+    }
+
     return (
         <BasicFormWrapper>
             <HorizontalFormStyleWrap className="sDash_input-form">
-
-                <Cards headless>
-                    <ProtoTypeHeader />
-                </Cards>
-
                 <div style={{ display: 'flex' }}>
                     <Cards headless>
-                        <Form>
+                        <ProtoTypeHeader />
+                        <Form form={assemblyForm}>
+                            <Row gutter={25}>
+                                <Col xl={12} lg={12}>                           
+                                    <Row align="middle" gutter={25}>                          
+                                        <Col md={10} xs={8}>                                            
+                                            <label htmlFor='assemblyCompletedCheck'>Mark as Assembly Complete:</label>
+                                        </Col>
+                                        <Col md={4} style={{marginTop : 20}}>
+                                            {/* <Form.Item name='assemblyCompletedCheck'> */}
+                                                <Checkbox style={{height: 20, width: 20, fontSize: 30}} name='assemblyCompletedCheck' checked={assemblyCompleted} onChange={changeToCompleted}/>
+                                            {/* </Form.Item> */}
+                                        </Col>                                     
+                                    </Row>                           
+                                </Col>
+                                <Col  xl={12} lg={12}>
+                                    <Row align="middle">
+                                        <Col md={6} xs={12} xl={12} lg={6}>
+                                            <label htmlFor='actualAssemblyCompletionDate'>Assembly completion date:</label>
+                                        </Col>
+                                        <Col md={12} xs={24} align='right'>                                    
+                                            <Form.Item name="actualAssemblyCompletionDate">
+                                                <DatePicker onChange={handleDateChange} />
+                                            </Form.Item>                                   
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            </Row>
                             <Row align="middle" gutter={25}>
                                 <Col lg={24} sm={24}>
                                     <Row align="middle" gutter={25}>
                                         <Col md={6} xs={24} >
                                             {/* eslint-disable-next-line */}
-                                            <label id='name' htmlFor='name'>Integrity Tests</label>
+                                            <label htmlFor='integrityTest'>Integrity Tests</label>
                                         </Col>
                                         <Col md={18} xs={24}>
-                                            <Form.Item name="name">
-                                                <Input.TextArea rows={4} id='name' name='name' />
+                                            <Form.Item name="integrityTest">
+                                                {/* <Input.TextArea rows={4} id='integrityTest' name='integrityTest' />
+                                                < */}
+                                                 <TextArea placeholder="write something." />
                                             </Form.Item>
                                         </Col>
                                     </Row>
