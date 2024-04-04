@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col, Form, Input, Upload, Alert } from 'antd';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper } from './style/wrapperStyle';
 import DateForm from './components/dateForm';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
-import { getVersionByIdAPI, updatePrototypeDetailsAPI, updateVersionByIdAPI } from '../../api/api';
+import { updatePrototypeDetailsAPI, updateVersionByIdAPI } from '../../api/api';
+import { setPrototypeDetails, setVersionDetails } from '../../redux/versionDetails/versionSlice';
 // import { SessionStorage } from '../../util/SessionStorage';
 
 const { TextArea } = Input;
@@ -17,16 +19,12 @@ function General() {
     const [form1] = Form.useForm();
     const [form2] = Form.useForm();
     const [successMessageVisible, setSuccessMessageVisible] = useState(false);
-
-    const fetchData = async () => {
-        const response = await getVersionByIdAPI({ id: '097d0488-237a-407b-8c3e-098ca8e06717' });
-        console.log(response)
-        setFormDetails(response);
-    }
+    const data = useSelector((state) => state?.versionInfo?.versionDetails)
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        fetchData();
-    }, [])
+        setFormDetails(data);
+    }, [data])
 
     useEffect(() => {
         if (Object.keys(formDetails).length !== 0) {
@@ -58,18 +56,18 @@ function General() {
 
     const handlePrototypeData = async () => {
         const prototypeData = await form1.validateFields()
-        const response = await updatePrototypeDetailsAPI({ id: '7e897fa8-cdb5-4648-95fc-c9b969994964', ...prototypeData });
+        const response = await updatePrototypeDetailsAPI({ id: '74bd2fca-2441-4a6c-a5d3-4313495f56f1', ...prototypeData });
         showSuccessMessage();
+        dispatch(setPrototypeDetails(response));
         console.log("updatedValues", response)
     }
     const handleVersionData = async () => {
         const versionData = await form2.validateFields();
         const response = await updateVersionByIdAPI({ id: 'ab5fb012-5796-4774-a184-4add002311fa', ...versionData });
+        dispatch(setVersionDetails(response));
         showSuccessMessage();
         console.log(response)
     }
-
-
 
     return (
         <BasicFormWrapper>

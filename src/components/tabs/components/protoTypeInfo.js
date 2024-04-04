@@ -1,10 +1,14 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import { Row, Col, Form } from 'antd';
+import { useSelector } from 'react-redux';
 import { HorizontalFormStyleWrap } from '../style/formStyle';
 import { BasicFormWrapper } from '../style/wrapperStyle';
 
 function ProtoTypeHeader() {
+    const prototypeDetails = useSelector((state) => state.versionInfo.versionDetails)
+
+
     return (
         <BasicFormWrapper>
             <HorizontalFormStyleWrap className="sDash_input-form">
@@ -18,7 +22,7 @@ function ProtoTypeHeader() {
                                         <label htmlFor='design'>Prototype :</label>
                                     </Col> */}
                                     <Col md={24} xs={12}>
-                                        <label style={{ fontSize: 18 }}>Lead Acid Fast Charge, NT-PT0111</label>
+                                        <label style={{ fontSize: 18 }}>{`${prototypeDetails.prototypeName}, ${prototypeDetails.versionName}`}</label>
                                     </Col>
                                 </Row>
                             </Col>
@@ -48,7 +52,7 @@ function ProtoTypeHeader() {
                                             <Select.Option value="5">Archived</Select.Option>
                                         </Select> */}
                                     <label>
-                                        Design
+                                        {prototypeDetails.versionStatus}
                                     </label>
                                     {/* </Form.Item> */}
                                 </Col>

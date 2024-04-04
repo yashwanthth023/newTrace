@@ -5,7 +5,8 @@ import { Provider, useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
-import store from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './redux/store';
 import Admin from './routes/admin';
 import versionDetailRoute from './routes/admin/versionDetails';
 
@@ -60,7 +61,9 @@ function ProviderConfig() {
 function App() {
   return (
     <Provider store={store}>
-      <ProviderConfig />
+      <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
+        <ProviderConfig />
+      </PersistGate>
     </Provider>
   );
 }
