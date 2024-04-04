@@ -12,6 +12,7 @@ import Closure from '../../components/tabs/closure';
 import Assembly from '../../components/tabs/assembly';
 import { fetchVersionDetailsAPI } from '../../api/api';
 import { setComponentDetails, setVersionDetails } from '../../redux/versionDetails/versionSlice';
+import { SessionStorage } from '../../util/SessionStorage';
 
 
 const VersionDetailPage = () => {
@@ -20,7 +21,7 @@ const VersionDetailPage = () => {
     // const userData = useSelector((state) => state.versionInfo.versionDetails)
 
     const fetchData = async () => {
-        const response = await fetchVersionDetailsAPI({ id: 'ab5fb012-5796-4774-a184-4add002311fa' });
+        const response = await fetchVersionDetailsAPI({ id: SessionStorage.getItem('versionId') });
         if (response) {
             console.log(response);
             dispatch(setVersionDetails(response.versionDetails));

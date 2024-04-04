@@ -10,6 +10,7 @@ import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
 import { updatePrototypeDetailsAPI, updateVersionByIdAPI } from '../../api/api';
 import { setPrototypeDetails, setVersionDetails } from '../../redux/versionDetails/versionSlice';
+import { SessionStorage } from '../../util/SessionStorage';
 // import { SessionStorage } from '../../util/SessionStorage';
 
 const { TextArea } = Input;
@@ -56,14 +57,14 @@ function General() {
 
     const handlePrototypeData = async () => {
         const prototypeData = await form1.validateFields()
-        const response = await updatePrototypeDetailsAPI({ id: '74bd2fca-2441-4a6c-a5d3-4313495f56f1', ...prototypeData });
+        const response = await updatePrototypeDetailsAPI({ id: SessionStorage.getItem('prototypeId'), ...prototypeData });
         showSuccessMessage();
         dispatch(setPrototypeDetails(response));
         console.log("updatedValues", response)
     }
     const handleVersionData = async () => {
         const versionData = await form2.validateFields();
-        const response = await updateVersionByIdAPI({ id: 'ab5fb012-5796-4774-a184-4add002311fa', ...versionData });
+        const response = await updateVersionByIdAPI({ id: SessionStorage.getItem('versionId'), ...versionData });
         dispatch(setVersionDetails(response));
         showSuccessMessage();
         console.log(response)
