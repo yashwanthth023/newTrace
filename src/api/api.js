@@ -11,3 +11,4 @@ export const addManufacturingDetailsAPI = async (data) => apiClient.postAPICall(
 export const fetchManufacturingDetailsByVersionIdAPI = async (data) => apiClient.postAPICall(apiRoutes.fetchManufacturingDetailsByVersionId, data).then(res => res.data);
 export const fetchComponentDetailByIdAPI = async (data) => apiClient.postAPICall(apiRoutes.fetchComponentDetailById, data).then(res => res.data);
 export const updateManufacturingDetailsAPI = async (data) => apiClient.postAPICall(apiRoutes.updateManufacturingDetails, data).then(res => res.data);
+export const fetchEcDetailsAPI = async (data) => apiClient.postAPICall(apiRoutes.fetchEcDetails, data).then(res => res.data);

@@ -9,7 +9,8 @@ import ProtoTypeHeader from './components/protoTypeInfo';
 import ViewElectroChem from './components/viewElectrochem';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
-import { getVersionByIdAPI, updateVersionById } from '../../api/api';
+import { getVersionByIdAPI, updateVersionByIdAPI,fetchEcDetailsAPI } from '../../api/api';
+import { SessionStorage } from '../../util/SessionStorage';
 
 
 const { Option } = Select;
@@ -19,7 +20,7 @@ function Design() {
     const [form] = Form.useForm();
 
     const fetchData = async () => {
-        const response = await getVersionByIdAPI({ id: '097d0488-237a-407b-8c3e-098ca8e06717' });
+        const response = await getVersionByIdAPI({ id: SessionStorage.getItem('versionId') });
         console.log(response)
         setFormDetails(response);
     }
@@ -44,11 +45,43 @@ function Design() {
         }
     }, [formDetails, form]);
 
-    const handlePrototypeData = async () => {
+    const handlePrototypeData = async (values) => {
         const prototypeData = await form.validateFields()
-        const response = await updateVersionById({ id: '7e897fa8-cdb5-4648-95fc-c9b969994964', ...prototypeData });
+        const response = await updateVersionByIdAPI( { id: SessionStorage.getItem('versionId') , ...prototypeData });
         console.log("updatedValues", response)
+        const { markAsDesignComplete, actualDateDesignComplete } = values;
+        if (markAsDesignComplete && actualDateDesignComplete) {
+            // Checkbox is checked and date is selected
+            // Handle successful submission here
+            message.success('Design marked as complete');
+        } else {
+            // Either checkbox is not checked or date is not selected
+            message.error('Please select both checkbox and date before marking as complete');
+        }
     }
+
+    const validateCheckbox = (_, value) => {
+        if (!value) {
+            return Promise.reject(new Error('Please check the checkbox'));
+        }
+        return Promise.resolve();
+    };
+
+    const [ecOptions, setEcOptions] = useState([]);
+
+    useEffect(() => {
+        // Fetch data from API
+        fetchEcDetailsAPI()
+            .then(data => {
+                console.log('Data received from fetchEcDetailsAPI:', data);
+                // Extract ecName from each object in the array
+                const options = data.map(item => item.ecName);
+                setEcOptions(options);
+            })
+            .catch(error => {
+                console.error('Error fetching EC details:', error);
+            });
+    }, []);
 
 
     const [showModal, setShowModal] = useState(false);
@@ -80,33 +113,32 @@ function Design() {
                     <ProtoTypeHeader />
                     <Form form={form} name="date-form" layout="horizontal" onFinish={handlePrototypeData}>
                     <Row gutter={25}>
-                        <Col xl={12} lg={12}> 
-                        <Row align="middle" gutter={25}>                          
-                                <Col md={10} xs={8}>
-                                    {/* <label htmlFor="moc"></label> */}
-                                    {/* eslint-disable-next-line */}
-                                    <label htmlFor="markAsDesignComplete">Mark as Design Complete:</label>
-                                </Col>
-                                <Col md={4} style={{marginTop : 20}}>
-                                    <Checkbox name="markAsDesignComplete" style={{height: 20, width: 20, fontSize: 30}}/>
-                                </Col>                                     
-                            </Row>                           
-                                
-                           
-                        </Col>
-                        <Col  xl={12} lg={12}>
-                            <Row align="middle">
-                                <Col md={6} xs={12} xl={12} lg={6} >
-                                    <label htmlFor="actualDateDesignComplete">Actual Date Design Complete:</label>
-                                </Col>
-                                <Col md={12} xs={24} align='right'>                                    
-                                <Form.Item name="actualDateDesignComplete">
-                                    <DatePicker />
-                                </Form.Item>                                   
-                                </Col>
-                            </Row>
-                       </Col>
-                    </Row>
+                            <Col xl={12} lg={12}>
+                                <Row align="middle" gutter={25}>
+                                    <Col md={10} xs={8}>
+                                        <label htmlFor="markAsDesignComplete">Mark as Design Complete:</label>
+                                    </Col>
+                                    <Col md={4} style={{ marginTop: 20 }}>
+                                        <Form.Item name="markAsDesignComplete" valuePropName="checked" rules={[{ validator: validateCheckbox }]}>
+                                            <Checkbox style={{ height: 20, width: 20, fontSize: 30 }} />
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
+                            </Col>
+                            <Col xl={12} lg={12}>
+                                <Row align="middle">
+                                    <Col md={6} xs={12} xl={12} lg={6}>
+                                        <label htmlFor="actualDateDesignComplete">Actual Date Design Complete:</label>
+                                    </Col>
+                                    <Col md={12} xs={24} align='right'>
+                                        <Form.Item name="actualDateDesignComplete" rules={[{ required: true, message: 'Please select a date' }]}>
+                                            <DatePicker />
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+
                                    
                    
                    
@@ -138,9 +170,9 @@ function Design() {
                                         <Col md={14} xs={24}>
                                             <Form.Item name="electrodeShape">
                                                 <Select size="small" style={{ width: "100%" }}>
-                                                    <Option value="1">Rectangular</Option>
-                                                    <Option value="2">Circular</Option>
-                                                    <Option value="2">Others</Option>
+                                                    <Option value="Rectangular">Rectangular</Option>
+                                                    <Option value="Circular">Circular</Option>
+                                                    <Option value="Others">Others</Option>
                                                 </Select>
                                             </Form.Item>
                                         </Col>
@@ -194,20 +226,16 @@ function Design() {
                                         <label htmlFor="electroChemAnode">EC Anode Details</label>
                                     </Col>
                                     <Col md={14} xs={24}>
-                                        <Form.Item name="electroChemAnode">
-                                            <Select size="small" style={{ width: "100%" }} >
-                                                <Option value="1" key="1">EC 1<div style={{ textAlign: 'right' }}>
-                                                    <Button size="small" onClick={() => setShowModal(true)}>
-                                                        View
-                                                    </Button>
-                                                </div></Option>
-                                                <Option value="2" key="2">EC 2<div style={{ textAlign: 'right' }}>
-                                                    <Button size="small" onClick={() => setShowModal(true)}>
-                                                        View
-                                                    </Button>
-                                                </div></Option>
-                                            </Select>
-                                        </Form.Item>
+                                    <Form.Item name="electroChemAnode">
+                                        <Select size="small" style={{ width: "100%" }}>
+                                            {ecOptions.map(option => (
+                                                <Select.Option key={option} value={option}>
+                                                    {option}
+                                                </Select.Option>
+                                            ))}
+                                            <Select.Option value="Others">Others</Select.Option>
+                                        </Select>
+                                    </Form.Item>
                                     </Col>
                                 </Row>
                             </Col>
@@ -217,24 +245,15 @@ function Design() {
                                         <label htmlFor="electroChemCathode">EC Cathode Details</label>
                                     </Col>
                                     <Col md={14} xs={24}>
-                                        <Form.Item name="electroChemCathode">
-                                            <Select
-                                                size="small"
-                                                style={{ width: "100%" }}
-                                                labelInValue
-                                           
-                                            >
-                                                <Option value="1" key="1">EC 1<div style={{ textAlign: 'right' }}>
-                                                    <Button size="small" onClick={() => setShowModal(true)}>
-                                                        View
-                                                    </Button>
-                                                </div></Option>
-                                                <Option value="2" key="2">EC 2<div style={{ textAlign: 'right' }}>
-                                                    <Button size="small" onClick={() => setShowModal(true)}>
-                                                        View
-                                                    </Button>
-                                                </div></Option>
-                                            </Select>
+                                    <Form.Item name="electroChemCathode">
+                                    <Select size="small" style={{ width: "100%" }}>
+                                            {ecOptions.map(option => (
+                                                <Select.Option key={option} value={option}>
+                                                    {option}
+                                                </Select.Option>
+                                            ))}
+                                            <Select.Option value="Others">Others</Select.Option>
+                                        </Select>
                                         </Form.Item>
                                     </Col>
                                     <ViewElectroChem visible={showModal} onCancel={() => setShowModal(false)} />
@@ -264,7 +283,7 @@ function Design() {
                                         <label htmlFor="moc">Design Documents</label>
                                     </Col>
                                     <Col md={14} xs={24}>
-                                        <Form.Item name="moc">
+                                        <Form.Item>
                                             <Upload className="sDash_upload-basic" {...props}>
                                                 <span className="sDash_upload-text">Select File</span>
                                                 <Link to="#" className="sDash_upload-browse">
@@ -276,9 +295,9 @@ function Design() {
                                 </Row>
                             </Col>
                         </Row>
-                    </Form>
+                    {/* </Form> */}
                     <br />
-                    <Form name="sDash_upload" layout="vertical">
+                    {/* <Form name="sDash_upload" layout="vertical"> */}
 
                         {/* <br />
                         <Row align="middle">
@@ -295,7 +314,7 @@ function Design() {
                         <br />
                         <Row align="middle">
                             <Col md={24} align='right'>
-                                <Button size='default' type='primary' style={{ marginRight: 5 }}>
+                                <Button size='default' htmlType='submit' type='primary' style={{ marginRight: 5 }}>
                                     save
                                 </Button>
                                 <Button size='default' type='light'>

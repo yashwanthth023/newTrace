@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import {  Tag } from 'antd';
 import FeatherIcon from 'feather-icons-react';
-import {  NavLink } from 'react-router-dom';
+import {  NavLink, useHistory} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { ProjectCard } from './style';
 import { Cards } from '../../components/cards/frame/cards-frame';
 import { textRefactor } from '../../components/utilities/utilities';
 import { Button } from '../../components/buttons/buttons';
 import CreateVersion from '../ProjectModal/CreateVersion';
+import { SessionStorage } from '../../util/SessionStorage';
 
 
 function GridCard({ value }) {
+  const history = useHistory();
   const {  prototypeName ,description,versions} = value;
   const descriptionText = description ? textRefactor(description, 13) : "";
 
@@ -21,6 +23,11 @@ function GridCard({ value }) {
   }
   const onSubmit = () => {
     onCancel();
+  }
+
+  const handleClick = (id) => {
+    SessionStorage.setItem('versionId',id )
+    history.push('/versionDetails')
   }
 
   // const VersionData = [{ "id": "NTP01-V_09", className: "early", status: 'Design' },
@@ -99,7 +106,9 @@ function GridCard({ value }) {
             <ul style={{ flexDirection: 'column' }}>
               {
                versions &&  versions.map((ele)=>
-                <NavLink to="/versionDetails">
+                <NavLink onClick={()=>{
+                  handleClick(ele.id)
+                }} to='/versionDetails'>
                   <li>
                   <span>{ele.versionName}</span>
                   <Tag style={{backgroundColor :'#fff'}} className= {ele.versionName}>{ele.versionStatus}</Tag>
