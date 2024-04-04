@@ -3,6 +3,7 @@ import FeatherIcon from 'feather-icons-react';
 import moment from 'moment';
 import { Row, Col, Form, Input, Table, Upload, Select, DatePicker } from 'antd';
 import propTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import ManufactureDateForm from '../../components/tabs/components/manufactureDateForm';
 import VendorModel from '../../components/tabs/components/vendorModel';
 import Manufacture from '../../components/tabs/components/formForManufacturer';
@@ -10,6 +11,7 @@ import { Cards } from '../../components/cards/frame/cards-frame';
 import { Button } from '../../components/buttons/buttons';
 import { addManufacturingDetailsAPI, fetchComponentDetailByIdAPI, updateManufacturingDetailsAPI } from '../../api/api';
 import { SessionStorage } from '../../util/SessionStorage';
+import { setInsertComponentDetails } from '../../redux/versionDetails/versionSlice';
 
 const { TextArea } = Input;
 
@@ -17,13 +19,17 @@ const AddComponent = ({ setIsAddPage, isEdit, setComponentData, isView, onCancel
     const [formDetails, setFormDetails] = useState({})
     const [vendorList, setVendorList] = useState([]);
     const [visible, setVisible] = useState(false);
+    const [editVendor, setEditVendor] = useState(false);
+    const [vendorIndex, setVendorIndex] = useState();
     const [form] = Form.useForm();
+    const dispatch = useDispatch();
 
     const fetchData = async () => {
         if (isEdit || isView) {
             const response = await fetchComponentDetailByIdAPI({ id: SessionStorage.getItem('componentId') });
             console.log(response)
             setFormDetails(response);
+            setVendorList(response?.vendorList ? response.vendorList : [])
         }
     }
 
@@ -47,9 +53,10 @@ const AddComponent = ({ setIsAddPage, isEdit, setComponentData, isView, onCancel
                     actualDateReadyForAssembly: formDetails?.actualDateReadyForAssembly ? moment(formDetails.actualDateReadyForAssembly) : undefined,
                     PONumber: formDetails?.PONumber,
                     PODate: formDetails?.PODate ? moment(formDetails.PODate) : undefined,
-                    vendor: formDetails?.vendor,
+                    vendor: formDetails?.vendor.vendorName,
                     deliveryNote: formDetails?.deliveryNote,
                 });
+                setVendorList(formDetails?.vendorList ? formDetails?.vendorList : []);
             }
         }
     }
@@ -58,65 +65,79 @@ const AddComponent = ({ setIsAddPage, isEdit, setComponentData, isView, onCancel
         fillForm();
     }, [formDetails, form]);
 
-    console.log(vendorList)
+    const onDelete = (index) => {
+        const deletedVendor = vendorList.filter((_, i) => i !== index);
+        setVendorList(deletedVendor);
+        form.setFieldValue('vendor', '')
+    }
 
-    const dataSource = [
+    const dataSource = vendorList.map((list, i) => (
         {
-            key: '1',
-            name: 'dfd',
-            age: 40,
-            address: 'link',
+            key: i + 1,
+            vendor: list.vendorName,
+            quotation: list.quotation,
             upload: <Upload beforeUpload={() => false}>
                 <Button type="primary" size="small2">
                     Upload
                 </Button>
-            </Upload>
-        },
-        {
-            key: '2',
-            name: 'cdf',
-            age: 42,
-            address: 'link',
-            upload: <Upload beforeUpload={() => false}>
-                <Button type="primary" size="small2">
-                    Upload
-                </Button>
-            </Upload>
+            </Upload>,
+            button: <div style={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
+                <div style={{ marginRight: 10 }}>
+                    <Button type="primary" size="small2" onClick={() => { setVendorIndex(i); setEditVendor(true); setVisible(true) }}>
+                        Edit
+                    </Button>
+                </div>
+                <div>
+                    <Button type="danger" size="small2" onClick={() => onDelete(i)}>
+                        Delete
+                    </Button>
+                </div>
+            </div>
         }
-    ];
+    ));
 
     const columns = [
         {
             title: 'SL.No',
             dataIndex: 'key',
-            key: 'name',
+            key: 'key',
         },
         {
             title: 'Vendor',
-            dataIndex: 'name',
-            key: 'age',
+            dataIndex: 'vendor',
+            key: 'vendor',
         },
         {
             title: 'Quotation',
-            dataIndex: 'age',
-            key: 'address',
+            dataIndex: 'quotation',
+            key: 'quotation',
         },
         {
             title: 'RFQ Document',
-            dataIndex: 'upload',
-            key: 'upload',
+            dataIndex: 'rfqDocument',
+            key: 'rfqDocument',
+        },
+        {
+            title: 'Edit/Delete',
+            dataIndex: 'button',
+            key: 'button',
         },
     ];
     const onClose = () => {
         setVisible(false);
-        onCancel();
+        setEditVendor(false);
     }
     const onSubmit = async () => {
         const formData = await form.validateFields();
+        formData.vendorList = vendorList;
+        const vendorIndex = formData.vendor;
+        formData.vendor = vendorList[vendorIndex];
+        console.log(isEdit)
         const response = isEdit ? await updateManufacturingDetailsAPI({ id: SessionStorage.getItem('componentId'), ...formData }) : await addManufacturingDetailsAPI({ versionId: 'ab5fb012-5796-4774-a184-4add002311fa', ...formData });
         if (response) {
             console.log(response);
             form.resetFields();
+            dispatch(setInsertComponentDetails(response));
             setComponentData((data) => [formData, ...data]);
             setIsAddPage(false);
             onCancel();
@@ -221,7 +242,7 @@ const AddComponent = ({ setIsAddPage, isEdit, setComponentData, isView, onCancel
                             )}
                         </>
                         <Col md={24} align='right'>
-                            <VendorModel onCancel={onClose} onSubmit={onSubmit} visible={visible} setVendorList={setVendorList} />
+                            <VendorModel onCancel={onClose} onSubmit={onSubmit} visible={visible} setVendorList={setVendorList} isEdit={editVendor} vendorData={vendorList} index={vendorIndex} />
                             <br />
                             <Table className="table-responsive" pagination={false} dataSource={dataSource} columns={columns} />
                         </Col>
@@ -229,7 +250,9 @@ const AddComponent = ({ setIsAddPage, isEdit, setComponentData, isView, onCancel
                     <br />
                     <Row>
                         <Col md={24}>
-                            <Manufacture title='Purchase Order' isView={isView} />
+                            <Manufacture title='Purchase Order' isView={isView} vendor={vendorList.length > 0 ?
+                                vendorList.map((vendor, i) => ({ vendorName: vendor.vendorName, index: i })) : []
+                            } />
                         </Col>
                     </Row>
                     <Row align="middle">
@@ -253,7 +276,7 @@ AddComponent.propTypes = {
     onCancel: propTypes.func,
     isEdit: propTypes.bool,
     isView: propTypes.bool,
-    setComponentData: propTypes.func
+    setComponentData: propTypes.func,
 }
 
 AddComponent.defaultProps = {
