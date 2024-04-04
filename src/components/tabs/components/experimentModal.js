@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form, Input, Select, Col, Row, DatePicker, TimePicker} from 'antd';
 import propTypes from 'prop-types';
 import moment from 'moment';
 import { BasicFormWrapper } from '../style/wrapperStyle';
 import { Modal } from '../../modals/antd-modals';
 import { Button } from '../../buttons/buttons';
-import { addExperimentAPI } from '../../../api/api';
+import { addExperimentAPI, getExperimentById, updateExperimentById } from '../../../api/api';
 
 const { Option } = Select;
 
-function ExperimentModal({ visible, onCancel }) {
+function ExperimentModal({ visible, onCancel , id }) {
     const [form] = Form.useForm();
     // const props = {
     //     name: 'file',
@@ -29,17 +29,58 @@ function ExperimentModal({ visible, onCancel }) {
     //     },
     // };
 
+    const addInitialValues = async ()=>
+    {
+        if(id)
+        {
+            const formDetails =await getExperimentById({id});
+            
+            form.setFieldsValue({
+                H2AbsoluteImpurityPercentage: formDetails.H2AbsoluteImpurityPercentage,
+                H2AbsolutePercentage: formDetails.H2AbsolutePercentage ,
+                Hypothesis: formDetails.Hypothesis ? formDetails.Hypothesis : undefined,
+                O2AbsolutePercentage: formDetails.O2AbsolutePercentage ,
+                O2AbsoluteImpurityPercentage : formDetails.O2AbsoluteImpurityPercentage ,
+                conclusion: formDetails.conclusion ,
+                electrolyte: formDetails.electrolyte ,
+                electrolyteFlowrate: formDetails.electrolyteFlowrate ,
+                experimentName: formDetails.experimentName ,
+                experimentType: formDetails.experimentType ,
+                gasFlowrate: formDetails.gasFlowrate ,
+                maximumCurrent: formDetails.maximumCurrent ,
+                maximumVoltage: formDetails.maximumVoltage ,
+                remarks: formDetails.remarks ,
+                status: formDetails.status,
+                endDate: formDetails.endDate ? moment(formDetails.endDate) : undefined,
+                startDate: formDetails.startDate ? moment(formDetails.startDate) : undefined,
+            })
+        }
+    }
+
+
+
+    useEffect(()=>
+    {
+        addInitialValues();
+    })
+
+
     const handleSubmit = async()=>
     {
         console.log("called");
         try {
             const values = await form.validateFields();
-            console.log("------values----------",values);
-            const response = await addExperimentAPI(values);
-            console.log("-----response-----------",response);
+            let response;
+            if(id)
+            {
+              response =await updateExperimentById({...values,id});
+            }
+            else
+            {
+                response = await addExperimentAPI(values);
+            }
             if(response)
             {
-            //   form.resetFields();
               onCancel();
             }
           } catch (errorInfo) {
@@ -345,6 +386,7 @@ function ExperimentModal({ visible, onCancel }) {
 ExperimentModal.propTypes = {
     visible: propTypes.bool.isRequired,
     onCancel: propTypes.func.isRequired,
+    id : propTypes.string
 };
 
 export default ExperimentModal;

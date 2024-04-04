@@ -1,21 +1,24 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState ,useEffect } from 'react';
-// import moment from 'moment';
-import { Row, Col, Table, DatePicker, Checkbox, Form } from 'antd';
+import moment from 'moment';
+import { Row, Col, Table, DatePicker, Checkbox, Form, message } from 'antd';
 import { HorizontalFormStyleWrap } from './style/formStyle';
 import { BasicFormWrapper } from './style/wrapperStyle';
 import ExperimentModal from './components/experimentModal';
 import ProtoTypeHeader from './components/protoTypeInfo';
 import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
-import { fetchAllExperiments} from '../../api/api';
+import { fetchAllExperiments, getVersionByIdAPI, updateVersionByIdAPI} from '../../api/api';
 import { DateFormat } from '../../util/utils';
 
 function Testing() {
     const [showModal, setShowModal] = useState(false);
     const [ formDetails, setFormDetails] = useState();
-    // const [checkBoxValue ,setCheckBoxValue] = useState(false);
+    const [ records, setRecords] = useState();
+    const [testingCompleted ,setTestingCompleted] = useState(false);
 
+    const [form] = Form.useForm();
+    // const [checkBoxValue ,setCheckBoxValue] = useState(false);
 
     const fetchData = async () => {
         const response = await fetchAllExperiments();
@@ -25,16 +28,26 @@ function Testing() {
             setFormDetails(response);
             // console.log("formDetails ---------",new Date(formDetails[0]?.createdTs),);
         }
+
+      const formDetails = await getVersionByIdAPI({id :"28c28acb-05df-4f62-aa36-ed5cadff80fb"});
+      if(formDetails)
+      {
+        setTestingCompleted(formDetails?.MarkAsTestingComplete);
+          form.setFieldsValue({
+              ActualTestingCompletionDate: formDetails?.ActualTestingCompletionDate ? moment(formDetails?.ActualTestingCompletionDate) : undefined,  
+        });
+      }
     }
 
     useEffect(() => {
         fetchData();
     }, [])
 
-    const onRowClick = (record, rowIndex) => {
+    const onRowClick = (record) => {
         return {
           onClick: () => {
-            console.log('Clicked row:', record, rowIndex);
+              setRecords(record.id);
+              setShowModal(true);
             // You can do various actions here. For example, navigate to a different page or display a modal.
           },
         };
@@ -93,23 +106,48 @@ function Testing() {
             key: 'modified_by',
         }
     ];
+
+
+    
+    const handleDateChange = (date) => {
+        if(!date)
+        {
+            updateVersionByIdAPI({id :"28c28acb-05df-4f62-aa36-ed5cadff80fb" , ActualTestingCompletionDate : null ,MarkAsTestingComplete : false});
+            setTestingCompleted(false);
+        }
+    }
+
+    const changeToCompleted = async (e) => {
+        const values = await form.validateFields();
+        console.log(values);
+        if(values.ActualTestingCompletionDate)
+        {
+            setTestingCompleted(e.target.checked);
+            updateVersionByIdAPI({id :"28c28acb-05df-4f62-aa36-ed5cadff80fb" , ...values ,MarkAsTestingComplete : true });
+        }
+        else
+        {
+            message.error("Please select completion date!");
+        }
+    };
+
     return (
         <BasicFormWrapper>
             <HorizontalFormStyleWrap className="sDash_input-form">
                 <Cards headless>
                
                     <ProtoTypeHeader />
-                    <Form name="date-form" layout="horizontal">
+                    <Form name="date-form" layout="horizontal" form={form}>
                     <Row gutter={25}>
                         <Col xl={12} lg={12}>                           
                             <Row align="middle" gutter={25}>                          
                                 <Col md={10} xs={8}>
                                     {/* <label htmlFor="moc"></label> */}
                                     {/* eslint-disable-next-line */}
-                                    <label>Mark as Testing Complete:</label>
+                                    <label htmlFor='MarkAsTestingComplete'>Mark as Testing Complete:</label>
                                 </Col>
                                 <Col md={4} style={{marginTop : 20}}>
-                                    <Checkbox style={{height: 20, width: 20, fontSize: 30}}/>
+                                    <Checkbox style={{height: 20, width: 20, fontSize: 30}}  name='MarkAsTestingComplete'  checked={testingCompleted} onChange={changeToCompleted}/>
                                 </Col>                                     
                             </Row>                              
                         </Col>
@@ -117,18 +155,18 @@ function Testing() {
                         <Row align="middle">
                             <Col md={6} xs={12} xl={12} lg={6}>
                                 {/* <label htmlFor="moc"></label> */}
-                                    <Form.Item
+                                    {/* <Form.Item
                                     label="Actual Date Test Complete:"
                                     name="ActualTestingCompletionDate"
                                     htmlFor="ActualTestingCompletionDate"
                                     rules={[{ required: true, message: 'Please select a date' }]}>
-                                {/* <label>Actual Date Design Complete:</label> */}
-                                {/* <DatePicker id="assembly" /> */}
-                            </Form.Item>
+                                <label>Actual Date Design Complete:</label>
+                                <DatePicker id="assembly" />
+                            </Form.Item> */}
                             </Col>
                             <Col md={12} xs={24} align='right'>                                    
-                                <Form.Item name="ActualTestingCompletionDate">
-                                    <DatePicker />
+                                <Form.Item label="Actual Date Test Complete:" htmlFor="ActualTestingCompletionDate" name="ActualTestingCompletionDate">
+                                    <DatePicker   onChange={handleDateChange}/>
                                 </Form.Item>                                   
                             </Col>
                         </Row>
@@ -145,7 +183,7 @@ function Testing() {
                             </Button>
                         </Col>
                     </Row>
-                    <ExperimentModal visible={showModal} id='sd'
+                    <ExperimentModal visible={showModal} id ={records}
                      onCancel={() => setShowModal(false)} />
                     <br />
                     <Row align="middle" gutter={25}>
