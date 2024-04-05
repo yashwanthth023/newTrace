@@ -64,7 +64,7 @@ function General() {
     }
     const handleVersionData = async () => {
         const versionData = await form2.validateFields();
-        const response = await updateVersionByIdAPI({ id: SessionStorage.getItem('versionId'), ...versionData });
+        const response = await updateVersionByIdAPI({ id: SessionStorage.getItem('versionID'), ...versionData });
         dispatch(setVersionDetails(response));
         showSuccessMessage();
         console.log(response)
