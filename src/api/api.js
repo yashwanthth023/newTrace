@@ -13,3 +13,8 @@ export const fetchComponentDetailByIdAPI = async (data) => apiClient.postAPICall
 export const updateManufacturingDetailsAPI = async (data) => apiClient.postAPICall(apiRoutes.updateManufacturingDetails, data).then(res => res.data);
 export const fetchEcDetailsAPI = async (data) => apiClient.postAPICall(apiRoutes.fetchEcDetails, data).then(res => res.data);
 export const fetchVersionDetailsAPI = async (data) => apiClient.postAPICall(apiRoutes.fetchVersionDetails, data).then(res => res.data);
+
+export const addExperimentAPI = async (data) => apiClient.postAPICall(apiRoutes.addExperiment, data).then(res => res.data);
+export const fetchAllExperiments = async (data) => apiClient.postAPICall(apiRoutes.fetchAllExperiments, data).then(res => res.data);
+export const getExperimentById = async (data) => apiClient.postAPICall(apiRoutes.getExperimentById, data).then(res => res.data);
+export const updateExperimentById = async (data) => apiClient.postAPICall(apiRoutes.updateExperimentById, data).then(res => res.data);

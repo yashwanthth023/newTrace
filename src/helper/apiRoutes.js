@@ -16,12 +16,16 @@ const apiRoutes = {
     getVersionById: "/getVersionById",
     updatePrototypeDetails: "/updatePrototypeDetails",
     addVersion: "/addVersion",
+    addExperiment : "/addExperiment",
     addManufacturingDetails: "/addManufacturingDetails",
     fetchManufacturingDetailsByVersionId: "/fetchManufacturingDetailsByVersionId",
     fetchComponentDetailById: "/fetchComponentDetailById",
     updateManufacturingDetails: "/updateManufacturingDetails",
     fetchEcDetails: "/fetchEcDetails",
     fetchVersionDetails: "/fetchVersionDetails",
+    fetchAllExperiments: "/fetchAllExperiments",
+    getExperimentById : "/getExperimentById",
+    updateExperimentById : "/updateExperimentById"
 }
 
 export { Url, apiRoutes };

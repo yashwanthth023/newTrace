@@ -117,7 +117,7 @@ function CreateProject({ visible, onCancel, setProtoTypeDesc, setProtoTypeName }
               >
               <Input placeholder="Prototype Name" onChange={(ele) => setProtoTypeName(ele.target.value)} /> 
             </Form.Item>
-            <Form.Item name="description" label="Description"
+            <Form.Item label="Description" name="description" 
             rules={[
               {
                 required: true,
@@ -128,9 +128,7 @@ function CreateProject({ visible, onCancel, setProtoTypeDesc, setProtoTypeName }
               <Input.TextArea rows={4} placeholder="Description" onChange={(ele) => setProtoTypeDesc(ele.target.value)}/>
            
             </Form.Item>
-            <Form.Item >
               <span>Version ID : V1</span>
-              </Form.Item>
                <Row style={{ display: "flex", flexDirection: 'column' }}>
               <Col md={12} xl={12}>
                 <Form.Item name="projectedDesignCompletionDate" label="Projected Design Completion Date"
