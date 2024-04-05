@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Col, Row, DatePicker } from 'antd';
+import { Form, Input, Col, Row, DatePicker, message } from 'antd';
 import moment from 'moment';
 import propTypes from 'prop-types';
 import { Button } from '../../components/buttons/buttons';
@@ -9,7 +9,7 @@ import { addVersionAPI } from '../../api/api';
 
 const dateFormat = 'MM/DD/YYYY';
 
-function CreateVersion({ visible, onCancel }) {
+function CreateVersion({ visible, onCancel,prototypeID }) {
   const [form] = Form.useForm();
 
   const [state, setState] = useState({
@@ -34,11 +34,12 @@ function CreateVersion({ visible, onCancel }) {
     console.log("-calling");
     try {
       const values = await form.validateFields();
-    
-      const response = await addVersionAPI(values);
+      console.log("values------------------",values);
+      const response = await addVersionAPI({...values, prototypeID});
       if(response)
       {
         form.resetFields();
+        message.success('version added successfully');
         onCancel();
       }
     } catch (errorInfo) {
@@ -64,7 +65,7 @@ function CreateVersion({ visible, onCancel }) {
           <Button size="default" type="light" key="back" outlined onClick={handleCancel}>
             Cancel
           </Button>
-        </div>,
+        </div>
       ]}
       onCancel={handleCancel}
     >
@@ -173,6 +174,7 @@ function CreateVersion({ visible, onCancel }) {
 CreateVersion.propTypes = {
   visible: propTypes.bool.isRequired,
   onCancel: propTypes.func.isRequired,
+  prototypeID: propTypes.string.isRequired,
 };
 
 export default CreateVersion;

@@ -39,7 +39,7 @@ const Dashboard = () => {
   }
   useEffect(() => {
     fetchPrototypes();
-  }, [])
+  }, [visible])
 
   const onCancel = () => {
     setVisible(false);
@@ -90,7 +90,6 @@ const Dashboard = () => {
     //     notData: data,
     // });
 };
-
 
 
   return (
