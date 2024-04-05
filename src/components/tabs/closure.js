@@ -79,11 +79,7 @@ const handlePrototypeData = async () => {
                                     <label htmlFor="disassemblyObservation">Disassembly Observations</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                <Form.Item name="disassemblyObservation" rules={[
-                                                { required: true, message: 'Disassembly Observations Text required!' },
-                                                { whitespace: true, message: 'Disassembly Observations Text cannot be empty space!' },
-                                                { max: 100, message: 'Disassembly Observations Text cannot exceed 50 characters!' }
-                                            ]}>
+                                <Form.Item name="disassemblyObservation">
                                                 <TextArea placeholder="Disassembly Observations" />
                                 </Form.Item>
                                    
@@ -113,11 +109,7 @@ const handlePrototypeData = async () => {
                                     <label htmlFor="conclusionsTesting">Conclusions Testing</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                <Form.Item name="conclusionsTesting" rules={[
-                                                { required: true, message: 'Conclusions Testing Text required!' },
-                                                { whitespace: true, message: 'Conclusions Testing Text cannot be empty space!' },
-                                                { max: 100, message: 'Conclusions Testing Text cannot exceed 50 characters!' }
-                                            ]}>
+                                <Form.Item name="conclusionsTesting">
                                                 <TextArea placeholder="Disassembly Observations" />
                                 </Form.Item>
                                 </Col>
@@ -139,11 +131,7 @@ const handlePrototypeData = async () => {
                                     <label htmlFor="conclusionsDesign">Conclusions Design</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                <Form.Item name="conclusionsDesign" rules={[
-                                                { required: true, message: 'Disassembly Observations Text required!' },
-                                                { whitespace: true, message: 'Disassembly Observations Text cannot be empty space!' },
-                                                { max: 100, message: 'Disassembly Observations Text cannot exceed 50 characters!' }
-                                            ]}>
+                                <Form.Item name="conclusionsDesign">
                                                 <TextArea placeholder="Disassembly Observations" />
                                 </Form.Item>
                                 </Col>
@@ -165,11 +153,7 @@ const handlePrototypeData = async () => {
                                     <label htmlFor="conclusionsManufacturing">Conclusions Manufacturing</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                <Form.Item name="conclusionsManufacturing" rules={[
-                                                { required: true, message: 'Disassembly Observations Text required!' },
-                                                { whitespace: true, message: 'Disassembly Observations Text cannot be empty space!' },
-                                                { max: 100, message: 'Disassembly Observations Text cannot exceed 50 characters!' }
-                                            ]}>
+                                <Form.Item name="conclusionsManufacturing" >
                                                 <TextArea placeholder="Disassembly Observations" />
                                 </Form.Item>
                                 </Col>
@@ -191,11 +175,7 @@ const handlePrototypeData = async () => {
                                     <label htmlFor="name">Conclusions Electrochemistry</label>
                                 </Col>
                                 <Col md={18} xs={24}>
-                                <Form.Item name="conclusionsElectrochemistry" rules={[
-                                                { required: true, message: 'Disassembly Observations Text required!' },
-                                                { whitespace: true, message: 'Disassembly Observations Text cannot be empty space!' },
-                                                { max: 100, message: 'Disassembly Observations Text cannot exceed 50 characters!' }
-                                            ]}>
+                                <Form.Item name="conclusionsElectrochemistry" >
                                                 <TextArea placeholder="Disassembly Observations" />
                                 </Form.Item>
                                 </Col>
