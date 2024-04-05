@@ -119,6 +119,16 @@ export const ISOFormat =(date)=>
       return Isodate.toISOString();
 }
 
+// input should be in iso format
+export const DateFormat = (date)=>
+{
+    return new Date(date).toLocaleDateString('en-US', {
+        year: 'numeric', // "2023"
+        month: 'long', // "July"
+        day: 'numeric' // "20"
+      });
+}
+
 
 
 // export { ConvertToUtc, fortmatData, getCurrentDateTime, GetDate, GetDateYYYY_MM_DD, GetTime, GetTZDate, hasNoText, hasText, isEmptyArray, isEmptyObject, isNullOrEmpty, isPastDateTime, parseArray, parseStr,    strToLowercase, strToUppercase, sortArrayOfObjects }
