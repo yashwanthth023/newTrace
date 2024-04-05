@@ -11,16 +11,18 @@ function VendorModal({ visible, onCancel, setVendorList, isEdit, index, vendorDa
 
   const handleSubmit = async () => {
     const data = await form.validateFields();
-    if (isEdit) {
-      setVendorList((list) => {
-        list[index] = data;
-        return list;
-      });
-    } else {
-      setVendorList((list) => [...list, data]);
+    if (data) {
+      if (isEdit) {
+        setVendorList((list) => {
+          list[index] = data;
+          return list;
+        });
+      } else {
+        setVendorList((list) => [...list, data]);
+      }
+      form.resetFields();
+      onCancel();
     }
-    form.resetFields();
-    onCancel();
   };
 
   const fillForm = () => {
@@ -52,7 +54,7 @@ function VendorModal({ visible, onCancel, setVendorList, isEdit, index, vendorDa
       className="atbd-modal2"
       footer={[
         <div key="1" className="project-modal-footer">
-          <Button size="default" htmlType='submit' type="primary" key="submit" onClick={handleSubmit}>
+          <Button size="default" htmlType='submit' type="primary" key="submit" onClick={form.submit} >
             Save
           </Button>
           <Button size="default" type="white" key="back" outlined onClick={handleCancel}>
@@ -65,10 +67,14 @@ function VendorModal({ visible, onCancel, setVendorList, isEdit, index, vendorDa
       <div className="project-modal">
         <BasicFormWrapper>
           <Form form={form} onFinish={handleSubmit}>
-            <Form.Item name="vendorName" label="Vendor Name">
+            <Form.Item name="vendorName" label="Vendor Name" rules={[
+              { required: true, message: 'Vendor is required!' }
+            ]}>
               <Input placeholder="Vendor Name" />
             </Form.Item>
-            <Form.Item name="quotation" label="Quotation">
+            <Form.Item name="quotation" label="Quotation" rules={[
+              { required: true, message: 'Quotation is required!' }
+            ]}>
               <Input placeholder="Quotation" />
             </Form.Item>
             <Form.Item name="rfqDocuments" label="Upload RFQ Documents">
