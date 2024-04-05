@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { Form, Input, Select, Col, Row, DatePicker, TimePicker} from 'antd';
+import { Form, Input, Select, Col, Row, DatePicker, TimePicker, Upload} from 'antd';
 import propTypes from 'prop-types';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 import { BasicFormWrapper } from '../style/wrapperStyle';
 import { Modal } from '../../modals/antd-modals';
 import { Button } from '../../buttons/buttons';
@@ -350,8 +351,71 @@ function ExperimentModal({ visible, onCancel , id }) {
                                     </Form.Item>
                                 </Col>
                             </Col>
-                        </Row>            
+                            <Col xl={12} lg={12} md={24}>
+                                <Col lg={24} md={6} xs={24}>
+                                    {/* eslint-disable-next-line */}
+                                    <label >Runtime</label>
+                                </Col>
+                                <Col md={18} xs={24}>
+                                <Form.Item name="Runtime"
+                                >
+                                    <Input id='experiment-name' />
+                                    </Form.Item>
+                                </Col>
+                            </Col>
 
+                            <Col xl={12} lg={12} md={24}>
+                                <Col lg={24} md={6} xs={24}>
+                                    {/* eslint-disable-next-line */}
+                                    <label >Inlet Pressure</label>
+                                </Col>
+                                <Col md={16} xs={22}>
+                                <Form.Item name="inletPressure"
+                                >
+                                    <Input id='experiment-name' />
+                                    </Form.Item>
+                                </Col>
+                                <Col  md={2} xs={2}>
+                                    {/* eslint-disable-next-line */}
+                                    <label >bar</label>
+                                </Col>
+                            </Col>
+
+                            <Col xl={12} lg={12} md={24}>
+                                <Col lg={24} md={6} xs={24}>
+                                    {/* eslint-disable-next-line */}
+                                    <label >Inlet Temperature Start</label>
+                                </Col>
+                                <Col md={18} xs={24}>
+                                <Form.Item name="inletTemperatureStart"
+                                >
+                                    <Input id='experiment-name' />
+                                    </Form.Item>
+                                </Col>
+                                <Col  md={24} xs={24}>
+                                    {/* eslint-disable-next-line */}
+                                    <label >degc</label>
+                                </Col>
+                            </Col>
+
+                        </Row>            
+                            <Row align="middle">
+                        <Col md={6} xs={24} xl={6}  lg={6}>
+                                {/* eslint-disable-next-line */}
+                            <label htmlFor="rfqDocument">Results</label>
+                        </Col>
+                        <Col md={18} xs={24} xl={18}  lg={18}>
+                            <Form.Item name="rfqDocument">
+                                <Upload className="sDash_upload-basic">
+                                    <span className="sDash_upload-text">Select File</span>
+                                    <Link to="#" className="sDash_upload-browse">
+                                        Browse
+                                    </Link>
+                                </Upload>
+                            </Form.Item>
+                        </Col>
+                    </Row>
+                        
                         <Row align="middle">
                             <Col md={6} xs={24}>
                                 {/* eslint-disable-next-line */}

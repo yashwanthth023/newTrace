@@ -9,7 +9,7 @@ import { addVersionAPI } from '../../api/api';
 
 const dateFormat = 'MM/DD/YYYY';
 
-function CreateVersion({ visible, onCancel }) {
+function CreateVersion({ visible, onCancel,prototypeID }) {
   const [form] = Form.useForm();
 
   const [state, setState] = useState({
@@ -35,7 +35,7 @@ function CreateVersion({ visible, onCancel }) {
     try {
       const values = await form.validateFields();
       console.log("values------------------",values);
-      const response = await addVersionAPI(values);
+      const response = await addVersionAPI({...values, prototypeID});
       if(response)
       {
         form.resetFields();
@@ -173,6 +173,7 @@ function CreateVersion({ visible, onCancel }) {
 CreateVersion.propTypes = {
   visible: propTypes.bool.isRequired,
   onCancel: propTypes.func.isRequired,
+  prototypeID: propTypes.string.isRequired,
 };
 
 export default CreateVersion;

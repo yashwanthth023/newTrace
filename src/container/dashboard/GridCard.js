@@ -13,7 +13,7 @@ import { SessionStorage } from '../../util/SessionStorage';
 
 function GridCard({ value }) {
   const history = useHistory();
-  const {  prototypeName ,description,versions, id} = value;
+  const {  prototypeName ,description, versions, id} = value;
   const descriptionText = description ? textRefactor(description, 13) : "";
 
 
@@ -123,7 +123,7 @@ function GridCard({ value }) {
           </div>
         </div>
       </Cards>
-      <CreateVersion onCancel={onCancel} onSubmit={onSubmit} visible={open} />
+      <CreateVersion onCancel={onCancel} onSubmit={onSubmit} visible={open} prototypeID={id} />
     </ProjectCard>
   );
 }
