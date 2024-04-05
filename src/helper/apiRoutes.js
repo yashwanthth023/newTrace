@@ -22,6 +22,8 @@ const apiRoutes = {
     updateManufacturingDetails: "/updateManufacturingDetails",
     fetchEcDetails: "/fetchEcDetails",
     fetchVersionDetails: "/fetchVersionDetails",
+    updateEcDetails: "/updateEcDetails",
+    addEcDetails: "/addEcDetails",
 }
 
 export { Url, apiRoutes };
