@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Col, Row, DatePicker } from 'antd';
+import { Form, Input, Col, Row, DatePicker, message } from 'antd';
 import moment from 'moment';
 import propTypes from 'prop-types';
 import { Button } from '../../components/buttons/buttons';
@@ -39,6 +39,7 @@ function CreateVersion({ visible, onCancel,prototypeID }) {
       if(response)
       {
         form.resetFields();
+        message.success('version added successfully');
         onCancel();
       }
     } catch (errorInfo) {

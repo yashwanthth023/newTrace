@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Form, Input, Select, Col, Row, DatePicker, TimePicker, Upload} from 'antd';
+import { Form, Input, Select, Col, Row, DatePicker, TimePicker, Upload, message} from 'antd';
 import propTypes from 'prop-types';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { BasicFormWrapper } from '../style/wrapperStyle';
 import { Modal } from '../../modals/antd-modals';
 import { Button } from '../../buttons/buttons';
 import { addExperimentAPI, getExperimentById, updateExperimentById } from '../../../api/api';
+import { SessionStorage } from '../../../util/SessionStorage';
 
 const { Option } = Select;
 
@@ -37,27 +38,29 @@ function ExperimentModal({ visible, onCancel , id }) {
             const formDetails =await getExperimentById({id});
             
             form.setFieldsValue({
-                H2AbsoluteImpurityPercentage: formDetails.H2AbsoluteImpurityPercentage,
-                H2AbsolutePercentage: formDetails.H2AbsolutePercentage ,
+                H2AbsoluteImpurityPercentage: formDetails.H2AbsoluteImpurityPercentage ? formDetails.H2AbsoluteImpurityPercentage : undefined,
+                H2AbsolutePercentage: formDetails.H2AbsolutePercentage ?formDetails.H2AbsolutePercentage : undefined ,
                 Hypothesis: formDetails.Hypothesis ? formDetails.Hypothesis : undefined,
-                O2AbsolutePercentage: formDetails.O2AbsolutePercentage ,
-                O2AbsoluteImpurityPercentage : formDetails.O2AbsoluteImpurityPercentage ,
-                conclusion: formDetails.conclusion ,
-                electrolyte: formDetails.electrolyte ,
-                electrolyteFlowrate: formDetails.electrolyteFlowrate ,
-                experimentName: formDetails.experimentName ,
-                experimentType: formDetails.experimentType ,
-                gasFlowrate: formDetails.gasFlowrate ,
-                maximumCurrent: formDetails.maximumCurrent ,
-                maximumVoltage: formDetails.maximumVoltage ,
-                remarks: formDetails.remarks ,
-                status: formDetails.status,
+                O2AbsolutePercentage: formDetails.O2AbsolutePercentage ?formDetails.O2AbsolutePercentage : undefined,
+                O2AbsoluteImpurityPercentage : formDetails.O2AbsoluteImpurityPercentage ? formDetails.O2AbsoluteImpurityPercentage : undefined,
+                conclusion: formDetails.conclusion ?formDetails.conclusion : undefined ,
+                electrolyte: formDetails.electrolyte ?formDetails.electrolyte : undefined ,
+                electrolyteFlowrate: formDetails.electrolyteFlowrate ?formDetails.electrolyteFlowrate : undefined ,
+                experimentName: formDetails.experimentName ?formDetails.experimentName : undefined ,
+                experimentType: formDetails.experimentType ?formDetails.experimentType : undefined ,
+                gasFlowrate: formDetails.gasFlowrate ? formDetails.gasFlowrate : undefined ,
+                maximumCurrent: formDetails.maximumCurrent ? formDetails.maximumCurrent : undefined ,
+                maximumVoltage: formDetails.maximumVoltage ? formDetails.maximumVoltage : undefined ,
+                remarks: formDetails.remarks ? formDetails.remarks : undefined ,
+                status: formDetails.status ? formDetails.status : undefined,
+                Runtime: formDetails.Runtime ? formDetails.Runtime : undefined,
+                inletPressure: formDetails.inletPressure ? formDetails.inletPressure : undefined,
+                inletTemperatureStart: formDetails.inletTemperatureStart ? formDetails.inletTemperatureStart : undefined,
                 endDate: formDetails.endDate ? moment(formDetails.endDate) : undefined,
                 startDate: formDetails.startDate ? moment(formDetails.startDate) : undefined,
             })
         }
     }
-
 
 
     useEffect(()=>
@@ -78,10 +81,12 @@ function ExperimentModal({ visible, onCancel , id }) {
             }
             else
             {
-                response = await addExperimentAPI(values);
+                const versionId = SessionStorage.getItem("versionId");
+                response = await addExperimentAPI({...values,versionId});
             }
             if(response)
             {
+                message.success('Experiment added successfully');
               onCancel();
             }
           } catch (errorInfo) {
@@ -146,7 +151,7 @@ function ExperimentModal({ visible, onCancel , id }) {
                             </Col>
                             <Col md={18} xs={24}>
                                 <Form.Item name="electrolyte"
-                                 rules={[{ required: true, message: 'Please enter the electrolyte!' }]}
+                                //  rules={[{ required: true, message: 'Please enter the electrolyte!' }]}
                                 >
                                     <Input id='experiment-name' />
                                 </Form.Item>
@@ -191,7 +196,7 @@ function ExperimentModal({ visible, onCancel , id }) {
                                 </Col>
                                 <Col md={18} xs={24}>
                                     <Form.Item name="startDate"
-                                    rules={[{ required: true, message: 'Please select the start date!' }]}
+                                    // rules={[{ required: true, message: 'Please select the start date!' }]}
                                     >
 
                                         <DatePicker id='start-date' />
@@ -220,7 +225,7 @@ function ExperimentModal({ visible, onCancel , id }) {
                                 </Col>
                                 <Col md={24} xs={24}>
                                     <Form.Item name="endDate"
-                                    rules={[{ required: true, message: 'Please select the end date!' }]}
+                                    // rules={[{ required: true, message: 'Please select the end date!' }]}
                                     >
                                         <DatePicker id='end-date' />
                                     </Form.Item>
@@ -248,7 +253,7 @@ function ExperimentModal({ visible, onCancel , id }) {
                                 </Col>
                                 <Col md={18} xs={24}>
                                     <Form.Item name="electrolyteFlowrate"
-                                    rules={[{ required: true, message: 'Please enter the Electrolyte Flowrate!' },]}
+                                    // rules={[{ required: true, message: 'Please enter the Electrolyte Flowrate!' },]}
                                     >
                                     <Input id='experiment-name' />
                                     </Form.Item>
@@ -261,7 +266,7 @@ function ExperimentModal({ visible, onCancel , id }) {
                                 </Col>
                                 <Col md={18} xs={24}>
                                 <Form.Item name="maximumCurrent"
-                                rules={[{ required: true, message: 'Please enter the maximum current!' }]}
+                                // rules={[{ required: true, message: 'Please enter the maximum current!' }]}
                                 >
                                     <Input id='experiment-name' />
                                     </Form.Item>
@@ -276,7 +281,7 @@ function ExperimentModal({ visible, onCancel , id }) {
                                 </Col>
                                 <Col md={18} xs={24}>
                                     <Form.Item name="maximumVoltage"
-                                      rules={[{ required: true, message: 'Please enter the maximum voltage!' }]}
+                                    //   rules={[{ required: true, message: 'Please enter the maximum voltage!' }]}
                                     >
                                     <Input id='experiment-name' />
                                     </Form.Item>
@@ -289,7 +294,7 @@ function ExperimentModal({ visible, onCancel , id }) {
                                 </Col>
                                 <Col md={18} xs={24}>
                                     <Form.Item name="gasFlowrate"
-                                      rules={[{ required: true, message: 'Please enter the gas flowrate!' }]}
+                                    //   rules={[{ required: true, message: 'Please enter the gas flowrate!' }]}
                                     >
                                     <Input id='experiment-name' />
                                     </Form.Item>
@@ -304,7 +309,7 @@ function ExperimentModal({ visible, onCancel , id }) {
                                 </Col>
                                 <Col md={18} xs={24}>
                                     <Form.Item name="H2AbsolutePercentage"
-                                         rules={[{ required: true, message: 'Please enter the H2 Absolute Percentage!' }]}
+                                        //  rules={[{ required: true, message: 'Please enter the H2 Absolute Percentage!' }]}
                                     >
                                     <Input id='experiment-name' />
                                     </Form.Item>
@@ -317,7 +322,7 @@ function ExperimentModal({ visible, onCancel , id }) {
                                 </Col>
                                 <Col md={18} xs={24}>
                                 <Form.Item name="H2AbsoluteImpurityPercentage"
-                                  rules={[{ required: true, message: 'Please enter the H2 Absolute Impurity Percentage!' }]}
+                                //   rules={[{ required: true, message: 'Please enter the H2 Absolute Impurity Percentage!' }]}
                                 >
                                     <Input id='experiment-name' />
                                     </Form.Item>
@@ -332,7 +337,7 @@ function ExperimentModal({ visible, onCancel , id }) {
                                 </Col>
                                 <Col md={18} xs={24}>
                                     <Form.Item name="O2AbsolutePercentage"
-                                    rules={[{ required: true, message: 'Please enter the O2 Absolute Percentage!' }]}
+                                    // rules={[{ required: true, message: 'Please enter the O2 Absolute Percentage!' }]}
                                     >
                                     <Input id='experiment-name' />
                                     </Form.Item>
@@ -345,7 +350,7 @@ function ExperimentModal({ visible, onCancel , id }) {
                                 </Col>
                                 <Col md={18} xs={24}>
                                 <Form.Item name="O2AbsoluteImpurityPercentage"
-                                rules={[{ required: true, message: 'Please enter the O2 Absolute Percentage!' }]}
+                                // rules={[{ required: true, message: 'Please enter the O2 Absolute Percentage!' }]}
                                 >
                                     <Input id='experiment-name' />
                                     </Form.Item>
@@ -365,20 +370,22 @@ function ExperimentModal({ visible, onCancel , id }) {
                             </Col>
 
                             <Col xl={12} lg={12} md={24}>
-                                <Col lg={24} md={6} xs={24}>
+                                <Col lg={10} md={6} xs={24}>
                                     {/* eslint-disable-next-line */}
                                     <label >Inlet Pressure</label>
                                 </Col>
-                                <Col md={16} xs={22}>
-                                <Form.Item name="inletPressure"
-                                >
+                               <Row align='middle'>
+                               <Col xl={18} xs={22}>
+                                    <Form.Item name="inletPressure"
+                                    >
                                     <Input id='experiment-name' />
                                     </Form.Item>
                                 </Col>
-                                <Col  md={2} xs={2}>
+                                <Col  xl={6} xs={2}>
                                     {/* eslint-disable-next-line */}
                                     <label >bar</label>
                                 </Col>
+                               </Row>
                             </Col>
 
                             <Col xl={12} lg={12} md={24}>
@@ -386,16 +393,18 @@ function ExperimentModal({ visible, onCancel , id }) {
                                     {/* eslint-disable-next-line */}
                                     <label >Inlet Temperature Start</label>
                                 </Col>
-                                <Col md={18} xs={24}>
+                                <Row align='middle'>
+                                <Col xl={18} xs={24}>
                                 <Form.Item name="inletTemperatureStart"
                                 >
                                     <Input id='experiment-name' />
                                     </Form.Item>
                                 </Col>
-                                <Col  md={24} xs={24}>
+                                <Col  xl={6} xs={24}>
                                     {/* eslint-disable-next-line */}
-                                    <label >degc</label>
+                                    <label >&deg;C</label>
                                 </Col>
+                                </Row>
                             </Col>
 
                         </Row>            
