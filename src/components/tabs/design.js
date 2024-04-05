@@ -20,6 +20,9 @@ const { Option } = Select;
 function Design() {
     const [formDetails, setFormDetails] = useState({})
     const [form] = Form.useForm();
+    const [assemblyCompleted, setassemblyCompleted] = useState(false);
+    const [assemblyForm] = Form.useForm();
+
     const versionDetails = useSelector((state)=> state.versionInfo.versionDetails)
     const dispatch = useDispatch()
     // const fetchData = async () => {
@@ -69,13 +72,7 @@ function Design() {
         }
     }
 
-    const validateCheckbox = (_, value) => {
-        if (!value) {
-            return Promise.reject(new Error('Please check the checkbox'));
-        }
-        return Promise.resolve();
-    };
-
+    
     const [ecOptions, setEcOptions] = useState([]);
 
     useEffect(() => {
@@ -91,6 +88,22 @@ function Design() {
                 console.error('Error fetching EC details:', error);
             });
     }, []);
+
+    const changeToCompleted = async (e) => {
+        const assemblyData = await assemblyForm.validateFields();
+        if(assemblyData.actualAssemblyCompletionDate)
+        {
+            setassemblyCompleted(e.target.checked);
+        }
+        else
+        {
+            message.error("Please select completion date!");
+        }
+    };
+    const handleDateChange = (date) => {
+        if(!date)
+            setassemblyCompleted(false);
+    }
 
 
     const [showModal, setShowModal] = useState(false);
@@ -128,9 +141,10 @@ function Design() {
                                         <label htmlFor="markAsDesignComplete">Mark as Design Complete:</label>
                                     </Col>
                                     <Col md={4} style={{ marginTop: 20 }}>
-                                        <Form.Item name="markAsDesignComplete" valuePropName="checked" rules={[{ validator: validateCheckbox }]}>
-                                            <Checkbox style={{ height: 20, width: 20, fontSize: 30 }} />
-                                        </Form.Item>
+                                        {/* <Form.Item name="markAsDesignComplete" valuePropName="checked" rules={[{ validator: validateCheckbox }]}> */}
+                                        <Checkbox style={{height: 20, width: 20, fontSize: 30}} name='markAsDesignComplete' checked={assemblyCompleted} onChange={changeToCompleted}/>
+
+                                        {/* </Form.Item> */}
                                     </Col>
                                 </Row>
                             </Col>
@@ -140,8 +154,8 @@ function Design() {
                                         <label htmlFor="actualDateDesignComplete">Actual Date Design Complete:</label>
                                     </Col>
                                     <Col md={12} xs={24} align='right'>
-                                        <Form.Item name="actualDateDesignComplete" rules={[{ required: true, message: 'Please select a date' }]}>
-                                            <DatePicker />
+                                        <Form.Item name="actualDateDesignComplete" >
+                                        <DatePicker onChange={handleDateChange} />
                                         </Form.Item>
                                     </Col>
                                 </Row>
