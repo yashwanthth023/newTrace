@@ -21,8 +21,8 @@ function Testing() {
     const [form] = Form.useForm();
     // const [checkBoxValue ,setCheckBoxValue] = useState(false);
 
+    const versionId = SessionStorage.getItem("versionId");
     const fetchData = async () => {
-        const versionId = SessionStorage.getItem("versionId");
         const response = await fetchAllExperiments({versionId});
         console.log("---------------------------------");
         console.log(response);
@@ -31,7 +31,7 @@ function Testing() {
             // console.log("formDetails ---------",new Date(formDetails[0]?.createdTs),);
         }
 
-      const formDetails = await getVersionByIdAPI({id :"28c28acb-05df-4f62-aa36-ed5cadff80fb"});
+      const formDetails = await getVersionByIdAPI({id : versionId});
       if(formDetails)
       {
         setTestingCompleted(formDetails?.MarkAsTestingComplete);
@@ -114,7 +114,7 @@ function Testing() {
     const handleDateChange = (date) => {
         if(!date)
         {
-            updateVersionByIdAPI({id :"28c28acb-05df-4f62-aa36-ed5cadff80fb" , ActualTestingCompletionDate : null ,MarkAsTestingComplete : false});
+            updateVersionByIdAPI({id :versionId , ActualTestingCompletionDate : null ,MarkAsTestingComplete : false});
             setTestingCompleted(false);
         }
     }
@@ -125,7 +125,7 @@ function Testing() {
         if(values.ActualTestingCompletionDate)
         {
             setTestingCompleted(e.target.checked);
-            updateVersionByIdAPI({id :"28c28acb-05df-4f62-aa36-ed5cadff80fb" , ...values ,MarkAsTestingComplete : true });
+            updateVersionByIdAPI({id :versionId , ...values ,MarkAsTestingComplete : true });
             message.success('testing status updated successfully');
         }
         else
