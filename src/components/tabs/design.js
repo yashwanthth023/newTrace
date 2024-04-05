@@ -62,7 +62,7 @@ function Design() {
         if (markAsDesignComplete && actualDateDesignComplete) {
             // Checkbox is checked and date is selected
             // Handle successful submission here
-            message.success('Design marked as complete');
+            message.success('specification marked as complete');
         } else {
             // Either checkbox is not checked or date is not selected
             message.error('Please select both checkbox and date before marking as complete');

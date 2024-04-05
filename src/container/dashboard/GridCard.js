@@ -101,7 +101,7 @@ function GridCard({ value }) {
             </Button>
           </div>
         </div>
-        <div className="project-bottom" style={{ overflowY: 'auto', maxHeight: '150px' }}>
+        <div className="project-bottom" style={{ overflowY: 'auto', height: '150px' }}>
           <div className="project-assignees">
             {/* <p>Assigned To</p> */}
             <ul style={{ flexDirection: 'column' }}>

@@ -10,6 +10,7 @@ import { Cards } from '../cards/frame/cards-frame';
 import { Button } from '../buttons/buttons';
 import { fetchAllExperiments, getVersionByIdAPI, updateVersionByIdAPI} from '../../api/api';
 import { DateFormat } from '../../util/utils';
+import { SessionStorage } from '../../util/SessionStorage';
 
 function Testing() {
     const [showModal, setShowModal] = useState(false);
@@ -21,7 +22,8 @@ function Testing() {
     // const [checkBoxValue ,setCheckBoxValue] = useState(false);
 
     const fetchData = async () => {
-        const response = await fetchAllExperiments();
+        const versionId = SessionStorage.getItem("versionId");
+        const response = await fetchAllExperiments({versionId});
         console.log("---------------------------------");
         console.log(response);
         if (response) {
@@ -124,6 +126,7 @@ function Testing() {
         {
             setTestingCompleted(e.target.checked);
             updateVersionByIdAPI({id :"28c28acb-05df-4f62-aa36-ed5cadff80fb" , ...values ,MarkAsTestingComplete : true });
+            message.success('testing status updated successfully');
         }
         else
         {
@@ -193,7 +196,7 @@ function Testing() {
                     </Row>
 
                 </Cards>
-                <Row align="middle">
+                {/* <Row align="middle">
                     <Col md={24} align='right'>
                         <Button size='default' type='primary' style={{ marginRight: 5 }}>
                             save
@@ -202,7 +205,7 @@ function Testing() {
                             cancel
                         </Button>
                     </Col>
-                </Row>
+                </Row> */}
             </HorizontalFormStyleWrap>
         </BasicFormWrapper>
     );

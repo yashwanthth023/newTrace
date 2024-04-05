@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Form, Input, DatePicker } from 'antd';
+import { Row, Col, Form, Input, DatePicker, message } from 'antd';
 import propTypes from 'prop-types';
 import moment from 'moment';
 import { Button } from '../../components/buttons/buttons';
@@ -43,6 +43,7 @@ function CreateProject({ visible, onCancel, setProtoTypeDesc, setProtoTypeName }
       {
         console.log('result ===', result);
         form.resetFields();
+        message.success('Prototype added successfully');
         onCancel();
         // form.setFields([
         //   {
